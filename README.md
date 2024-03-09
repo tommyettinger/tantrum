@@ -6,7 +6,7 @@ This lets [Fury](https://fury.apache.org) 0.4.x (currently 0.4.1) de/serialize o
 sheer coincidence, were all written by @tommyettinger (me). These are, or will be,
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 [jdkgdxds](https://github.com/tommyettinger/jdkgdxds), [juniper](https://github.com/tommyettinger/juniper),
-and [cringe](https://github.com/tommyettinger/cringe).
+and [cringe](https://github.com/tommyettinger/cringe). Currently, digital works; the rest are being implemented.
 
 This repo is modeled after [kryo-more](https://github.com/tommyettinger/kryo-more). There is a kryo-more sub-library
 for an older version of simple-graphs and the current version of gand, but gand mostly replaces what simple-graphs
@@ -22,20 +22,20 @@ or if Fury itself had a (compatible) update available but the linked library did
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
-~~Gradle dependency info:~~
+Gradle dependency info:
 
-**None of these dependencies will work yet.** The library was only created a very short while ago!
+tantrum-digital:
+
+```gradle
+implementation "com.github.tommyettinger:tantrum-digital:0.4.7.0"
+```
+
+**None of the following dependencies will work yet.** The library was only created a very short while ago!
 
 tantrum-regexodus:
 
 ```gradle
 implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.0-SNAPSHOT"
-```
-
-tantrum-digital:
-
-```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.4.7.0-SNAPSHOT"
 ```
 
 tantrum-jdkgdxds:
@@ -56,19 +56,7 @@ tantrum-cringe:
 implementation "com.github.tommyettinger:tantrum-cringe:0.1.0.0-SNAPSHOT"
 ```
 
-~~Maven dependency info:~~
-
-**None of these dependencies will work yet.** The library was only created a very short while ago!
-
-tantrum-regexodus:
-
-```xml
-<dependency>
-  <groupId>com.github.tommyettinger</groupId>
-  <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.15.0-SNAPSHOT</version>
-</dependency>
-```
+Maven dependency info:
 
 tantrum-digital:
 
@@ -77,6 +65,18 @@ tantrum-digital:
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
   <version>0.4.7.0-SNAPSHOT</version>
+</dependency>
+```
+
+**None of the following dependencies will work yet.** The library was only created a very short while ago!
+
+tantrum-regexodus:
+
+```xml
+<dependency>
+  <groupId>com.github.tommyettinger</groupId>
+  <artifactId>tantrum-regexodus</artifactId>
+  <version>0.1.15.0-SNAPSHOT</version>
 </dependency>
 ```
 
