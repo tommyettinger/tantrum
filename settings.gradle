@@ -1,0 +1,6 @@
+// Can be used to automatically download a JDK with the correct version.
+plugins {
+    id('org.gradle.toolchains.foojay-resolver-convention') version '0.7.0'
+}
+include 'tantrum-digital'
+// , 'tantrum-regexodus', 'tantrum-jdkgdxds', 'tantrum-juniper', 'tantrum-cringe'
