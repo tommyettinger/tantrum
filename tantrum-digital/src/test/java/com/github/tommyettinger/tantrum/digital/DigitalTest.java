@@ -52,8 +52,23 @@ public class DigitalTest {
         Assert.assertEquals(data.nextLong(), data2.nextLong());
         Assert.assertEquals(data.serializeToString(), data2.serializeToString());
         // equals() not implemented yet
-
     }
+
+    @Test
+    public void testHasher() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Hasher.class, new HasherSerializer(fury));
+
+        long seed = Hasher.randomize3(System.nanoTime());
+        Hasher data = new Hasher(seed);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        Hasher data2 = fury.deserializeJavaObject(bytes, Hasher.class);
+        Assert.assertEquals(data.hash("0xFEDCBA9876543210L"), data2.hash("0xFEDCBA9876543210L"));
+        Assert.assertEquals(data.hash64("0xFEDCBA9876543210L"), data2.hash64("0xFEDCBA9876543210L"));
+    }
+
+
     @Test
     public void testInterpolator() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
