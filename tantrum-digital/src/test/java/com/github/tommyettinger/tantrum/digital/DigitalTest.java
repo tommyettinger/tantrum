@@ -25,24 +25,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class DigitalTest {
-//    @Test
-//    public void testBase() {
-//        Kryo kryo = new Kryo();
-//        kryo.register(Base.class, new BaseSerializer());
-//
-//        Base data = Base.scrambledBase(new Random(123456789L));
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            Base data2 = kryo.readObject(input, Base.class);
-//            Assert.assertEquals(data.signed(0xFEDCBA9876543210L), data2.signed(0xFEDCBA9876543210L));
-//            Assert.assertEquals(data.unsigned(0xFEDCBA9876543210L), data.unsigned(0xFEDCBA9876543210L));
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+    @Test
+    public void testBase() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Base.class, new BaseSerializer(fury));
+
+        Base data = Base.scrambledBase(new AlternateRandom(123456789L));
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        Base data2 = fury.deserializeJavaObject(bytes, Base.class);
+        Assert.assertEquals(data.signed(0xFEDCBA9876543210L), data2.signed(0xFEDCBA9876543210L));
+        Assert.assertEquals(data.unsigned(0xFEDCBA9876543210L), data.unsigned(0xFEDCBA9876543210L));
+        Assert.assertEquals(data, data2);
+    }
 
     @Test
     public void testAlternateRandom() {
