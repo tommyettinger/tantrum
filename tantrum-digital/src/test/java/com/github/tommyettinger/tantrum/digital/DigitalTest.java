@@ -20,11 +20,9 @@ package com.github.tommyettinger.tantrum.digital;
 import com.github.tommyettinger.digital.*;
 import io.fury.Fury;
 import io.fury.config.Language;
+import io.fury.memory.MemoryBuffer;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Random;
 
 public class DigitalTest {
 //    @Test
@@ -61,45 +59,21 @@ public class DigitalTest {
         // equals() not implemented yet
 
     }
+    @Test
+    public void testInterpolator() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fury));
 
-//    @Test
-//    public void testHasher() {
-//        Kryo kryo = new Kryo();
-//        kryo.register(Hasher.class, new HasherSerializer());
-//
-//        long seed = Hasher.randomize3(System.nanoTime());
-//        Hasher data = new Hasher(seed);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            Hasher data2 = kryo.readObject(input, Hasher.class);
-//            Assert.assertEquals(data.hash("0xFEDCBA9876543210L"), data2.hash("0xFEDCBA9876543210L"));
-//            Assert.assertEquals(data.hash64("0xFEDCBA9876543210L"), data2.hash64("0xFEDCBA9876543210L"));
-//        }
-//    }
-//
-//    @Test
-//    public void testInterpolator() {
-//        Kryo kryo = new Kryo();
-//        kryo.register(Interpolations.Interpolator.class, new InterpolatorSerializer());
-//
-//        for (Interpolations.Interpolator data : Interpolations.getInterpolatorArray()) {
-//
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//            Output output = new Output(baos);
-//            kryo.writeObject(output, data);
-//            byte[] bytes = output.toBytes();
-//            try (Input input = new Input(bytes)) {
-//                Interpolations.Interpolator data2 = kryo.readObject(input, Interpolations.Interpolator.class);
-//                Assert.assertEquals(data.apply(0.1f), data2.apply(0.1f), MathTools.FLOAT_ROUNDING_ERROR);
-//                Assert.assertEquals(data.apply(0.2f), data2.apply(0.2f), MathTools.FLOAT_ROUNDING_ERROR);
-//                Assert.assertEquals(data.apply(0.7f), data2.apply(0.7f), MathTools.FLOAT_ROUNDING_ERROR);
-//                Assert.assertEquals(data.apply(0.8f), data2.apply(0.8f), MathTools.FLOAT_ROUNDING_ERROR);
-//                Assert.assertEquals(data, data2);
-//            }
-//        }
-//    }
+        MemoryBuffer buffer = MemoryBuffer.newHeapBuffer(256);
+        for (Interpolations.Interpolator data : Interpolations.getInterpolatorArray()) {
+
+            fury.serializeJavaObject(buffer, data);
+            Interpolations.Interpolator data2 = fury.deserializeJavaObject(buffer, Interpolations.Interpolator.class);
+            Assert.assertEquals(data.apply(0.1f), data2.apply(0.1f), MathTools.FLOAT_ROUNDING_ERROR);
+            Assert.assertEquals(data.apply(0.2f), data2.apply(0.2f), MathTools.FLOAT_ROUNDING_ERROR);
+            Assert.assertEquals(data.apply(0.7f), data2.apply(0.7f), MathTools.FLOAT_ROUNDING_ERROR);
+            Assert.assertEquals(data.apply(0.8f), data2.apply(0.8f), MathTools.FLOAT_ROUNDING_ERROR);
+            Assert.assertEquals(data, data2);
+        }
+    }
 }

@@ -17,32 +17,29 @@
 
 package com.github.tommyettinger.tantrum.digital;
 
-import com.github.tommyettinger.digital.AlternateRandom;
+import com.github.tommyettinger.digital.Interpolations;
+import com.github.tommyettinger.digital.Interpolations.Interpolator;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
+import java.nio.charset.StandardCharsets;
+
 /**
- * Fury {@link Serializer} for digital {@link AlternateRandom}s.
+ * Fury {@link Serializer} for digital {@link Interpolator}s.
  */
-public class AlternateRandomSerializer extends Serializer<AlternateRandom> {
-
-    public AlternateRandomSerializer(Fury fury) {
-        super(fury, AlternateRandom.class);
+public class InterpolatorSerializer extends Serializer<Interpolator> {
+    public InterpolatorSerializer(Fury fury) {
+        super(fury, Interpolator.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final AlternateRandom data) {
-        buffer.writeLong(data.stateA);
-        buffer.writeLong(data.stateB);
-        buffer.writeLong(data.stateC);
-        buffer.writeLong(data.stateD);
-        buffer.writeLong(data.stateE);
+    public void write(MemoryBuffer buffer, final Interpolator data) {
+        buffer.writeBytesWithSizeEmbedded(data.getTag().getBytes(StandardCharsets.UTF_8));
     }
 
     @Override
-    public AlternateRandom read(MemoryBuffer buffer) {
-        return new AlternateRandom(buffer.readLong(), buffer.readLong(), buffer.readLong(),
-                buffer.readLong(), buffer.readLong());
+    public Interpolator read(MemoryBuffer buffer) {
+        return Interpolations.get(new String(buffer.readBytesWithSizeEmbedded(), StandardCharsets.UTF_8));
     }
 }
