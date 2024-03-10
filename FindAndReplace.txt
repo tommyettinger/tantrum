@@ -104,11 +104,11 @@ fury.registerSerializer($1.class, new $1Serializer(fury));
 
 Find:
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-        Output output = new Output(baos);
-        kryo.writeObject(output, data);
-        byte[] bytes = output.toBytes();
-        try (Input input = new Input(bytes))
+        ByteArrayOutputStream baos \= new ByteArrayOutputStream\(32\)\;
+        Output output \= new Output\(baos\)\;
+        kryo\.writeObject\(output\, data\)\;
+        byte\[\] bytes \= output\.toBytes\(\)\;
+        try \(Input input \= new Input\(bytes\)\)
 
 Replace:
 
@@ -116,7 +116,7 @@ byte[] bytes = fury.serializeJavaObject(data);
 
 Find:
 
-(\w+) data2 = kryo.readObject(input, \1.class);
+(\w+) data2 = kryo.readObject\(input, \1.class\);
 
 Replace:
 
