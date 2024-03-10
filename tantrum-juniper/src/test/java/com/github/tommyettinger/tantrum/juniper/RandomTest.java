@@ -493,21 +493,16 @@ public class RandomTest {
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
-//
-//    @Test
-//    public void testLongSequence() {
-//        Kryo kryo = new Kryo();
-//        kryo.register(LongSequence.class, new LongSequenceSerializer());
-//
-//        LongSequence data = LongSequence.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            LongSequence data2 = kryo.readObject(input, LongSequence.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+
+    @Test
+    public void testLongSequence() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongSequence.class, new LongSequenceSerializer(fury));
+
+        LongSequence data = LongSequence.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        LongSequence data2 = fury.deserializeJavaObject(bytes, LongSequence.class);
+        Assert.assertEquals(data, data2);
+    }
 }
