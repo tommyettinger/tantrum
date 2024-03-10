@@ -67,6 +67,14 @@ Long($1)
 
 Find:
 
+VarInt\(([^,]*),? ?false\)
+
+Replace:
+
+Int($1)
+
+Find:
+
 \s+@Override
 \s+public \w+ copy\(Kryo kryo,[^\}]+\}
 
