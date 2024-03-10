@@ -1,0 +1,115 @@
+Find:
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.Serializer;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+
+Replace:
+
+import io.fury.Fury;
+import io.fury.memory.MemoryBuffer;
+import io.fury.serializer.Serializer;
+
+Find:
+
+package com.github.tommyettinger.kryo.juniper;
+
+Replace:
+
+package com.github.tommyettinger.tantrum.juniper;
+
+Find:
+
+Kryo \{@link Serializer\}
+
+Replace:
+
+Fury {@link Serializer}
+
+Find:
+
+    public (\w+)Serializer\Q() {
+        setImmutable(false);
+        setAcceptsNull(false);
+    }
+\E
+
+Replace:
+
+    public $1Serializer(Fury fury) {
+        super(fury, $1.class);
+    }
+
+Find:
+
+public void write\(final Kryo kryo\, final Output output\,
+
+Replace:
+
+public void write(final MemoryBuffer output,
+
+Find:
+
+read\(final Kryo kryo.+?\)
+
+Replace:
+
+read(MemoryBuffer input)
+
+Find:
+
+VarLong\(([^,]*),? ?false\)
+
+Replace:
+
+Long($1)
+
+Find:
+
+\s+@Override
+\s+public \w+ copy\(Kryo kryo,[^\}]+\}
+
+Replace:
+
+{Nothing}
+
+
+
+In tests:
+
+Find:
+
+Kryo kryo = new Kryo\(\);
+
+Replace:
+
+Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+
+Find:
+
+kryo.register\((\w+)\.class, new \1Serializer\(\)\);
+
+Replace:
+
+fury.registerSerializer($1.class, new $1Serializer(fury));
+
+Find:
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
+        Output output = new Output(baos);
+        kryo.writeObject(output, data);
+        byte[] bytes = output.toBytes();
+        try (Input input = new Input(bytes))
+
+Replace:
+
+byte[] bytes = fury.serializeJavaObject(data);
+
+Find:
+
+(\w+) data2 = kryo.readObject(input, \1.class);
+
+Replace:
+
+$1 data2 = fury.deserializeJavaObject(bytes, $1.class);
