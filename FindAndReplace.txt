@@ -1,3 +1,6 @@
+JUNIPER
+
+
 Find:
 
 import com.esotericsoftware.kryo.Kryo;
@@ -29,7 +32,7 @@ Fury {@link Serializer}
 
 Find:
 
-    public (\w+)Serializer\Q() {
+public (\w+)Serializer\Q() {
         setImmutable(false);
         setAcceptsNull(false);
     }
@@ -37,7 +40,7 @@ Find:
 
 Replace:
 
-    public $1Serializer(Fury fury) {
+public $1Serializer(Fury fury) {
         super(fury, $1.class);
     }
 
@@ -59,19 +62,11 @@ read(MemoryBuffer input)
 
 Find:
 
-VarLong\(([^,]*),? ?false\)
+Var(\w+)\(([^,]*),? ?(false|true)\)
 
 Replace:
 
-Long($1)
-
-Find:
-
-VarInt\(([^,]*),? ?false\)
-
-Replace:
-
-Int($1)
+$1($2)
 
 Find:
 
@@ -82,9 +77,26 @@ Replace:
 
 {Nothing}
 
+JUNIPER.DISTRIBUTION
 
 
-In tests:
+Find:
+
+public (\w+)Serializer\Q() {
+        super(false, false);
+    }
+\E
+
+Replace:
+
+public $1Serializer(Fury fury) {
+        super(fury, $1.class);
+    }
+
+
+
+
+JUNIPER.TESTS
 
 Find:
 
@@ -121,3 +133,19 @@ Find:
 Replace:
 
 $1 data2 = fury.deserializeJavaObject(bytes, $1.class);
+
+Find:
+
+kryo\.writeClassAndObject\(output\, object\.generator\)\;
+
+Replace:
+
+fury.writeRef(output, object.generator);
+
+Find:
+
+kryo\.readClassAndObject\(input\)
+
+Replace:
+
+fury.readRef(input)

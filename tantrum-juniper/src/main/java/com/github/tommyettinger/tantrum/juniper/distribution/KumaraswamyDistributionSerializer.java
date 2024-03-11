@@ -21,23 +21,22 @@ import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
-import com.github.tommyettinger.random.distribution.ArcsineDistribution;
+import com.github.tommyettinger.random.distribution.KumaraswamyDistribution;
 
-public class ArcsineDistributionSerializer extends Serializer<ArcsineDistribution> {
-    public ArcsineDistributionSerializer(Fury fury) {
-        super(fury, ArcsineDistribution.class);
+public class KumaraswamyDistributionSerializer extends Serializer<KumaraswamyDistribution> {
+    public KumaraswamyDistributionSerializer(Fury fury) {
+        super(fury, KumaraswamyDistribution.class);
     }
-
     @Override
-    public void write(MemoryBuffer output, ArcsineDistribution object) {
+    public void write(final MemoryBuffer output, KumaraswamyDistribution object) {
         fury.writeRef(output, object.generator);
         output.writeDouble(object.getParameterA());
         output.writeDouble(object.getParameterB());
     }
 
     @Override
-    public ArcsineDistribution read(MemoryBuffer input) {
-        return new ArcsineDistribution((EnhancedRandom) fury.readRef(input),
+    public KumaraswamyDistribution read(MemoryBuffer input) {
+        return new KumaraswamyDistribution((EnhancedRandom) fury.readRef(input),
                 input.readDouble(), input.readDouble());
     }
 }
