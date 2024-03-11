@@ -35,11 +35,11 @@ public class BaseSerializer extends Serializer<Base> {
 
     @Override
     public void write(MemoryBuffer buffer, final Base data) {
-        buffer.writeBytesWithSizeEmbedded(data.serializeToString().getBytes(StandardCharsets.UTF_8));
+        fury.writeString(buffer, data.serializeToString());
     }
 
     @Override
     public Base read(MemoryBuffer buffer) {
-        return Base.deserializeFromString(new String(buffer.readBytesWithSizeEmbedded(), StandardCharsets.UTF_8));
+        return Base.deserializeFromString(fury.readString(buffer));
     }
 }

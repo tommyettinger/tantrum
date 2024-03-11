@@ -35,11 +35,11 @@ public class InterpolatorSerializer extends Serializer<Interpolator> {
 
     @Override
     public void write(MemoryBuffer buffer, final Interpolator data) {
-        buffer.writeBytesWithSizeEmbedded(data.getTag().getBytes(StandardCharsets.UTF_8));
+        fury.writeString(buffer, data.getTag());
     }
 
     @Override
     public Interpolator read(MemoryBuffer buffer) {
-        return Interpolations.get(new String(buffer.readBytesWithSizeEmbedded(), StandardCharsets.UTF_8));
+        return Interpolations.get(fury.readString(buffer));
     }
 }
