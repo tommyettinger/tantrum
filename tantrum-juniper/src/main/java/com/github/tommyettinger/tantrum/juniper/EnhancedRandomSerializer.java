@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.juniper;
 import com.github.tommyettinger.digital.Base;
 import com.github.tommyettinger.random.Deserializer;
 import com.github.tommyettinger.random.EnhancedRandom;
-import com.github.tommyettinger.tantrum.juniper.helpers.BufferHelper;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
@@ -36,11 +35,11 @@ public class EnhancedRandomSerializer extends Serializer<EnhancedRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final EnhancedRandom data) {
-        BufferHelper.writeString(output, data.stringSerialize(Base.BASE86));
+        fury.writeString(output, data.stringSerialize(Base.BASE86));
     }
 
     @Override
     public EnhancedRandom read(MemoryBuffer input) {
-        return Deserializer.deserialize(BufferHelper.readString(input), Base.BASE86);
+        return Deserializer.deserialize(fury.readString(input), Base.BASE86);
     }
 }

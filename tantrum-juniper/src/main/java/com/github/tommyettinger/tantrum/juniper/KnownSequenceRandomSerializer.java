@@ -19,7 +19,6 @@ package com.github.tommyettinger.tantrum.juniper;
 
 import com.github.tommyettinger.digital.Base;
 import com.github.tommyettinger.random.KnownSequenceRandom;
-import com.github.tommyettinger.tantrum.juniper.helpers.BufferHelper;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
@@ -35,13 +34,13 @@ public class KnownSequenceRandomSerializer extends Serializer<KnownSequenceRando
 
     @Override
     public void write(final MemoryBuffer output, final KnownSequenceRandom data) {
-        BufferHelper.writeString(output, data.stringSerialize(Base.BASE86));
+        fury.writeString(output, data.stringSerialize(Base.BASE86));
     }
 
     @Override
     public KnownSequenceRandom read(MemoryBuffer input) {
         KnownSequenceRandom random = new KnownSequenceRandom();
-        random.stringDeserialize(BufferHelper.readString(input), Base.BASE86);
+        random.stringDeserialize(fury.readString(input), Base.BASE86);
         return random;
     }
 }

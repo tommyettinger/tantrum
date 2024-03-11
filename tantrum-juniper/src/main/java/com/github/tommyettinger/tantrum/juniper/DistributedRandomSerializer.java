@@ -15,31 +15,32 @@
  *
  */
 
-package com.github.tommyettinger.tantrum.juniper.distribution;
+package com.github.tommyettinger.tantrum.juniper;
 
 import com.github.tommyettinger.digital.Base;
-import com.github.tommyettinger.random.Deserializer;
-import com.github.tommyettinger.random.distribution.Distribution;
+import com.github.tommyettinger.random.DistributedRandom;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for juniper {@link Distribution}s.
+ * Fury {@link Serializer} for juniper {@link DistributedRandom}s.
  */
-public class DistributionSerializer extends Serializer<Distribution> {
+public class DistributedRandomSerializer extends Serializer<DistributedRandom> {
 
-    public DistributionSerializer(Fury fury) {
-        super(fury, Distribution.class);
+    public DistributedRandomSerializer(Fury fury) {
+        super(fury, DistributedRandom.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Distribution data) {
+    public void write(final MemoryBuffer output, final DistributedRandom data) {
         fury.writeString(output, data.stringSerialize(Base.BASE86));
     }
 
     @Override
-    public Distribution read(MemoryBuffer input) {
-        return Deserializer.deserializeDistribution(fury.readString(input), Base.BASE86);
+    public DistributedRandom read(MemoryBuffer input) {
+        DistributedRandom data = new DistributedRandom(1);
+        data.stringDeserialize(fury.readString(input), Base.BASE86);
+        return data;
     }
 }

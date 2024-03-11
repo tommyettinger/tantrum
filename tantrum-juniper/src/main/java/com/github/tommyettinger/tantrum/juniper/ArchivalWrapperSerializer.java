@@ -19,7 +19,6 @@ package com.github.tommyettinger.tantrum.juniper;
 
 import com.github.tommyettinger.digital.Base;
 import com.github.tommyettinger.random.ArchivalWrapper;
-import com.github.tommyettinger.tantrum.juniper.helpers.BufferHelper;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
@@ -35,13 +34,13 @@ public class ArchivalWrapperSerializer extends Serializer<ArchivalWrapper> {
 
     @Override
     public void write(final MemoryBuffer output, final ArchivalWrapper data) {
-        BufferHelper.writeString(output, data.stringSerialize(Base.BASE86));
+        fury.writeString(output, data.stringSerialize(Base.BASE86));
     }
 
     @Override
     public ArchivalWrapper read(MemoryBuffer input) {
         ArchivalWrapper random = new ArchivalWrapper();
-        random.stringDeserialize(BufferHelper.readString(input), Base.BASE86);
+        random.stringDeserialize(fury.readString(input), Base.BASE86);
         return random;
     }
 }
