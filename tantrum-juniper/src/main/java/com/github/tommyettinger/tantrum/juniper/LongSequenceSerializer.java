@@ -24,7 +24,7 @@ import com.github.tommyettinger.random.LongSequence;
 import io.fury.util.Platform;
 
 /**
- * Kryo {@link Serializer} for jdkgdxds {@link LongSequence}s.
+ * Fury {@link Serializer} for jdkgdxds {@link LongSequence}s.
  */
 public class LongSequenceSerializer extends Serializer<LongSequence> {
 

@@ -18,7 +18,8 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - None of the sub-libraries have had releases yet.
+  - tantrum-digital is at version 0.4.7.0, compatible with digital 0.4.7
+  - tantrum-juniper is at version 0.5.0.0, compatible with juniper 0.5.0
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
@@ -28,6 +29,12 @@ tantrum-digital:
 
 ```gradle
 implementation "com.github.tommyettinger:tantrum-digital:0.4.7.0"
+```
+
+tantrum-juniper:
+
+```gradle
+implementation "com.github.tommyettinger:tantrum-juniper:0.5.0.0"
 ```
 
 **None of the following dependencies will work yet.** The library was only created a very short while ago!
@@ -44,12 +51,6 @@ tantrum-jdkgdxds:
 implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.4.8.0-SNAPSHOT"
 ```
 
-tantrum-juniper:
-
-```gradle
-implementation "com.github.tommyettinger:tantrum-juniper:0.5.0.0-SNAPSHOT"
-```
-
 tantrum-cringe:
 
 ```gradle
@@ -64,7 +65,17 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.4.7.0-SNAPSHOT</version>
+  <version>0.4.7.0</version>
+</dependency>
+```
+
+tantrum-juniper:
+
+```xml
+<dependency>
+  <groupId>com.github.tommyettinger</groupId>
+  <artifactId>tantrum-juniper</artifactId>
+  <version>0.5.0.0</version>
 </dependency>
 ```
 
@@ -87,16 +98,6 @@ tantrum-jdkgdxds:
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
   <version>1.4.8.0-SNAPSHOT</version>
-</dependency>
-```
-
-tantrum-juniper:
-
-```xml
-<dependency>
-  <groupId>com.github.tommyettinger</groupId>
-  <artifactId>tantrum-juniper</artifactId>
-  <version>0.5.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
