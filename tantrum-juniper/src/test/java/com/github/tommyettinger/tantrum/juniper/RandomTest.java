@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.juniper;
 
 //import com.github.tommyettinger.digital.Interpolations;
 
+import com.github.tommyettinger.digital.Interpolations;
 import com.github.tommyettinger.random.*;
 import io.fury.Fury;
 import io.fury.config.Language;
@@ -389,110 +390,83 @@ public class RandomTest {
         Assert.assertEquals(data, data2);
     }
 
-//    @Test
-//    public void testInterpolatedRandom() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(InterpolatedRandom.class, new InterpolatedRandomSerializer(fury));
-//
-//        InterpolatedRandom random = new InterpolatedRandom(Interpolations.kumaraswamyExtremeB,
-//                new DistinctRandom(123L));
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, random);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            InterpolatedRandom data2 = fury.deserializeJavaObject(bytes, InterpolatedRandom.class);
-//            Assert.assertEquals(random.nextDouble(), data2.nextDouble(), 0x1p-32);
-//            Assert.assertEquals(random.nextDouble(), data2.nextDouble(), 0x1p-32);
-//            Assert.assertTrue(EnhancedRandom.areEqual(random, data2));
-//        }
-//    }
-//
-//
-//    @Test
-//    public void testKnownSequenceRandom() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        KnownSequenceRandomSerializer ser = new KnownSequenceRandomSerializer();
-//        kryo.register(KnownSequenceRandom.class, ser);
-//
-//        KnownSequenceRandom data = new KnownSequenceRandom(LongSequence.with(0L, 1L, -2L, -3L, 4L, 5L));
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data, ser);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            KnownSequenceRandom data2 = fury.deserializeJavaObject(bytes, KnownSequenceRandom.class);
-//            Assert.assertEquals(data.nextInt(), data2.nextInt());
-//            Assert.assertEquals(data.nextLong(), data2.nextLong());
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testReverseWrapper() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        ReverseWrapperSerializer ser = new ReverseWrapperSerializer();
-//        kryo.register(ReverseWrapper.class, ser);
-//
-//        ReverseWrapper data = new ReverseWrapper(new DistinctRandom(-12345L));
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data, ser);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            ReverseWrapper data2 = fury.deserializeJavaObject(bytes, ReverseWrapper.class);
-//            Assert.assertEquals(data.nextInt(), data2.nextInt());
-//            Assert.assertEquals(data.nextLong(), data2.nextLong());
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testArchivalWrapper() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        ArchivalWrapperSerializer ser = new ArchivalWrapperSerializer();
-//        kryo.register(ArchivalWrapper.class, ser);
-//
-//        ArchivalWrapper data = new ArchivalWrapper(new DistinctRandom(-12345L));
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data, ser);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            ArchivalWrapper data2 = fury.deserializeJavaObject(bytes, ArchivalWrapper.class);
-////            System.out.println("data...");
-////            System.out.println(data);
-////            System.out.println("vs. data2...");
-////            System.out.println(data2);
-//            Assert.assertEquals(data.nextInt(), data2.nextInt());
-//            Assert.assertEquals(data.nextLong(), data2.nextLong());
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testEnhancedRandom() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        EnhancedRandomSerializer ser = new EnhancedRandomSerializer();
-//        kryo.register(EnhancedRandom.class, ser);
-//
-//        EnhancedRandom data = new Xoshiro128PlusPlusRandom(-12345L);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data, ser);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            EnhancedRandom data2 = fury.deserializeJavaObject(bytes, EnhancedRandom.class);
-//            Assert.assertEquals(data.nextInt(), data2.nextInt());
-//            Assert.assertEquals(data.nextLong(), data2.nextLong());
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+    @Test
+    public void testInterpolatedRandom() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(InterpolatedRandom.class, new InterpolatedRandomSerializer(fury));
+
+        InterpolatedRandom data = new InterpolatedRandom(Interpolations.kumaraswamyExtremeB,
+                new DistinctRandom(123L));
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            InterpolatedRandom data2 = fury.deserializeJavaObject(bytes, InterpolatedRandom.class);
+            Assert.assertEquals(data.nextDouble(), data2.nextDouble(), 0x1p-32);
+            Assert.assertEquals(data.nextDouble(), data2.nextDouble(), 0x1p-32);
+            Assert.assertTrue(EnhancedRandom.areEqual(data, data2));
+        }
+    }
+
+
+    @Test
+    public void testKnownSequenceRandom() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(KnownSequenceRandom.class, new KnownSequenceRandomSerializer(fury));
+
+        KnownSequenceRandom data = new KnownSequenceRandom(LongSequence.with(0L, 1L, -2L, -3L, 4L, 5L));
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            KnownSequenceRandom data2 = fury.deserializeJavaObject(bytes, KnownSequenceRandom.class);
+            Assert.assertEquals(data.nextInt(), data2.nextInt());
+            Assert.assertEquals(data.nextLong(), data2.nextLong());
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testReverseWrapper() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ReverseWrapper.class, new ReverseWrapperSerializer(fury));
+
+        ReverseWrapper data = new ReverseWrapper(new DistinctRandom(-12345L));
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ReverseWrapper data2 = fury.deserializeJavaObject(bytes, ReverseWrapper.class);
+            Assert.assertEquals(data.nextInt(), data2.nextInt());
+            Assert.assertEquals(data.nextLong(), data2.nextLong());
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testArchivalWrapper() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ArchivalWrapper.class, new ArchivalWrapperSerializer(fury));
+
+        ArchivalWrapper data = new ArchivalWrapper(new DistinctRandom(-12345L));
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ArchivalWrapper data2 = fury.deserializeJavaObject(bytes, ArchivalWrapper.class);
+            Assert.assertEquals(data.nextInt(), data2.nextInt());
+            Assert.assertEquals(data.nextLong(), data2.nextLong());
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testEnhancedRandom() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Xoshiro128PlusPlusRandom.class, new EnhancedRandomSerializer(fury));
+        fury.registerSerializer(EnhancedRandom.class, new EnhancedRandomSerializer(fury));
+
+        EnhancedRandom data = new Xoshiro128PlusPlusRandom(-12345L);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnhancedRandom data2 = fury.deserializeJavaObject(bytes, EnhancedRandom.class);
+            Assert.assertEquals(data.nextInt(), data2.nextInt());
+            Assert.assertEquals(data.nextLong(), data2.nextLong());
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testLongSequence() {
