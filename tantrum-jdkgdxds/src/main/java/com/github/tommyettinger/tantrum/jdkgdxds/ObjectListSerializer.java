@@ -17,29 +17,34 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.BooleanList;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
+import com.github.tommyettinger.ds.ObjectList;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link BooleanList}s.
+ * Fury {@link Serializer} for jdkgdxds {@link ObjectList}s.
  */
-public class BooleanListSerializer extends Serializer<BooleanList> {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class ObjectListSerializer extends Serializer<ObjectList> {
 
-    public BooleanListSerializer(Fury fury) {
-        super(fury, BooleanList.class);
+    public ObjectListSerializer(Fury fury) {
+        super(fury, ObjectList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BooleanList data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+    public void write(final MemoryBuffer output, final ObjectList data) {
+        output.writePositiveVarInt(data.size());
+        for(Object item : data)
+            fury.writeRef(output, item);
     }
 
     @Override
-    public BooleanList read(MemoryBuffer input) {
-        return new BooleanList(Support.readBooleansWithSizeEmbedded(input));
+    public ObjectList read(MemoryBuffer input) {
+        final int len = input.readPositiveVarInt();
+        ObjectList data = new ObjectList(len);
+        for (int i = 0; i < len; i++)
+            data.add(fury.readRef(input));
+        return data;
     }
 }
