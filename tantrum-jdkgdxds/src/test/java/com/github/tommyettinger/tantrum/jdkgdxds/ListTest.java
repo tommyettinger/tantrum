@@ -17,15 +17,11 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.*;
 import io.fury.Fury;
 import io.fury.config.Language;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import com.github.tommyettinger.ds.*;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
 
 public class ListTest {
 //    @Test
@@ -87,23 +83,20 @@ public class ListTest {
         }
     }
 
-//    @Test
-//    public void testByteList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(ByteList.class, new ByteListSerializer());
-//
-//        ByteList data = ByteList.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            ByteList data2 = kryo.readObject(input, ByteList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testByteList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ByteList.class, new ByteListSerializer(fury));
+
+        ByteList data = ByteList.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            ByteList data2 = fury.deserializeJavaObject(bytes, ByteList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFloatList() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
