@@ -61,23 +61,20 @@ public class ListTest {
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
-//
-//    @Test
-//    public void testLongList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(LongList.class, new LongListSerializer());
-//
-//        LongList data = LongList.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            LongList data2 = kryo.readObject(input, LongList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+
+    @Test
+    public void testLongList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongList.class, new LongListSerializer(fury));
+
+        LongList data = LongList.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            LongList data2 = fury.deserializeJavaObject(bytes, LongList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testShortList() {
@@ -157,21 +154,19 @@ public class ListTest {
             Assert.assertEquals(data, data2);
         }
     }
-//
-//    @Test
-//    public void testCharList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(CharList.class, new CharListSerializer());
-//
-//        CharList data = CharList.with("Hello, World!".toCharArray());
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            CharList data2 = kryo.readObject(input, CharList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+
+    @Test
+    public void testCharList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(CharList.class, new CharListSerializer(fury));
+
+        CharList data = CharList.with("Hello, World!".toCharArray());
+
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            CharList data2 = fury.deserializeJavaObject(bytes, CharList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 }
