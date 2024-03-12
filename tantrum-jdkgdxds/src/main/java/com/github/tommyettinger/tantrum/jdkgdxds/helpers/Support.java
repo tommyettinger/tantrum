@@ -35,6 +35,29 @@ public final class Support {
      * This method should be used to read data written by {@link
      * MemoryBuffer#writePrimitiveArrayWithSizeEmbedded}.
      * <br>
+     * This should be replaced if Fury becomes able to read int arrays on its own.
+     */
+    public static int[] readIntsWithSizeEmbedded(MemoryBuffer buffer) {
+        final int numBytes = buffer.readPositiveVarInt();
+        int readerIdx = buffer.readerIndex();
+        final int size = buffer.size();
+        // use subtract to avoid overflow
+        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
+            throw new IndexOutOfBoundsException(
+                    String.format(
+                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
+        }
+        final int[] ints = new int[numBytes >>> 2];
+        Platform.copyMemory(
+                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, ints, Platform.SHORT_ARRAY_OFFSET, numBytes);
+        buffer.increaseReaderIndexUnsafe(numBytes);
+        return ints;
+    }
+
+    /**
+     * This method should be used to read data written by {@link
+     * MemoryBuffer#writePrimitiveArrayWithSizeEmbedded}.
+     * <br>
      * This should be replaced if Fury becomes able to read boolean arrays on its own.
      */
     public static boolean[] readBooleansWithSizeEmbedded(MemoryBuffer buffer) {

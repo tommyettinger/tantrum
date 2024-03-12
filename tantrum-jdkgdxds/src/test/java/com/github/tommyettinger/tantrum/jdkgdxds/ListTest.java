@@ -44,23 +44,20 @@ public class ListTest {
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
-//
-//    @Test
-//    public void testIntList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(IntList.class, new IntListSerializer());
-//
-//        IntList data = IntList.with(-123, 0, 456, 0, 1, -1, 0);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            IntList data2 = kryo.readObject(input, IntList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+
+    @Test
+    public void testIntList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntList.class, new IntListSerializer(fury));
+        
+        IntList data = IntList.with(-123, 0, 456, 0, 1, -1, 0x80000000);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            IntList data2 = fury.deserializeJavaObject(bytes, IntList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testLongList() {
