@@ -144,22 +144,19 @@ public class ListTest {
 //        }
 //    }
 //
-//    @Test
-//    public void testBooleanList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(BooleanList.class, new BooleanListSerializer());
-//
-//        BooleanList data = BooleanList.with(true, false, false, true, false, true, false);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            BooleanList data2 = kryo.readObject(input, BooleanList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+    @Test
+    public void testBooleanList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(BooleanList.class, new BooleanListSerializer(fury));
+
+        BooleanList data = BooleanList.with(true, false, false, true, false, true, false);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            BooleanList data2 = fury.deserializeJavaObject(bytes, BooleanList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 //
 //    @Test
 //    public void testCharList() {

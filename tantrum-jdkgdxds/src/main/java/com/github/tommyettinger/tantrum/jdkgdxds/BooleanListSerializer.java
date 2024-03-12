@@ -17,29 +17,29 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.BooleanList;
 import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
-import com.github.tommyettinger.ds.ShortList;
 import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ShortList}s.
+ * Fury {@link Serializer} for jdkgdxds {@link BooleanList}s.
  */
-public class ShortListSerializer extends Serializer<ShortList> {
+public class BooleanListSerializer extends Serializer<BooleanList> {
 
-    public ShortListSerializer(Fury fury) {
-        super(fury, ShortList.class);
+    public BooleanListSerializer(Fury fury) {
+        super(fury, BooleanList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ShortList data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+    public void write(final MemoryBuffer output, final BooleanList data) {
+        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.SHORT_ARRAY_OFFSET, data.size());
     }
 
     @Override
-    public ShortList read(MemoryBuffer input) {
-        return new ShortList(Support.readShortsWithSizeEmbedded(input));
+    public BooleanList read(MemoryBuffer input) {
+        return new BooleanList(Support.readBooleansWithSizeEmbedded(input));
     }
 }
