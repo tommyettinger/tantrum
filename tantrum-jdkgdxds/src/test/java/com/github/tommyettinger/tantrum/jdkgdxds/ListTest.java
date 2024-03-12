@@ -97,40 +97,34 @@ public class ListTest {
         }
     }
 
-//    @Test
-//    public void testFloatList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(FloatList.class, new FloatListSerializer());
-//
-//        FloatList data = FloatList.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            FloatList data2 = kryo.readObject(input, FloatList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testDoubleList() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(DoubleList.class, new DoubleListSerializer());
-//
-//        DoubleList data = DoubleList.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
-//
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream(32);
-//        Output output = new Output(baos);
-//        kryo.writeObject(output, data);
-//        byte[] bytes = output.toBytes();
-//        try (Input input = new Input(bytes)) {
-//            DoubleList data2 = kryo.readObject(input, DoubleList.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testFloatList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FloatList.class, new FloatListSerializer(fury));
+
+        FloatList data = FloatList.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
+        
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            FloatList data2 = fury.deserializeJavaObject(bytes, FloatList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testDoubleList() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(DoubleList.class, new DoubleListSerializer(fury));
+
+        DoubleList data = DoubleList.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            DoubleList data2 = fury.deserializeJavaObject(bytes, DoubleList.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
     @Test
     public void testBooleanList() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
