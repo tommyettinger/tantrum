@@ -17,28 +17,28 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.LongList;
+import com.github.tommyettinger.ds.LongOrderedSet;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongList}s.
+ * Fury {@link Serializer} for jdkgdxds {@link LongOrderedSet}s.
  */
-public class LongOrderedSetSerializer extends Serializer<LongList> {
+public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
 
     public LongOrderedSetSerializer(Fury fury) {
-        super(fury, LongList.class);
+        super(fury, LongOrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongList data) {
+    public void write(final MemoryBuffer output, final LongOrderedSet data) {
         output.writePrimitiveArrayWithSizeEmbedded(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public LongList read(MemoryBuffer input) {
-        return new LongList(input.readLongsWithSizeEmbedded());
+    public LongOrderedSet read(MemoryBuffer input) {
+        return new LongOrderedSet(input.readLongsWithSizeEmbedded());
     }
 }

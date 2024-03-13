@@ -116,7 +116,7 @@ fury.registerSerializer($1.class, new $1Serializer(fury));
 
 Find:
 
-        ByteArrayOutputStream baos \= new ByteArrayOutputStream\(32\)\;
+ByteArrayOutputStream baos \= new ByteArrayOutputStream\(32\)\;
         Output output \= new Output\(baos\)\;
         kryo\.writeObject\(output\, data\)\;
         byte\[\] bytes \= output\.toBytes\(\)\;
