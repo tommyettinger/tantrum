@@ -17,36 +17,29 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.ObjectBag;
+import com.github.tommyettinger.ds.IntOrderedSet;
+import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
+import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectBag}s.
+ * Fury {@link Serializer} for jdkgdxds {@link IntOrderedSet}s.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
-public class ObjectBagSerializer extends Serializer<ObjectBag> {
+public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
 
-    public ObjectBagSerializer(Fury fury) {
-        super(fury, ObjectBag.class);
+    public IntOrderedSetSerializer(Fury fury) {
+        super(fury, IntOrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectBag data) {
-        final int len = data.size();
-        output.writePositiveVarInt(len);
-        for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.get(i));
-        }
+    public void write(final MemoryBuffer output, final IntOrderedSet data) {
+        output.writePrimitiveArrayWithSizeEmbedded(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public ObjectBag read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
-        ObjectBag data = new ObjectBag(len);
-        for (int i = 0; i < len; i++)
-            data.add(fury.readRef(input));
-        return data;
+    public IntOrderedSet read(MemoryBuffer input) {
+        return new IntOrderedSet(Support.readIntsWithSizeEmbedded(input));
     }
 }

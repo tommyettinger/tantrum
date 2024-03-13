@@ -17,36 +17,28 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.ObjectBag;
+import com.github.tommyettinger.ds.LongSet;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
+import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectBag}s.
+ * Fury {@link Serializer} for jdkgdxds {@link LongSet}s.
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
-public class ObjectBagSerializer extends Serializer<ObjectBag> {
+public class LongSetSerializer extends Serializer<LongSet> {
 
-    public ObjectBagSerializer(Fury fury) {
-        super(fury, ObjectBag.class);
+    public LongSetSerializer(Fury fury) {
+        super(fury, LongSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectBag data) {
-        final int len = data.size();
-        output.writePositiveVarInt(len);
-        for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.get(i));
-        }
+    public void write(final MemoryBuffer output, final LongSet data) {
+        output.writePrimitiveArrayWithSizeEmbedded(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public ObjectBag read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
-        ObjectBag data = new ObjectBag(len);
-        for (int i = 0; i < len; i++)
-            data.add(fury.readRef(input));
-        return data;
+    public LongSet read(MemoryBuffer input) {
+        return new LongSet(input.readLongsWithSizeEmbedded());
     }
 }

@@ -17,36 +17,37 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.ObjectBag;
+import com.github.tommyettinger.ds.ObjectOrderedSet;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectBag}s.
+ * Fury {@link Serializer} for jdkgdxds {@link ObjectOrderedSet}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class ObjectBagSerializer extends Serializer<ObjectBag> {
+public class ObjectOrderedSetSerializer extends Serializer<ObjectOrderedSet> {
 
-    public ObjectBagSerializer(Fury fury) {
-        super(fury, ObjectBag.class);
+    public ObjectOrderedSetSerializer(Fury fury) {
+        super(fury, ObjectOrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectBag data) {
+    public void write(final MemoryBuffer output, final ObjectOrderedSet data) {
         final int len = data.size();
         output.writePositiveVarInt(len);
         for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.get(i));
+            fury.writeRef(output, data.getAt(i));
         }
     }
 
     @Override
-    public ObjectBag read(MemoryBuffer input) {
+    public ObjectOrderedSet read(MemoryBuffer input) {
         final int len = input.readPositiveVarInt();
-        ObjectBag data = new ObjectBag(len);
-        for (int i = 0; i < len; i++)
+        ObjectOrderedSet data = new ObjectOrderedSet(len);
+        for (int i = 0; i < len; i++) {
             data.add(fury.readRef(input));
+        }
         return data;
     }
 }

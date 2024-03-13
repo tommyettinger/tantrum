@@ -34,17 +34,20 @@ public class ObjectListSerializer extends Serializer<ObjectList> {
 
     @Override
     public void write(final MemoryBuffer output, final ObjectList data) {
-        output.writePositiveVarInt(data.size());
-        for(Object item : data)
-            fury.writeRef(output, item);
+        final int len = data.size();
+        output.writePositiveVarInt(len);
+        for (int i = 0; i < len; i++) {
+            fury.writeRef(output, data.get(i));
+        }
     }
 
     @Override
     public ObjectList read(MemoryBuffer input) {
         final int len = input.readPositiveVarInt();
         ObjectList data = new ObjectList(len);
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < len; i++) {
             data.add(fury.readRef(input));
+        }
         return data;
     }
 }
