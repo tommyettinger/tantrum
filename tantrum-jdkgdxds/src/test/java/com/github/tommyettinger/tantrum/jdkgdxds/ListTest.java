@@ -32,7 +32,7 @@ public class ListTest {
         ObjectList<String> data = ObjectList.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
         byte[] bytes = fury.serializeJavaObject(data);
-        ObjectList data2 = fury.deserializeJavaObject(bytes, ObjectList.class);
+        ObjectList<?> data2 = fury.deserializeJavaObject(bytes, ObjectList.class);
         Assert.assertEquals(data, data2);
     }
 
