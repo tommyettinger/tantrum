@@ -161,7 +161,7 @@ public class SetTest {
 //        NumberedSet<String> data = NumberedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 //
 //        byte[] bytes = fury.serializeJavaObject(data); {
-//            NumberedSet<?> data2 = kryo.readObject(input, NumberedSet.class);
+//            NumberedSet<?> data2 = fury.deserializeJavaObject(bytes, NumberedSet.class);
 //            Assert.assertEquals(data, data2);
 //            Assert.assertEquals(data.order(), data2.order());
 //        }
@@ -178,7 +178,7 @@ public class SetTest {
 //        HolderSet<String, String> data = HolderSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
 //
 //        byte[] bytes = fury.serializeJavaObject(data); {
-//            HolderSet<?, ?> data2 = kryo.readObject(input, HolderSet.class);
+//            HolderSet<?, ?> data2 = fury.deserializeJavaObject(bytes, HolderSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -194,7 +194,7 @@ public class SetTest {
 //        HolderOrderedSet<String, String> data = HolderOrderedSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
 //
 //        byte[] bytes = fury.serializeJavaObject(data); {
-//            HolderOrderedSet<?, ?> data2 = kryo.readObject(input, HolderOrderedSet.class);
+//            HolderOrderedSet<?, ?> data2 = fury.deserializeJavaObject(bytes, HolderOrderedSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -247,7 +247,7 @@ public class SetTest {
 //        );
 //
 //        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredIterableSet<?, ?> data2 = kryo.readObject(input, FilteredIterableSet.class);
+//            FilteredIterableSet<?, ?> data2 = fury.deserializeJavaObject(bytes, FilteredIterableSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -269,7 +269,7 @@ public class SetTest {
 //        );
 //
 //        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredIterableOrderedSet<?, ?> data2 = kryo.readObject(input, FilteredIterableOrderedSet.class);
+//            FilteredIterableOrderedSet<?, ?> data2 = fury.deserializeJavaObject(bytes, FilteredIterableOrderedSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
