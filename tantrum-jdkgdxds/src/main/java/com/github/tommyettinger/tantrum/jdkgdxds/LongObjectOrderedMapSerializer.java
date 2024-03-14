@@ -45,11 +45,11 @@ public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrdered
     public LongObjectOrderedMap<?> read(MemoryBuffer input) {
         long[] ks = input.readLongsWithSizeEmbedded();
         final int len = ks.length;
-        Object[] data = new Object[len];
+        Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            data[i] = fury.readRef(input);
+            vs[i] = fury.readRef(input);
         }
 
-        return new LongObjectOrderedMap<>(ks, data);
+        return new LongObjectOrderedMap<>(ks, vs);
     }
 }

@@ -17,39 +17,40 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.LongObjectMap;
+import com.github.tommyettinger.ds.ObjectFloatOrderedMap;
+import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongObjectMap}s.
+ * Fury {@link Serializer} for jdkgdxds {@link ObjectFloatOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class LongObjectMapSerializer extends Serializer<LongObjectMap> {
+public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrderedMap> {
 
-    public LongObjectMapSerializer(Fury fury) {
-        super(fury, LongObjectMap.class);
+    public ObjectFloatOrderedMapSerializer(Fury fury) {
+        super(fury, ObjectFloatOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongObjectMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        for(Object v : data.values()){
+    public void write(final MemoryBuffer output, final ObjectFloatOrderedMap data) {
+        output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
     }
 
     @Override
-    public LongObjectMap<?> read(MemoryBuffer input) {
-        long[] ks = input.readLongsWithSizeEmbedded();
-        final int len = ks.length;
-        Object[] vs = new Object[len];
+    public ObjectFloatOrderedMap<?> read(MemoryBuffer input) {
+        float[] vs = Support.readFloatsWithSizeEmbedded(input);
+        final int len = vs.length;
+        Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
+            ks[i] = fury.readRef(input);
         }
 
-        return new LongObjectMap<>(ks, vs);
+        return new ObjectFloatOrderedMap<>(ks, vs);
     }
 }

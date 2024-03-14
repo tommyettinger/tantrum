@@ -17,39 +17,40 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.LongObjectMap;
+import com.github.tommyettinger.ds.IntObjectOrderedMap;
+import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongObjectMap}s.
+ * Fury {@link Serializer} for jdkgdxds {@link IntObjectOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class LongObjectMapSerializer extends Serializer<LongObjectMap> {
+public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMap> {
 
-    public LongObjectMapSerializer(Fury fury) {
-        super(fury, LongObjectMap.class);
+    public IntObjectOrderedMapSerializer(Fury fury) {
+        super(fury, IntObjectOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongObjectMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final MemoryBuffer output, final IntObjectOrderedMap data) {
+        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
     }
 
     @Override
-    public LongObjectMap<?> read(MemoryBuffer input) {
-        long[] ks = input.readLongsWithSizeEmbedded();
+    public IntObjectOrderedMap<?> read(MemoryBuffer input) {
+        int[] ks = Support.readIntsWithSizeEmbedded(input);
         final int len = ks.length;
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
             vs[i] = fury.readRef(input);
         }
 
-        return new LongObjectMap<>(ks, vs);
+        return new IntObjectOrderedMap<>(ks, vs);
     }
 }

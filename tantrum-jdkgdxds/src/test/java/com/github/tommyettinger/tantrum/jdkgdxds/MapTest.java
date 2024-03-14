@@ -132,31 +132,31 @@ public class MapTest {
         }
     }
 
-//    @Test
-//    public void testIntObjectMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(IntObjectMap.class, new IntObjectMapSerializer(fury));
-//
-//        IntObjectMap<Float> data = IntObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            IntObjectMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testIntObjectOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(IntObjectOrderedMap.class, new IntObjectOrderedMapSerializer(fury));
-//
-//        IntObjectOrderedMap<Float> data = IntObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            IntObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+    @Test
+    public void testIntObjectMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntObjectMap.class, new IntObjectMapSerializer(fury));
+
+        IntObjectMap<Float> data = IntObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            IntObjectMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testIntObjectOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntObjectOrderedMap.class, new IntObjectOrderedMapSerializer(fury));
+
+        IntObjectOrderedMap<Float> data = IntObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            IntObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testIntFloatMap() {
@@ -324,36 +324,36 @@ public class MapTest {
 //            Assert.assertEquals(data.order(), data2.order());
 //        }
 //    }
-//
-//    @Test
-//    public void testObjectFloatMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
-//
-//        ObjectFloatMap<String> data = ObjectFloatMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
-//                4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectFloatMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectFloatOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectFloatOrderedMap.class, new ObjectFloatOrderedMapSerializer(fury));
-//
-//        ObjectFloatOrderedMap<String> data = ObjectFloatOrderedMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
-//                4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectFloatOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//            Assert.assertEquals(data.order(), data2.order());
-//        }
-//    }
-//
+
+    @Test
+    public void testObjectFloatMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
+
+        ObjectFloatMap<String> data = ObjectFloatMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
+                4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectFloatMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectFloatOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectFloatOrderedMap.class, new ObjectFloatOrderedMapSerializer(fury));
+
+        ObjectFloatOrderedMap<String> data = ObjectFloatOrderedMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
+                4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectFloatOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatOrderedMap.class);
+            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.order(), data2.order());
+        }
+    }
+
 //    @Test
 //    public void testCaseInsensitiveMap() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
