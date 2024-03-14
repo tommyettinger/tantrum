@@ -107,34 +107,34 @@ public class SetTest {
         }
     }
 
-//    @Test
-//    public void testCaseInsensitiveSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.register(String.class);
-//        fury.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fury));
-//
-//        CaseInsensitiveSet data = CaseInsensitiveSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            CaseInsensitiveSet data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveSet.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testCaseInsensitiveOrderedSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
-//        fury.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fury));
-//
-//        CaseInsensitiveOrderedSet data = CaseInsensitiveOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            CaseInsensitiveOrderedSet data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveOrderedSet.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testCaseInsensitiveSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(String.class);
+        fury.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fury));
+
+        CaseInsensitiveSet data = CaseInsensitiveSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            CaseInsensitiveSet data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testCaseInsensitiveOrderedSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(String.class);
+        fury.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fury));
+
+        CaseInsensitiveOrderedSet data = CaseInsensitiveOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            CaseInsensitiveOrderedSet data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveOrderedSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testOffsetBitSet() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();

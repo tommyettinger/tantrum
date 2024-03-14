@@ -352,34 +352,34 @@ public class MapTest {
         }
     }
 
-//    @Test
-//    public void testCaseInsensitiveMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(CaseInsensitiveMap.class, new CaseInsensitiveMapSerializer(fury));
-//
-//        CaseInsensitiveMap<Integer> data = CaseInsensitiveMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            CaseInsensitiveMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testCaseInsensitiveOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(CaseInsensitiveOrderedMap.class, new CaseInsensitiveOrderedMapSerializer(fury));
-//
-//        CaseInsensitiveOrderedMap<Integer> data = CaseInsensitiveOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            CaseInsensitiveOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testCaseInsensitiveMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(CaseInsensitiveMap.class, new CaseInsensitiveMapSerializer(fury));
+
+        CaseInsensitiveMap<Integer> data = CaseInsensitiveMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            CaseInsensitiveMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testCaseInsensitiveOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(CaseInsensitiveOrderedMap.class, new CaseInsensitiveOrderedMapSerializer(fury));
+
+        CaseInsensitiveOrderedMap<Integer> data = CaseInsensitiveOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            CaseInsensitiveOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredStringMap() {
 //        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
