@@ -23,8 +23,6 @@ import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
-import java.nio.charset.StandardCharsets;
-
 /**
  * Fury {@link Serializer} for digital {@link Interpolator}s.
  */

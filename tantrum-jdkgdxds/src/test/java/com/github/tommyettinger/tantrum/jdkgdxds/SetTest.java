@@ -18,9 +18,6 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.*;
-import com.github.tommyettinger.function.ObjPredicate;
-import com.github.tommyettinger.function.ObjToObjFunction;
-import com.github.tommyettinger.function.ObjToSameFunction;
 import io.fury.Fury;
 import io.fury.config.Language;
 import org.junit.Assert;

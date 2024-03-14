@@ -18,8 +18,6 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.*;
-import com.github.tommyettinger.function.ObjPredicate;
-import com.github.tommyettinger.function.ObjToSameFunction;
 import io.fury.Fury;
 import io.fury.config.Language;
 import org.junit.Assert;
@@ -239,91 +237,91 @@ public class MapTest {
         }
     }
 
-//    @Test
-//    public void testObjectObjectMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectObjectMap.class, new ObjectObjectMapSerializer(fury));
-//
-//        ObjectObjectMap<String, Integer> data = ObjectObjectMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectObjectMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectObjectOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fury));
-//
-//        ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectObjectOrderedMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectIntMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
-//
-//        ObjectIntMap<String> data = ObjectIntMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectIntMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectIntOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectIntOrderedMap.class, new ObjectIntOrderedMapSerializer(fury));
-//
-//        ObjectIntOrderedMap<String> data = ObjectIntOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-//                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectIntOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//            Assert.assertEquals(data.order(), data2.order());
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectLongMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
-//
-//        ObjectLongMap<String> data = ObjectLongMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
-//                4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectLongMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testObjectLongOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectLongOrderedMap.class, new ObjectLongOrderedMapSerializer(fury));
-//
-//        ObjectLongOrderedMap<String> data = ObjectLongOrderedMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
-//                4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            ObjectLongOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//            Assert.assertEquals(data.order(), data2.order());
-//        }
-//    }
+    @Test
+    public void testObjectObjectMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectObjectMap.class, new ObjectObjectMapSerializer(fury));
+
+        ObjectObjectMap<String, Integer> data = ObjectObjectMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectObjectMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectObjectOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fury));
+
+        ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectObjectOrderedMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectIntMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
+
+        ObjectIntMap<String> data = ObjectIntMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectIntMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectIntOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectIntOrderedMap.class, new ObjectIntOrderedMapSerializer(fury));
+
+        ObjectIntOrderedMap<String> data = ObjectIntOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectIntOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntOrderedMap.class);
+            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.order(), data2.order());
+        }
+    }
+
+    @Test
+    public void testObjectLongMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
+
+        ObjectLongMap<String> data = ObjectLongMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
+                4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectLongMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectLongOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectLongOrderedMap.class, new ObjectLongOrderedMapSerializer(fury));
+
+        ObjectLongOrderedMap<String> data = ObjectLongOrderedMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
+                4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectLongOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongOrderedMap.class);
+            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.order(), data2.order());
+        }
+    }
 
     @Test
     public void testObjectFloatMap() {

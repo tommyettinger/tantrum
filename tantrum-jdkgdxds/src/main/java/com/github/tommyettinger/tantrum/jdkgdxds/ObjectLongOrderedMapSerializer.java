@@ -17,29 +17,39 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.LongLongMap;
+import com.github.tommyettinger.ds.ObjectLongOrderedMap;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 import io.fury.util.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongLongMap}s.
+ * Fury {@link Serializer} for jdkgdxds {@link ObjectLongOrderedMap}s.
  */
-public class LongLongMapSerializer extends Serializer<LongLongMap> {
+@SuppressWarnings("rawtypes")
+public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrderedMap> {
 
-    public LongLongMapSerializer(Fury fury) {
-        super(fury, LongLongMap.class);
+    public ObjectLongOrderedMapSerializer(Fury fury) {
+        super(fury, ObjectLongOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongLongMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final MemoryBuffer output, final ObjectLongOrderedMap data) {
         output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        for(Object v : data.keySet()){
+            fury.writeRef(output, v);
+        }
     }
 
     @Override
-    public LongLongMap read(MemoryBuffer input) {
-        return new LongLongMap(input.readLongsWithSizeEmbedded(), input.readLongsWithSizeEmbedded());
+    public ObjectLongOrderedMap<?> read(MemoryBuffer input) {
+        long[] vs = input.readLongsWithSizeEmbedded();
+        final int len = vs.length;
+        Object[] ks = new Object[len];
+        for (int i = 0; i < len; i++) {
+            ks[i] = fury.readRef(input);
+        }
+
+        return new ObjectLongOrderedMap<>(ks, vs);
     }
 }

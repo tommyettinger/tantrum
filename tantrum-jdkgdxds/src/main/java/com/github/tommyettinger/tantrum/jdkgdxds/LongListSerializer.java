@@ -18,7 +18,6 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongList;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
