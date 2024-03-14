@@ -26,31 +26,31 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MapTest {
-//    @Test
-//    public void testLongObjectMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(LongObjectMap.class, new LongObjectMapSerializer(fury));
-//
-//        LongObjectMap<Float> data = LongObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            LongObjectMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testLongObjectOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(LongObjectOrderedMap.class, new LongObjectOrderedMapSerializer(fury));
-//
-//        LongObjectOrderedMap<Float> data = LongObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            LongObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
+    @Test
+    public void testLongObjectMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongObjectMap.class, new LongObjectMapSerializer(fury));
+
+        LongObjectMap<Float> data = LongObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            LongObjectMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testLongObjectOrderedMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongObjectOrderedMap.class, new LongObjectOrderedMapSerializer(fury));
+
+        LongObjectOrderedMap<Float> data = LongObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            LongObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testLongFloatMap() {
