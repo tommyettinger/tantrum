@@ -81,7 +81,6 @@ public class SetTest {
     @Test
     public void testObjectSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(String.class);
         fury.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fury));
 
         ObjectSet<String> data = ObjectSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
@@ -95,7 +94,6 @@ public class SetTest {
     @Test
     public void testObjectOrderedSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(String.class);
         fury.registerSerializer(ObjectOrderedSet.class, new ObjectOrderedSetSerializer(fury));
 
         ObjectOrderedSet<String> data = ObjectOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
@@ -110,7 +108,6 @@ public class SetTest {
     @Test
     public void testCaseInsensitiveSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(String.class);
         fury.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fury));
 
         CaseInsensitiveSet data = CaseInsensitiveSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
@@ -124,7 +121,6 @@ public class SetTest {
     @Test
     public void testCaseInsensitiveOrderedSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(String.class);
         fury.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fury));
 
         CaseInsensitiveOrderedSet data = CaseInsensitiveOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
@@ -196,41 +192,38 @@ public class SetTest {
 //        }
 //    }
 //
-//
-//    @Test
-//    public void testFilteredStringSet() {
-//        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
-//        fury.registerSerializer(FilteredStringSet.class, new FilteredStringSetSerializer(fury));
-//
-//        FilteredStringSet data = FilteredStringSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredStringSet data2 = fury.deserializeJavaObject(bytes, FilteredStringSet.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testFilteredStringOrderedSet() {
-//        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
-//        fury.registerSerializer(FilteredStringOrderedSet.class, new FilteredStringOrderedSetSerializer(fury));
-//
-//        FilteredStringOrderedSet data = FilteredStringOrderedSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredStringOrderedSet data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedSet.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+
+    @Test
+    public void testFilteredStringSet() {
+        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FilteredStringSet.class, new FilteredStringSetSerializer(fury));
+
+        FilteredStringSet data = FilteredStringSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            FilteredStringSet data2 = fury.deserializeJavaObject(bytes, FilteredStringSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testFilteredStringOrderedSet() {
+        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FilteredStringOrderedSet.class, new FilteredStringOrderedSetSerializer(fury));
+
+        FilteredStringOrderedSet data = FilteredStringOrderedSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            FilteredStringOrderedSet data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredIterableSet() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
@@ -252,7 +245,6 @@ public class SetTest {
 //    @Test
 //    public void testFilteredIterableOrderedSet() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));

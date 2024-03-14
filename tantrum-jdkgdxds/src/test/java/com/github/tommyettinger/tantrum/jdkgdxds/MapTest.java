@@ -380,36 +380,36 @@ public class MapTest {
         }
     }
 
-//    @Test
-//    public void testFilteredStringMap() {
-//        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(FilteredStringMap.class, new FilteredStringMapSerializer(fury));
-//
-//        FilteredStringMap<Integer> data = FilteredStringMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
-//                "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredStringMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
-//    @Test
-//    public void testFilteredStringOrderedMap() {
-//        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(FilteredStringOrderedMap.class, new FilteredStringOrderedMapSerializer(fury));
-//
-//        FilteredStringOrderedMap<Integer> data = FilteredStringOrderedMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
-//                "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredStringOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedMap.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testFilteredStringMap() {
+        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FilteredStringMap.class, new FilteredStringMapSerializer(fury));
+
+        FilteredStringMap<Integer> data = FilteredStringMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
+                "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            FilteredStringMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testFilteredStringOrderedMap() {
+        CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FilteredStringOrderedMap.class, new FilteredStringOrderedMapSerializer(fury));
+
+        FilteredStringOrderedMap<Integer> data = FilteredStringOrderedMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
+                "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            FilteredStringOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredIterableMap() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
