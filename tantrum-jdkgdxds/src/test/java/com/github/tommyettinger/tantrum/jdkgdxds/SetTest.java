@@ -131,20 +131,20 @@ public class SetTest {
         }
     }
 
-//    @Test
-//    public void testOffsetBitSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(OffsetBitSet.class, new OffsetBitSetSerializer(fury));
-//
-//        OffsetBitSet data = new OffsetBitSet(-123, 500);
-//        data.addAll(new int[]{-123, 0, 456, 0, 1, -1, 0});
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            OffsetBitSet data2 = fury.deserializeJavaObject(bytes, OffsetBitSet.class);
-//            Assert.assertEquals(data, data2);
-//        }
-//    }
-//
+    @Test
+    public void testOffsetBitSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(OffsetBitSet.class, new OffsetBitSetSerializer(fury));
+
+        OffsetBitSet data = new OffsetBitSet(-123, 500);
+        data.addAll(new int[]{-123, 0, 456, 0, 1, -1, 0});
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            OffsetBitSet data2 = fury.deserializeJavaObject(bytes, OffsetBitSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
     @Test
     public void testNumberedSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
