@@ -17,43 +17,37 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.ObjectObjectMap;
+import com.github.tommyettinger.ds.NumberedSet;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectObjectMap}s.
+ * Fury {@link Serializer} for jdkgdxds {@link NumberedSet}s.
  */
-@SuppressWarnings("rawtypes")
-public class ObjectObjectMapSerializer extends Serializer<ObjectObjectMap> {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class NumberedSetSerializer extends Serializer<NumberedSet> {
 
-    public ObjectObjectMapSerializer(Fury fury) {
-        super(fury, ObjectObjectMap.class);
+    public NumberedSetSerializer(Fury fury) {
+        super(fury, NumberedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectObjectMap data) {
-        output.writePositiveVarInt(data.size());
-        for(Object k : data.keySet()){
-            fury.writeRef(output, k);
-        }
-        for(Object v : data.values()){
-            fury.writeRef(output, v);
+    public void write(final MemoryBuffer output, final NumberedSet data) {
+        final int len = data.size();
+        output.writePositiveVarInt(len);
+        for (Object item : data) {
+            fury.writeRef(output, item);
         }
     }
 
     @Override
-    public ObjectObjectMap<?, ?> read(MemoryBuffer input) {
+    public NumberedSet read(MemoryBuffer input) {
         final int len = input.readPositiveVarInt();
-        Object[] ks = new Object[len], vs = new Object[len];
+        NumberedSet data = new NumberedSet(len);
         for (int i = 0; i < len; i++) {
-            ks[i] = fury.readRef(input);
+            data.add(fury.readRef(input));
         }
-        for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
-        }
-
-        return new ObjectObjectMap<>(ks, vs);
+        return data;
     }
 }

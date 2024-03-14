@@ -145,20 +145,19 @@ public class SetTest {
 //        }
 //    }
 //
-//    @Test
-//    public void testNumberedSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(String.class);
-//        fury.registerSerializer(NumberedSet.class, new NumberedSetSerializer(fury));
-//
-//        NumberedSet<String> data = NumberedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
-//
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            NumberedSet<?> data2 = fury.deserializeJavaObject(bytes, NumberedSet.class);
-//            Assert.assertEquals(data, data2);
-//            Assert.assertEquals(data.order(), data2.order());
-//        }
-//    }
+    @Test
+    public void testNumberedSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(NumberedSet.class, new NumberedSetSerializer(fury));
+
+        NumberedSet<String> data = NumberedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            NumberedSet<?> data2 = fury.deserializeJavaObject(bytes, NumberedSet.class);
+            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.order(), data2.order());
+        }
+    }
 //
 //    @Test
 //    public void testHolderSet() {
@@ -224,8 +223,8 @@ public class SetTest {
 //    @Test
 //    public void testFilteredIterableSet() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(ObjPredicate.class);
-//        kryo.register(ObjToSameFunction.class);
+//        fury.register(ObjPredicate.class);
+//        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
 //        fury.registerSerializer(FilteredIterableSet.class, new FilteredIterableSetSerializer(fury));
 //
@@ -245,8 +244,8 @@ public class SetTest {
 //    @Test
 //    public void testFilteredIterableOrderedSet() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        kryo.register(ObjPredicate.class);
-//        kryo.register(ObjToSameFunction.class);
+//        fury.register(ObjPredicate.class);
+//        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
 //        fury.registerSerializer(FilteredIterableOrderedSet.class, new FilteredIterableOrderedSetSerializer(fury));
 //
