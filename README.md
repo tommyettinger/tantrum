@@ -6,7 +6,7 @@ This lets [Fury](https://fury.apache.org) 0.4.x (currently 0.4.1) de/serialize o
 sheer coincidence, were all written by @tommyettinger (me). These are, or will be,
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 [jdkgdxds](https://github.com/tommyettinger/jdkgdxds), [juniper](https://github.com/tommyettinger/juniper),
-and [cringe](https://github.com/tommyettinger/cringe). Currently, digital, juniper, and jdkgdxds work; the rest are being implemented.
+and [cringe](https://github.com/tommyettinger/cringe). Currently, digital, juniper, jdkgdxds, and RegExodus work; cringe is being implemented.
 
 This repo is modeled after [kryo-more](https://github.com/tommyettinger/kryo-more). There is a kryo-more sub-library
 for an older version of simple-graphs and the current version of gand, but gand mostly replaces what simple-graphs
@@ -21,6 +21,7 @@ or if Fury itself had a (compatible) update available but the linked library did
   - tantrum-digital is at version 0.4.7.0, compatible with digital 0.4.7
   - tantrum-juniper is at version 0.5.0.0, compatible with juniper 0.5.0
   - tantrum-jdkgdxds is at version 1.4.8.0, compatible with jdkgdxds 1.4.8
+  - tantrum-regexodus is at version 0.1.15.0, compatible with jdkgdxds 0.1.15
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
@@ -44,13 +45,13 @@ tantrum-jdkgdxds:
 implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.4.8.0"
 ```
 
-**None of the following dependencies will work yet.** The library was only created a very short while ago!
-
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.0-SNAPSHOT"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.0"
 ```
+
+**The following dependency will not work yet.** The library was only created a very short while ago!
 
 tantrum-cringe:
 
@@ -90,17 +91,17 @@ tantrum-jdkgdxds:
 </dependency>
 ```
 
-**None of the following dependencies will work yet.** The library was only created a very short while ago!
-
 tantrum-regexodus:
 
 ```xml
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.15.0-SNAPSHOT</version>
+  <version>0.1.15.0</version>
 </dependency>
 ```
+
+**The following dependency will not work yet.** The library was only created a very short while ago!
 
 tantrum-cringe:
 
