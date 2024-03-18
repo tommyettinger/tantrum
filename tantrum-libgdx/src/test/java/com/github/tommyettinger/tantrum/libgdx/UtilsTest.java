@@ -242,6 +242,43 @@ public class UtilsTest {
     }
 
     @Test
+    public void testLongQueue() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongQueue.class, new LongQueueSerializer(fury));
+
+        LongQueue data = new LongQueue();
+        for(long item : new long[]{-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0}) {
+            data.addLast(item);
+        }
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        LongQueue data2 = fury.deserializeJavaObject(bytes, LongQueue.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testLongMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongMap.class, new LongMapSerializer(fury));
+
+        LongMap<Float> data = new LongMap<>();
+        data.put(-1234567890L, 1.2f);
+        data.put(0L, 2.3f);
+        data.put(4567890123456789L, -3.4f);
+        data.put(0, -4.5f);
+        data.put(1L, -5.6f);
+        data.put(1, 6.7f);
+        data.put(-1, -7.8f);
+        data.put(0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            LongMap<?> data2 = fury.deserializeJavaObject(bytes, LongMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testShortArray() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ShortArray.class, new ShortArraySerializer(fury));
