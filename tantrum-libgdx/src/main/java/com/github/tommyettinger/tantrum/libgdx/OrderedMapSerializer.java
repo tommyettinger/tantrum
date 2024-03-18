@@ -17,34 +17,35 @@
 
 package com.github.tommyettinger.tantrum.libgdx;
 
-import com.badlogic.gdx.utils.ObjectSet;
+import com.badlogic.gdx.utils.OrderedMap;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link ObjectSet}s.
+ * Fury {@link Serializer} for libGDX {@link OrderedMap}s.
  */
-public class ObjectSetSerializer extends Serializer<ObjectSet> {
-    public ObjectSetSerializer(Fury fury) {
-        super(fury, ObjectSet.class);
+public class OrderedMapSerializer extends Serializer<OrderedMap> {
+    public OrderedMapSerializer(Fury fury) {
+        super(fury, OrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectSet data) {
+    public void write(final MemoryBuffer output, final OrderedMap data) {
         final int len = data.size;
         output.writePositiveVarInt(len);
-        for (Object item : data) {
+        for (Object item : data.orderedKeys()) {
             fury.writeRef(output, item);
+            fury.writeRef(output, data.get(item));
         }
     }
 
     @Override
-    public ObjectSet<?> read(MemoryBuffer input) {
+    public OrderedMap<?, ?> read(MemoryBuffer input) {
         final int len = input.readPositiveVarInt();
-        ObjectSet data = new ObjectSet(len);
+        OrderedMap data = new OrderedMap(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.put(fury.readRef(input), fury.readRef(input));
         }
         return data;
     }

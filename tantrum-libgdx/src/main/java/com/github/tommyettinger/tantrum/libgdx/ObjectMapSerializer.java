@@ -17,34 +17,35 @@
 
 package com.github.tommyettinger.tantrum.libgdx;
 
-import com.badlogic.gdx.utils.ObjectSet;
+import com.badlogic.gdx.utils.ObjectMap;
 import io.fury.Fury;
 import io.fury.memory.MemoryBuffer;
 import io.fury.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link ObjectSet}s.
+ * Fury {@link Serializer} for libGDX {@link ObjectMap}s.
  */
-public class ObjectSetSerializer extends Serializer<ObjectSet> {
-    public ObjectSetSerializer(Fury fury) {
-        super(fury, ObjectSet.class);
+public class ObjectMapSerializer extends Serializer<ObjectMap> {
+    public ObjectMapSerializer(Fury fury) {
+        super(fury, ObjectMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectSet data) {
+    public void write(final MemoryBuffer output, final ObjectMap data) {
         final int len = data.size;
         output.writePositiveVarInt(len);
-        for (Object item : data) {
+        for (Object item : data.keys()) {
             fury.writeRef(output, item);
+            fury.writeRef(output, data.get(item));
         }
     }
 
     @Override
-    public ObjectSet<?> read(MemoryBuffer input) {
+    public ObjectMap<?, ?> read(MemoryBuffer input) {
         final int len = input.readPositiveVarInt();
-        ObjectSet data = new ObjectSet(len);
+        ObjectMap data = new ObjectMap(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.put(fury.readRef(input), fury.readRef(input));
         }
         return data;
     }
