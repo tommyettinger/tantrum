@@ -169,4 +169,87 @@ public class UtilsTest {
         }
     }
 
+    @Test
+    public void testBooleanArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(BooleanArray.class, new BooleanArraySerializer(fury));
+
+        BooleanArray data = BooleanArray.with(true, false, false, true, false, true, false);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        BooleanArray data2 = fury.deserializeJavaObject(bytes, BooleanArray.class);
+        Assert.assertEquals(data, data2);
+    }
+    
+    @Test
+    public void testByteArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ByteArray.class, new ByteArraySerializer(fury));
+
+        ByteArray data = ByteArray.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        ByteArray data2 = fury.deserializeJavaObject(bytes, ByteArray.class);
+        Assert.assertEquals(data, data2);
+    }
+    
+    @Test
+    public void testCharArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(CharArray.class, new CharArraySerializer(fury));
+
+        CharArray data = CharArray.with("Hello, World!".toCharArray());
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        CharArray data2 = fury.deserializeJavaObject(bytes, CharArray.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testFloatArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(FloatArray.class, new FloatArraySerializer(fury));
+
+        FloatArray data = FloatArray.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        FloatArray data2 = fury.deserializeJavaObject(bytes, FloatArray.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testIntArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntArray.class, new IntArraySerializer(fury));
+
+        IntArray data = IntArray.with(-123, 0, 456, 0, 1, -1, 0x80000000);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        IntArray data2 = fury.deserializeJavaObject(bytes, IntArray.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testLongArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(LongArray.class, new LongArraySerializer(fury));
+
+        LongArray data = LongArray.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        LongArray data2 = fury.deserializeJavaObject(bytes, LongArray.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testShortArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ShortArray.class, new ShortArraySerializer(fury));
+
+        ShortArray data = ShortArray.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        ShortArray data2 = fury.deserializeJavaObject(bytes, ShortArray.class);
+        Assert.assertEquals(data, data2);
+    }
 }
