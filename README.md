@@ -2,15 +2,18 @@
 
 A little bit of Fury for various libGDX-related libraries.
 
-This lets [Fury](https://fury.apache.org) 0.4.x (currently 0.4.1) de/serialize objects from several libraries that, by
-sheer coincidence, were all written by @tommyettinger (me). These are, or will be,
+This lets [Fury](https://fury.apache.org) (currently 0.4.1) de/serialize objects from [libGDX](https://libgdx.com) and several
+libraries in its "tangential ecosystem." These are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
-[jdkgdxds](https://github.com/tommyettinger/jdkgdxds), [juniper](https://github.com/tommyettinger/juniper),
-and [cringe](https://github.com/tommyettinger/cringe). Currently, digital, juniper, jdkgdxds, and RegExodus work; cringe is being implemented.
+[jdkgdxds](https://github.com/tommyettinger/jdkgdxds), and [juniper](https://github.com/tommyettinger/juniper); none of these four directly depend on libGDX, but all have been
+designed to be compatible with it.
 
 This repo is modeled after [kryo-more](https://github.com/tommyettinger/kryo-more). There is a kryo-more sub-library
-for an older version of simple-graphs and the current version of gand, but gand mostly replaces what simple-graphs
-does while enabling serialization, and gand also doesn't need any external code to be able to use Fury.
+for an older version of [simple-graphs](https://github.com/earlygrey/simple-graphs) and the current version of
+[gand](https://github.com/tommyettinger/gand), but gand mostly replaces what simple-graphs does while enabling
+serialization, and gand also doesn't need any external code to be able to use Fury.
+Similarly, there is a kryo-more sub-library for [cringe](https://github.com/tommyettinger/cringe), but it isn't
+needed here because any types in cringe can be read and written without needing a Serializer.
 
 ## How to get
 
@@ -49,14 +52,6 @@ tantrum-regexodus:
 
 ```gradle
 implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.0"
-```
-
-**The following dependency will not work yet.** The library was only created a very short while ago!
-
-tantrum-cringe:
-
-```gradle
-implementation "com.github.tommyettinger:tantrum-cringe:0.1.0.0-SNAPSHOT"
 ```
 
 Maven dependency info:
@@ -101,23 +96,13 @@ tantrum-regexodus:
 </dependency>
 ```
 
-**The following dependency will not work yet.** The library was only created a very short while ago!
-
-tantrum-cringe:
-
-```xml
-<dependency>
-  <groupId>com.github.tommyettinger</groupId>
-  <artifactId>tantrum-cringe</artifactId>
-  <version>0.1.0.0-SNAPSHOT</version>
-</dependency>
-```
-
 ### GWT
 
-GWT is not supported because Fury doesn't support it. You can use libGDX Json on GWT; except for cringe,
-all the libraries here are supported by [jdkgdxds-interop](https://github.com/tommyettinger/jdkgdxds_interop) with Json. You can just use cringe
-with libGDX Json natively, since it has classes that implement `Json.Serializable`.
+GWT is not supported because Fury doesn't support it. You can use libGDX Json on GWT;
+all the libraries here are supported by [jdkgdxds-interop](https://github.com/tommyettinger/jdkgdxds_interop) with Json.
+
+Like how they support Fury without needing externally-defined Serializers, you can just use cringe
+and gand with libGDX Json natively, since they have classes that implement `Json.Serializable`.
 
 ## License
 
