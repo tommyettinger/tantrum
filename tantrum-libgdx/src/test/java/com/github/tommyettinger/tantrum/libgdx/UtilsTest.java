@@ -38,6 +38,32 @@ public class UtilsTest {
     }
 
     @Test
+    public void testSnapshotArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(SnapshotArray.class, new SnapshotArraySerializer(fury));
+
+        SnapshotArray<String> data = SnapshotArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            SnapshotArray<?> data2 = fury.deserializeJavaObject(bytes, SnapshotArray.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+    
+    @Test
+    public void testDelayedRemovalArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(DelayedRemovalArray.class, new DelayedRemovalArraySerializer(fury));
+
+        DelayedRemovalArray<String> data = DelayedRemovalArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            DelayedRemovalArray<?> data2 = fury.deserializeJavaObject(bytes, DelayedRemovalArray.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testArrayMap() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ArrayMap.class, new ArrayMapSerializer(fury));
