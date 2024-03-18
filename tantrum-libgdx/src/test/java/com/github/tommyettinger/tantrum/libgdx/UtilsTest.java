@@ -17,16 +17,64 @@
 
 package com.github.tommyettinger.tantrum.libgdx;
 
-import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.ObjectSet;
-import com.badlogic.gdx.utils.OrderedMap;
-import com.badlogic.gdx.utils.OrderedSet;
+import com.badlogic.gdx.utils.*;
 import io.fury.Fury;
 import io.fury.config.Language;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class UtilsTest {
+    @Test
+    public void testArray() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Array.class, new ArraySerializer(fury));
+
+        Array<String> data = Array.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            Array<?> data2 = fury.deserializeJavaObject(bytes, Array.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testArrayMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ArrayMap.class, new ArrayMapSerializer(fury));
+
+        ArrayMap<String, Integer> data = new ArrayMap<>();
+        data.put("Cthulhu", -123456);
+        data.put("lies", Integer.MIN_VALUE);
+        data.put("deep", 456789012);
+        data.put("in", 0);
+        data.put("Rl'yeh", 1111);
+        data.put("dreaming", 1);
+        data.put("of", -1);
+        data.put("waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            ArrayMap<?, ?> data2 = fury.deserializeJavaObject(bytes, ArrayMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testQueue() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Queue.class, new QueueSerializer(fury));
+
+        Queue<String> data = new Queue<>(9);
+        for (String s : new String[]{"Hello", "World", "!", "I", "am", "a", "test", "!", "yay"}) {
+            data.addLast(s);
+        }
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            Queue<?> data2 = fury.deserializeJavaObject(bytes, Queue.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
     @Test
     public void testObjectSet() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
