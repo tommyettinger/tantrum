@@ -293,6 +293,84 @@ public class UtilsTest {
     }
 
     @Test
+    public void testIntSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntSet.class, new IntSetSerializer(fury));
+
+        IntSet data = IntSet.with(-123, 0, 456, 0, 1, -1, 0x80000000);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        IntSet data2 = fury.deserializeJavaObject(bytes, IntSet.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testIntMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntMap.class, new IntMapSerializer(fury));
+
+        IntMap<Float> data = new IntMap<>();
+        data.put(-1234567890, 1.2f);
+        data.put(0, 2.3f);
+        data.put(4567890, -3.4f);
+        data.put(0, -4.5f);
+        data.put(1, -5.6f);
+        data.put(1, 6.7f);
+        data.put(-1, -7.8f);
+        data.put(0, 8.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            IntMap<?> data2 = fury.deserializeJavaObject(bytes, IntMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testIntFloatMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fury));
+
+        IntFloatMap data = new IntFloatMap();
+        data.put(-1234567890, 1.2f);
+        data.put(0, 2.3f);
+        data.put(4567890, -3.4f);
+        data.put(0, -4.5f);
+        data.put(1, -5.6f);
+        data.put(1, Float.POSITIVE_INFINITY);
+        data.put(-1, Float.NEGATIVE_INFINITY);
+        data.put(0, Float.MIN_VALUE);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            IntFloatMap data2 = fury.deserializeJavaObject(bytes, IntFloatMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testIntIntMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fury));
+
+        IntIntMap data = new IntIntMap();
+        data.put(-1234567890, 12);
+        data.put(0, 23);
+        data.put(4567890, -34);
+        data.put(0, -45);
+        data.put(1, -56);
+        data.put(1, 67);
+        data.put(-1, -78);
+        data.put(0, 89);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        {
+            IntIntMap data2 = fury.deserializeJavaObject(bytes, IntIntMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testLongArray() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongArray.class, new LongArraySerializer(fury));
