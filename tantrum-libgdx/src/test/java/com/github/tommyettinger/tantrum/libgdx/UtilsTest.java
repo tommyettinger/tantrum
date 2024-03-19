@@ -170,6 +170,69 @@ public class UtilsTest {
     }
 
     @Test
+    public void testObjectFloatMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
+
+        ObjectFloatMap<String> data = new ObjectFloatMap<>();
+        data.put("Cthulhu", -123456.1f);
+        data.put("lies", Float.MIN_VALUE);
+        data.put("deep", 456789012);
+        data.put("in", Float.NEGATIVE_INFINITY);
+        data.put("Rl'yeh", Float.POSITIVE_INFINITY);
+        data.put("dreaming", 1);
+        data.put("of", -1);
+        data.put("waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectFloatMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectLongMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
+
+        ObjectLongMap<String> data = new ObjectLongMap<>();
+        data.put("Cthulhu", -123456);
+        data.put("lies", Long.MIN_VALUE);
+        data.put("deep", 456789012);
+        data.put("in", Long.MAX_VALUE);
+        data.put("Rl'yeh", 1111111111111111L);
+        data.put("dreaming", 1);
+        data.put("of", -1);
+        data.put("waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectLongMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testObjectIntMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
+
+        ObjectIntMap<String> data = new ObjectIntMap<>();
+        data.put("Cthulhu", -123456);
+        data.put("lies", Integer.MIN_VALUE);
+        data.put("deep", 456789012);
+        data.put("in", Integer.MAX_VALUE);
+        data.put("Rl'yeh", 1111111111);
+        data.put("dreaming", 1);
+        data.put("of", -1);
+        data.put("waffles", 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            ObjectIntMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+    
+    @Test
     public void testBooleanArray() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BooleanArray.class, new BooleanArraySerializer(fury));
