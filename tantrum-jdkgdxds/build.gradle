@@ -32,7 +32,7 @@ compileTestJava {
 }
 
 dependencies {
-    api "com.github.tommyettinger:tantrum-digital:0.4.7.0"
+    api "com.github.tommyettinger:tantrum-digital:0.4.8.0"
     api "org.furyio:fury-core:$furyVersion"
     api "com.github.tommyettinger:jdkgdxds:$jdkgdxdsVersion"
     testImplementation "junit:junit:4.13.2"
