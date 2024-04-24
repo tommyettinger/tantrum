@@ -23,6 +23,8 @@ import io.fury.config.Language;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+
 public class SetTest {
     @Test
     public void testIntSet() {
@@ -216,6 +218,20 @@ public class SetTest {
 
         byte[] bytes = fury.serializeJavaObject(data); {
             FilteredStringOrderedSet data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testEnumSet() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumSet.class, new EnumSetSerializer(fury));
+
+        EnumSet data = EnumSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumSet data2 = fury.deserializeJavaObject(bytes, EnumSet.class);
             Assert.assertEquals(data, data2);
         }
     }
