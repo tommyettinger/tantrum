@@ -23,8 +23,6 @@ import io.fury.config.Language;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-
 public class SetTest {
     @Test
     public void testIntSet() {

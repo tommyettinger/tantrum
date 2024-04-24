@@ -410,6 +410,21 @@ public class MapTest {
         }
     }
 
+    @Test
+    public void testEnumMap() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumMap.class, new EnumMapSerializer(fury));
+
+        EnumMap<Integer> data = EnumMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumMap<?> data2 = fury.deserializeJavaObject(bytes, EnumMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredIterableMap() {
 //        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
