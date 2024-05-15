@@ -33,7 +33,6 @@ dependencies {
     api "org.apache.fury:fury-core:$furyVersion"
     api "com.github.tommyettinger:regexodus:$regexodusVersion"
     testImplementation "junit:junit:4.13.2"
-    testImplementation "org.slf4j:slf4j-nop:$slf4jVersion"
 }
 
 jar {

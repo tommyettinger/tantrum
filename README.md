@@ -28,7 +28,7 @@ or if Fury itself had a (compatible) update available but the linked library did
   - tantrum-juniper is at version 0.6.0.0, compatible with juniper 0.6.0
     - Starting in juniper 0.6.1, it shouldn't need any `Serializer`s registered from tantrum. 
   - tantrum-jdkgdxds is at version 1.5.3.0, compatible with jdkgdxds 1.5.3
-  - tantrum-regexodus is at version 0.1.15.0, compatible with RegExodus 0.1.15
+  - tantrum-regexodus is at version 0.1.15.1, compatible with RegExodus 0.1.15
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
@@ -55,7 +55,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.5.3.0"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.0"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.15.1"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 instead:
@@ -104,7 +104,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.15.0</version>
+  <version>0.1.15.1</version>
 </dependency>
 ```
 
