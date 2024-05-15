@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.AlternateRandom;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for digital {@link AlternateRandom}s.
@@ -33,16 +33,16 @@ public class AlternateRandomSerializer extends Serializer<AlternateRandom> {
 
     @Override
     public void write(MemoryBuffer buffer, final AlternateRandom data) {
-        buffer.writeLong(data.stateA);
-        buffer.writeLong(data.stateB);
-        buffer.writeLong(data.stateC);
-        buffer.writeLong(data.stateD);
-        buffer.writeLong(data.stateE);
+        buffer.writeInt64(data.stateA);
+        buffer.writeInt64(data.stateB);
+        buffer.writeInt64(data.stateC);
+        buffer.writeInt64(data.stateD);
+        buffer.writeInt64(data.stateE);
     }
 
     @Override
     public AlternateRandom read(MemoryBuffer buffer) {
-        return new AlternateRandom(buffer.readLong(), buffer.readLong(), buffer.readLong(),
-                buffer.readLong(), buffer.readLong());
+        return new AlternateRandom(buffer.readInt64(), buffer.readInt64(), buffer.readInt64(),
+                buffer.readInt64(), buffer.readInt64());
     }
 }

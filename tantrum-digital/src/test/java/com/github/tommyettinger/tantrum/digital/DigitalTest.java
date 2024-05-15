@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.*;
-import io.fury.Fury;
-import io.fury.config.Language;
-import io.fury.memory.MemoryBuffer;
+import org.apache.fury.Fury;
+import org.apache.fury.config.Language;
+import org.apache.fury.memory.MemoryBuffer;
 import org.junit.Assert;
 import org.junit.Test;
 

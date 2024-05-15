@@ -2,7 +2,7 @@
 
 A little bit of Fury for various libGDX-related libraries.
 
-This lets [Fury](https://fury.apache.org) (currently 0.4.1) de/serialize objects from [libGDX](https://libgdx.com) and several
+This lets [Fury](https://fury.apache.org) (currently 0.5.0) de/serialize objects from [libGDX](https://libgdx.com) and several
 other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been

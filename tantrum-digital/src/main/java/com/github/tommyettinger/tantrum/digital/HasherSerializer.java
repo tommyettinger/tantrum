@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Hasher;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for digital {@link Hasher}s.
@@ -33,11 +33,11 @@ public class HasherSerializer extends Serializer<Hasher> {
 
     @Override
     public void write(MemoryBuffer buffer, final Hasher data) {
-        buffer.writeLong(data.seed);
+        buffer.writeInt64(data.seed);
     }
 
     @Override
     public Hasher read(MemoryBuffer buffer) {
-        return new Hasher(buffer.readLong());
+        return new Hasher(buffer.readInt64());
     }
 }
