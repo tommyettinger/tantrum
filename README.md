@@ -24,7 +24,7 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.12.1.0, compatible with libGDX 1.12.1
-  - tantrum-digital is at version 0.4.8.0, compatible with digital 0.4.8
+  - tantrum-digital is at version 0.4.8.1, compatible with digital 0.4.8
   - tantrum-juniper is at version 0.6.0.0, compatible with juniper 0.6.0
     - Starting in juniper 0.6.1, it shouldn't need any `Serializer`s registered from tantrum. 
   - tantrum-jdkgdxds is at version 1.5.3.0, compatible with jdkgdxds 1.5.3
@@ -43,7 +43,7 @@ implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.0"
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.4.8.0"
+implementation "com.github.tommyettinger:tantrum-digital:0.4.8.1"
 ```
 
 tantrum-jdkgdxds:
@@ -84,7 +84,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.4.8.0</version>
+  <version>0.4.8.1</version>
 </dependency>
 ```
 
