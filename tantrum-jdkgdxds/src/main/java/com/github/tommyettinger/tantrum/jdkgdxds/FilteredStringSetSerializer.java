@@ -19,9 +19,9 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharFilter;
 import com.github.tommyettinger.ds.FilteredStringSet;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link FilteredStringSet}s.
@@ -36,7 +36,7 @@ public class FilteredStringSetSerializer extends Serializer<FilteredStringSet> {
     public void write(final MemoryBuffer output, final FilteredStringSet data) {
         fury.writeString(output, data.getFilter().getName());
         final int len = data.size();
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         for (String item : data) {
             fury.writeRef(output, item);
         }
@@ -45,7 +45,7 @@ public class FilteredStringSetSerializer extends Serializer<FilteredStringSet> {
     @Override
     public FilteredStringSet read(MemoryBuffer input) {
         CharFilter filter = CharFilter.get(fury.readString(input));
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         FilteredStringSet data = new FilteredStringSet(filter, len);
         for (int i = 0; i < len; i++) {
             data.add((String) fury.readRef(input));

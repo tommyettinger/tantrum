@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ShortBag;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ShortBag}s.
@@ -35,11 +35,11 @@ public class ShortBagSerializer extends Serializer<ShortBag> {
 
     @Override
     public void write(final MemoryBuffer output, final ShortBag data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        output.writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
     public ShortBag read(MemoryBuffer input) {
-        return new ShortBag(Support.readShortsWithSizeEmbedded(input));
+        return new ShortBag(Support.readShortsAndSize(input));
     }
 }

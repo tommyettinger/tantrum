@@ -19,9 +19,9 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharFilter;
 import com.github.tommyettinger.ds.FilteredStringMap;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link FilteredStringMap}s.
@@ -36,7 +36,7 @@ public class FilteredStringMapSerializer extends Serializer<FilteredStringMap> {
     @Override
     public void write(final MemoryBuffer output, final FilteredStringMap data) {
         fury.writeString(output, data.getFilter().getName());
-        output.writePositiveVarInt(data.size());
+        output.writeVarUint32(data.size());
         for(Object k : data.keySet()){
             fury.writeRef(output, k);
         }
@@ -48,7 +48,7 @@ public class FilteredStringMapSerializer extends Serializer<FilteredStringMap> {
     @Override
     public FilteredStringMap<?> read(MemoryBuffer input) {
         CharFilter filter = CharFilter.get(fury.readString(input));
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {

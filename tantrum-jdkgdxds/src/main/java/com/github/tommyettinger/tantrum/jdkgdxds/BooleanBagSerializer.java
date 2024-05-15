@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.BooleanBag;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link BooleanBag}s.
@@ -35,11 +35,11 @@ public class BooleanBagSerializer extends Serializer<BooleanBag> {
 
     @Override
     public void write(final MemoryBuffer output, final BooleanBag data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        output.writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
     }
 
     @Override
     public BooleanBag read(MemoryBuffer input) {
-        return new BooleanBag(Support.readBooleansWithSizeEmbedded(input));
+        return new BooleanBag(Support.readBooleansAndSize(input));
     }
 }

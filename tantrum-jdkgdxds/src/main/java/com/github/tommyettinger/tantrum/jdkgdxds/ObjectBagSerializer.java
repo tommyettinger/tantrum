@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectBag;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectBag}s.
@@ -35,7 +35,7 @@ public class ObjectBagSerializer extends Serializer<ObjectBag> {
     @Override
     public void write(final MemoryBuffer output, final ObjectBag data) {
         final int len = data.size();
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
             fury.writeRef(output, data.get(i));
         }
@@ -43,7 +43,7 @@ public class ObjectBagSerializer extends Serializer<ObjectBag> {
 
     @Override
     public ObjectBag read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         ObjectBag data = new ObjectBag(len);
         for (int i = 0; i < len; i++)
             data.add(fury.readRef(input));

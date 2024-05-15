@@ -18,11 +18,9 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumMap;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link EnumMap}s.
@@ -36,7 +34,7 @@ public class EnumMapSerializer extends Serializer<EnumMap> {
 
     @Override
     public void write(final MemoryBuffer output, final EnumMap data) {
-        output.writePositiveVarInt(data.size());
+        output.writeVarUint32(data.size());
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
@@ -47,7 +45,7 @@ public class EnumMapSerializer extends Serializer<EnumMap> {
 
     @Override
     public EnumMap<?> read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         if(len == 0) return new EnumMap<>();
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {

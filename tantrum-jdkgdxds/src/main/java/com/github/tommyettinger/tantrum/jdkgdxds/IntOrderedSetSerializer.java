@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntOrderedSet;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntOrderedSet}s.
@@ -35,11 +35,11 @@ public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
 
     @Override
     public void write(final MemoryBuffer output, final IntOrderedSet data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
     public IntOrderedSet read(MemoryBuffer input) {
-        return new IntOrderedSet(Support.readIntsWithSizeEmbedded(input));
+        return new IntOrderedSet(Support.readIntsAndSize(input));
     }
 }

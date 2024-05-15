@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntIntMap;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntIntMap}s.
@@ -35,12 +35,12 @@ public class IntIntMapSerializer extends Serializer<IntIntMap> {
 
     @Override
     public void write(final MemoryBuffer output, final IntIntMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
     public IntIntMap read(MemoryBuffer input) {
-        return new IntIntMap(Support.readIntsWithSizeEmbedded(input), Support.readIntsWithSizeEmbedded(input));
+        return new IntIntMap(Support.readIntsAndSize(input), Support.readIntsAndSize(input));
     }
 }

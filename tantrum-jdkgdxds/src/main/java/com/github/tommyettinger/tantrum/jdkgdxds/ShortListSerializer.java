@@ -17,12 +17,12 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.ds.ShortList;
-import io.fury.util.Platform;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ShortList}s.
@@ -35,11 +35,11 @@ public class ShortListSerializer extends Serializer<ShortList> {
 
     @Override
     public void write(final MemoryBuffer output, final ShortList data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        output.writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
     public ShortList read(MemoryBuffer input) {
-        return new ShortList(Support.readShortsWithSizeEmbedded(input));
+        return new ShortList(Support.readShortsAndSize(input));
     }
 }

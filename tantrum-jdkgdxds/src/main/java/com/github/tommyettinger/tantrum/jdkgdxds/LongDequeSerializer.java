@@ -18,10 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongDeque;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link LongDeque}s.
@@ -34,11 +35,11 @@ public class LongDequeSerializer extends Serializer<LongDeque> {
 
     @Override
     public void write(final MemoryBuffer output, final LongDeque data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
     public LongDeque read(MemoryBuffer input) {
-        return new LongDeque(input.readLongsWithSizeEmbedded());
+        return new LongDeque(Support.readLongsAndSize(input));
     }
 }

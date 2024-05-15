@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntFloatOrderedMap;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntFloatOrderedMap}s.
@@ -35,12 +35,12 @@ public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap>
 
     @Override
     public void write(final MemoryBuffer output, final IntFloatOrderedMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
     public IntFloatOrderedMap read(MemoryBuffer input) {
-        return new IntFloatOrderedMap(Support.readIntsWithSizeEmbedded(input), Support.readFloatsWithSizeEmbedded(input));
+        return new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input));
     }
 }

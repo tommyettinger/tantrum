@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.NumberedSet;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link NumberedSet}s.
@@ -35,7 +35,7 @@ public class NumberedSetSerializer extends Serializer<NumberedSet> {
     @Override
     public void write(final MemoryBuffer output, final NumberedSet data) {
         final int len = data.size();
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         for (Object item : data) {
             fury.writeRef(output, item);
         }
@@ -43,7 +43,7 @@ public class NumberedSetSerializer extends Serializer<NumberedSet> {
 
     @Override
     public NumberedSet read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         NumberedSet data = new NumberedSet(len);
         for (int i = 0; i < len; i++) {
             data.add(fury.readRef(input));

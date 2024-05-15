@@ -18,10 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.OffsetBitSet;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link OffsetBitSet}s.
@@ -35,15 +36,15 @@ public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
     @Override
     public void write(final MemoryBuffer output, final OffsetBitSet data) {
         final long[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSizeEmbedded(bits, Platform.LONG_ARRAY_OFFSET, bits.length << 3);
-        output.writeInt(data.getOffset());
+        output.writePrimitiveArrayWithSize(bits, Platform.LONG_ARRAY_OFFSET, bits.length << 3);
+        output.writeInt32(data.getOffset());
     }
 
     @Override
     public OffsetBitSet read(MemoryBuffer input) {
         final OffsetBitSet obs = new OffsetBitSet();
-        obs.setRawBits(input.readLongsWithSizeEmbedded());
-        obs.setOffset(input.readInt());
+        obs.setRawBits(Support.readLongsAndSize(input));
+        obs.setOffset(input.readInt32());
         return obs;
     }
 }

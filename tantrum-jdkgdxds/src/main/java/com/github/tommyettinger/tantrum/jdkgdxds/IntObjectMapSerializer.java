@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntObjectMap;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntObjectMap}s.
@@ -36,7 +36,7 @@ public class IntObjectMapSerializer extends Serializer<IntObjectMap> {
 
     @Override
     public void write(final MemoryBuffer output, final IntObjectMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
@@ -44,7 +44,7 @@ public class IntObjectMapSerializer extends Serializer<IntObjectMap> {
 
     @Override
     public IntObjectMap<?> read(MemoryBuffer input) {
-        int[] ks = Support.readIntsWithSizeEmbedded(input);
+        int[] ks = Support.readIntsAndSize(input);
         final int len = ks.length;
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {

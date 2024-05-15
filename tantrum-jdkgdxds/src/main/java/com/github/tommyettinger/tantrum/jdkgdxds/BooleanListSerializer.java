@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.BooleanList;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link BooleanList}s.
@@ -35,11 +35,11 @@ public class BooleanListSerializer extends Serializer<BooleanList> {
 
     @Override
     public void write(final MemoryBuffer output, final BooleanList data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        output.writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
     }
 
     @Override
     public BooleanList read(MemoryBuffer input) {
-        return new BooleanList(Support.readBooleansWithSizeEmbedded(input));
+        return new BooleanList(Support.readBooleansAndSize(input));
     }
 }

@@ -18,10 +18,10 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ByteBag;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ByteBag}s.
@@ -34,11 +34,11 @@ public class ByteBagSerializer extends Serializer<ByteBag> {
 
     @Override
     public void write(final MemoryBuffer output, final ByteBag data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
+        output.writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
     }
 
     @Override
     public ByteBag read(MemoryBuffer input) {
-        return new ByteBag(input.readBytesWithSizeEmbedded());
+        return new ByteBag(input.readBytesAndSize());
     }
 }

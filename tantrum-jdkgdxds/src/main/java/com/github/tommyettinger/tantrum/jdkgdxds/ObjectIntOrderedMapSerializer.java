@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectIntOrderedMap;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectIntOrderedMap}s.
@@ -36,7 +36,7 @@ public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMa
 
     @Override
     public void write(final MemoryBuffer output, final ObjectIntOrderedMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
@@ -44,7 +44,7 @@ public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMa
 
     @Override
     public ObjectIntOrderedMap<?> read(MemoryBuffer input) {
-        int[] vs = Support.readIntsWithSizeEmbedded(input);
+        int[] vs = Support.readIntsAndSize(input);
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {

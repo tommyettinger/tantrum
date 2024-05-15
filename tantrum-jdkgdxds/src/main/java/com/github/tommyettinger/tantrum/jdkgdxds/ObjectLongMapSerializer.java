@@ -18,10 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectLongMap;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectLongMap}s.
@@ -35,7 +36,7 @@ public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
 
     @Override
     public void write(final MemoryBuffer output, final ObjectLongMap data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
@@ -43,7 +44,7 @@ public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
 
     @Override
     public ObjectLongMap<?> read(MemoryBuffer input) {
-        long[] vs = input.readLongsWithSizeEmbedded();
+        long[] vs = Support.readLongsAndSize(input);
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {

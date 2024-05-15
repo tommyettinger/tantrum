@@ -18,11 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntDeque;
-import com.github.tommyettinger.tantrum.jdkgdxds.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntDeque}s.
@@ -35,11 +35,11 @@ public class IntDequeSerializer extends Serializer<IntDeque> {
 
     @Override
     public void write(final MemoryBuffer output, final IntDeque data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writePrimitiveArrayWithSize(data.toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
     public IntDeque read(MemoryBuffer input) {
-        return new IntDeque(Support.readIntsWithSizeEmbedded(input));
+        return new IntDeque(Support.readIntsAndSize(input));
     }
 }

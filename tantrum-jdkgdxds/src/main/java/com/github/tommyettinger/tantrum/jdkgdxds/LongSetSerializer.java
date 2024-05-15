@@ -18,10 +18,11 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongSet;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link LongSet}s.
@@ -34,11 +35,11 @@ public class LongSetSerializer extends Serializer<LongSet> {
 
     @Override
     public void write(final MemoryBuffer output, final LongSet data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
     public LongSet read(MemoryBuffer input) {
-        return new LongSet(input.readLongsWithSizeEmbedded());
+        return new LongSet(Support.readLongsAndSize(input));
     }
 }
