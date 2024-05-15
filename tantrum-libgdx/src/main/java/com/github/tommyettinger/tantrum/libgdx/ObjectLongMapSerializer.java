@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ObjectLongMap;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for libGDX {@link ObjectLongMap}s.
@@ -33,19 +33,19 @@ public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
     @Override
     public void write(final MemoryBuffer output, final ObjectLongMap data) {
         final int len = data.size;
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         for (Object item : data.keys()) {
             fury.writeRef(output, item);
-            output.writeLong(data.get(item, 0));
+            output.writeInt64(data.get(item, 0));
         }
     }
 
     @Override
     public ObjectLongMap<?> read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         ObjectLongMap data = new ObjectLongMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(fury.readRef(input), input.readLong());
+            data.put(fury.readRef(input), input.readInt64());
         }
         return data;
     }

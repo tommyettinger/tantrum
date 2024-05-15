@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Array;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for libGDX {@link Array}s.
@@ -34,7 +34,7 @@ public class ArraySerializer extends Serializer<Array> {
     public void write(final MemoryBuffer output, final Array data) {
         final int len = data.size;
         output.writeBoolean(data.ordered);
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         for (Object item : data) {
             fury.writeRef(output, item);
         }
@@ -43,7 +43,7 @@ public class ArraySerializer extends Serializer<Array> {
     @Override
     public Array<?> read(MemoryBuffer input) {
         final boolean ordered = input.readBoolean();
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         Array data = new Array(ordered, len);
         for (int i = 0; i < len; i++) {
             data.add(fury.readRef(input));

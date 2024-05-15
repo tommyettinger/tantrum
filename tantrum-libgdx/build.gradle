@@ -30,7 +30,7 @@ compileTestJava {
 }
 
 dependencies {
-    api "org.furyio:fury-core:$furyVersion"
+    api "org.apache.fury:fury-core:$furyVersion"
     api "com.badlogicgames.gdx:gdx:$gdxVersion"
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.slf4j:slf4j-nop:$slf4jVersion"

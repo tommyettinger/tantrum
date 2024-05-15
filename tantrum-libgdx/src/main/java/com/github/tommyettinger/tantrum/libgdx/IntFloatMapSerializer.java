@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntFloatMap;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for libGDX {@link IntFloatMap}s.
@@ -33,21 +33,21 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
     @Override
     public void write(final MemoryBuffer output, final IntFloatMap data) {
         final int len = data.size;
-        output.writePositiveVarInt(len);
+        output.writeVarUint32(len);
         IntFloatMap.Keys keys = data.keys();
         for (int item; keys.hasNext;) {
             item = keys.next();
-            output.writeInt(item);
-            output.writeFloat(data.get(item, 0));
+            output.writeInt32(item);
+            output.writeFloat32(data.get(item, 0));
         }
     }
 
     @Override
     public IntFloatMap read(MemoryBuffer input) {
-        final int len = input.readPositiveVarInt();
+        final int len = input.readVarUint32();
         IntFloatMap data = new IntFloatMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt(), input.readFloat());
+            data.put(input.readInt32(), input.readFloat32());
         }
         return data;
     }

@@ -19,10 +19,10 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link IntArray}s.
@@ -36,13 +36,13 @@ public class IntArraySerializer extends Serializer<IntArray> {
     @Override
     public void write(final MemoryBuffer output, final IntArray data) {
         output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.INT_ARRAY_OFFSET, data.size << 2);
+        output.writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size << 2);
     }
 
     @Override
     public IntArray read(MemoryBuffer input) {
         final boolean ordered = input.readBoolean();
-        final int[] items = Support.readIntsWithSizeEmbedded(input);
+        final int[] items = Support.readIntsAndSize(input);
         return new IntArray(ordered, items, 0, items.length);
     }
 }

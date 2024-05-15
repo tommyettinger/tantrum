@@ -19,10 +19,10 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ShortArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ShortArray}s.
@@ -36,13 +36,13 @@ public class ShortArraySerializer extends Serializer<ShortArray> {
     @Override
     public void write(final MemoryBuffer output, final ShortArray data) {
         output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.SHORT_ARRAY_OFFSET, data.size << 1);
+        output.writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size << 1);
     }
 
     @Override
     public ShortArray read(MemoryBuffer input) {
         final boolean ordered = input.readBoolean();
-        final short[] items = Support.readShortsWithSizeEmbedded(input);
+        final short[] items = Support.readShortsAndSize(input);
         return new ShortArray(ordered, items, 0, items.length);
     }
 }

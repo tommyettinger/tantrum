@@ -18,10 +18,11 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.LongArray;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
-import io.fury.util.Platform;
+import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link LongArray}s.
@@ -35,13 +36,13 @@ public class LongArraySerializer extends Serializer<LongArray> {
     @Override
     public void write(final MemoryBuffer output, final LongArray data) {
         output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.LONG_ARRAY_OFFSET, data.size << 3);
+        output.writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size << 3);
     }
 
     @Override
     public LongArray read(MemoryBuffer input) {
         final boolean ordered = input.readBoolean();
-        final long[] items = input.readLongsWithSizeEmbedded();
+        final long[] items = Support.readLongsAndSize(input);
         return new LongArray(ordered, items, 0, items.length);
     }
 }
