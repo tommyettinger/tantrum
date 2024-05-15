@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.TupleQuasiRandom;
 
 /**
@@ -33,11 +33,11 @@ public class TupleQuasiRandomSerializer extends Serializer<TupleQuasiRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final TupleQuasiRandom data) {
-        output.writeLong(data.getState());
+        output.writeInt64(data.getState());
     }
 
     @Override
     public TupleQuasiRandom read(MemoryBuffer input) {
-        return new TupleQuasiRandom(input.readLong());
+        return new TupleQuasiRandom(input.readInt64());
     }
 }

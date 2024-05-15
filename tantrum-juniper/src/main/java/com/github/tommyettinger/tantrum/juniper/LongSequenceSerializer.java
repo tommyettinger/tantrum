@@ -17,11 +17,12 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.LongSequence;
-import io.fury.util.Platform;
+import org.apache.fury.memory.Platform;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link LongSequence}s.
@@ -34,11 +35,11 @@ public class LongSequenceSerializer extends Serializer<LongSequence> {
 
     @Override
     public void write(MemoryBuffer output, final LongSequence data) {
-        output.writePrimitiveArrayWithSizeEmbedded(data.items, Platform.LONG_ARRAY_OFFSET, data.size << 3);
+        output.writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size << 3);
     }
 
     @Override
     public LongSequence read(MemoryBuffer input) {
-        return new LongSequence(input.readLongsWithSizeEmbedded());
+        return new LongSequence(Support.readLongsAndSize(input));
     }
 }

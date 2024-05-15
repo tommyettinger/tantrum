@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.TrimRandom;
 
 /**
@@ -33,15 +33,15 @@ public class TrimRandomSerializer extends Serializer<TrimRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final TrimRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
-        output.writeLong(data.getStateD());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
+        output.writeInt64(data.getStateD());
     }
 
     @Override
     public TrimRandom read(MemoryBuffer input) {
-        return new TrimRandom(input.readLong(), input.readLong(),
-                input.readLong(), input.readLong());
+        return new TrimRandom(input.readInt64(), input.readInt64(),
+                input.readInt64(), input.readInt64());
     }
 }

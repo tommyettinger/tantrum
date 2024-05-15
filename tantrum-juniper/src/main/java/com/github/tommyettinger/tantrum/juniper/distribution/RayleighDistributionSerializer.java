@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.RayleighDistribution;
 
@@ -30,11 +30,11 @@ public class RayleighDistributionSerializer extends Serializer<RayleighDistribut
     @Override
     public void write(final MemoryBuffer output, RayleighDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
+        output.writeFloat64(object.getParameterA());
     }
 
     @Override
     public RayleighDistribution read(MemoryBuffer input) {
-        return new RayleighDistribution((EnhancedRandom) fury.readRef(input), input.readDouble());
+        return new RayleighDistribution((EnhancedRandom) fury.readRef(input), input.readFloat64());
     }
 }

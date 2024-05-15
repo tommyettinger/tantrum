@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.KnobDistribution;
 
@@ -30,14 +30,14 @@ public class KnobDistributionSerializer extends Serializer<KnobDistribution> {
     @Override
     public void write(final MemoryBuffer output, KnobDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
-        output.writeDouble(object.getParameterB());
-        output.writeDouble(object.getParameterC());
+        output.writeFloat64(object.getParameterA());
+        output.writeFloat64(object.getParameterB());
+        output.writeFloat64(object.getParameterC());
     }
 
     @Override
     public KnobDistribution read(MemoryBuffer input) {
         return new KnobDistribution((EnhancedRandom) fury.readRef(input),
-                input.readDouble(), input.readDouble(), input.readDouble());
+                input.readFloat64(), input.readFloat64(), input.readFloat64());
     }
 }

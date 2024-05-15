@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.KumaraswamyDistribution;
 
@@ -30,13 +30,13 @@ public class KumaraswamyDistributionSerializer extends Serializer<KumaraswamyDis
     @Override
     public void write(final MemoryBuffer output, KumaraswamyDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
-        output.writeDouble(object.getParameterB());
+        output.writeFloat64(object.getParameterA());
+        output.writeFloat64(object.getParameterB());
     }
 
     @Override
     public KumaraswamyDistribution read(MemoryBuffer input) {
         return new KumaraswamyDistribution((EnhancedRandom) fury.readRef(input),
-                input.readDouble(), input.readDouble());
+                input.readFloat64(), input.readFloat64());
     }
 }

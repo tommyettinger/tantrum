@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.BetaPrimeDistribution;
 
@@ -30,13 +30,13 @@ public class BetaPrimeDistributionSerializer extends Serializer<BetaPrimeDistrib
     @Override
     public void write(final MemoryBuffer output, BetaPrimeDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
-        output.writeDouble(object.getParameterB());
+        output.writeFloat64(object.getParameterA());
+        output.writeFloat64(object.getParameterB());
     }
 
     @Override
     public BetaPrimeDistribution read(MemoryBuffer input) {
         return new BetaPrimeDistribution((EnhancedRandom) fury.readRef(input),
-                input.readDouble(), input.readDouble());
+                input.readFloat64(), input.readFloat64());
     }
 }

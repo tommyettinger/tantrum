@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.Xoroshiro128StarStarRandom;
 
 /**
@@ -33,12 +33,12 @@ public class Xoroshiro128StarStarRandomSerializer extends Serializer<Xoroshiro12
 
     @Override
     public void write(final MemoryBuffer output, final Xoroshiro128StarStarRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
     }
 
     @Override
     public Xoroshiro128StarStarRandom read(MemoryBuffer input) {
-        return new Xoroshiro128StarStarRandom(input.readLong(), input.readLong());
+        return new Xoroshiro128StarStarRandom(input.readInt64(), input.readInt64());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.RomuTrioRandom;
 
 /**
@@ -33,13 +33,13 @@ public class RomuTrioRandomSerializer extends Serializer<RomuTrioRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final RomuTrioRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
     }
 
     @Override
     public RomuTrioRandom read(MemoryBuffer input) {
-        return new RomuTrioRandom(input.readLong(), input.readLong(), input.readLong());
+        return new RomuTrioRandom(input.readInt64(), input.readInt64(), input.readInt64());
     }
 }

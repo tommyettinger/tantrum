@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.DistinctRandom;
 
 /**
@@ -33,11 +33,11 @@ public class DistinctRandomSerializer extends Serializer<DistinctRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final DistinctRandom data) {
-        output.writeLong(data.state);
+        output.writeInt64(data.state);
     }
 
     @Override
     public DistinctRandom read(MemoryBuffer input) {
-        return new DistinctRandom(input.readLong());
+        return new DistinctRandom(input.readInt64());
     }
 }

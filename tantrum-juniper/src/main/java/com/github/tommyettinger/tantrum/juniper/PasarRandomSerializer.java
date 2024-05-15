@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.PasarRandom;
 
 /**
@@ -33,16 +33,16 @@ public class PasarRandomSerializer extends Serializer<PasarRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final PasarRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
-        output.writeLong(data.getStateD());
-        output.writeLong(data.getStateE());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
+        output.writeInt64(data.getStateD());
+        output.writeInt64(data.getStateE());
     }
 
     @Override
     public PasarRandom read(MemoryBuffer input) {
-        return new PasarRandom(input.readLong(), input.readLong(),
-                input.readLong(), input.readLong(), input.readLong());
+        return new PasarRandom(input.readInt64(), input.readInt64(),
+                input.readInt64(), input.readInt64(), input.readInt64());
     }
 }

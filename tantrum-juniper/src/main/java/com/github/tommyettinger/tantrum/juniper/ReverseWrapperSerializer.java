@@ -19,9 +19,9 @@ package com.github.tommyettinger.tantrum.juniper;
 
 import com.github.tommyettinger.digital.Base;
 import com.github.tommyettinger.random.ReverseWrapper;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for juniper {@link ReverseWrapper}s.

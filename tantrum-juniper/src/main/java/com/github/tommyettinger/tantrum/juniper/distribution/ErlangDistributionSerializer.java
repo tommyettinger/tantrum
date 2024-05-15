@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.ErlangDistribution;
 
@@ -30,13 +30,13 @@ public class ErlangDistributionSerializer extends Serializer<ErlangDistribution>
     @Override
     public void write(final MemoryBuffer output, ErlangDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeInt((int) object.getParameterA());
-        output.writeDouble(object.getParameterB());
+        output.writeInt32((int) object.getParameterA());
+        output.writeFloat64(object.getParameterB());
     }
 
     @Override
     public ErlangDistribution read(MemoryBuffer input) {
         return new ErlangDistribution((EnhancedRandom) fury.readRef(input),
-                input.readInt(), input.readDouble());
+                input.readInt32(), input.readFloat64());
     }
 }

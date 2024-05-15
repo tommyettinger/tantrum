@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.VanDerCorputQuasiRandom;
 
 /**
@@ -33,11 +33,11 @@ public class VanDerCorputQuasiRandomSerializer extends Serializer<VanDerCorputQu
 
     @Override
     public void write(final MemoryBuffer output, final VanDerCorputQuasiRandom data) {
-        output.writeLong(data.state);
+        output.writeInt64(data.state);
     }
 
     @Override
     public VanDerCorputQuasiRandom read(MemoryBuffer input) {
-        return new VanDerCorputQuasiRandom(input.readLong());
+        return new VanDerCorputQuasiRandom(input.readInt64());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.ZipfianDistribution;
 
@@ -30,14 +30,14 @@ public class ZipfianDistributionSerializer extends Serializer<ZipfianDistributio
     @Override
     public void write(final MemoryBuffer output, ZipfianDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeLong((long) object.getAlpha());
-        output.writeDouble(object.getSkew());
-        output.writeDouble(object.getZeta());
+        output.writeInt64((long) object.getAlpha());
+        output.writeFloat64(object.getSkew());
+        output.writeFloat64(object.getZeta());
     }
 
     @Override
     public ZipfianDistribution read(MemoryBuffer input) {
         return new ZipfianDistribution((EnhancedRandom) fury.readRef(input),
-                input.readLong(), input.readDouble(), input.readDouble());
+                input.readInt64(), input.readFloat64(), input.readFloat64());
     }
 }

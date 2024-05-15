@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.ChiSquareDistribution;
 
@@ -30,11 +30,11 @@ public class ChiSquareDistributionSerializer extends Serializer<ChiSquareDistrib
     @Override
     public void write(final MemoryBuffer output, ChiSquareDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeInt((int) object.getParameterA());
+        output.writeInt32((int) object.getParameterA());
     }
 
     @Override
     public ChiSquareDistribution read(MemoryBuffer input) {
-        return new ChiSquareDistribution((EnhancedRandom) fury.readRef(input), input.readInt());
+        return new ChiSquareDistribution((EnhancedRandom) fury.readRef(input), input.readInt32());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.Respite32Random;
 
 /**
@@ -33,14 +33,14 @@ public class Respite32RandomSerializer extends Serializer<Respite32Random> {
 
     @Override
     public void write(final MemoryBuffer output, final Respite32Random data) {
-        output.writeInt((int)data.getStateA());
-        output.writeInt((int)data.getStateB());
-        output.writeInt((int)data.getStateC());
+        output.writeInt32((int)data.getStateA());
+        output.writeInt32((int)data.getStateB());
+        output.writeInt32((int)data.getStateC());
     }
 
     @Override
     public Respite32Random read(MemoryBuffer input) {
-        return new Respite32Random(input.readInt(), input.readInt(),
-                input.readInt());
+        return new Respite32Random(input.readInt32(), input.readInt32(),
+                input.readInt32());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.BinomialDistribution;
 
@@ -30,13 +30,13 @@ public class BinomialDistributionSerializer extends Serializer<BinomialDistribut
     @Override
     public void write(final MemoryBuffer output, BinomialDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
-        output.writeInt((int) object.getParameterB());
+        output.writeFloat64(object.getParameterA());
+        output.writeInt32((int) object.getParameterB());
     }
 
     @Override
     public BinomialDistribution read(MemoryBuffer input) {
         return new BinomialDistribution((EnhancedRandom) fury.readRef(input),
-                input.readDouble(), input.readInt());
+                input.readFloat64(), input.readInt32());
     }
 }

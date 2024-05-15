@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.ExponentialDistribution;
 
@@ -30,11 +30,11 @@ public class ExponentialDistributionSerializer extends Serializer<ExponentialDis
     @Override
     public void write(final MemoryBuffer output, ExponentialDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
+        output.writeFloat64(object.getParameterA());
     }
 
     @Override
     public ExponentialDistribution read(MemoryBuffer input) {
-        return new ExponentialDistribution((EnhancedRandom) fury.readRef(input), input.readDouble());
+        return new ExponentialDistribution((EnhancedRandom) fury.readRef(input), input.readFloat64());
     }
 }

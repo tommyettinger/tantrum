@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.Sfc64Random;
 
 /**
@@ -33,15 +33,15 @@ public class Sfc64RandomSerializer extends Serializer<Sfc64Random> {
 
     @Override
     public void write(final MemoryBuffer output, final Sfc64Random data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
-        output.writeLong(data.getStateD());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
+        output.writeInt64(data.getStateD());
     }
 
     @Override
     public Sfc64Random read(MemoryBuffer input) {
-        return new Sfc64Random(input.readLong(), input.readLong(),
-                input.readLong(), input.readLong());
+        return new Sfc64Random(input.readInt64(), input.readInt64(),
+                input.readInt64(), input.readInt64());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.TricycleRandom;
 
 /**
@@ -33,13 +33,13 @@ public class TricycleRandomSerializer extends Serializer<TricycleRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final TricycleRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
     }
 
     @Override
     public TricycleRandom read(MemoryBuffer input) {
-        return new TricycleRandom(input.readLong(), input.readLong(), input.readLong());
+        return new TricycleRandom(input.readInt64(), input.readInt64(), input.readInt64());
     }
 }

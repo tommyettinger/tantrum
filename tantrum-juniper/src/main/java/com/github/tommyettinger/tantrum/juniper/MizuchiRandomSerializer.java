@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.MizuchiRandom;
 
 /**
@@ -33,12 +33,12 @@ public class MizuchiRandomSerializer extends Serializer<MizuchiRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final MizuchiRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
     }
 
     @Override
     public MizuchiRandom read(MemoryBuffer input) {
-        return new MizuchiRandom(input.readLong(), input.readLong());
+        return new MizuchiRandom(input.readInt64(), input.readInt64());
     }
 }

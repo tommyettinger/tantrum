@@ -21,8 +21,8 @@ package com.github.tommyettinger.tantrum.juniper;
 
 import com.github.tommyettinger.digital.Interpolations;
 import com.github.tommyettinger.random.*;
-import io.fury.Fury;
-import io.fury.config.Language;
+import org.apache.fury.Fury;
+import org.apache.fury.config.Language;
 import org.junit.Assert;
 import org.junit.Test;
 

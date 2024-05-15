@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.FourWheelRandom;
 
 /**
@@ -33,15 +33,15 @@ public class FourWheelRandomSerializer extends Serializer<FourWheelRandom> {
 
     @Override
     public void write(final MemoryBuffer output, final FourWheelRandom data) {
-        output.writeLong(data.getStateA());
-        output.writeLong(data.getStateB());
-        output.writeLong(data.getStateC());
-        output.writeLong(data.getStateD());
+        output.writeInt64(data.getStateA());
+        output.writeInt64(data.getStateB());
+        output.writeInt64(data.getStateC());
+        output.writeInt64(data.getStateD());
     }
 
     @Override
     public FourWheelRandom read(MemoryBuffer input) {
-        return new FourWheelRandom(input.readLong(), input.readLong(),
-                input.readLong(), input.readLong());
+        return new FourWheelRandom(input.readInt64(), input.readInt64(),
+                input.readInt64(), input.readInt64());
     }
 }

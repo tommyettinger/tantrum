@@ -20,9 +20,9 @@ package com.github.tommyettinger.tantrum.juniper.distribution;
 import com.github.tommyettinger.digital.Base;
 import com.github.tommyettinger.random.Deserializer;
 import com.github.tommyettinger.random.distribution.Distribution;
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for juniper {@link Distribution}s.

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.LogNormalDistribution;
 
@@ -30,13 +30,13 @@ public class LogNormalDistributionSerializer extends Serializer<LogNormalDistrib
     @Override
     public void write(final MemoryBuffer output, LogNormalDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeDouble(object.getParameterA());
-        output.writeDouble(object.getParameterB());
+        output.writeFloat64(object.getParameterA());
+        output.writeFloat64(object.getParameterB());
     }
 
     @Override
     public LogNormalDistribution read(MemoryBuffer input) {
         return new LogNormalDistribution((EnhancedRandom) fury.readRef(input),
-                input.readDouble(), input.readDouble());
+                input.readFloat64(), input.readFloat64());
     }
 }

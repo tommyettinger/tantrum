@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.LowChangeQuasiRandom;
 
 /**
@@ -33,12 +33,12 @@ public class LowChangeQuasiRandomSerializer extends Serializer<LowChangeQuasiRan
 
     @Override
     public void write(final MemoryBuffer output, final LowChangeQuasiRandom data) {
-        output.writeLong(data.state);
-        output.writeLong(data.choice);
+        output.writeInt64(data.state);
+        output.writeInt64(data.choice);
     }
 
     @Override
     public LowChangeQuasiRandom read(MemoryBuffer input) {
-        return new LowChangeQuasiRandom(input.readLong(), input.readLong());
+        return new LowChangeQuasiRandom(input.readInt64(), input.readInt64());
     }
 }

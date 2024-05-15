@@ -23,9 +23,9 @@ import com.github.tommyettinger.random.DistributedRandom;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.*;
 import com.github.tommyettinger.tantrum.juniper.distribution.*;
-import io.fury.Fury;
-import io.fury.config.Language;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.config.Language;
+import org.apache.fury.serializer.Serializer;
 import org.junit.Assert;
 import org.junit.Test;
 

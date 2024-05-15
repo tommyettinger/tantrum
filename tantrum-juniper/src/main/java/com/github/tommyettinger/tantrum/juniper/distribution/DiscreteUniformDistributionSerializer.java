@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper.distribution;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.EnhancedRandom;
 import com.github.tommyettinger.random.distribution.DiscreteUniformDistribution;
 
@@ -30,13 +30,13 @@ public class DiscreteUniformDistributionSerializer extends Serializer<DiscreteUn
     @Override
     public void write(final MemoryBuffer output, DiscreteUniformDistribution object) {
         fury.writeRef(output, object.generator);
-        output.writeInt((int) object.getParameterA());
-        output.writeInt((int) object.getParameterB());
+        output.writeInt32((int) object.getParameterA());
+        output.writeInt32((int) object.getParameterB());
     }
 
     @Override
     public DiscreteUniformDistribution read(MemoryBuffer input) {
         return new DiscreteUniformDistribution((EnhancedRandom) fury.readRef(input),
-                input.readInt(), input.readInt());
+                input.readInt32(), input.readInt32());
     }
 }

@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.regexodus;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import regexodus.Pattern;
 
 /**

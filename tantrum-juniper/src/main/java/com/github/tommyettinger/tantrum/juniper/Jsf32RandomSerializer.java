@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.juniper;
 
-import io.fury.Fury;
-import io.fury.memory.MemoryBuffer;
-import io.fury.serializer.Serializer;
+import org.apache.fury.Fury;
+import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fury.serializer.Serializer;
 import com.github.tommyettinger.random.Jsf32Random;
 
 /**
@@ -33,15 +33,15 @@ public class Jsf32RandomSerializer extends Serializer<Jsf32Random> {
 
     @Override
     public void write(final MemoryBuffer output, final Jsf32Random data) {
-        output.writeInt((int)data.getStateA());
-        output.writeInt((int)data.getStateB());
-        output.writeInt((int)data.getStateC());
-        output.writeInt((int)data.getStateD());
+        output.writeInt32((int)data.getStateA());
+        output.writeInt32((int)data.getStateB());
+        output.writeInt32((int)data.getStateC());
+        output.writeInt32((int)data.getStateD());
     }
 
     @Override
     public Jsf32Random read(MemoryBuffer input) {
-        return new Jsf32Random(input.readInt(), input.readInt(),
-                input.readInt(), input.readInt());
+        return new Jsf32Random(input.readInt32(), input.readInt32(),
+                input.readInt32(), input.readInt32());
     }
 }
