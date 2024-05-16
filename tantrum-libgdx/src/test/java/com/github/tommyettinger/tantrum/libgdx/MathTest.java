@@ -221,6 +221,63 @@ public class MathTest {
             Assert.assertEquals(data, data2);
         }
     }
+    @Test
+    public void testCircle() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Circle.class, new CircleSerializer(fury));
+
+        Circle[] testing = {
+                new Circle(0, 0, 0),
+                new Circle(-0f, -0f, -0f),
+                new Circle(1, 0, 0),
+                new Circle(0, 1, 0),
+                new Circle(0, 0, 1),
+                new Circle(1, 1, 1),
+                new Circle(-1, -1, -1),
+                new Circle(9999.9f, 9999.9f, 9999.9f),
+                new Circle(9999.9f, -9999.9f, 0),
+                new Circle(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.MIN_VALUE),
+                new Circle(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Circle(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Circle(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Circle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
+
+        for (Circle data : testing) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Circle data2 = fury.deserializeJavaObject(bytes, Circle.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+    @Test
+    public void testPlane() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Plane.class, new PlaneSerializer(fury));
+
+        Plane[] testing = {
+                new Plane(new Vector3(0, 0, 0), 0),
+                new Plane(new Vector3(-0f, -0f, -0f), -0f),
+                new Plane(new Vector3(1, 0, 0), 0),
+                new Plane(new Vector3(0, 1, 0), 0),
+                new Plane(new Vector3(0, 0, 1), 0),
+                new Plane(new Vector3(0, 0, 0), 1),
+                new Plane(new Vector3(1, 1, 1), 1),
+                new Plane(new Vector3(-1, -1, -1), -1),
+                new Plane(new Vector3(9999.9f, 9999.9f, 9999.9f), 9999.9f),
+                new Plane(new Vector3(9999.9f, -9999.9f, 0), -0f),
+                new Plane(new Vector3(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, -Float.MIN_VALUE), Float.MIN_VALUE),
+                new Plane(new Vector3(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE), Float.MIN_VALUE),
+                new Plane(new Vector3(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE), -Float.MIN_VALUE),
+                new Plane(new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), 0x7FF.FFp-5f),
+                new Plane(new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f), -0x7FF.FFp-5f)};
+
+        for (Plane data : testing) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Plane data2 = fury.deserializeJavaObject(bytes, Plane.class);
+            // Plane does not implement equals().
+//            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.normal, data2.normal);
+            Assert.assertEquals(data.d, data2.d, 0.00001f);
+        }
+    }
 
     @Test
     public void testRandomXS128() {
