@@ -129,4 +129,79 @@ public class MathTest {
             Assert.assertEquals(data, data2);
         }
     }
+    @Test
+    public void testQuaternion() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Quaternion.class, new QuaternionSerializer(fury));
+
+        Quaternion[] testing = {
+                new Quaternion(0, 0, 0, 0),
+                new Quaternion(-0f, -0f, -0f, -0f),
+                new Quaternion(1, 0, 0, 0),
+                new Quaternion(0, 1, 0, 0),
+                new Quaternion(0, 0, 1, 0),
+                new Quaternion(0, 0, 0, 1),
+                new Quaternion(1, 1, 1, 1),
+                new Quaternion(-1, -1, -1, -1),
+                new Quaternion(9999.9f, 9999.9f, 9999.9f, 9999.9f),
+                new Quaternion(9999.9f, -9999.9f, 0, -0f),
+                new Quaternion(Float.NaN, Float.NaN, Float.NaN, Float.NaN),
+                new Quaternion(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN, Float.MIN_VALUE),
+                new Quaternion(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Quaternion(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Quaternion(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
+                new Quaternion(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
+
+        for (Quaternion data : testing) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Quaternion data2 = fury.deserializeJavaObject(bytes, Quaternion.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testRandomXS128() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fury));
+
+        RandomXS128 data = new RandomXS128(-12345L);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        RandomXS128 data2 = fury.deserializeJavaObject(bytes, RandomXS128.class);
+        Assert.assertEquals(data.nextInt(), data2.nextInt());
+        Assert.assertEquals(data.nextLong(), data2.nextLong());
+        // RandomXS128 does not implement equals().
+//        Assert.assertEquals(data, data2);
+        Assert.assertEquals(data.getState(0), data2.getState(0));
+        Assert.assertEquals(data.getState(1), data2.getState(1));
+
+    }
+
+    @Test
+    public void testMatrix3() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Matrix3.class, new Matrix3Serializer(fury));
+
+        Matrix3 data = new Matrix3().scale(2.1f, 3.3f).rotateRad(2f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        Matrix3 data2 = fury.deserializeJavaObject(bytes, Matrix3.class);
+        // Matrix3 does not implement equals().
+//        Assert.assertEquals(data, data2);
+        Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
+    }
+
+    @Test
+    public void testMatrix4() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Matrix4.class, new Matrix4Serializer(fury));
+
+        Matrix4 data = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        Matrix4 data2 = fury.deserializeJavaObject(bytes, Matrix4.class);
+        // Matrix4 does not implement equals().
+//        Assert.assertEquals(data, data2);
+        Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
+    }
 }
