@@ -2,4 +2,4 @@
 plugins {
     id('org.gradle.toolchains.foojay-resolver-convention') version '0.7.0'
 }
-include 'tantrum-digital', 'tantrum-juniper', 'tantrum-jdkgdxds', 'tantrum-regexodus', 'tantrum-libgdx'
+include 'tantrum-digital', 'tantrum-jdkgdxds', 'tantrum-regexodus', 'tantrum-libgdx'
