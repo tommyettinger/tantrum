@@ -17,6 +17,8 @@
 
 package com.github.tommyettinger.tantrum.libgdx;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.*;
 import org.apache.fury.Fury;
@@ -326,6 +328,25 @@ public class MathTest {
     }
 
     @Test
+    public void testAffine2() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Affine2.class, new Affine2Serializer(fury));
+
+        Affine2 data = new Affine2().scale(2.1f, 3.3f).rotateRad(2f);
+
+        byte[] bytes = fury.serializeJavaObject(data);
+        Affine2 data2 = fury.deserializeJavaObject(bytes, Affine2.class);
+        // Affine2 does not implement equals().
+//        Assert.assertEquals(data, data2);
+        Assert.assertEquals(data.m00, data2.m00, 0.00001f);
+        Assert.assertEquals(data.m01, data2.m01, 0.00001f);
+        Assert.assertEquals(data.m02, data2.m02, 0.00001f);
+        Assert.assertEquals(data.m10, data2.m10, 0.00001f);
+        Assert.assertEquals(data.m11, data2.m11, 0.00001f);
+        Assert.assertEquals(data.m12, data2.m12, 0.00001f);
+    }
+
+    @Test
     public void testPolygon() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Polygon.class, new PolygonSerializer(fury));
@@ -337,5 +358,17 @@ public class MathTest {
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
         Assert.assertEquals(data.area(), data2.area(), 0.00001f);
+    }
+
+    @Test
+    public void testColor() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Color.class, new ColorSerializer(fury));
+
+        for (Color data : Colors.getColors().values()) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Color data2 = fury.deserializeJavaObject(bytes, Color.class);
+            Assert.assertEquals(data, data2);
+        }
     }
 }
