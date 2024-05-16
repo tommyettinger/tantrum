@@ -158,6 +158,69 @@ public class MathTest {
             Assert.assertEquals(data, data2);
         }
     }
+    @Test
+    public void testEllipse() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Ellipse.class, new EllipseSerializer(fury));
+
+        Ellipse[] testing = {
+                new Ellipse(0, 0, 0, 0),
+                new Ellipse(-0f, -0f, -0f, -0f),
+                new Ellipse(1, 0, 0, 0),
+                new Ellipse(0, 1, 0, 0),
+                new Ellipse(0, 0, 1, 0),
+                new Ellipse(0, 0, 0, 1),
+                new Ellipse(1, 1, 1, 1),
+                new Ellipse(-1, -1, -1, -1),
+                new Ellipse(9999.9f, 9999.9f, 9999.9f, 9999.9f),
+                new Ellipse(9999.9f, -9999.9f, 0, -0f),
+                new Ellipse(Float.NaN, Float.NaN, Float.NaN, Float.NaN),
+                new Ellipse(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN, Float.MIN_VALUE),
+                new Ellipse(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Ellipse(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Ellipse(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
+                new Ellipse(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
+
+        for (Ellipse data : testing) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Ellipse data2 = fury.deserializeJavaObject(bytes, Ellipse.class);
+            // Ellipse does not implement equals().
+//            Assert.assertEquals(data, data2);
+            Assert.assertEquals(data.x, data2.x, 0.00001f);
+            Assert.assertEquals(data.y, data2.y, 0.00001f);
+            Assert.assertEquals(data.width, data2.width, 0.00001f);
+            Assert.assertEquals(data.height, data2.height, 0.00001f);
+        }
+    }
+    @Test
+    public void testRectangle() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Rectangle.class, new RectangleSerializer(fury));
+
+        Rectangle[] testing = {
+                new Rectangle(0, 0, 0, 0),
+                new Rectangle(-0f, -0f, -0f, -0f),
+                new Rectangle(1, 0, 0, 0),
+                new Rectangle(0, 1, 0, 0),
+                new Rectangle(0, 0, 1, 0),
+                new Rectangle(0, 0, 0, 1),
+                new Rectangle(1, 1, 1, 1),
+                new Rectangle(-1, -1, -1, -1),
+                new Rectangle(9999.9f, 9999.9f, 9999.9f, 9999.9f),
+                new Rectangle(9999.9f, -9999.9f, 0, -0f),
+                new Rectangle(Float.NaN, Float.NaN, Float.NaN, Float.NaN),
+                new Rectangle(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN, Float.MIN_VALUE),
+                new Rectangle(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Rectangle(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Rectangle(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
+                new Rectangle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
+
+        for (Rectangle data : testing) {
+            byte[] bytes = fury.serializeJavaObject(data);
+            Rectangle data2 = fury.deserializeJavaObject(bytes, Rectangle.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
 
     @Test
     public void testRandomXS128() {
@@ -203,5 +266,19 @@ public class MathTest {
         // Matrix4 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
+    }
+
+    @Test
+    public void testPolygon() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Polygon.class, new PolygonSerializer(fury));
+
+        Polygon data = new Polygon(new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f).val);
+        byte[] bytes = fury.serializeJavaObject(data);
+        Polygon data2 = fury.deserializeJavaObject(bytes, Polygon.class);
+        // Polygon does not implement equals().
+//            Assert.assertEquals(data, data2);
+        Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
+        Assert.assertEquals(data.area(), data2.area(), 0.00001f);
     }
 }
