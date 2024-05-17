@@ -362,6 +362,24 @@ public class MathTest {
         Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
         Assert.assertEquals(data.area(), data2.area(), 0.00001f);
     }
+
+    @Test
+    public void testPolyline() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Polyline.class, new PolylineSerializer(fury));
+
+        Polyline data = new Polyline(new float[]{0, 1, 2, 3, 2, 1, 0, -1, -2, -3, -1, -4});
+        data.setOrigin(-1, -1);
+        data.setPosition(10, 10);
+        data.setScale(2, 3);
+        data.setRotation(123);
+        byte[] bytes = fury.serializeJavaObject(data);
+        Polyline data2 = fury.deserializeJavaObject(bytes, Polyline.class);
+        // Polyline does not implement equals().
+//            Assert.assertEquals(data, data2);
+        Assert.assertEquals(data.getScaledLength(), data2.getScaledLength(), 0.0001f);
+        Assert.assertArrayEquals(data.getTransformedVertices(), data2.getTransformedVertices(), 0.0001f);
+    }
     @Test
     public void testRay() {
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
