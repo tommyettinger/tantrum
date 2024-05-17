@@ -23,12 +23,20 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.12.1.0, compatible with libGDX 1.12.1
+  - tantrum-libgdx is at version 1.12.1.1, compatible with libGDX 1.12.1
   - tantrum-digital is at version 0.4.8.1, compatible with digital 0.4.8
-  - tantrum-juniper is at version 0.6.0.0, compatible with juniper 0.6.0
-    - Starting in juniper 0.6.1, it shouldn't need any `Serializer`s registered from tantrum. 
   - tantrum-jdkgdxds is at version 1.5.3.0, compatible with jdkgdxds 1.5.3
   - tantrum-regexodus is at version 0.1.15.1, compatible with RegExodus 0.1.15
+
+There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
+It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher, since juniper uses
+the no-dependency-needed `Externalizable` interface that Fury can understand.
+
+In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
+`OrientedBoundingBox`. If a class you need isn't covered, you can first read the sources here to see if writing a
+serializer yourself is feasible, and of not, you can post an issue here requesting any classes that aren't present.
+Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
+modifiers excessively without providing getters.
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
@@ -37,7 +45,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.0"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.1"
 ```
 
 tantrum-digital:
@@ -74,7 +82,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.12.1.0</version>
+  <version>1.12.1.1</version>
 </dependency>
 ```
 
