@@ -20,6 +20,8 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.*;
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
@@ -358,6 +360,74 @@ public class MathTest {
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
         Assert.assertEquals(data.area(), data2.area(), 0.00001f);
+    }
+    @Test
+    public void testRay() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(Ray.class, new RaySerializer(fury));
+
+        Vector3[] testing = {
+                new Vector3(0f, 0f, 0f),
+                //new Vector3(-0f, -0f, -0f),
+                //new Vector3(1f, 0f, 0f),
+                //new Vector3(0f, 1f, 0f),
+                //new Vector3(0f, 0f, 1f),
+                new Vector3(1f, 1f, 1f),
+                //new Vector3(-1f, -1f, -1f),
+                //new Vector3(9999.9f, 9999.9f, 9999.9f),
+                //new Vector3(9999.9f, -9999.9f, 0),
+                //new Vector3(Float.NaN, Float.NaN, Float.NaN),
+                //new Vector3(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN),
+                //new Vector3(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                //new Vector3(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                //new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
+                //new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f),
+         };
+
+        for (Vector3 origin : testing) {
+            for (Vector3 direction : testing) {
+                Ray data = new Ray(origin, direction);
+                byte[] bytes = fury.serializeJavaObject(data);
+                Ray data2 = fury.deserializeJavaObject(bytes, Ray.class);
+                // Using epsilon is needed because the serialized and deserialized values are slightly different.
+                // This is probably because nor() is called on each Vector3 in the constructor or set() method.
+                Assert.assertTrue(data.origin.epsilonEquals(data2.origin, 0.00001f));
+                Assert.assertTrue(data.direction.epsilonEquals(data2.direction, 0.00001f));
+            }
+        }
+    }
+    @Test
+    public void testBoundingBox() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fury));
+
+        Vector3[] testing = {
+                new Vector3(0, 0, 0),
+                new Vector3(-0f, -0f, -0f),
+                new Vector3(1, 0, 0),
+                new Vector3(0, 1, 0),
+                new Vector3(0, 0, 1),
+                new Vector3(1, 1, 1),
+                new Vector3(-1, -1, -1),
+                new Vector3(9999.9f, 9999.9f, 9999.9f),
+                new Vector3(9999.9f, -9999.9f, 0),
+                new Vector3(Float.NaN, Float.NaN, Float.NaN),
+                new Vector3(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN),
+                new Vector3(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Vector3(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
+
+        for (Vector3 origin : testing) {
+            for (Vector3 direction : testing) {
+                BoundingBox data = new BoundingBox(origin, direction);
+                byte[] bytes = fury.serializeJavaObject(data);
+                BoundingBox data2 = fury.deserializeJavaObject(bytes, BoundingBox.class);
+                // BoundingBox does not implement equals().
+//                Assert.assertEquals(data, data2);
+                Assert.assertEquals(data.min, data2.min);
+                Assert.assertEquals(data.max, data2.max);
+            }
+        }
     }
 
     @Test
