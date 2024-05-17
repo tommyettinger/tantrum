@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.math.collision.OrientedBoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.*;
 import org.apache.fury.Fury;
@@ -368,20 +369,20 @@ public class MathTest {
 
         Vector3[] testing = {
                 new Vector3(0f, 0f, 0f),
-                //new Vector3(-0f, -0f, -0f),
-                //new Vector3(1f, 0f, 0f),
-                //new Vector3(0f, 1f, 0f),
-                //new Vector3(0f, 0f, 1f),
+                new Vector3(-0f, -0f, -0f),
+                new Vector3(1f, 0f, 0f),
+                new Vector3(0f, 1f, 0f),
+                new Vector3(0f, 0f, 1f),
                 new Vector3(1f, 1f, 1f),
-                //new Vector3(-1f, -1f, -1f),
-                //new Vector3(9999.9f, 9999.9f, 9999.9f),
-                //new Vector3(9999.9f, -9999.9f, 0),
-                //new Vector3(Float.NaN, Float.NaN, Float.NaN),
-                //new Vector3(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN),
-                //new Vector3(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
-                //new Vector3(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
-                //new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
-                //new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f),
+                new Vector3(-1f, -1f, -1f),
+                new Vector3(9999.9f, 9999.9f, 9999.9f),
+                new Vector3(9999.9f, -9999.9f, 0),
+                new Vector3(Float.NaN, Float.NaN, Float.NaN),
+                new Vector3(Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY, Float.NaN),
+                new Vector3(Float.MIN_VALUE, Float.MIN_VALUE, Float.MIN_VALUE),
+                new Vector3(-Float.MIN_VALUE, -Float.MIN_VALUE, -Float.MIN_VALUE),
+                new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f),
+                new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f),
          };
 
         for (Vector3 origin : testing) {
@@ -428,6 +429,23 @@ public class MathTest {
                 Assert.assertEquals(data.max, data2.max);
             }
         }
+    }
+
+    @Test
+    public void testOrientedBoundingBox() {
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fury));
+
+        BoundingBox bb = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(5, 6, 7));
+        Matrix4 m = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
+        OrientedBoundingBox data = new OrientedBoundingBox(bb, m);
+        byte[] bytes = fury.serializeJavaObject(data);
+        OrientedBoundingBox data2 = fury.deserializeJavaObject(bytes, OrientedBoundingBox.class);
+        // OrientedBoundingBox does not implement equals().
+//        Assert.assertEquals(data, data2);
+        Assert.assertTrue(data.getBounds().min.epsilonEquals(data2.getBounds().min));
+        Assert.assertTrue(data.getBounds().max.epsilonEquals(data2.getBounds().max));
+        Assert.assertArrayEquals(data.transform.val, data2.transform.val, 0.0001f);
     }
 
     @Test
