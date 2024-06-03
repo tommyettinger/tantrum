@@ -35,7 +35,7 @@ public class EnumSetSerializer extends Serializer<EnumSet> {
     public void write(final MemoryBuffer output, final EnumSet data) {
         final int len = data.size();
         output.writeVarUint32(len);
-        for (Object item : data) {
+        for (Enum<?> item : data) {
             fury.writeRef(output, item);
         }
     }

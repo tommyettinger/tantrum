@@ -35,8 +35,8 @@ public class EnumMapSerializer extends Serializer<EnumMap> {
     @Override
     public void write(final MemoryBuffer output, final EnumMap data) {
         output.writeVarUint32(data.size());
-        for(Object v : data.keySet()){
-            fury.writeRef(output, v);
+        for(Enum<?> k : data.keySet()){
+            fury.writeRef(output, k);
         }
         for(Object v : data.values()){
             fury.writeRef(output, v);
