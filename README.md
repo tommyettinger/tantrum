@@ -23,9 +23,9 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.12.1.1, compatible with libGDX 1.12.1
   - tantrum-jdkgdxds is at version 1.6.0.0, compatible with jdkgdxds 1.6.0
   - tantrum-regexodus is at version 0.1.15.1, compatible with RegExodus 0.1.15
+  - tantrum-libgdx is at version 1.12.1.2, compatible with libGDX 1.12.1
   - tantrum-digital is at version 0.4.8.2, compatible with digital 0.4.8
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
@@ -45,7 +45,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.1"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.2"
 ```
 
 tantrum-digital:
