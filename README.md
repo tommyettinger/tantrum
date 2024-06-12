@@ -23,9 +23,9 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-jdkgdxds is at version 1.6.0.0, compatible with jdkgdxds 1.6.0
   - tantrum-libgdx is at version 1.12.1.2, compatible with libGDX 1.12.1
   - tantrum-digital is at version 0.4.8.2, compatible with digital 0.4.8
+  - tantrum-jdkgdxds is at version 1.6.0.2, compatible with jdkgdxds 1.6.0
   - tantrum-regexodus is at version 0.1.15.2, compatible with RegExodus 0.1.15
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
@@ -57,7 +57,7 @@ implementation "com.github.tommyettinger:tantrum-digital:0.4.8.2"
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.6.0.0"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.6.0.2"
 ```
 
 tantrum-regexodus:
@@ -82,7 +82,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.12.1.1</version>
+  <version>1.12.1.2</version>
 </dependency>
 ```
 
@@ -92,7 +92,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.4.8.1</version>
+  <version>0.4.8.2</version>
 </dependency>
 ```
 
@@ -102,7 +102,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.6.0.0</version>
+  <version>1.6.0.2</version>
 </dependency>
 ```
 
@@ -112,7 +112,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.15.1</version>
+  <version>0.1.15.2</version>
 </dependency>
 ```
 
