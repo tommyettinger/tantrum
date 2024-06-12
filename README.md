@@ -2,7 +2,7 @@
 
 A little bit of Fury for various libGDX-related libraries.
 
-This lets [Fury](https://fury.apache.org) (currently 0.5.0) de/serialize objects from [libGDX](https://libgdx.com) and several
+This lets [Fury](https://fury.apache.org) (currently 0.5.1) de/serialize objects from [libGDX](https://libgdx.com) and several
 other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -24,9 +24,9 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.12.1.1, compatible with libGDX 1.12.1
-  - tantrum-digital is at version 0.4.8.1, compatible with digital 0.4.8
   - tantrum-jdkgdxds is at version 1.6.0.0, compatible with jdkgdxds 1.6.0
   - tantrum-regexodus is at version 0.1.15.1, compatible with RegExodus 0.1.15
+  - tantrum-digital is at version 0.4.8.2, compatible with digital 0.4.8
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher, since juniper uses
@@ -51,7 +51,7 @@ implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.1"
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.4.8.1"
+implementation "com.github.tommyettinger:tantrum-digital:0.4.8.2"
 ```
 
 tantrum-jdkgdxds:
