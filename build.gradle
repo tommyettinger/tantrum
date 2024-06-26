@@ -6,7 +6,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.25.3'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.29.0'
     }
 }
 
@@ -35,7 +35,7 @@ subprojects {
     group = parent.group
     ext.projectName = 'tantrum'
     repositories {
-        // mavenLocal()
+         mavenLocal()
         mavenCentral()
         maven { url 'https://s01.oss.sonatype.org' }
         google()
