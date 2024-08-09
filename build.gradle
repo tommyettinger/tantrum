@@ -24,9 +24,7 @@ configure(subprojects) {
 }
 
 def projectName = 'tantrum'
-
 group 'com.github.tommyettinger'
-
 version "$VERSION_NAME"
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
@@ -34,6 +32,7 @@ version "$VERSION_NAME"
 subprojects {
     group = parent.group
     ext.projectName = 'tantrum'
+
     repositories {
          mavenLocal()
         mavenCentral()
