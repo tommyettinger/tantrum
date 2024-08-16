@@ -24,7 +24,7 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.12.1.3, compatible with libGDX 1.12.1
-  - tantrum-digital is at version 0.4.8.3, compatible with digital 0.4.8
+  - tantrum-digital is at version 0.5.0.3, compatible with digital 0.5.0
   - tantrum-jdkgdxds is at version 1.6.2.3, compatible with jdkgdxds 1.6.2
     - (Versions 1.6.2.1 and 1.6.2.2 were skipped so that all the subproject versions have the same last component)
   - tantrum-regexodus is at version 0.1.15.3, compatible with RegExodus 0.1.15
@@ -52,7 +52,7 @@ implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.3"
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.4.8.3"
+implementation "com.github.tommyettinger:tantrum-digital:0.5.0.3"
 ```
 
 tantrum-jdkgdxds:
@@ -93,7 +93,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.4.8.3</version>
+  <version>0.5.0.3</version>
 </dependency>
 ```
 
