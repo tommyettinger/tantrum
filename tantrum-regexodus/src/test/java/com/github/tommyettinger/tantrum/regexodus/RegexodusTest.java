@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.regexodus;
 
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
+import org.apache.fury.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import regexodus.Pattern;
@@ -26,7 +27,8 @@ import regexodus.REFlags;
 
 public class RegexodusTest {
     @Test
-    public void testInterpolator() {
+    public void testPattern() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Pattern.class, new PatternSerializer(fury));
 

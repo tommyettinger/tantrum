@@ -2,8 +2,8 @@
 
 A little bit of Fury for various libGDX-related libraries.
 
-This lets [Fury](https://fury.apache.org) (currently 0.7.1) de/serialize objects from [libGDX](https://libgdx.com) and several
-other libraries in its "tangential ecosystem." These other libraries are
+This lets [Fury](https://fury.apache.org) (currently 0.8.0) de/serialize objects from [libGDX](https://libgdx.com)
+and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
 designed to be compatible with it.
@@ -28,11 +28,11 @@ or if Fury itself had a (compatible) update available but the linked library did
   - tantrum-jdkgdxds is at version 1.6.5.4, compatible with jdkgdxds 1.6.5
     - (Versions 1.6.2.1 and 1.6.2.2 were skipped so that all the subproject versions have the same last component
       to mean they use the same Fury version; so were 1.6.3.0 through 1.6.3.2 for the same reason.)
-  - tantrum-regexodus is at version 0.1.16.4, compatible with RegExodus 0.1.16
+  - tantrum-regexodus is at version 0.1.16.5, compatible with RegExodus 0.1.16
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
-It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher, since juniper uses
-the no-dependency-needed `Externalizable` interface that Fury can understand.
+It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.6.2),
+since juniper uses the no-dependency-needed `Externalizable` interface that Fury can understand.
 
 In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
 `OrientedBoundingBox`. If a class you need isn't covered, you can first read the sources here to see if writing a
@@ -65,7 +65,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.6.5.4"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.16.4"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.16.5"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 instead:
@@ -114,11 +114,11 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.16.4</version>
+  <version>0.1.16.5</version>
 </dependency>
 ```
 
-Most likely, you won't need this, and should use juniper 0.6.1 instead:
+Most likely, you won't need this, and should use juniper 0.6.2 instead:
 
 tantrum-juniper:
 
