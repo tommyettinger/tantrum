@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.*;
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
+import org.apache.fury.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -480,7 +481,7 @@ public class MapTest {
 //    @Test
 //    public void testFilteredIterableOrderedMap() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);

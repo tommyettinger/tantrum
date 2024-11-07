@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.digital;
 import com.github.tommyettinger.digital.*;
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
+import org.apache.fury.logging.LoggerFactory;
 import org.apache.fury.memory.MemoryBuffer;
 import org.junit.Assert;
 import org.junit.Test;

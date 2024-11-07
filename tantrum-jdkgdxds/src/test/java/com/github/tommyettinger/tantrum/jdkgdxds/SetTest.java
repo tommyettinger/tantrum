@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.*;
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
+import org.apache.fury.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -189,7 +190,7 @@ public class SetTest {
 //    @Test
 //    public void testHolderOrderedSet() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
 //        fury.registerSerializer(HolderOrderedSet.class, new HolderOrderedSetSerializer(fury));
@@ -252,7 +253,7 @@ public class SetTest {
 //    @Test
 //    public void testFilteredIterableSet() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.register(ObjPredicate.class);
 //        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
@@ -274,7 +275,7 @@ public class SetTest {
 //    @Test
 //    public void testFilteredIterableOrderedSet() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.register(ObjPredicate.class);
 //        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
