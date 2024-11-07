@@ -26,6 +26,7 @@ import org.junit.Test;
 public class DequeTest {
     @Test
     public void testObjectDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectDeque.class, new ObjectDequeSerializer(fury));
 
@@ -39,6 +40,7 @@ public class DequeTest {
 
     @Test
     public void testIntDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntDeque.class, new IntDequeSerializer(fury));
 
@@ -52,6 +54,7 @@ public class DequeTest {
 
     @Test
     public void testLongDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongDeque.class, new LongDequeSerializer(fury));
 
@@ -65,6 +68,7 @@ public class DequeTest {
 
     @Test
     public void testShortDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ShortDeque.class, new ShortDequeSerializer(fury));
 
@@ -78,6 +82,7 @@ public class DequeTest {
 
     @Test
     public void testByteDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ByteDeque.class, new ByteDequeSerializer(fury));
 
@@ -91,6 +96,7 @@ public class DequeTest {
 
     @Test
     public void testFloatDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FloatDeque.class, new FloatDequeSerializer(fury));
 
@@ -104,6 +110,7 @@ public class DequeTest {
 
     @Test
     public void testDoubleDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(DoubleDeque.class, new DoubleDequeSerializer(fury));
 
@@ -117,6 +124,7 @@ public class DequeTest {
 
     @Test
     public void testBooleanDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BooleanDeque.class, new BooleanDequeSerializer(fury));
 
@@ -130,6 +138,7 @@ public class DequeTest {
 
     @Test
     public void testCharDeque() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CharDeque.class, new CharDequeSerializer(fury));
 

@@ -32,6 +32,7 @@ import org.junit.Test;
 public class MathTest {
     @Test
     public void testGridPoint2() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(GridPoint2.class, new GridPoint2Serializer(fury));
 
@@ -47,6 +48,7 @@ public class MathTest {
     }
     @Test
     public void testGridPoint3() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(GridPoint3.class, new GridPoint3Serializer(fury));
 
@@ -63,6 +65,7 @@ public class MathTest {
     }
     @Test
     public void testVector2() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Vector2.class, new Vector2Serializer(fury));
 
@@ -80,6 +83,7 @@ public class MathTest {
     }
     @Test
     public void testVector3() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Vector3.class, new Vector3Serializer(fury));
 
@@ -107,6 +111,7 @@ public class MathTest {
     }
     @Test
     public void testVector4() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Vector4.class, new Vector4Serializer(fury));
 
@@ -136,6 +141,7 @@ public class MathTest {
     }
     @Test
     public void testQuaternion() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Quaternion.class, new QuaternionSerializer(fury));
 
@@ -165,6 +171,7 @@ public class MathTest {
     }
     @Test
     public void testEllipse() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Ellipse.class, new EllipseSerializer(fury));
 
@@ -199,6 +206,7 @@ public class MathTest {
     }
     @Test
     public void testRectangle() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Rectangle.class, new RectangleSerializer(fury));
 
@@ -228,6 +236,7 @@ public class MathTest {
     }
     @Test
     public void testCircle() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Circle.class, new CircleSerializer(fury));
 
@@ -254,6 +263,7 @@ public class MathTest {
     }
     @Test
     public void testPlane() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Plane.class, new PlaneSerializer(fury));
 
@@ -286,6 +296,7 @@ public class MathTest {
 
     @Test
     public void testRandomXS128() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fury));
 
@@ -304,6 +315,7 @@ public class MathTest {
 
     @Test
     public void testMatrix3() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Matrix3.class, new Matrix3Serializer(fury));
 
@@ -318,6 +330,7 @@ public class MathTest {
 
     @Test
     public void testMatrix4() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Matrix4.class, new Matrix4Serializer(fury));
 
@@ -332,6 +345,7 @@ public class MathTest {
 
     @Test
     public void testAffine2() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Affine2.class, new Affine2Serializer(fury));
 
@@ -351,6 +365,7 @@ public class MathTest {
 
     @Test
     public void testPolygon() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Polygon.class, new PolygonSerializer(fury));
 
@@ -365,6 +380,7 @@ public class MathTest {
 
     @Test
     public void testPolyline() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Polyline.class, new PolylineSerializer(fury));
 
@@ -382,6 +398,7 @@ public class MathTest {
     }
     @Test
     public void testRay() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Ray.class, new RaySerializer(fury));
 
@@ -417,6 +434,7 @@ public class MathTest {
     }
     @Test
     public void testBoundingBox() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fury));
 
@@ -451,6 +469,7 @@ public class MathTest {
 
     @Test
     public void testOrientedBoundingBox() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fury));
 
@@ -468,6 +487,7 @@ public class MathTest {
 
     @Test
     public void testColor() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Color.class, new ColorSerializer(fury));
 

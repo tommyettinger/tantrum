@@ -26,6 +26,7 @@ import org.junit.Test;
 public class BagTest {
     @Test
     public void testObjectBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectBag.class, new ObjectBagSerializer(fury));
 
@@ -38,6 +39,7 @@ public class BagTest {
 
     @Test
     public void testIntBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntBag.class, new IntBagSerializer(fury));
 
@@ -50,6 +52,7 @@ public class BagTest {
 
     @Test
     public void testLongBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongBag.class, new LongBagSerializer(fury));
 
@@ -62,6 +65,7 @@ public class BagTest {
 
     @Test
     public void testShortBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ShortBag.class, new ShortBagSerializer(fury));
 
@@ -74,6 +78,7 @@ public class BagTest {
 
     @Test
     public void testByteBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ByteBag.class, new ByteBagSerializer(fury));
 
@@ -86,6 +91,7 @@ public class BagTest {
 
     @Test
     public void testFloatBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FloatBag.class, new FloatBagSerializer(fury));
 
@@ -98,6 +104,7 @@ public class BagTest {
 
     @Test
     public void testDoubleBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(DoubleBag.class, new DoubleBagSerializer(fury));
 
@@ -110,6 +117,7 @@ public class BagTest {
 
     @Test
     public void testBooleanBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BooleanBag.class, new BooleanBagSerializer(fury));
 
@@ -122,6 +130,7 @@ public class BagTest {
 
     @Test
     public void testCharBag() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CharBag.class, new CharBagSerializer(fury));
 

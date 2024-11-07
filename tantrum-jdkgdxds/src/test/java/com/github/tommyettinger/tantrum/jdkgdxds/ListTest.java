@@ -26,6 +26,7 @@ import org.junit.Test;
 public class ListTest {
     @Test
     public void testObjectList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
 
@@ -38,6 +39,7 @@ public class ListTest {
 
     @Test
     public void testIntList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntList.class, new IntListSerializer(fury));
         
@@ -50,6 +52,7 @@ public class ListTest {
 
     @Test
     public void testLongList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongList.class, new LongListSerializer(fury));
 
@@ -62,6 +65,7 @@ public class ListTest {
 
     @Test
     public void testShortList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ShortList.class, new ShortListSerializer(fury));
 
@@ -74,6 +78,7 @@ public class ListTest {
 
     @Test
     public void testByteList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ByteList.class, new ByteListSerializer(fury));
 
@@ -86,6 +91,7 @@ public class ListTest {
 
     @Test
     public void testFloatList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FloatList.class, new FloatListSerializer(fury));
 
@@ -98,6 +104,7 @@ public class ListTest {
 
     @Test
     public void testDoubleList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(DoubleList.class, new DoubleListSerializer(fury));
 
@@ -110,6 +117,7 @@ public class ListTest {
 
     @Test
     public void testBooleanList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BooleanList.class, new BooleanListSerializer(fury));
 
@@ -122,6 +130,7 @@ public class ListTest {
 
     @Test
     public void testCharList() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CharList.class, new CharListSerializer(fury));
 

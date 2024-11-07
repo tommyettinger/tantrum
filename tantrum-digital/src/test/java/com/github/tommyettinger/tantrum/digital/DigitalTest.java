@@ -27,6 +27,7 @@ import org.junit.Test;
 public class DigitalTest {
     @Test
     public void testBase() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Base.class, new BaseSerializer(fury));
 
@@ -41,6 +42,7 @@ public class DigitalTest {
 
     @Test
     public void testAlternateRandom() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(AlternateRandom.class, new AlternateRandomSerializer(fury));
 
@@ -56,6 +58,7 @@ public class DigitalTest {
 
     @Test
     public void testHasher() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Hasher.class, new HasherSerializer(fury));
 
@@ -71,6 +74,7 @@ public class DigitalTest {
 
     @Test
     public void testInterpolator() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fury));
 

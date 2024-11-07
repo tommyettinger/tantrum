@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 public class SizeComparisonJsonTest {
     @Test
     public void testSmallStringArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.registerSerializer(Array.class, new ArraySerializer(fury));
         fury.register(Array.class);
@@ -45,6 +46,7 @@ public class SizeComparisonJsonTest {
 
     @Test
     public void testLargeStringArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA)
                 .requireClassRegistration(true)
                 .build();
@@ -82,6 +84,7 @@ public class SizeComparisonJsonTest {
     @Test
     public void testSmallVector3Array() {
         MathUtils.random.setSeed(1234567890L);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).withRefTracking(true).build();
 //        fury.registerSerializer(Array.class, new ArraySerializer(fury));
         fury.register(Array.class);
@@ -124,6 +127,7 @@ public class SizeComparisonJsonTest {
     @Test
     public void testLargeVector3Array() {
         MathUtils.random.setSeed(1234567890L);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).withRefTracking(true).build();
 //        fury.registerSerializer(Array.class, new ArraySerializer(fury));
         fury.register(Array.class);
@@ -164,6 +168,7 @@ public class SizeComparisonJsonTest {
     }
     @Test
     public void testSmallStringQueue() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.registerSerializer(Queue.class, new ArraySerializer(fury));
         fury.register(Queue.class);
@@ -197,6 +202,7 @@ public class SizeComparisonJsonTest {
 
     @Test
     public void testLargeStringQueue() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA)
                 .requireClassRegistration(true)
                 .build();
@@ -234,6 +240,7 @@ public class SizeComparisonJsonTest {
     @Test
     public void testSmallVector3Queue() {
         MathUtils.random.setSeed(1234567890L);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.registerSerializer(Queue.class, new ArraySerializer(fury));
         fury.register(Queue.class);
@@ -269,6 +276,7 @@ public class SizeComparisonJsonTest {
     @Test
     public void testLargeVector3Queue() {
         MathUtils.random.setSeed(1234567890L);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.registerSerializer(Queue.class, new ArraySerializer(fury));
         fury.register(Queue.class);

@@ -26,6 +26,7 @@ import org.junit.Test;
 public class SetTest {
     @Test
     public void testIntSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntSet.class, new IntSetSerializer(fury));
 
@@ -39,6 +40,7 @@ public class SetTest {
 
     @Test
     public void testIntOrderedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntOrderedSet.class, new IntOrderedSetSerializer(fury));
 
@@ -53,6 +55,7 @@ public class SetTest {
 
     @Test
     public void testLongSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongSet.class, new LongSetSerializer(fury));
 
@@ -66,6 +69,7 @@ public class SetTest {
 
     @Test
     public void testLongOrderedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongOrderedSet.class, new LongOrderedSetSerializer(fury));
 
@@ -80,6 +84,7 @@ public class SetTest {
 
     @Test
     public void testObjectSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fury));
 
@@ -93,6 +98,7 @@ public class SetTest {
 
     @Test
     public void testObjectOrderedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectOrderedSet.class, new ObjectOrderedSetSerializer(fury));
 
@@ -107,6 +113,7 @@ public class SetTest {
 
     @Test
     public void testCaseInsensitiveSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fury));
 
@@ -120,6 +127,7 @@ public class SetTest {
 
     @Test
     public void testCaseInsensitiveOrderedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fury));
 
@@ -133,6 +141,7 @@ public class SetTest {
 
     @Test
     public void testOffsetBitSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(OffsetBitSet.class, new OffsetBitSetSerializer(fury));
 
@@ -147,6 +156,7 @@ public class SetTest {
 
     @Test
     public void testNumberedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(NumberedSet.class, new NumberedSetSerializer(fury));
 
@@ -161,7 +171,8 @@ public class SetTest {
 //
 //    @Test
 //    public void testHolderSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
 //        fury.registerSerializer(HolderSet.class, new HolderSetSerializer(fury));
@@ -177,7 +188,8 @@ public class SetTest {
 //
 //    @Test
 //    public void testHolderOrderedSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
 //        fury.registerSerializer(HolderOrderedSet.class, new HolderOrderedSetSerializer(fury));
@@ -195,6 +207,7 @@ public class SetTest {
     @Test
     public void testFilteredStringSet() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FilteredStringSet.class, new FilteredStringSetSerializer(fury));
 
@@ -209,6 +222,7 @@ public class SetTest {
     @Test
     public void testFilteredStringOrderedSet() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FilteredStringOrderedSet.class, new FilteredStringOrderedSetSerializer(fury));
 
@@ -222,6 +236,7 @@ public class SetTest {
 
     @Test
     public void testEnumSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.register(Character.UnicodeScript.class);
         fury.registerSerializer(EnumSet.class, new EnumSetSerializer(fury));
@@ -236,7 +251,8 @@ public class SetTest {
 
 //    @Test
 //    public void testFilteredIterableSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.register(ObjPredicate.class);
 //        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
@@ -257,7 +273,8 @@ public class SetTest {
 //
 //    @Test
 //    public void testFilteredIterableOrderedSet() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        fury.register(ObjPredicate.class);
 //        fury.register(ObjToSameFunction.class);
 //        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));

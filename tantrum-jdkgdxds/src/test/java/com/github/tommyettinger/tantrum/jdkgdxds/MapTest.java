@@ -26,6 +26,7 @@ import org.junit.Test;
 public class MapTest {
     @Test
     public void testLongObjectMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongObjectMap.class, new LongObjectMapSerializer(fury));
 
@@ -39,6 +40,7 @@ public class MapTest {
 
     @Test
     public void testLongObjectOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongObjectOrderedMap.class, new LongObjectOrderedMapSerializer(fury));
 
@@ -52,6 +54,7 @@ public class MapTest {
 
     @Test
     public void testLongFloatMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongFloatMap.class, new LongFloatMapSerializer(fury));
 
@@ -65,6 +68,7 @@ public class MapTest {
 
     @Test
     public void testLongFloatOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongFloatOrderedMap.class, new LongFloatOrderedMapSerializer(fury));
 
@@ -79,6 +83,7 @@ public class MapTest {
 
     @Test
     public void testLongIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongIntMap.class, new LongIntMapSerializer(fury));
 
@@ -92,6 +97,7 @@ public class MapTest {
 
     @Test
     public void testLongIntOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongIntOrderedMap.class, new LongIntOrderedMapSerializer(fury));
 
@@ -105,6 +111,7 @@ public class MapTest {
     }
     @Test
     public void testLongLongMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongLongMap.class, new LongLongMapSerializer(fury));
 
@@ -118,6 +125,7 @@ public class MapTest {
 
     @Test
     public void testLongLongOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongLongOrderedMap.class, new LongLongOrderedMapSerializer(fury));
 
@@ -132,6 +140,7 @@ public class MapTest {
 
     @Test
     public void testIntObjectMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntObjectMap.class, new IntObjectMapSerializer(fury));
 
@@ -145,6 +154,7 @@ public class MapTest {
 
     @Test
     public void testIntObjectOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntObjectOrderedMap.class, new IntObjectOrderedMapSerializer(fury));
 
@@ -158,6 +168,7 @@ public class MapTest {
 
     @Test
     public void testIntFloatMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fury));
 
@@ -171,6 +182,7 @@ public class MapTest {
 
     @Test
     public void testIntFloatOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntFloatOrderedMap.class, new IntFloatOrderedMapSerializer(fury));
 
@@ -185,6 +197,7 @@ public class MapTest {
 
     @Test
     public void testIntIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fury));
 
@@ -198,6 +211,7 @@ public class MapTest {
 
     @Test
     public void testIntIntOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntIntOrderedMap.class, new IntIntOrderedMapSerializer(fury));
 
@@ -212,6 +226,7 @@ public class MapTest {
 
     @Test
     public void testIntLongMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntLongMap.class, new IntLongMapSerializer(fury));
 
@@ -225,6 +240,7 @@ public class MapTest {
 
     @Test
     public void testIntLongOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntLongOrderedMap.class, new IntLongOrderedMapSerializer(fury));
 
@@ -239,6 +255,7 @@ public class MapTest {
 
     @Test
     public void testObjectObjectMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectObjectMap.class, new ObjectObjectMapSerializer(fury));
 
@@ -253,6 +270,7 @@ public class MapTest {
 
     @Test
     public void testObjectObjectOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fury));
 
@@ -267,6 +285,7 @@ public class MapTest {
 
     @Test
     public void testObjectIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
 
@@ -281,6 +300,7 @@ public class MapTest {
 
     @Test
     public void testObjectIntOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectIntOrderedMap.class, new ObjectIntOrderedMapSerializer(fury));
 
@@ -296,6 +316,7 @@ public class MapTest {
 
     @Test
     public void testObjectLongMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
 
@@ -310,6 +331,7 @@ public class MapTest {
 
     @Test
     public void testObjectLongOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectLongOrderedMap.class, new ObjectLongOrderedMapSerializer(fury));
 
@@ -325,6 +347,7 @@ public class MapTest {
 
     @Test
     public void testObjectFloatMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
 
@@ -339,6 +362,7 @@ public class MapTest {
 
     @Test
     public void testObjectFloatOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectFloatOrderedMap.class, new ObjectFloatOrderedMapSerializer(fury));
 
@@ -354,6 +378,7 @@ public class MapTest {
 
     @Test
     public void testCaseInsensitiveMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CaseInsensitiveMap.class, new CaseInsensitiveMapSerializer(fury));
 
@@ -368,6 +393,7 @@ public class MapTest {
 
     @Test
     public void testCaseInsensitiveOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CaseInsensitiveOrderedMap.class, new CaseInsensitiveOrderedMapSerializer(fury));
 
@@ -383,6 +409,7 @@ public class MapTest {
     @Test
     public void testFilteredStringMap() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FilteredStringMap.class, new FilteredStringMapSerializer(fury));
 
@@ -398,6 +425,7 @@ public class MapTest {
     @Test
     public void testFilteredStringOrderedMap() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FilteredStringOrderedMap.class, new FilteredStringOrderedMapSerializer(fury));
 
@@ -412,6 +440,7 @@ public class MapTest {
 
     @Test
     public void testEnumMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.register(Character.UnicodeScript.class);
         fury.registerSerializer(EnumMap.class, new EnumMapSerializer(fury));
@@ -427,7 +456,8 @@ public class MapTest {
 
 //    @Test
 //    public void testFilteredIterableMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
@@ -449,7 +479,8 @@ public class MapTest {
 //
 //    @Test
 //    public void testFilteredIterableOrderedMap() {
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);

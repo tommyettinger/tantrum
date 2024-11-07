@@ -26,6 +26,7 @@ import org.junit.Test;
 public class UtilsTest {
     @Test
     public void testArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Array.class, new ArraySerializer(fury));
 
@@ -39,6 +40,7 @@ public class UtilsTest {
 
     @Test
     public void testSnapshotArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(SnapshotArray.class, new SnapshotArraySerializer(fury));
 
@@ -52,6 +54,7 @@ public class UtilsTest {
     
     @Test
     public void testDelayedRemovalArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(DelayedRemovalArray.class, new DelayedRemovalArraySerializer(fury));
 
@@ -65,6 +68,7 @@ public class UtilsTest {
 
     @Test
     public void testArrayMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ArrayMap.class, new ArrayMapSerializer(fury));
 
@@ -87,6 +91,7 @@ public class UtilsTest {
 
     @Test
     public void testQueue() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(Queue.class, new QueueSerializer(fury));
 
@@ -103,6 +108,7 @@ public class UtilsTest {
 
     @Test
     public void testObjectSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fury));
 
@@ -116,6 +122,7 @@ public class UtilsTest {
 
     @Test
     public void testOrderedSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(OrderedSet.class, new OrderedSetSerializer(fury));
 
@@ -129,6 +136,7 @@ public class UtilsTest {
 
     @Test
     public void testObjectMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectMap.class, new ObjectMapSerializer(fury));
 
@@ -150,6 +158,7 @@ public class UtilsTest {
     
     @Test
     public void testOrderedMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(OrderedMap.class, new OrderedMapSerializer(fury));
 
@@ -171,6 +180,7 @@ public class UtilsTest {
 
     @Test
     public void testObjectFloatMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
 
@@ -192,6 +202,7 @@ public class UtilsTest {
 
     @Test
     public void testObjectLongMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
 
@@ -213,6 +224,7 @@ public class UtilsTest {
 
     @Test
     public void testObjectIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
 
@@ -234,6 +246,7 @@ public class UtilsTest {
     
     @Test
     public void testBooleanArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(BooleanArray.class, new BooleanArraySerializer(fury));
 
@@ -246,6 +259,7 @@ public class UtilsTest {
     
     @Test
     public void testByteArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ByteArray.class, new ByteArraySerializer(fury));
 
@@ -258,6 +272,7 @@ public class UtilsTest {
     
     @Test
     public void testCharArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(CharArray.class, new CharArraySerializer(fury));
 
@@ -270,6 +285,7 @@ public class UtilsTest {
 
     @Test
     public void testFloatArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(FloatArray.class, new FloatArraySerializer(fury));
 
@@ -282,6 +298,7 @@ public class UtilsTest {
 
     @Test
     public void testIntArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntArray.class, new IntArraySerializer(fury));
 
@@ -294,6 +311,7 @@ public class UtilsTest {
 
     @Test
     public void testIntSet() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntSet.class, new IntSetSerializer(fury));
 
@@ -306,6 +324,7 @@ public class UtilsTest {
 
     @Test
     public void testIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntMap.class, new IntMapSerializer(fury));
 
@@ -328,6 +347,7 @@ public class UtilsTest {
 
     @Test
     public void testIntFloatMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fury));
 
@@ -350,6 +370,7 @@ public class UtilsTest {
 
     @Test
     public void testIntIntMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fury));
 
@@ -372,6 +393,7 @@ public class UtilsTest {
 
     @Test
     public void testLongArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongArray.class, new LongArraySerializer(fury));
 
@@ -384,6 +406,7 @@ public class UtilsTest {
 
     @Test
     public void testLongQueue() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongQueue.class, new LongQueueSerializer(fury));
 
@@ -399,6 +422,7 @@ public class UtilsTest {
 
     @Test
     public void testLongMap() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(LongMap.class, new LongMapSerializer(fury));
 
@@ -421,6 +445,7 @@ public class UtilsTest {
 
     @Test
     public void testShortArray() {
+        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
         fury.registerSerializer(ShortArray.class, new ShortArraySerializer(fury));
 
