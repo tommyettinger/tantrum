@@ -41,7 +41,7 @@ mavenPublishing {
 mavenPlainJavadocJar.archiveBaseName.set("$POM_NAME")
 
 dependencies {
-    api "com.github.tommyettinger:tantrum-digital:0.5.2.4"
+    api "com.github.tommyettinger:tantrum-digital:0.5.3.5"
     api "org.apache.fury:fury-core:$furyVersion"
     api "com.github.tommyettinger:jdkgdxds:$jdkgdxdsVersion"
     testImplementation "junit:junit:4.13.2"
