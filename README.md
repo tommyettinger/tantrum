@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.12.1.4, compatible with libGDX 1.12.1
+  - tantrum-libgdx is at version 1.12.1.5, compatible with libGDX 1.12.1
   - tantrum-digital is at version 0.5.3.5, compatible with digital 0.5.3
   - tantrum-jdkgdxds is at version 1.6.5.5, compatible with jdkgdxds 1.6.5
     - (Versions 1.6.2.1 and 1.6.2.2 were skipped so that all the subproject versions have the same last component
@@ -40,6 +40,9 @@ serializer yourself is feasible, and of not, you can post an issue here requesti
 Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
 modifiers excessively without providing getters.
 
+Even though libGDX 1.13.0 has been released, there are some lingering issues, some not even related to libGDX code,
+that may make requiring the latest libGDX version a bad idea. 1.12.1.5 works if you're using libGDX 1.12.1 or 1.13.0 .
+
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
 Gradle dependency info:
@@ -47,7 +50,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.4"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.12.1.5"
 ```
 
 tantrum-digital:
@@ -84,7 +87,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.12.1.4</version>
+  <version>1.12.1.5</version>
 </dependency>
 ```
 
