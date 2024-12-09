@@ -25,9 +25,7 @@ or if Fury itself had a (compatible) update available but the linked library did
 
   - tantrum-libgdx is at version 1.12.1.6, compatible with libGDX 1.12.1
   - tantrum-digital is at version 0.5.4.6, compatible with digital 0.5.4
-  - tantrum-jdkgdxds is at version 1.6.5.6, compatible with jdkgdxds 1.6.5
-    - (Versions 1.6.2.1 and 1.6.2.2 were skipped so that all the subproject versions have the same last component
-      to mean they use the same Fury version; so were 1.6.3.0 through 1.6.3.2 for the same reason.)
+  - tantrum-jdkgdxds is at version 1.7.1.6, compatible with jdkgdxds 1.7.1
   - tantrum-regexodus is at version 0.1.16.6, compatible with RegExodus 0.1.16
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
@@ -41,7 +39,7 @@ Some classes may not be possible to serialize reasonably, such as ones that use 
 modifiers excessively without providing getters.
 
 Even though libGDX 1.13.0 has been released, there are some lingering issues, some not even related to libGDX code,
-that may make requiring the latest libGDX version a bad idea. 1.12.1.5 works if you're using libGDX 1.12.1 or 1.13.0 .
+that may make requiring the latest libGDX version a bad idea. 1.12.1.6 works if you're using libGDX 1.12.1 or 1.13.0 .
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well.
 
@@ -62,7 +60,7 @@ implementation "com.github.tommyettinger:tantrum-digital:0.5.4.6"
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.6.5.6"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.7.1.6"
 ```
 
 tantrum-regexodus:
@@ -107,7 +105,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.6.5.6</version>
+  <version>1.7.1.6</version>
 </dependency>
 ```
 

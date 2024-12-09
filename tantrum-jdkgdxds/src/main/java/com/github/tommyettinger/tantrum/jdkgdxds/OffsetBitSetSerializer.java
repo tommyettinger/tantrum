@@ -35,15 +35,15 @@ public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
 
     @Override
     public void write(final MemoryBuffer output, final OffsetBitSet data) {
-        final long[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSize(bits, Platform.LONG_ARRAY_OFFSET, bits.length << 3);
+        final int[] bits = data.getRawBits();
+        output.writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
         output.writeInt32(data.getOffset());
     }
 
     @Override
     public OffsetBitSet read(MemoryBuffer input) {
         final OffsetBitSet obs = new OffsetBitSet();
-        obs.setRawBits(Support.readLongsAndSize(input));
+        obs.setRawBits(Support.readIntsAndSize(input));
         obs.setOffset(input.readInt32());
         return obs;
     }
