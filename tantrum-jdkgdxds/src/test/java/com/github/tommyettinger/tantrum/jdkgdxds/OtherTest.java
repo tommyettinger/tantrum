@@ -5,6 +5,7 @@ import com.github.tommyettinger.ds.ObjectList;
 import org.apache.fury.Fury;
 import org.apache.fury.config.Language;
 import org.apache.fury.logging.LoggerFactory;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,10 +13,11 @@ public class OtherTest {
 
     @Test
     public void testJunction() {
-        LoggerFactory.disableLogging();
+//        LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-//        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
-        fury.register(ObjectList.class);
+        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
+//        fury.registerSerializer(ObjectList.class, new CollectionSerializer<>(fury, ObjectList.class));
+//        fury.register(ObjectList.class);
         fury.register(Junction.class);
         fury.register(Junction.Any.class);
         fury.register(Junction.All.class);
