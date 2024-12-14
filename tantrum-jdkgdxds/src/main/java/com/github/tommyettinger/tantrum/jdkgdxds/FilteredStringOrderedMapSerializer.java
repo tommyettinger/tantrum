@@ -22,12 +22,13 @@ import com.github.tommyettinger.ds.FilteredStringOrderedMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.MapSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link FilteredStringOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class FilteredStringOrderedMapSerializer extends Serializer<FilteredStringOrderedMap> {
+public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredStringOrderedMap> {
 
     public FilteredStringOrderedMapSerializer(Fury fury) {
         super(fury, FilteredStringOrderedMap.class);

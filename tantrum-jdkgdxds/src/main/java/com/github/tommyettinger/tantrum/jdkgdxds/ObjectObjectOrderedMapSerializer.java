@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.ObjectObjectOrderedMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.MapSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectObjectOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class ObjectObjectOrderedMapSerializer extends Serializer<ObjectObjectOrderedMap> {
+public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObjectOrderedMap> {
 
     public ObjectObjectOrderedMapSerializer(Fury fury) {
         super(fury, ObjectObjectOrderedMap.class);

@@ -21,11 +21,12 @@ import com.github.tommyettinger.ds.CaseInsensitiveSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link CaseInsensitiveSet}s.
  */
-public class CaseInsensitiveSetSerializer extends Serializer<CaseInsensitiveSet> {
+public class CaseInsensitiveSetSerializer extends CollectionSerializer<CaseInsensitiveSet> {
 
     public CaseInsensitiveSetSerializer(Fury fury) {
         super(fury, CaseInsensitiveSet.class);

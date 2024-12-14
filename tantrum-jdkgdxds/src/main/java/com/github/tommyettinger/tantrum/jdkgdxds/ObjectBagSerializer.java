@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.ObjectBag;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectBag}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class ObjectBagSerializer extends Serializer<ObjectBag> {
+public class ObjectBagSerializer extends CollectionSerializer<ObjectBag> {
 
     public ObjectBagSerializer(Fury fury) {
         super(fury, ObjectBag.class);

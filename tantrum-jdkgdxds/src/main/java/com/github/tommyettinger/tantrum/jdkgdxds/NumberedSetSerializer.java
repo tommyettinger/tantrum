@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.NumberedSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link NumberedSet}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class NumberedSetSerializer extends Serializer<NumberedSet> {
+public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
 
     public NumberedSetSerializer(Fury fury) {
         super(fury, NumberedSet.class);

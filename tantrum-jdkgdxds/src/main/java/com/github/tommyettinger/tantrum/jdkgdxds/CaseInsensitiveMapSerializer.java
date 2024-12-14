@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.CaseInsensitiveMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.MapSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link CaseInsensitiveMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class CaseInsensitiveMapSerializer extends Serializer<CaseInsensitiveMap> {
+public class CaseInsensitiveMapSerializer extends MapSerializer<CaseInsensitiveMap> {
 
     public CaseInsensitiveMapSerializer(Fury fury) {
         super(fury, CaseInsensitiveMap.class);

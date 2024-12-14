@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.ObjectOrderedSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link ObjectOrderedSet}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class ObjectOrderedSetSerializer extends Serializer<ObjectOrderedSet> {
+public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrderedSet> {
 
     public ObjectOrderedSetSerializer(Fury fury) {
         super(fury, ObjectOrderedSet.class);

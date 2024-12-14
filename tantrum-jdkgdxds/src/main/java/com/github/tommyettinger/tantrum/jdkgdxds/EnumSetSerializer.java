@@ -21,11 +21,12 @@ import com.github.tommyettinger.ds.EnumSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link EnumSet}s.
  */
-public class EnumSetSerializer extends Serializer<EnumSet> {
+public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
 
     public EnumSetSerializer(Fury fury) {
         super(fury, EnumSet.class);

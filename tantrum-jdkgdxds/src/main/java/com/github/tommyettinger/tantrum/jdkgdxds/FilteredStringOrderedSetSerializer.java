@@ -22,11 +22,12 @@ import com.github.tommyettinger.ds.FilteredStringOrderedSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link FilteredStringOrderedSet}s.
  */
-public class FilteredStringOrderedSetSerializer extends Serializer<FilteredStringOrderedSet> {
+public class FilteredStringOrderedSetSerializer extends CollectionSerializer<FilteredStringOrderedSet> {
 
     public FilteredStringOrderedSetSerializer(Fury fury) {
         super(fury, FilteredStringOrderedSet.class);

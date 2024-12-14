@@ -22,12 +22,13 @@ import com.github.tommyettinger.ds.FilteredStringMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.MapSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link FilteredStringMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class FilteredStringMapSerializer extends Serializer<FilteredStringMap> {
+public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap> {
 
     public FilteredStringMapSerializer(Fury fury) {
         super(fury, FilteredStringMap.class);

@@ -21,11 +21,12 @@ import com.github.tommyettinger.ds.CaseInsensitiveOrderedSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.CollectionSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link CaseInsensitiveOrderedSet}s.
  */
-public class CaseInsensitiveOrderedSetSerializer extends Serializer<CaseInsensitiveOrderedSet> {
+public class CaseInsensitiveOrderedSetSerializer extends CollectionSerializer<CaseInsensitiveOrderedSet> {
 
     public CaseInsensitiveOrderedSetSerializer(Fury fury) {
         super(fury, CaseInsensitiveOrderedSet.class);

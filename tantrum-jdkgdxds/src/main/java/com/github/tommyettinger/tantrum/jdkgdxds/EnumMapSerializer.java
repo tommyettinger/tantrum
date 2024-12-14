@@ -21,12 +21,13 @@ import com.github.tommyettinger.ds.EnumMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
 import org.apache.fury.serializer.Serializer;
+import org.apache.fury.serializer.collection.MapSerializer;
 
 /**
  * Fury {@link Serializer} for jdkgdxds {@link EnumMap}s.
  */
 @SuppressWarnings("rawtypes")
-public class EnumMapSerializer extends Serializer<EnumMap> {
+public class EnumMapSerializer extends MapSerializer<EnumMap> {
 
     public EnumMapSerializer(Fury fury) {
         super(fury, EnumMap.class);
