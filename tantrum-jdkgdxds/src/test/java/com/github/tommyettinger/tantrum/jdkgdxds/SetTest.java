@@ -173,7 +173,7 @@ public class SetTest {
 //    @Test
 //    public void testHolderSet() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
 //        fury.registerSerializer(HolderSet.class, new HolderSetSerializer(fury));
