@@ -24,6 +24,11 @@ import org.apache.fury.serializer.Serializer;
 
 /**
  * Fury {@link Serializer} for libGDX {@link RandomXS128}s.
+ * A serializer must be used if you want to work with RandomXS128 in newer Java versions, because if you use the
+ * default serialization created by {@code register()}, then Fury will try to use some internal fields in Random, the
+ * superclass of RandomXS128, and that won't succeed. It might be possible to use {@code register()} in Java 8 only,
+ * but it isn't worth the risk and limitation. Using this serializer is probably faster, too, since it has less that it
+ * has to write.
  */
 public class RandomXS128Serializer extends Serializer<RandomXS128> {
     public RandomXS128Serializer(Fury fury) {

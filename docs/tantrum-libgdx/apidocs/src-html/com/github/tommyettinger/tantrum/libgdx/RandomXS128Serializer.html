@@ -37,23 +37,28 @@
 <span class="source-line-no">024</span><span id="line-24"></span>
 <span class="source-line-no">025</span><span id="line-25">/**</span>
 <span class="source-line-no">026</span><span id="line-26"> * Fury {@link Serializer} for libGDX {@link RandomXS128}s.</span>
-<span class="source-line-no">027</span><span id="line-27"> */</span>
-<span class="source-line-no">028</span><span id="line-28">public class RandomXS128Serializer extends Serializer&lt;RandomXS128&gt; {</span>
-<span class="source-line-no">029</span><span id="line-29">    public RandomXS128Serializer(Fury fury) {</span>
-<span class="source-line-no">030</span><span id="line-30">        super(fury, RandomXS128.class);</span>
-<span class="source-line-no">031</span><span id="line-31">    }</span>
-<span class="source-line-no">032</span><span id="line-32"></span>
-<span class="source-line-no">033</span><span id="line-33">    @Override</span>
-<span class="source-line-no">034</span><span id="line-34">    public void write(final MemoryBuffer output, final RandomXS128 data) {</span>
-<span class="source-line-no">035</span><span id="line-35">        output.writeInt64(data.getState(0));</span>
-<span class="source-line-no">036</span><span id="line-36">        output.writeInt64(data.getState(1));</span>
-<span class="source-line-no">037</span><span id="line-37">    }</span>
-<span class="source-line-no">038</span><span id="line-38"></span>
-<span class="source-line-no">039</span><span id="line-39">    @Override</span>
-<span class="source-line-no">040</span><span id="line-40">    public RandomXS128 read(MemoryBuffer input) {</span>
-<span class="source-line-no">041</span><span id="line-41">        return new RandomXS128(input.readInt64(), input.readInt64());</span>
+<span class="source-line-no">027</span><span id="line-27"> * A serializer must be used if you want to work with RandomXS128 in newer Java versions, because if you use the</span>
+<span class="source-line-no">028</span><span id="line-28"> * default serialization created by {@code register()}, then Fury will try to use some internal fields in Random, the</span>
+<span class="source-line-no">029</span><span id="line-29"> * superclass of RandomXS128, and that won't succeed. It might be possible to use {@code register()} in Java 8 only,</span>
+<span class="source-line-no">030</span><span id="line-30"> * but it isn't worth the risk and limitation. Using this serializer is probably faster, too, since it has less that it</span>
+<span class="source-line-no">031</span><span id="line-31"> * has to write.</span>
+<span class="source-line-no">032</span><span id="line-32"> */</span>
+<span class="source-line-no">033</span><span id="line-33">public class RandomXS128Serializer extends Serializer&lt;RandomXS128&gt; {</span>
+<span class="source-line-no">034</span><span id="line-34">    public RandomXS128Serializer(Fury fury) {</span>
+<span class="source-line-no">035</span><span id="line-35">        super(fury, RandomXS128.class);</span>
+<span class="source-line-no">036</span><span id="line-36">    }</span>
+<span class="source-line-no">037</span><span id="line-37"></span>
+<span class="source-line-no">038</span><span id="line-38">    @Override</span>
+<span class="source-line-no">039</span><span id="line-39">    public void write(final MemoryBuffer output, final RandomXS128 data) {</span>
+<span class="source-line-no">040</span><span id="line-40">        output.writeInt64(data.getState(0));</span>
+<span class="source-line-no">041</span><span id="line-41">        output.writeInt64(data.getState(1));</span>
 <span class="source-line-no">042</span><span id="line-42">    }</span>
-<span class="source-line-no">043</span><span id="line-43">}</span>
+<span class="source-line-no">043</span><span id="line-43"></span>
+<span class="source-line-no">044</span><span id="line-44">    @Override</span>
+<span class="source-line-no">045</span><span id="line-45">    public RandomXS128 read(MemoryBuffer input) {</span>
+<span class="source-line-no">046</span><span id="line-46">        return new RandomXS128(input.readInt64(), input.readInt64());</span>
+<span class="source-line-no">047</span><span id="line-47">    }</span>
+<span class="source-line-no">048</span><span id="line-48">}</span>
 
 
 
