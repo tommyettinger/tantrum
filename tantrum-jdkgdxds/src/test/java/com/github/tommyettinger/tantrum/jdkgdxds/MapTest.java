@@ -472,6 +472,38 @@ public class MapTest {
     }
 
     @Test
+    public void testEnumIntMap() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumIntMap.class, new EnumIntMapSerializer(fury));
+
+        EnumIntMap data = EnumIntMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumIntMap data2 = fury.deserializeJavaObject(bytes, EnumIntMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testEnumIntOrderedMap() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumIntOrderedMap.class, new EnumIntOrderedMapSerializer(fury));
+
+        EnumIntOrderedMap data = EnumIntOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumIntOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumIntOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testEnumLongMap() {
         LoggerFactory.disableLogging();
         Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
@@ -499,6 +531,38 @@ public class MapTest {
 
         byte[] bytes = fury.serializeJavaObject(data); {
             EnumLongOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumLongOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testEnumFloatMap() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumFloatMap.class, new EnumFloatMapSerializer(fury));
+
+        EnumFloatMap data = EnumFloatMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumFloatMap data2 = fury.deserializeJavaObject(bytes, EnumFloatMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
+    public void testEnumFloatOrderedMap() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumFloatOrderedMap.class, new EnumFloatOrderedMapSerializer(fury));
+
+        EnumFloatOrderedMap data = EnumFloatOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumFloatOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
