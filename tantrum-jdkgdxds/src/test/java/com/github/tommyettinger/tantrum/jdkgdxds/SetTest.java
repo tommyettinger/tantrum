@@ -250,6 +250,21 @@ public class SetTest {
         }
     }
 
+    @Test
+    public void testEnumOrderedSet() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumOrderedSet.class, new EnumOrderedSetSerializer(fury));
+
+        EnumOrderedSet data = EnumOrderedSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumOrderedSet data2 = fury.deserializeJavaObject(bytes, EnumOrderedSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredIterableSet() {
 //        LoggerFactory.disableLogging();

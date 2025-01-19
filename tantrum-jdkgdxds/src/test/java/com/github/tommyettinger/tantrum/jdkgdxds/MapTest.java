@@ -455,10 +455,26 @@ public class MapTest {
         }
     }
 
+    @Test
+    public void testEnumOrderedMap() {
+        LoggerFactory.disableLogging();
+        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+        fury.register(Character.UnicodeScript.class);
+        fury.registerSerializer(EnumOrderedMap.class, new EnumOrderedMapSerializer(fury));
+
+        EnumOrderedMap<Integer> data = EnumOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
+                Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
+
+        byte[] bytes = fury.serializeJavaObject(data); {
+            EnumOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, EnumOrderedMap.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
 //    @Test
 //    public void testFilteredIterableMap() {
 //        LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
