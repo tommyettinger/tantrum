@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.13.1.6, compatible with libGDX 1.13.1
+  - tantrum-libgdx is at version 1.13.1.7, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.6.1.7, compatible with digital 0.6.1
   - tantrum-jdkgdxds is at version 1.8.0.6, compatible with jdkgdxds 1.8.0
   - tantrum-regexodus is at version 0.1.17.7, compatible with RegExodus 0.1.17
@@ -39,7 +39,7 @@ Some classes may not be possible to serialize reasonably, such as ones that use 
 modifiers excessively without providing getters.
 
 The current version of libGDX at the time of writing is 1.13.1, and it works with Fury via
-tantrum-libgdx 1.13.1.6 . If you need to use 1.13.0, which you probably won't ever need to consider, you should use
+tantrum-libgdx 1.13.1.7 . If you need to use 1.13.0, which you probably won't ever need to consider, you should use
 tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0 because that release wasn't
 really the quality you'd want to ship anything with.
 
@@ -51,7 +51,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.6"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.7"
 ```
 
 tantrum-digital:
@@ -88,7 +88,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.1.6</version>
+  <version>1.13.1.7</version>
 </dependency>
 ```
 
