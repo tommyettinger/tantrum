@@ -26,7 +26,7 @@ or if Fury itself had a (compatible) update available but the linked library did
   - tantrum-libgdx is at version 1.13.1.7, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.6.2.7, compatible with digital 0.6.2
   - tantrum-jdkgdxds is at version 1.8.1.7, compatible with jdkgdxds 1.8.1
-  - tantrum-regexodus is at version 0.1.18.7, compatible with RegExodus 0.1.18
+  - tantrum-regexodus is at version 0.1.19.7, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.6.2),
@@ -69,7 +69,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.8.1.7"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.18.7"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.7"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 or newer instead:
@@ -118,7 +118,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.18.7</version>
+  <version>0.1.19.7</version>
 </dependency>
 ```
 
