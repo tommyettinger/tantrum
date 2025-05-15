@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.13.1.7, compatible with libGDX 1.13.1
+  - tantrum-libgdx is at version 1.13.5.8, compatible with libGDX 1.13.5
   - tantrum-digital is at version 0.6.2.8, compatible with digital 0.6.2
   - tantrum-jdkgdxds is at version 1.8.1.7, compatible with jdkgdxds 1.8.1
   - tantrum-regexodus is at version 0.1.19.8, compatible with RegExodus 0.1.19
@@ -38,10 +38,10 @@ serializer yourself is feasible, and of not, you can post an issue here requesti
 Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
 modifiers excessively without providing getters.
 
-The current version of libGDX at the time of writing is 1.13.5, and version 1.13.1 works with Fury via
-tantrum-libgdx 1.13.1.7 . If you need to use 1.13.0, which you probably won't ever need to consider, you should use
+The current version of libGDX at the time of writing is 1.13.5, and version 1.13.5 works with Fury via
+tantrum-libgdx 1.13.5.8 . If you need to use 1.13.0, which you probably won't ever need to consider, you should use
 tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0 because that release wasn't
-really the quality you'd want to ship anything with. kryo-libgdx 1.13.5.8 should be out soon.
+really the quality you'd want to ship anything with.
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well. Fury is not compatible with
 GWT, so no GWT info is provided here.
@@ -51,7 +51,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.7"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.13.5.8"
 ```
 
 tantrum-digital:
@@ -88,7 +88,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.1.7</version>
+  <version>1.13.5.8</version>
 </dependency>
 ```
 
