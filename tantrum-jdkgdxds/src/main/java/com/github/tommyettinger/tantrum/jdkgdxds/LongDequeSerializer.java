@@ -36,10 +36,13 @@ public class LongDequeSerializer extends Serializer<LongDeque> {
     @Override
     public void write(final MemoryBuffer output, final LongDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writeInt64(data.getDefaultValue());
     }
 
     @Override
     public LongDeque read(MemoryBuffer input) {
-        return new LongDeque(Support.readLongsAndSize(input));
+        LongDeque data = new LongDeque(Support.readLongsAndSize(input));
+        data.setDefaultValue(input.readInt64());
+        return data;
     }
 }

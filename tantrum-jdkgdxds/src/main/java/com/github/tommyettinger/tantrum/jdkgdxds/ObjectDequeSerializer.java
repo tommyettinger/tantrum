@@ -37,6 +37,7 @@ public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
     public void write(final MemoryBuffer output, final ObjectDeque data) {
         final int len = data.size();
         output.writeVarUint32(len);
+        fury.writeRef(output, data.getDefaultValue());
         for (int i = 0; i < len; i++) {
             fury.writeRef(output, data.get(i));
         }
@@ -46,6 +47,7 @@ public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
     public ObjectDeque read(MemoryBuffer input) {
         final int len = input.readVarUint32();
         ObjectDeque data = new ObjectDeque(len);
+        data.setDefaultValue(fury.readRef(input));
         for (int i = 0; i < len; i++)
             data.add(fury.readRef(input));
         return data;

@@ -36,10 +36,13 @@ public class IntDequeSerializer extends Serializer<IntDeque> {
     @Override
     public void write(final MemoryBuffer output, final IntDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
     public IntDeque read(MemoryBuffer input) {
-        return new IntDeque(Support.readIntsAndSize(input));
+        IntDeque data = new IntDeque(Support.readIntsAndSize(input));
+        data.setDefaultValue(input.readInt32());
+        return data;
     }
 }

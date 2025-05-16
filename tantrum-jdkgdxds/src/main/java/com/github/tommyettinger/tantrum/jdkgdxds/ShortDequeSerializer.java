@@ -36,10 +36,13 @@ public class ShortDequeSerializer extends Serializer<ShortDeque> {
     @Override
     public void write(final MemoryBuffer output, final ShortDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        output.writeInt16(data.getDefaultValue());
     }
 
     @Override
     public ShortDeque read(MemoryBuffer input) {
-        return new ShortDeque(Support.readShortsAndSize(input));
+        ShortDeque data = new ShortDeque(Support.readShortsAndSize(input));
+        data.setDefaultValue(input.readInt16());
+        return data;
     }
 }
