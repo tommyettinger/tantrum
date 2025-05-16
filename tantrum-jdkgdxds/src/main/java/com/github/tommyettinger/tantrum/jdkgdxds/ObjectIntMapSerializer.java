@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectIntMap;
+import com.github.tommyettinger.ds.ObjectIntOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -40,6 +41,7 @@ public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +53,8 @@ public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
             ks[i] = fury.readRef(input);
         }
 
-        return new ObjectIntMap<>(ks, vs);
+        ObjectIntMap<?> data = new ObjectIntMap<>(ks, vs);
+        data.setDefaultValue(input.readInt32());
+        return data;
     }
 }

@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectFloatOrderedMap;
+import com.github.tommyettinger.ds.ObjectLongOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -40,6 +41,7 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +53,8 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
             ks[i] = fury.readRef(input);
         }
 
-        return new ObjectFloatOrderedMap<>(ks, vs);
+        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs);
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }
