@@ -35,10 +35,13 @@ public class CharDequeSerializer extends Serializer<CharDeque> {
     @Override
     public void write(final MemoryBuffer output, final CharDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+        output.writeChar(data.getDefaultValue());
     }
 
     @Override
     public CharDeque read(MemoryBuffer input) {
-        return new CharDeque(input.readCharsAndSize());
+        CharDeque data = new CharDeque(input.readCharsAndSize());
+        data.setDefaultValue(input.readChar());
+        return data;
     }
 }

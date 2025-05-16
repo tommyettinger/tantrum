@@ -36,10 +36,13 @@ public class BooleanDequeSerializer extends Serializer<BooleanDeque> {
     @Override
     public void write(final MemoryBuffer output, final BooleanDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        output.writeBoolean(data.getDefaultValue());
     }
 
     @Override
     public BooleanDeque read(MemoryBuffer input) {
-        return new BooleanDeque(Support.readBooleansAndSize(input));
+        BooleanDeque data = new BooleanDeque(Support.readBooleansAndSize(input));
+        data.setDefaultValue(input.readBoolean());
+        return data;
     }
 }

@@ -35,10 +35,13 @@ public class ByteDequeSerializer extends Serializer<ByteDeque> {
     @Override
     public void write(final MemoryBuffer output, final ByteDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.BYTE_ARRAY_OFFSET, data.size());
+        output.writeByte(data.getDefaultValue());
     }
 
     @Override
     public ByteDeque read(MemoryBuffer input) {
-        return new ByteDeque(input.readBytesAndSize());
+        ByteDeque data = new ByteDeque(input.readBytesAndSize());
+        data.setDefaultValue(input.readByte());
+        return data;
     }
 }

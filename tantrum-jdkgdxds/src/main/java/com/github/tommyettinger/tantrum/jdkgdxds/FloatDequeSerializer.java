@@ -36,10 +36,13 @@ public class FloatDequeSerializer extends Serializer<FloatDeque> {
     @Override
     public void write(final MemoryBuffer output, final FloatDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public FloatDeque read(MemoryBuffer input) {
-        return new FloatDeque(Support.readFloatsAndSize(input));
+        FloatDeque data = new FloatDeque(Support.readFloatsAndSize(input));
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }

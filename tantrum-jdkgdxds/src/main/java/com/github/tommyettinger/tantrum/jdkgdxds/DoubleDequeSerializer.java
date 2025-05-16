@@ -36,10 +36,13 @@ public class DoubleDequeSerializer extends Serializer<DoubleDeque> {
     @Override
     public void write(final MemoryBuffer output, final DoubleDeque data) {
         output.writePrimitiveArrayWithSize(data.toArray(), Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+        output.writeFloat64(data.getDefaultValue());
     }
 
     @Override
     public DoubleDeque read(MemoryBuffer input) {
-        return new DoubleDeque(Support.readDoublesAndSize(input));
+        DoubleDeque data = new DoubleDeque(Support.readDoublesAndSize(input));
+        data.setDefaultValue(input.readFloat64());
+        return data;
     }
 }
