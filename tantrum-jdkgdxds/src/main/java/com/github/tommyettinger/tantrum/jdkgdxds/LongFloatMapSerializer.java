@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongFloatMap;
+import com.github.tommyettinger.ds.LongIntMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -37,10 +38,13 @@ public class LongFloatMapSerializer extends Serializer<LongFloatMap> {
     public void write(final MemoryBuffer output, final LongFloatMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public LongFloatMap read(MemoryBuffer input) {
-        return new LongFloatMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input));
+        LongFloatMap data = new LongFloatMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input));
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }

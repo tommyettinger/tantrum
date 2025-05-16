@@ -39,10 +39,13 @@ public class LongFloatOrderedMapSerializer extends Serializer<LongFloatOrderedMa
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         output.writeBoolean(data.order() instanceof LongDeque);
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public LongFloatOrderedMap read(MemoryBuffer input) {
-        return new LongFloatOrderedMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input), input.readBoolean());
+        LongFloatOrderedMap data = new LongFloatOrderedMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input), input.readBoolean());
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }

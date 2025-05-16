@@ -37,10 +37,14 @@ public class LongIntMapSerializer extends Serializer<LongIntMap> {
     public void write(final MemoryBuffer output, final LongIntMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
     public LongIntMap read(MemoryBuffer input) {
-        return new LongIntMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input));
+        LongIntMap data = new LongIntMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input));
+        data.setDefaultValue(input.readInt32());
+        return data;
+
     }
 }
