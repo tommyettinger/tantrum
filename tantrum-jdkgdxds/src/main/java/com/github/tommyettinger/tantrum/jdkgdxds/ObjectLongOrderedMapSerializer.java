@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.ObjectLongMap;
 import com.github.tommyettinger.ds.ObjectLongOrderedMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -40,6 +41,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeInt64(data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +53,8 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
             ks[i] = fury.readRef(input);
         }
 
-        return new ObjectLongOrderedMap<>(ks, vs);
+        ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs);
+        data.setDefaultValue(input.readInt64());
+        return data;
     }
 }

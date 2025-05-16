@@ -42,6 +42,7 @@ public class ObjectObjectMapSerializer extends MapSerializer<ObjectObjectMap> {
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -55,6 +56,8 @@ public class ObjectObjectMapSerializer extends MapSerializer<ObjectObjectMap> {
             vs[i] = fury.readRef(input);
         }
 
-        return new ObjectObjectMap<>(ks, vs);
+        ObjectObjectMap data = new ObjectObjectMap<>(ks, vs);
+        data.setDefaultValue(fury.readRef(input));
+        return data;
     }
 }

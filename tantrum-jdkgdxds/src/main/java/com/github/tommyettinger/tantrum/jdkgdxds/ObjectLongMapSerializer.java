@@ -40,6 +40,7 @@ public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
         for(Object v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeInt64(data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +52,8 @@ public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
             ks[i] = fury.readRef(input);
         }
 
-        return new ObjectLongMap<>(ks, vs);
+        ObjectLongMap<?> data = new ObjectLongMap<>(ks, vs);
+        data.setDefaultValue(input.readInt64());
+        return data;
     }
 }
