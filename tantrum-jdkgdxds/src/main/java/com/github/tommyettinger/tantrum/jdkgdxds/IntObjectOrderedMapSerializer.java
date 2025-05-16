@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntObjectOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
@@ -40,6 +41,8 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        output.writeBoolean(data.order() instanceof IntDeque);
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +54,9 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
             vs[i] = fury.readRef(input);
         }
 
-        return new IntObjectOrderedMap<>(ks, vs);
+        IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, input.readBoolean());
+        data.setDefaultValue(fury.readRef(input));
+        return data;
+
     }
 }

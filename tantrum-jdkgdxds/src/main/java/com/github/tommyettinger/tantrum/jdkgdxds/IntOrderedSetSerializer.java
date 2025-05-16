@@ -17,7 +17,9 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntOrderedSet;
+import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -36,10 +38,11 @@ public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
     @Override
     public void write(final MemoryBuffer output, final IntOrderedSet data) {
         output.writePrimitiveArrayWithSize(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writeBoolean(data.order() instanceof IntDeque);
     }
 
     @Override
     public IntOrderedSet read(MemoryBuffer input) {
-        return new IntOrderedSet(Support.readIntsAndSize(input));
+        return new IntOrderedSet(Support.readIntsAndSize(input), input.readBoolean());
     }
 }

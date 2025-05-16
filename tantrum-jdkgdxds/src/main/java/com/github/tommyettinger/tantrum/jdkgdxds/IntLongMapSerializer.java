@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntLongMap;
+import com.github.tommyettinger.ds.IntLongOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -37,10 +38,13 @@ public class IntLongMapSerializer extends Serializer<IntLongMap> {
     public void write(final MemoryBuffer output, final IntLongMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writeInt64(data.getDefaultValue());
     }
 
     @Override
     public IntLongMap read(MemoryBuffer input) {
-        return new IntLongMap(Support.readIntsAndSize(input), Support.readLongsAndSize(input));
+        IntLongMap data = new IntLongMap(Support.readIntsAndSize(input), Support.readLongsAndSize(input));
+        data.setDefaultValue(input.readInt64());
+        return data;
     }
 }

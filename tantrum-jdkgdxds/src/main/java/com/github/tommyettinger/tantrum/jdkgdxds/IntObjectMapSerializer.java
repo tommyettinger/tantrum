@@ -40,6 +40,7 @@ public class IntObjectMapSerializer extends Serializer<IntObjectMap> {
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +52,9 @@ public class IntObjectMapSerializer extends Serializer<IntObjectMap> {
             vs[i] = fury.readRef(input);
         }
 
-        return new IntObjectMap<>(ks, vs);
+        IntObjectMap data = new IntObjectMap<>(ks, vs);
+        data.setDefaultValue(fury.readRef(input));
+        return data;
+
     }
 }
