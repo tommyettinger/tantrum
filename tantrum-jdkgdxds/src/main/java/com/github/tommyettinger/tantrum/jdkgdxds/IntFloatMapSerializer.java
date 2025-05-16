@@ -37,10 +37,13 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
     public void write(final MemoryBuffer output, final IntFloatMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public IntFloatMap read(MemoryBuffer input) {
-        return new IntFloatMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input));
+        IntFloatMap data = new IntFloatMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input));
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }

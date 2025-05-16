@@ -37,10 +37,14 @@ public class IntIntMapSerializer extends Serializer<IntIntMap> {
     public void write(final MemoryBuffer output, final IntIntMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
     public IntIntMap read(MemoryBuffer input) {
-        return new IntIntMap(Support.readIntsAndSize(input), Support.readIntsAndSize(input));
+        IntIntMap data = new IntIntMap(Support.readIntsAndSize(input), Support.readIntsAndSize(input));
+        data.setDefaultValue(input.readInt32());
+        return data;
+
     }
 }
