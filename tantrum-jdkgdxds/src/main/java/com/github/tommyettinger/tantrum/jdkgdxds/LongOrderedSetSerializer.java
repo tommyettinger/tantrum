@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.ds.LongOrderedSet;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -36,10 +37,11 @@ public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
     @Override
     public void write(final MemoryBuffer output, final LongOrderedSet data) {
         output.writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        output.writeBoolean(data.order() instanceof LongDeque);
     }
 
     @Override
     public LongOrderedSet read(MemoryBuffer input) {
-        return new LongOrderedSet(Support.readLongsAndSize(input));
+        return new LongOrderedSet(Support.readLongsAndSize(input), input.readBoolean());
     }
 }

@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.ds.LongObjectOrderedMap;
 import org.apache.fury.Fury;
 import org.apache.fury.memory.MemoryBuffer;
@@ -40,6 +41,8 @@ public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrdered
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        output.writeBoolean(data.order() instanceof LongDeque);
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -51,6 +54,8 @@ public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrdered
             vs[i] = fury.readRef(input);
         }
 
-        return new LongObjectOrderedMap<>(ks, vs);
+        LongObjectOrderedMap data = new LongObjectOrderedMap<>(ks, vs, input.readBoolean());
+        data.setDefaultValue(fury.readRef(input));
+        return data;
     }
 }

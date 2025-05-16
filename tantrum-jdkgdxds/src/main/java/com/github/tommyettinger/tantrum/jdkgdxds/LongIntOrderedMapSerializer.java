@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
+import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.ds.LongIntOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fury.Fury;
@@ -37,10 +38,11 @@ public class LongIntOrderedMapSerializer extends Serializer<LongIntOrderedMap> {
     public void write(final MemoryBuffer output, final LongIntOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        output.writeBoolean(data.order() instanceof LongDeque);
     }
 
     @Override
     public LongIntOrderedMap read(MemoryBuffer input) {
-        return new LongIntOrderedMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input));
+        return new LongIntOrderedMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input), input.readBoolean());
     }
 }
