@@ -39,6 +39,7 @@ public class EnumIntMapSerializer extends Serializer<EnumIntMap> {
         for(Enum<?> v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
@@ -50,6 +51,8 @@ public class EnumIntMapSerializer extends Serializer<EnumIntMap> {
             ks[i] = (Enum<?>)fury.readRef(input);
         }
 
-        return new EnumIntMap(ks, vs);
+        EnumIntMap data = new EnumIntMap(ks, vs);
+        data.setDefaultValue(input.readInt32());
+        return data;
     }
 }

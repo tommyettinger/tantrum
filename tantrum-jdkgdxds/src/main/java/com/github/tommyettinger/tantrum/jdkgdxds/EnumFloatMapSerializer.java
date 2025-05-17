@@ -39,6 +39,7 @@ public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
         for(Enum<?> v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
@@ -50,6 +51,9 @@ public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
             ks[i] = (Enum<?>)fury.readRef(input);
         }
 
-        return new EnumFloatMap(ks, vs);
+        EnumFloatMap data = new EnumFloatMap(ks, vs);
+        data.setDefaultValue(input.readFloat32());
+        return data;
+
     }
 }

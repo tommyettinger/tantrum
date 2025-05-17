@@ -39,6 +39,7 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
         for(Enum<?> v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
@@ -50,6 +51,8 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
             ks[i] = (Enum<?>)fury.readRef(input);
         }
 
-        return new EnumFloatOrderedMap(ks, vs);
+        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs);
+        data.setDefaultValue(input.readFloat32());
+        return data;
     }
 }
