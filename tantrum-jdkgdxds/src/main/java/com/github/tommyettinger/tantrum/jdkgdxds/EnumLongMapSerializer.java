@@ -39,6 +39,7 @@ public class EnumLongMapSerializer extends Serializer<EnumLongMap> {
         for(Enum<?> v : data.keySet()){
             fury.writeRef(output, v);
         }
+        output.writeInt64(data.getDefaultValue());
     }
 
     @Override
@@ -50,6 +51,8 @@ public class EnumLongMapSerializer extends Serializer<EnumLongMap> {
             ks[i] = (Enum<?>)fury.readRef(input);
         }
 
-        return new EnumLongMap(ks, vs);
+        EnumLongMap data = new EnumLongMap(ks, vs);
+        data.setDefaultValue(input.readInt64());
+        return data;
     }
 }

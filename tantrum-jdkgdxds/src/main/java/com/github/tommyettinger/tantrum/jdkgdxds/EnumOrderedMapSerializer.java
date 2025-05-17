@@ -42,6 +42,7 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -57,6 +58,8 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
             vs[i] = fury.readRef(input);
         }
 
-        return new EnumOrderedMap<>(ks, vs);
+        EnumOrderedMap data = new EnumOrderedMap<>(ks, vs);
+        data.setDefaultValue(fury.readRef(input));
+        return data;
     }
 }
