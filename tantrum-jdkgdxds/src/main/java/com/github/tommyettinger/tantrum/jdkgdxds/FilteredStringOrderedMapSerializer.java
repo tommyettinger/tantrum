@@ -44,6 +44,7 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -58,6 +59,9 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         for (int i = 0; i < len; i++) {
             vs[i] = fury.readRef(input);
         }
-        return new FilteredStringOrderedMap<>(filter, ks, vs);
+        FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs);
+        data.setDefaultValue(fury.readRef(input));
+        return data;
+
     }
 }

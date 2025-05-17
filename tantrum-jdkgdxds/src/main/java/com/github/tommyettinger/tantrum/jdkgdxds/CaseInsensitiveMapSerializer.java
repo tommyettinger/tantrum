@@ -42,6 +42,7 @@ public class CaseInsensitiveMapSerializer extends MapSerializer<CaseInsensitiveM
         for(Object v : data.values()){
             fury.writeRef(output, v);
         }
+        fury.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -56,6 +57,9 @@ public class CaseInsensitiveMapSerializer extends MapSerializer<CaseInsensitiveM
             vs[i] = fury.readRef(input);
         }
 
-        return new CaseInsensitiveMap<>(ks, vs);
+        CaseInsensitiveMap data = new CaseInsensitiveMap<>(ks, vs);
+        data.setDefaultValue(fury.readRef(input));
+        return data;
+
     }
 }
