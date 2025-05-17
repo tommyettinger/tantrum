@@ -55,24 +55,28 @@
 <span class="source-line-no">042</span><span id="line-42">        for(Object v : data.values()){</span>
 <span class="source-line-no">043</span><span id="line-43">            fury.writeRef(output, v);</span>
 <span class="source-line-no">044</span><span id="line-44">        }</span>
-<span class="source-line-no">045</span><span id="line-45">    }</span>
-<span class="source-line-no">046</span><span id="line-46"></span>
-<span class="source-line-no">047</span><span id="line-47">    @Override</span>
-<span class="source-line-no">048</span><span id="line-48">    public EnumMap&lt;?&gt; read(MemoryBuffer input) {</span>
-<span class="source-line-no">049</span><span id="line-49">        final int len = input.readVarUint32();</span>
-<span class="source-line-no">050</span><span id="line-50">        if(len == 0) return new EnumMap&lt;&gt;();</span>
-<span class="source-line-no">051</span><span id="line-51">        Enum&lt;?&gt;[] ks = new Enum[len];</span>
-<span class="source-line-no">052</span><span id="line-52">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">053</span><span id="line-53">            ks[i] = (Enum&lt;?&gt;) fury.readRef(input);</span>
-<span class="source-line-no">054</span><span id="line-54">        }</span>
-<span class="source-line-no">055</span><span id="line-55">        Object[] vs = new Object[len];</span>
-<span class="source-line-no">056</span><span id="line-56">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">057</span><span id="line-57">            vs[i] = fury.readRef(input);</span>
-<span class="source-line-no">058</span><span id="line-58">        }</span>
-<span class="source-line-no">059</span><span id="line-59"></span>
-<span class="source-line-no">060</span><span id="line-60">        return new EnumMap&lt;&gt;(ks, vs);</span>
-<span class="source-line-no">061</span><span id="line-61">    }</span>
-<span class="source-line-no">062</span><span id="line-62">}</span>
+<span class="source-line-no">045</span><span id="line-45">        fury.writeRef(output, data.getDefaultValue());</span>
+<span class="source-line-no">046</span><span id="line-46">    }</span>
+<span class="source-line-no">047</span><span id="line-47"></span>
+<span class="source-line-no">048</span><span id="line-48">    @Override</span>
+<span class="source-line-no">049</span><span id="line-49">    public EnumMap&lt;?&gt; read(MemoryBuffer input) {</span>
+<span class="source-line-no">050</span><span id="line-50">        final int len = input.readVarUint32();</span>
+<span class="source-line-no">051</span><span id="line-51">        if(len == 0) return new EnumMap&lt;&gt;();</span>
+<span class="source-line-no">052</span><span id="line-52">        Enum&lt;?&gt;[] ks = new Enum[len];</span>
+<span class="source-line-no">053</span><span id="line-53">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">054</span><span id="line-54">            ks[i] = (Enum&lt;?&gt;) fury.readRef(input);</span>
+<span class="source-line-no">055</span><span id="line-55">        }</span>
+<span class="source-line-no">056</span><span id="line-56">        Object[] vs = new Object[len];</span>
+<span class="source-line-no">057</span><span id="line-57">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">058</span><span id="line-58">            vs[i] = fury.readRef(input);</span>
+<span class="source-line-no">059</span><span id="line-59">        }</span>
+<span class="source-line-no">060</span><span id="line-60"></span>
+<span class="source-line-no">061</span><span id="line-61">        EnumMap data = new EnumMap&lt;&gt;(ks, vs);</span>
+<span class="source-line-no">062</span><span id="line-62">        data.setDefaultValue(fury.readRef(input));</span>
+<span class="source-line-no">063</span><span id="line-63">        return data;</span>
+<span class="source-line-no">064</span><span id="line-64"></span>
+<span class="source-line-no">065</span><span id="line-65">    }</span>
+<span class="source-line-no">066</span><span id="line-66">}</span>
 
 
 

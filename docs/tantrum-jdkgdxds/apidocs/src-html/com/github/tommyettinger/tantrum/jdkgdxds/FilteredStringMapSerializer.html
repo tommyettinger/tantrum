@@ -57,23 +57,27 @@
 <span class="source-line-no">044</span><span id="line-44">        for(Object v : data.values()){</span>
 <span class="source-line-no">045</span><span id="line-45">            fury.writeRef(output, v);</span>
 <span class="source-line-no">046</span><span id="line-46">        }</span>
-<span class="source-line-no">047</span><span id="line-47">    }</span>
-<span class="source-line-no">048</span><span id="line-48"></span>
-<span class="source-line-no">049</span><span id="line-49">    @Override</span>
-<span class="source-line-no">050</span><span id="line-50">    public FilteredStringMap&lt;?&gt; read(MemoryBuffer input) {</span>
-<span class="source-line-no">051</span><span id="line-51">        CharFilter filter = CharFilter.get(fury.readString(input));</span>
-<span class="source-line-no">052</span><span id="line-52">        final int len = input.readVarUint32();</span>
-<span class="source-line-no">053</span><span id="line-53">        String[] ks = new String[len];</span>
-<span class="source-line-no">054</span><span id="line-54">        Object[] vs = new Object[len];</span>
-<span class="source-line-no">055</span><span id="line-55">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">056</span><span id="line-56">            ks[i] = (String) fury.readRef(input);</span>
-<span class="source-line-no">057</span><span id="line-57">        }</span>
-<span class="source-line-no">058</span><span id="line-58">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">059</span><span id="line-59">            vs[i] = fury.readRef(input);</span>
-<span class="source-line-no">060</span><span id="line-60">        }</span>
-<span class="source-line-no">061</span><span id="line-61">        return new FilteredStringMap&lt;&gt;(filter, ks, vs);</span>
-<span class="source-line-no">062</span><span id="line-62">    }</span>
-<span class="source-line-no">063</span><span id="line-63">}</span>
+<span class="source-line-no">047</span><span id="line-47">        fury.writeRef(output, data.getDefaultValue());</span>
+<span class="source-line-no">048</span><span id="line-48">    }</span>
+<span class="source-line-no">049</span><span id="line-49"></span>
+<span class="source-line-no">050</span><span id="line-50">    @Override</span>
+<span class="source-line-no">051</span><span id="line-51">    public FilteredStringMap&lt;?&gt; read(MemoryBuffer input) {</span>
+<span class="source-line-no">052</span><span id="line-52">        CharFilter filter = CharFilter.get(fury.readString(input));</span>
+<span class="source-line-no">053</span><span id="line-53">        final int len = input.readVarUint32();</span>
+<span class="source-line-no">054</span><span id="line-54">        String[] ks = new String[len];</span>
+<span class="source-line-no">055</span><span id="line-55">        Object[] vs = new Object[len];</span>
+<span class="source-line-no">056</span><span id="line-56">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">057</span><span id="line-57">            ks[i] = (String) fury.readRef(input);</span>
+<span class="source-line-no">058</span><span id="line-58">        }</span>
+<span class="source-line-no">059</span><span id="line-59">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">060</span><span id="line-60">            vs[i] = fury.readRef(input);</span>
+<span class="source-line-no">061</span><span id="line-61">        }</span>
+<span class="source-line-no">062</span><span id="line-62">        FilteredStringMap data = new FilteredStringMap&lt;&gt;(filter, ks, vs);</span>
+<span class="source-line-no">063</span><span id="line-63">        data.setDefaultValue(fury.readRef(input));</span>
+<span class="source-line-no">064</span><span id="line-64">        return data;</span>
+<span class="source-line-no">065</span><span id="line-65"></span>
+<span class="source-line-no">066</span><span id="line-66">    }</span>
+<span class="source-line-no">067</span><span id="line-67">}</span>
 
 
 

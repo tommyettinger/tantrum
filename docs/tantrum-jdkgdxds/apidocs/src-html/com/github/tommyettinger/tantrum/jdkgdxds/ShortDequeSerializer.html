@@ -49,13 +49,16 @@
 <span class="source-line-no">036</span><span id="line-36">    @Override</span>
 <span class="source-line-no">037</span><span id="line-37">    public void write(final MemoryBuffer output, final ShortDeque data) {</span>
 <span class="source-line-no">038</span><span id="line-38">        output.writePrimitiveArrayWithSize(data.toArray(), Platform.SHORT_ARRAY_OFFSET, data.size() &lt;&lt; 1);</span>
-<span class="source-line-no">039</span><span id="line-39">    }</span>
-<span class="source-line-no">040</span><span id="line-40"></span>
-<span class="source-line-no">041</span><span id="line-41">    @Override</span>
-<span class="source-line-no">042</span><span id="line-42">    public ShortDeque read(MemoryBuffer input) {</span>
-<span class="source-line-no">043</span><span id="line-43">        return new ShortDeque(Support.readShortsAndSize(input));</span>
-<span class="source-line-no">044</span><span id="line-44">    }</span>
-<span class="source-line-no">045</span><span id="line-45">}</span>
+<span class="source-line-no">039</span><span id="line-39">        output.writeInt16(data.getDefaultValue());</span>
+<span class="source-line-no">040</span><span id="line-40">    }</span>
+<span class="source-line-no">041</span><span id="line-41"></span>
+<span class="source-line-no">042</span><span id="line-42">    @Override</span>
+<span class="source-line-no">043</span><span id="line-43">    public ShortDeque read(MemoryBuffer input) {</span>
+<span class="source-line-no">044</span><span id="line-44">        ShortDeque data = new ShortDeque(Support.readShortsAndSize(input));</span>
+<span class="source-line-no">045</span><span id="line-45">        data.setDefaultValue(input.readInt16());</span>
+<span class="source-line-no">046</span><span id="line-46">        return data;</span>
+<span class="source-line-no">047</span><span id="line-47">    }</span>
+<span class="source-line-no">048</span><span id="line-48">}</span>
 
 
 

@@ -53,20 +53,23 @@
 <span class="source-line-no">040</span><span id="line-40">        for(Object v : data.keySet()){</span>
 <span class="source-line-no">041</span><span id="line-41">            fury.writeRef(output, v);</span>
 <span class="source-line-no">042</span><span id="line-42">        }</span>
-<span class="source-line-no">043</span><span id="line-43">    }</span>
-<span class="source-line-no">044</span><span id="line-44"></span>
-<span class="source-line-no">045</span><span id="line-45">    @Override</span>
-<span class="source-line-no">046</span><span id="line-46">    public ObjectLongMap&lt;?&gt; read(MemoryBuffer input) {</span>
-<span class="source-line-no">047</span><span id="line-47">        long[] vs = Support.readLongsAndSize(input);</span>
-<span class="source-line-no">048</span><span id="line-48">        final int len = vs.length;</span>
-<span class="source-line-no">049</span><span id="line-49">        Object[] ks = new Object[len];</span>
-<span class="source-line-no">050</span><span id="line-50">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">051</span><span id="line-51">            ks[i] = fury.readRef(input);</span>
-<span class="source-line-no">052</span><span id="line-52">        }</span>
-<span class="source-line-no">053</span><span id="line-53"></span>
-<span class="source-line-no">054</span><span id="line-54">        return new ObjectLongMap&lt;&gt;(ks, vs);</span>
-<span class="source-line-no">055</span><span id="line-55">    }</span>
-<span class="source-line-no">056</span><span id="line-56">}</span>
+<span class="source-line-no">043</span><span id="line-43">        output.writeInt64(data.getDefaultValue());</span>
+<span class="source-line-no">044</span><span id="line-44">    }</span>
+<span class="source-line-no">045</span><span id="line-45"></span>
+<span class="source-line-no">046</span><span id="line-46">    @Override</span>
+<span class="source-line-no">047</span><span id="line-47">    public ObjectLongMap&lt;?&gt; read(MemoryBuffer input) {</span>
+<span class="source-line-no">048</span><span id="line-48">        long[] vs = Support.readLongsAndSize(input);</span>
+<span class="source-line-no">049</span><span id="line-49">        final int len = vs.length;</span>
+<span class="source-line-no">050</span><span id="line-50">        Object[] ks = new Object[len];</span>
+<span class="source-line-no">051</span><span id="line-51">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">052</span><span id="line-52">            ks[i] = fury.readRef(input);</span>
+<span class="source-line-no">053</span><span id="line-53">        }</span>
+<span class="source-line-no">054</span><span id="line-54"></span>
+<span class="source-line-no">055</span><span id="line-55">        ObjectLongMap&lt;?&gt; data = new ObjectLongMap&lt;&gt;(ks, vs);</span>
+<span class="source-line-no">056</span><span id="line-56">        data.setDefaultValue(input.readInt64());</span>
+<span class="source-line-no">057</span><span id="line-57">        return data;</span>
+<span class="source-line-no">058</span><span id="line-58">    }</span>
+<span class="source-line-no">059</span><span id="line-59">}</span>
 
 
 
