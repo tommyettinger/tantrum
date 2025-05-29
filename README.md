@@ -24,9 +24,9 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fury itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.13.1.9, compatible with libGDX 1.13.1
-  - tantrum-digital is at version 0.6.2.8, compatible with digital 0.6.2
-  - tantrum-jdkgdxds is at version 1.8.1.7, compatible with jdkgdxds 1.8.1
-  - tantrum-regexodus is at version 0.1.19.8, compatible with RegExodus 0.1.19
+  - tantrum-digital is at version 0.6.2.9, compatible with digital 0.6.2
+  - tantrum-jdkgdxds is at version 1.10.0.9, compatible with jdkgdxds 1.10.0
+  - tantrum-regexodus is at version 0.1.19.9, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.6.2),
@@ -38,10 +38,11 @@ serializer yourself is feasible, and of not, you can post an issue here requesti
 Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
 modifiers excessively without providing getters.
 
-The current version of libGDX at the time of writing is 1.13.5, and version 1.13.5 works with Fury via
-tantrum-libgdx 1.13.5.8 . If you need to use 1.13.0, which you probably won't ever need to consider, you should use
-tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0 because that release wasn't
-really the quality you'd want to ship anything with.
+The current version of libGDX at the time of writing is 1.13.5, and version 1.13.5 works with Fury 0.10.2 via
+tantrum-libgdx 1.13.5.8 . Version 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so the latest version
+of tantrum-libgdx is 1.13.1.9, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't ever need
+to consider, you should use tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0
+because that release wasn't really the quality you'd want to ship anything with.
 
 All of these sub-libraries depend on Java 8, and will work with higher versions as well. Fury is not compatible with
 GWT, so no GWT info is provided here.
@@ -51,25 +52,25 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.5.8"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.9"
 ```
 
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.6.2.8"
+implementation "com.github.tommyettinger:tantrum-digital:0.6.2.9"
 ```
 
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.8.1.7"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.10.0.9"
 ```
 
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.8"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.9"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 or newer instead:
@@ -88,7 +89,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.5.8</version>
+  <version>1.13.1.9</version>
 </dependency>
 ```
 
@@ -98,7 +99,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.6.2.8</version>
+  <version>0.6.2.9</version>
 </dependency>
 ```
 
@@ -108,7 +109,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.8.1.7</version>
+  <version>1.10.0.9</version>
 </dependency>
 ```
 
@@ -118,7 +119,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.19.8</version>
+  <version>0.1.19.9</version>
 </dependency>
 ```
 
