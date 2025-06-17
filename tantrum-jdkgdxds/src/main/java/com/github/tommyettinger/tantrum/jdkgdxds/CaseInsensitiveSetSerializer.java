@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CaseInsensitiveSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link CaseInsensitiveSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link CaseInsensitiveSet}s.
  */
 public class CaseInsensitiveSetSerializer extends CollectionSerializer<CaseInsensitiveSet> {
 
-    public CaseInsensitiveSetSerializer(Fury fury) {
-        super(fury, CaseInsensitiveSet.class);
+    public CaseInsensitiveSetSerializer(Fory fory) {
+        super(fory, CaseInsensitiveSet.class);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CaseInsensitiveSetSerializer extends CollectionSerializer<CaseInsen
         final int len = data.size();
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -46,7 +46,7 @@ public class CaseInsensitiveSetSerializer extends CollectionSerializer<CaseInsen
         final int len = input.readVarUint32();
         CaseInsensitiveSet data = new CaseInsensitiveSet(len);
         for (int i = 0; i < len; i++) {
-            data.add((CharSequence) fury.readRef(input));
+            data.add((CharSequence) fory.readRef(input));
         }
         return data;
     }

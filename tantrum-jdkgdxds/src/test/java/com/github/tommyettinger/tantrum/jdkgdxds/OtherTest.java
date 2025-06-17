@@ -2,9 +2,9 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.Junction;
 import com.github.tommyettinger.ds.ObjectList;
-import org.apache.fury.Fury;
-import org.apache.fury.config.Language;
-import org.apache.fury.logging.LoggerFactory;
+import org.apache.fory.Fory;
+import org.apache.fory.config.Language;
+import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,21 +13,21 @@ public class OtherTest {
     @Test
     public void testJunction() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
-//        fury.registerSerializer(ObjectList.class, new CollectionSerializer<>(fury, ObjectList.class));
-//        fury.register(ObjectList.class);
-        fury.register(Junction.class);
-        fury.register(Junction.Any.class);
-        fury.register(Junction.All.class);
-        fury.register(Junction.One.class);
-        fury.register(Junction.Not.class);
-        fury.register(Junction.Leaf.class);
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+//        fory.registerSerializer(ObjectList.class, new CollectionSerializer<>(fory, ObjectList.class));
+//        fory.register(ObjectList.class);
+        fory.register(Junction.class);
+        fory.register(Junction.Any.class);
+        fory.register(Junction.All.class);
+        fory.register(Junction.One.class);
+        fory.register(Junction.Not.class);
+        fory.register(Junction.Leaf.class);
 
         Junction<String> data = Junction.parse("(foo|bar|baz)^QUUX^woop woop");
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            Junction<?> data2 = fury.deserializeJavaObject(bytes, Junction.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            Junction<?> data2 = fory.deserializeJavaObject(bytes, Junction.class);
             Assert.assertEquals(data, data2);
         }
 

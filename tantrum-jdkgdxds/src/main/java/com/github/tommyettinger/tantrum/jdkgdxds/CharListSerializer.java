@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharList;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link CharList}s.
+ * Fory {@link Serializer} for jdkgdxds {@link CharList}s.
  */
 public class CharListSerializer extends Serializer<CharList> {
 
-    public CharListSerializer(Fury fury) {
-        super(fury, CharList.class);
+    public CharListSerializer(Fory fory) {
+        super(fory, CharList.class);
     }
 
     @Override

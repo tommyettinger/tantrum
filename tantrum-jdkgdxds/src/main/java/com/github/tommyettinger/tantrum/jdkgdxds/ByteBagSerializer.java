@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ByteBag;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ByteBag}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ByteBag}s.
  */
 public class ByteBagSerializer extends Serializer<ByteBag> {
 
-    public ByteBagSerializer(Fury fury) {
-        super(fury, ByteBag.class);
+    public ByteBagSerializer(Fory fory) {
+        super(fory, ByteBag.class);
     }
 
     @Override

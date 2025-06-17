@@ -20,29 +20,29 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntObjectOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link IntObjectOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link IntObjectOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMap> {
 
-    public IntObjectOrderedMapSerializer(Fury fury) {
-        super(fury, IntObjectOrderedMap.class);
+    public IntObjectOrderedMapSerializer(Fory fory) {
+        super(fory, IntObjectOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final IntObjectOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.values()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeBoolean(data.order() instanceof IntDeque);
-        fury.writeRef(output, data.getDefaultValue());
+        fory.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -51,11 +51,11 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
         final int len = ks.length;
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
+            vs[i] = fory.readRef(input);
         }
 
         IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, input.readBoolean());
-        data.setDefaultValue(fury.readRef(input));
+        data.setDefaultValue(fory.readRef(input));
         return data;
 
     }

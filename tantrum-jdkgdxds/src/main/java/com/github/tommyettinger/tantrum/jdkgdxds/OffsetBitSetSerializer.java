@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.OffsetBitSet;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link OffsetBitSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link OffsetBitSet}s.
  */
 public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
 
-    public OffsetBitSetSerializer(Fury fury) {
-        super(fury, OffsetBitSet.class);
+    public OffsetBitSetSerializer(Fory fory) {
+        super(fory, OffsetBitSet.class);
     }
 
     @Override

@@ -18,9 +18,9 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.*;
-import org.apache.fury.Fury;
-import org.apache.fury.config.Language;
-import org.apache.fury.logging.LoggerFactory;
+import org.apache.fory.Fory;
+import org.apache.fory.config.Language;
+import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,13 +28,13 @@ public class MapTest {
     @Test
     public void testLongObjectMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongObjectMap.class, new LongObjectMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongObjectMap.class, new LongObjectMapSerializer(fory));
 
         LongObjectMap<Float> data = LongObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongObjectMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongObjectMap<?> data2 = fory.deserializeJavaObject(bytes, LongObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -42,13 +42,13 @@ public class MapTest {
     @Test
     public void testLongObjectOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongObjectOrderedMap.class, new LongObjectOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongObjectOrderedMap.class, new LongObjectOrderedMapSerializer(fory));
 
         LongObjectOrderedMap<Float> data = LongObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, LongObjectOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongObjectOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, LongObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -56,13 +56,13 @@ public class MapTest {
     @Test
     public void testLongFloatMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongFloatMap.class, new LongFloatMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongFloatMap.class, new LongFloatMapSerializer(fory));
 
         LongFloatMap data = LongFloatMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongFloatMap data2 = fury.deserializeJavaObject(bytes, LongFloatMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongFloatMap data2 = fory.deserializeJavaObject(bytes, LongFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -70,13 +70,13 @@ public class MapTest {
     @Test
     public void testLongFloatOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongFloatOrderedMap.class, new LongFloatOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongFloatOrderedMap.class, new LongFloatOrderedMapSerializer(fory));
 
         LongFloatOrderedMap data = LongFloatOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongFloatOrderedMap data2 = fury.deserializeJavaObject(bytes, LongFloatOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, LongFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -85,13 +85,13 @@ public class MapTest {
     @Test
     public void testLongIntMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongIntMap.class, new LongIntMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongIntMap.class, new LongIntMapSerializer(fory));
 
         LongIntMap data = LongIntMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongIntMap data2 = fury.deserializeJavaObject(bytes, LongIntMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongIntMap data2 = fory.deserializeJavaObject(bytes, LongIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -99,13 +99,13 @@ public class MapTest {
     @Test
     public void testLongIntOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongIntOrderedMap.class, new LongIntOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongIntOrderedMap.class, new LongIntOrderedMapSerializer(fory));
 
         LongIntOrderedMap data = LongIntOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongIntOrderedMap data2 = fury.deserializeJavaObject(bytes, LongIntOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongIntOrderedMap data2 = fory.deserializeJavaObject(bytes, LongIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -113,13 +113,13 @@ public class MapTest {
     @Test
     public void testLongLongMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongLongMap.class, new LongLongMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongLongMap.class, new LongLongMapSerializer(fory));
 
         LongLongMap data = LongLongMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongLongMap data2 = fury.deserializeJavaObject(bytes, LongLongMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongLongMap data2 = fory.deserializeJavaObject(bytes, LongLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -127,13 +127,13 @@ public class MapTest {
     @Test
     public void testLongLongOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(LongLongOrderedMap.class, new LongLongOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongLongOrderedMap.class, new LongLongOrderedMapSerializer(fory));
 
         LongLongOrderedMap data = LongLongOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            LongLongOrderedMap data2 = fury.deserializeJavaObject(bytes, LongLongOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            LongLongOrderedMap data2 = fory.deserializeJavaObject(bytes, LongLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -142,13 +142,13 @@ public class MapTest {
     @Test
     public void testIntObjectMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntObjectMap.class, new IntObjectMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntObjectMap.class, new IntObjectMapSerializer(fory));
 
         IntObjectMap<Float> data = IntObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntObjectMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntObjectMap<?> data2 = fory.deserializeJavaObject(bytes, IntObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -156,13 +156,13 @@ public class MapTest {
     @Test
     public void testIntObjectOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntObjectOrderedMap.class, new IntObjectOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntObjectOrderedMap.class, new IntObjectOrderedMapSerializer(fory));
 
         IntObjectOrderedMap<Float> data = IntObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntObjectOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, IntObjectOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntObjectOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, IntObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -170,13 +170,13 @@ public class MapTest {
     @Test
     public void testIntFloatMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fory));
 
         IntFloatMap data = IntFloatMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntFloatMap data2 = fury.deserializeJavaObject(bytes, IntFloatMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntFloatMap data2 = fory.deserializeJavaObject(bytes, IntFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -184,13 +184,13 @@ public class MapTest {
     @Test
     public void testIntFloatOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntFloatOrderedMap.class, new IntFloatOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntFloatOrderedMap.class, new IntFloatOrderedMapSerializer(fory));
 
         IntFloatOrderedMap data = IntFloatOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntFloatOrderedMap data2 = fury.deserializeJavaObject(bytes, IntFloatOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, IntFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -199,13 +199,13 @@ public class MapTest {
     @Test
     public void testIntIntMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fory));
 
         IntIntMap data = IntIntMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntIntMap data2 = fury.deserializeJavaObject(bytes, IntIntMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntIntMap data2 = fory.deserializeJavaObject(bytes, IntIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -213,13 +213,13 @@ public class MapTest {
     @Test
     public void testIntIntOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntIntOrderedMap.class, new IntIntOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntIntOrderedMap.class, new IntIntOrderedMapSerializer(fory));
 
         IntIntOrderedMap data = IntIntOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntIntOrderedMap data2 = fury.deserializeJavaObject(bytes, IntIntOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntIntOrderedMap data2 = fory.deserializeJavaObject(bytes, IntIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -228,13 +228,13 @@ public class MapTest {
     @Test
     public void testIntLongMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntLongMap.class, new IntLongMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntLongMap.class, new IntLongMapSerializer(fory));
 
         IntLongMap data = IntLongMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntLongMap data2 = fury.deserializeJavaObject(bytes, IntLongMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntLongMap data2 = fory.deserializeJavaObject(bytes, IntLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -242,13 +242,13 @@ public class MapTest {
     @Test
     public void testIntLongOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(IntLongOrderedMap.class, new IntLongOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(IntLongOrderedMap.class, new IntLongOrderedMapSerializer(fory));
 
         IntLongOrderedMap data = IntLongOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            IntLongOrderedMap data2 = fury.deserializeJavaObject(bytes, IntLongOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            IntLongOrderedMap data2 = fory.deserializeJavaObject(bytes, IntLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -257,14 +257,14 @@ public class MapTest {
     @Test
     public void testObjectObjectMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectObjectMap.class, new ObjectObjectMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectObjectMap.class, new ObjectObjectMapSerializer(fory));
 
         ObjectObjectMap<String, Integer> data = ObjectObjectMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectObjectMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectObjectMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -272,14 +272,14 @@ public class MapTest {
     @Test
     public void testObjectObjectOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fory));
 
         ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectObjectOrderedMap<?,?> data2 = fury.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectObjectOrderedMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -287,14 +287,14 @@ public class MapTest {
     @Test
     public void testObjectIntMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fory));
 
         ObjectIntMap<String> data = ObjectIntMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectIntMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectIntMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -302,14 +302,14 @@ public class MapTest {
     @Test
     public void testObjectIntOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectIntOrderedMap.class, new ObjectIntOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectIntOrderedMap.class, new ObjectIntOrderedMapSerializer(fory));
 
         ObjectIntOrderedMap<String> data = ObjectIntOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectIntOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectIntOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectIntOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -318,14 +318,14 @@ public class MapTest {
     @Test
     public void testObjectLongMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fory));
 
         ObjectLongMap<String> data = ObjectLongMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
                 4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectLongMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectLongMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -333,14 +333,14 @@ public class MapTest {
     @Test
     public void testObjectLongOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectLongOrderedMap.class, new ObjectLongOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectLongOrderedMap.class, new ObjectLongOrderedMapSerializer(fory));
 
         ObjectLongOrderedMap<String> data = ObjectLongOrderedMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
                 4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectLongOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectLongOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectLongOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -349,14 +349,14 @@ public class MapTest {
     @Test
     public void testObjectFloatMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fory));
 
         ObjectFloatMap<String> data = ObjectFloatMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
                 4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectFloatMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectFloatMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -364,14 +364,14 @@ public class MapTest {
     @Test
     public void testObjectFloatOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(ObjectFloatOrderedMap.class, new ObjectFloatOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(ObjectFloatOrderedMap.class, new ObjectFloatOrderedMapSerializer(fory));
 
         ObjectFloatOrderedMap<String> data = ObjectFloatOrderedMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
                 4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            ObjectFloatOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, ObjectFloatOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            ObjectFloatOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -380,14 +380,14 @@ public class MapTest {
     @Test
     public void testCaseInsensitiveMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(CaseInsensitiveMap.class, new CaseInsensitiveMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(CaseInsensitiveMap.class, new CaseInsensitiveMapSerializer(fory));
 
         CaseInsensitiveMap<Integer> data = CaseInsensitiveMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            CaseInsensitiveMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            CaseInsensitiveMap<?> data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -395,14 +395,14 @@ public class MapTest {
     @Test
     public void testCaseInsensitiveOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(CaseInsensitiveOrderedMap.class, new CaseInsensitiveOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(CaseInsensitiveOrderedMap.class, new CaseInsensitiveOrderedMapSerializer(fory));
 
         CaseInsensitiveOrderedMap<Integer> data = CaseInsensitiveOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            CaseInsensitiveOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, CaseInsensitiveOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            CaseInsensitiveOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -411,14 +411,14 @@ public class MapTest {
     public void testFilteredStringMap() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(FilteredStringMap.class, new FilteredStringMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(FilteredStringMap.class, new FilteredStringMapSerializer(fory));
 
         FilteredStringMap<Integer> data = FilteredStringMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
                 "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            FilteredStringMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            FilteredStringMap<?> data2 = fory.deserializeJavaObject(bytes, FilteredStringMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -427,14 +427,14 @@ public class MapTest {
     public void testFilteredStringOrderedMap() {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(FilteredStringOrderedMap.class, new FilteredStringOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(FilteredStringOrderedMap.class, new FilteredStringOrderedMapSerializer(fory));
 
         FilteredStringOrderedMap<Integer> data = FilteredStringOrderedMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
                 "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            FilteredStringOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, FilteredStringOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            FilteredStringOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, FilteredStringOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -442,15 +442,15 @@ public class MapTest {
     @Test
     public void testEnumMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumMap.class, new EnumMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumMap.class, new EnumMapSerializer(fory));
 
         EnumMap<Integer> data = EnumMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumMap<?> data2 = fury.deserializeJavaObject(bytes, EnumMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumMap<?> data2 = fory.deserializeJavaObject(bytes, EnumMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -458,15 +458,15 @@ public class MapTest {
     @Test
     public void testEnumOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumOrderedMap.class, new EnumOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumOrderedMap.class, new EnumOrderedMapSerializer(fory));
 
         EnumOrderedMap<Integer> data = EnumOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumOrderedMap<?> data2 = fury.deserializeJavaObject(bytes, EnumOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, EnumOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -474,15 +474,15 @@ public class MapTest {
     @Test
     public void testEnumIntMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumIntMap.class, new EnumIntMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumIntMap.class, new EnumIntMapSerializer(fory));
 
         EnumIntMap data = EnumIntMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumIntMap data2 = fury.deserializeJavaObject(bytes, EnumIntMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumIntMap data2 = fory.deserializeJavaObject(bytes, EnumIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -490,15 +490,15 @@ public class MapTest {
     @Test
     public void testEnumIntOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumIntOrderedMap.class, new EnumIntOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumIntOrderedMap.class, new EnumIntOrderedMapSerializer(fory));
 
         EnumIntOrderedMap data = EnumIntOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumIntOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumIntOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumIntOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumIntOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -506,15 +506,15 @@ public class MapTest {
     @Test
     public void testEnumLongMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumLongMap.class, new EnumLongMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumLongMap.class, new EnumLongMapSerializer(fory));
 
         EnumLongMap data = EnumLongMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumLongMap data2 = fury.deserializeJavaObject(bytes, EnumLongMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumLongMap data2 = fory.deserializeJavaObject(bytes, EnumLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -522,15 +522,15 @@ public class MapTest {
     @Test
     public void testEnumLongOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumLongOrderedMap.class, new EnumLongOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumLongOrderedMap.class, new EnumLongOrderedMapSerializer(fory));
 
         EnumLongOrderedMap data = EnumLongOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumLongOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumLongOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumLongOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumLongOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -538,15 +538,15 @@ public class MapTest {
     @Test
     public void testEnumFloatMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumFloatMap.class, new EnumFloatMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumFloatMap.class, new EnumFloatMapSerializer(fory));
 
         EnumFloatMap data = EnumFloatMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumFloatMap data2 = fury.deserializeJavaObject(bytes, EnumFloatMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumFloatMap data2 = fory.deserializeJavaObject(bytes, EnumFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -554,15 +554,15 @@ public class MapTest {
     @Test
     public void testEnumFloatOrderedMap() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.register(Character.UnicodeScript.class);
-        fury.registerSerializer(EnumFloatOrderedMap.class, new EnumFloatOrderedMapSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.register(Character.UnicodeScript.class);
+        fory.registerSerializer(EnumFloatOrderedMap.class, new EnumFloatOrderedMapSerializer(fory));
 
         EnumFloatOrderedMap data = EnumFloatOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fury.serializeJavaObject(data); {
-            EnumFloatOrderedMap data2 = fury.deserializeJavaObject(bytes, EnumFloatOrderedMap.class);
+        byte[] bytes = fory.serializeJavaObject(data); {
+            EnumFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -570,12 +570,12 @@ public class MapTest {
 //    @Test
 //    public void testFilteredIterableMap() {
 //        LoggerFactory.disableLogging();
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
-//        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
-//        fury.registerSerializer(FilteredIterableMap.class, new FilteredIterableMapSerializer(fury));
+//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+//        fory.registerSerializer(FilteredIterableMap.class, new FilteredIterableMapSerializer(fory));
 //
 //        FilteredIterableMap<String, ObjectList<String>, Integer> data = FilteredIterableMap.with(
 //                (String s) -> s.length() > 3, String::toUpperCase,
@@ -584,8 +584,8 @@ public class MapTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot"), Integer.MIN_VALUE
 //        );
 //
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredIterableMap<?,?,?> data2 = fury.deserializeJavaObject(bytes, FilteredIterableMap.class);
+//        byte[] bytes = fory.serializeJavaObject(data); {
+//            FilteredIterableMap<?,?,?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableMap.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -593,12 +593,12 @@ public class MapTest {
 //    @Test
 //    public void testFilteredIterableOrderedMap() {
 //        LoggerFactory.disableLogging();
-//        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+//        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjPredicate.class);
 //        kryo.register(ObjToSameFunction.class);
-//        fury.registerSerializer(ObjectList.class, new ObjectListSerializer(fury));
-//        fury.registerSerializer(FilteredIterableOrderedMap.class, new FilteredIterableOrderedMapSerializer(fury));
+//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+//        fory.registerSerializer(FilteredIterableOrderedMap.class, new FilteredIterableOrderedMapSerializer(fory));
 //
 //        FilteredIterableOrderedMap<String, ObjectList<String>, Integer> data = FilteredIterableOrderedMap.with(
 //                (String s) -> s.length() > 3, String::toUpperCase,
@@ -607,8 +607,8 @@ public class MapTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot"), Integer.MIN_VALUE
 //        );
 //
-//        byte[] bytes = fury.serializeJavaObject(data); {
-//            FilteredIterableOrderedMap<?,?,?> data2 = fury.deserializeJavaObject(bytes, FilteredIterableOrderedMap.class);
+//        byte[] bytes = fory.serializeJavaObject(data); {
+//            FilteredIterableOrderedMap<?,?,?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableOrderedMap.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }

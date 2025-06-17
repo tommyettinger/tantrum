@@ -18,31 +18,31 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumOrderedMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.MapSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.MapSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link EnumOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link EnumOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
 
-    public EnumOrderedMapSerializer(Fury fury) {
-        super(fury, EnumOrderedMap.class);
+    public EnumOrderedMapSerializer(Fory fory) {
+        super(fory, EnumOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final EnumOrderedMap data) {
         output.writeVarUint32(data.size());
         for(Enum<?> k : data.keySet()){
-            fury.writeRef(output, k);
+            fory.writeRef(output, k);
         }
         for(Object v : data.values()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
-        fury.writeRef(output, data.getDefaultValue());
+        fory.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -51,15 +51,15 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
         if(len == 0) return new EnumOrderedMap<>();
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>) fury.readRef(input);
+            ks[i] = (Enum<?>) fory.readRef(input);
         }
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
+            vs[i] = fory.readRef(input);
         }
 
         EnumOrderedMap data = new EnumOrderedMap<>(ks, vs);
-        data.setDefaultValue(fury.readRef(input));
+        data.setDefaultValue(fory.readRef(input));
         return data;
     }
 }

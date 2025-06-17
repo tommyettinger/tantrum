@@ -20,18 +20,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntFloatOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link IntFloatOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link IntFloatOrderedMap}s.
  */
 public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap> {
 
-    public IntFloatOrderedMapSerializer(Fury fury) {
-        super(fury, IntFloatOrderedMap.class);
+    public IntFloatOrderedMapSerializer(Fory fory) {
+        super(fory, IntFloatOrderedMap.class);
     }
 
     @Override

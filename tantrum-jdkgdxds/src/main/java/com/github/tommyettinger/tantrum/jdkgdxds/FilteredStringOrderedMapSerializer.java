@@ -19,48 +19,48 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharFilter;
 import com.github.tommyettinger.ds.FilteredStringOrderedMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.MapSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.MapSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link FilteredStringOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link FilteredStringOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredStringOrderedMap> {
 
-    public FilteredStringOrderedMapSerializer(Fury fury) {
-        super(fury, FilteredStringOrderedMap.class);
+    public FilteredStringOrderedMapSerializer(Fory fory) {
+        super(fory, FilteredStringOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final FilteredStringOrderedMap data) {
-        fury.writeString(output, data.getFilter().getName());
+        fory.writeString(output, data.getFilter().getName());
         output.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fury.writeRef(output, k);
+            fory.writeRef(output, k);
         }
         for(Object v : data.values()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
-        fury.writeRef(output, data.getDefaultValue());
+        fory.writeRef(output, data.getDefaultValue());
     }
 
     @Override
     public FilteredStringOrderedMap<?> read(MemoryBuffer input) {
-        CharFilter filter = CharFilter.get(fury.readString(input));
+        CharFilter filter = CharFilter.get(fory.readString(input));
         final int len = input.readVarUint32();
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (String) fury.readRef(input);
+            ks[i] = (String) fory.readRef(input);
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
+            vs[i] = fory.readRef(input);
         }
         FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs);
-        data.setDefaultValue(fury.readRef(input));
+        data.setDefaultValue(fory.readRef(input));
         return data;
 
     }

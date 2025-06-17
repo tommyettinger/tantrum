@@ -18,19 +18,19 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectOrderedSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectOrderedSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectOrderedSet}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrderedSet> {
 
-    public ObjectOrderedSetSerializer(Fury fury) {
-        super(fury, ObjectOrderedSet.class);
+    public ObjectOrderedSetSerializer(Fory fory) {
+        super(fory, ObjectOrderedSet.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
         final int len = data.size();
         output.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.getAt(i));
+            fory.writeRef(output, data.getAt(i));
         }
     }
 
@@ -47,7 +47,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
         final int len = input.readVarUint32();
         ObjectOrderedSet data = new ObjectOrderedSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

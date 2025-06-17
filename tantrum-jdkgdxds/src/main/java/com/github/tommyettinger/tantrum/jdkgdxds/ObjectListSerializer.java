@@ -18,19 +18,19 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectList;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectList}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectList}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
 
-    public ObjectListSerializer(Fury fury) {
-        super(fury, ObjectList.class);
+    public ObjectListSerializer(Fory fory) {
+        super(fory, ObjectList.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
         final int len = data.size();
         output.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.get(i));
+            fory.writeRef(output, data.get(i));
         }
     }
 
@@ -47,7 +47,7 @@ public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
         final int len = input.readVarUint32();
         ObjectList data = new ObjectList(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

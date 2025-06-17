@@ -20,26 +20,26 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectFloatOrderedMap;
 import com.github.tommyettinger.ds.ObjectIntOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectIntOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectIntOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMap> {
 
-    public ObjectIntOrderedMapSerializer(Fury fury) {
-        super(fury, ObjectIntOrderedMap.class);
+    public ObjectIntOrderedMapSerializer(Fory fory) {
+        super(fory, ObjectIntOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final ObjectIntOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeInt32(data.getDefaultValue());
     }
@@ -50,7 +50,7 @@ public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMa
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fury.readRef(input);
+            ks[i] = fory.readRef(input);
         }
 
         ObjectIntOrderedMap<?> data = new ObjectIntOrderedMap<>(ks, vs);

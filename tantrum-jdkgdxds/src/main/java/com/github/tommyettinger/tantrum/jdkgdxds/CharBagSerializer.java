@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharBag;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link CharBag}s.
+ * Fory {@link Serializer} for jdkgdxds {@link CharBag}s.
  */
 public class CharBagSerializer extends Serializer<CharBag> {
 
-    public CharBagSerializer(Fury fury) {
-        super(fury, CharBag.class);
+    public CharBagSerializer(Fory fory) {
+        super(fory, CharBag.class);
     }
 
     @Override

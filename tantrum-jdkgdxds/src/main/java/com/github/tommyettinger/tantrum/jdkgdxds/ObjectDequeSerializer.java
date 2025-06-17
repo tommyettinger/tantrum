@@ -18,28 +18,28 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectDeque;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectDeque}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectDeque}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
 
-    public ObjectDequeSerializer(Fury fury) {
-        super(fury, ObjectDeque.class);
+    public ObjectDequeSerializer(Fory fory) {
+        super(fory, ObjectDeque.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final ObjectDeque data) {
         final int len = data.size();
         output.writeVarUint32(len);
-        fury.writeRef(output, data.getDefaultValue());
+        fory.writeRef(output, data.getDefaultValue());
         for (int i = 0; i < len; i++) {
-            fury.writeRef(output, data.get(i));
+            fory.writeRef(output, data.get(i));
         }
     }
 
@@ -47,9 +47,9 @@ public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
     public ObjectDeque read(MemoryBuffer input) {
         final int len = input.readVarUint32();
         ObjectDeque data = new ObjectDeque(len);
-        data.setDefaultValue(fury.readRef(input));
+        data.setDefaultValue(fory.readRef(input));
         for (int i = 0; i < len; i++)
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         return data;
     }
 }

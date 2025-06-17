@@ -19,25 +19,25 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumFloatMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.memory.Platform;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.memory.Platform;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link EnumFloatMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link EnumFloatMap}s.
  */
 public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
 
-    public EnumFloatMapSerializer(Fury fury) {
-        super(fury, EnumFloatMap.class);
+    public EnumFloatMapSerializer(Fory fory) {
+        super(fory, EnumFloatMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final EnumFloatMap data) {
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         for(Enum<?> v : data.keySet()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeFloat32(data.getDefaultValue());
     }
@@ -48,7 +48,7 @@ public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fury.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef(input);
         }
 
         EnumFloatMap data = new EnumFloatMap(ks, vs);

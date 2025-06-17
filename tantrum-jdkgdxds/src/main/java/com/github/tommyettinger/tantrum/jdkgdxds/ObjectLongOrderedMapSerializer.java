@@ -19,27 +19,27 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectLongMap;
 import com.github.tommyettinger.ds.ObjectLongOrderedMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectLongOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectLongOrderedMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrderedMap> {
 
-    public ObjectLongOrderedMapSerializer(Fury fury) {
-        super(fury, ObjectLongOrderedMap.class);
+    public ObjectLongOrderedMapSerializer(Fory fory) {
+        super(fory, ObjectLongOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final ObjectLongOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Object v : data.keySet()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeInt64(data.getDefaultValue());
     }
@@ -50,7 +50,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fury.readRef(input);
+            ks[i] = fory.readRef(input);
         }
 
         ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs);

@@ -20,18 +20,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.LongFloatMap;
 import com.github.tommyettinger.ds.LongIntMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongFloatMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link LongFloatMap}s.
  */
 public class LongFloatMapSerializer extends Serializer<LongFloatMap> {
 
-    public LongFloatMapSerializer(Fury fury) {
-        super(fury, LongFloatMap.class);
+    public LongFloatMapSerializer(Fory fory) {
+        super(fory, LongFloatMap.class);
     }
 
     @Override

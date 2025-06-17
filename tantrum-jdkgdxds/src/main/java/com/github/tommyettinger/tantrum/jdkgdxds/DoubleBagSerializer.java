@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.DoubleBag;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link DoubleBag}s.
+ * Fory {@link Serializer} for jdkgdxds {@link DoubleBag}s.
  */
 public class DoubleBagSerializer extends Serializer<DoubleBag> {
 
-    public DoubleBagSerializer(Fury fury) {
-        super(fury, DoubleBag.class);
+    public DoubleBagSerializer(Fory fory) {
+        super(fory, DoubleBag.class);
     }
 
     @Override

@@ -18,19 +18,19 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.NumberedSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link NumberedSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link NumberedSet}s.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
 
-    public NumberedSetSerializer(Fury fury) {
-        super(fury, NumberedSet.class);
+    public NumberedSetSerializer(Fory fory) {
+        super(fory, NumberedSet.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
         final int len = data.size();
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -47,7 +47,7 @@ public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
         final int len = input.readVarUint32();
         NumberedSet data = new NumberedSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

@@ -19,37 +19,37 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharFilter;
 import com.github.tommyettinger.ds.FilteredStringOrderedSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link FilteredStringOrderedSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link FilteredStringOrderedSet}s.
  */
 public class FilteredStringOrderedSetSerializer extends CollectionSerializer<FilteredStringOrderedSet> {
 
-    public FilteredStringOrderedSetSerializer(Fury fury) {
-        super(fury, FilteredStringOrderedSet.class);
+    public FilteredStringOrderedSetSerializer(Fory fory) {
+        super(fory, FilteredStringOrderedSet.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final FilteredStringOrderedSet data) {
-        fury.writeString(output, data.getFilter().getName());
+        fory.writeString(output, data.getFilter().getName());
         final int len = data.size();
         output.writeVarUint32(len);
         for (String item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
     @Override
     public FilteredStringOrderedSet read(MemoryBuffer input) {
-        CharFilter filter = CharFilter.get(fury.readString(input));
+        CharFilter filter = CharFilter.get(fory.readString(input));
         final int len = input.readVarUint32();
         FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len);
         for (int i = 0; i < len; i++) {
-            data.add((String) fury.readRef(input));
+            data.add((String) fory.readRef(input));
         }
         return data;
     }

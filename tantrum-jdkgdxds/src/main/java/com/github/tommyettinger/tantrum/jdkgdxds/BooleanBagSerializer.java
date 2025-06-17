@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.BooleanBag;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link BooleanBag}s.
+ * Fory {@link Serializer} for jdkgdxds {@link BooleanBag}s.
  */
 public class BooleanBagSerializer extends Serializer<BooleanBag> {
 
-    public BooleanBagSerializer(Fury fury) {
-        super(fury, BooleanBag.class);
+    public BooleanBagSerializer(Fory fory) {
+        super(fory, BooleanBag.class);
     }
 
     @Override

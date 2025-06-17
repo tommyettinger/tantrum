@@ -18,31 +18,31 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectObjectMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.MapSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.MapSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectObjectMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectObjectMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class ObjectObjectMapSerializer extends MapSerializer<ObjectObjectMap> {
 
-    public ObjectObjectMapSerializer(Fury fury) {
-        super(fury, ObjectObjectMap.class);
+    public ObjectObjectMapSerializer(Fory fory) {
+        super(fory, ObjectObjectMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final ObjectObjectMap data) {
         output.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fury.writeRef(output, k);
+            fory.writeRef(output, k);
         }
         for(Object v : data.values()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
-        fury.writeRef(output, data.getDefaultValue());
+        fory.writeRef(output, data.getDefaultValue());
     }
 
     @Override
@@ -50,14 +50,14 @@ public class ObjectObjectMapSerializer extends MapSerializer<ObjectObjectMap> {
         final int len = input.readVarUint32();
         Object[] ks = new Object[len], vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fury.readRef(input);
+            ks[i] = fory.readRef(input);
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fury.readRef(input);
+            vs[i] = fory.readRef(input);
         }
 
         ObjectObjectMap data = new ObjectObjectMap<>(ks, vs);
-        data.setDefaultValue(fury.readRef(input));
+        data.setDefaultValue(fory.readRef(input));
         return data;
     }
 }

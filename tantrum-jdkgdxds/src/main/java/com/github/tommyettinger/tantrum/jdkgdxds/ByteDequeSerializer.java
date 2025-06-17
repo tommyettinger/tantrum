@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ByteDeque;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ByteDeque}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ByteDeque}s.
  */
 public class ByteDequeSerializer extends Serializer<ByteDeque> {
 
-    public ByteDequeSerializer(Fury fury) {
-        super(fury, ByteDeque.class);
+    public ByteDequeSerializer(Fory fory) {
+        super(fory, ByteDeque.class);
     }
 
     @Override

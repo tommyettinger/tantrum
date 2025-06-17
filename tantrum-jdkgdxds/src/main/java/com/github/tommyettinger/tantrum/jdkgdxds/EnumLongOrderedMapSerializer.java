@@ -19,25 +19,25 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumLongOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.memory.Platform;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.memory.Platform;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link EnumLongOrderedMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link EnumLongOrderedMap}s.
  */
 public class EnumLongOrderedMapSerializer extends Serializer<EnumLongOrderedMap> {
 
-    public EnumLongOrderedMapSerializer(Fury fury) {
-        super(fury, EnumLongOrderedMap.class);
+    public EnumLongOrderedMapSerializer(Fory fory) {
+        super(fory, EnumLongOrderedMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final EnumLongOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Enum<?> v : data.keySet()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeInt64(data.getDefaultValue());
     }
@@ -48,7 +48,7 @@ public class EnumLongOrderedMapSerializer extends Serializer<EnumLongOrderedMap>
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fury.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef(input);
         }
 
         EnumLongOrderedMap data = new EnumLongOrderedMap(ks, vs);

@@ -18,18 +18,18 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.serializer.collection.CollectionSerializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.serializer.collection.CollectionSerializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link EnumSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link EnumSet}s.
  */
 public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
 
-    public EnumSetSerializer(Fury fury) {
-        super(fury, EnumSet.class);
+    public EnumSetSerializer(Fory fory) {
+        super(fory, EnumSet.class);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
         final int len = data.size();
         output.writeVarUint32(len);
         for (Enum<?> item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -46,7 +46,7 @@ public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
         final int len = input.readVarUint32();
         EnumSet data = new EnumSet();
         for (int i = 0; i < len; i++) {
-            data.add((Enum<?>)fury.readRef(input));
+            data.add((Enum<?>)fory.readRef(input));
         }
         return data;
     }

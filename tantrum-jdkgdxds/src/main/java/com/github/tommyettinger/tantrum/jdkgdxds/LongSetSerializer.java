@@ -18,19 +18,19 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link LongSet}s.
+ * Fory {@link Serializer} for jdkgdxds {@link LongSet}s.
  */
 public class LongSetSerializer extends Serializer<LongSet> {
 
-    public LongSetSerializer(Fury fury) {
-        super(fury, LongSet.class);
+    public LongSetSerializer(Fory fory) {
+        super(fory, LongSet.class);
     }
 
     @Override

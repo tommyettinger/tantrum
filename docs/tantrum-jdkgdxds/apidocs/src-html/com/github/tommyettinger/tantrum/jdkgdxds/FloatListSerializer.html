@@ -32,18 +32,18 @@
 <span class="source-line-no">019</span><span id="line-19"></span>
 <span class="source-line-no">020</span><span id="line-20">import com.github.tommyettinger.ds.FloatList;</span>
 <span class="source-line-no">021</span><span id="line-21">import com.github.tommyettinger.tantrum.digital.helpers.Support;</span>
-<span class="source-line-no">022</span><span id="line-22">import org.apache.fury.Fury;</span>
-<span class="source-line-no">023</span><span id="line-23">import org.apache.fury.memory.MemoryBuffer;</span>
-<span class="source-line-no">024</span><span id="line-24">import org.apache.fury.serializer.Serializer;</span>
-<span class="source-line-no">025</span><span id="line-25">import org.apache.fury.memory.Platform;</span>
+<span class="source-line-no">022</span><span id="line-22">import org.apache.fory.Fory;</span>
+<span class="source-line-no">023</span><span id="line-23">import org.apache.fory.memory.MemoryBuffer;</span>
+<span class="source-line-no">024</span><span id="line-24">import org.apache.fory.serializer.Serializer;</span>
+<span class="source-line-no">025</span><span id="line-25">import org.apache.fory.memory.Platform;</span>
 <span class="source-line-no">026</span><span id="line-26"></span>
 <span class="source-line-no">027</span><span id="line-27">/**</span>
-<span class="source-line-no">028</span><span id="line-28"> * Fury {@link Serializer} for jdkgdxds {@link FloatList}s.</span>
+<span class="source-line-no">028</span><span id="line-28"> * Fory {@link Serializer} for jdkgdxds {@link FloatList}s.</span>
 <span class="source-line-no">029</span><span id="line-29"> */</span>
 <span class="source-line-no">030</span><span id="line-30">public class FloatListSerializer extends Serializer&lt;FloatList&gt; {</span>
 <span class="source-line-no">031</span><span id="line-31"></span>
-<span class="source-line-no">032</span><span id="line-32">    public FloatListSerializer(Fury fury) {</span>
-<span class="source-line-no">033</span><span id="line-33">        super(fury, FloatList.class);</span>
+<span class="source-line-no">032</span><span id="line-32">    public FloatListSerializer(Fory fory) {</span>
+<span class="source-line-no">033</span><span id="line-33">        super(fory, FloatList.class);</span>
 <span class="source-line-no">034</span><span id="line-34">    }</span>
 <span class="source-line-no">035</span><span id="line-35"></span>
 <span class="source-line-no">036</span><span id="line-36">    @Override</span>

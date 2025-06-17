@@ -20,26 +20,26 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectIntMap;
 import com.github.tommyettinger.ds.ObjectIntOrderedMap;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ObjectIntMap}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ObjectIntMap}s.
  */
 @SuppressWarnings("rawtypes")
 public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
 
-    public ObjectIntMapSerializer(Fury fury) {
-        super(fury, ObjectIntMap.class);
+    public ObjectIntMapSerializer(Fory fory) {
+        super(fory, ObjectIntMap.class);
     }
 
     @Override
     public void write(final MemoryBuffer output, final ObjectIntMap data) {
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fury.writeRef(output, v);
+            fory.writeRef(output, v);
         }
         output.writeInt32(data.getDefaultValue());
     }
@@ -50,7 +50,7 @@ public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fury.readRef(input);
+            ks[i] = fory.readRef(input);
         }
 
         ObjectIntMap<?> data = new ObjectIntMap<>(ks, vs);

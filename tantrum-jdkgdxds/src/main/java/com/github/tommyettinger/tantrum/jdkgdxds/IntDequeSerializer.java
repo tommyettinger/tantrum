@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link IntDeque}s.
+ * Fory {@link Serializer} for jdkgdxds {@link IntDeque}s.
  */
 public class IntDequeSerializer extends Serializer<IntDeque> {
 
-    public IntDequeSerializer(Fury fury) {
-        super(fury, IntDeque.class);
+    public IntDequeSerializer(Fory fory) {
+        super(fory, IntDeque.class);
     }
 
     @Override

@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.FloatList;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link FloatList}s.
+ * Fory {@link Serializer} for jdkgdxds {@link FloatList}s.
  */
 public class FloatListSerializer extends Serializer<FloatList> {
 
-    public FloatListSerializer(Fury fury) {
-        super(fury, FloatList.class);
+    public FloatListSerializer(Fory fory) {
+        super(fory, FloatList.class);
     }
 
     @Override
