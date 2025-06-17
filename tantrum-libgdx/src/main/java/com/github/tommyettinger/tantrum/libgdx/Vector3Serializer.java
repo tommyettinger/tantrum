@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Vector3;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Vector3}s.
+ * Fory {@link Serializer} for libGDX {@link Vector3}s.
  */
 public class Vector3Serializer extends Serializer<Vector3> {
-    public Vector3Serializer(Fury fury) {
-        super(fury, Vector3.class);
+    public Vector3Serializer(Fory fory) {
+        super(fory, Vector3.class);
     }
 
     @Override

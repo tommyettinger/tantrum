@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ShortArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link ShortArray}s.
+ * Fory {@link Serializer} for jdkgdxds {@link ShortArray}s.
  */
 public class ShortArraySerializer extends Serializer<ShortArray> {
 
-    public ShortArraySerializer(Fury fury) {
-        super(fury, ShortArray.class);
+    public ShortArraySerializer(Fory fory) {
+        super(fory, ShortArray.class);
     }
 
     @Override

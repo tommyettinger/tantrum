@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ObjectMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link ObjectMap}s.
+ * Fory {@link Serializer} for libGDX {@link ObjectMap}s.
  */
 public class ObjectMapSerializer extends Serializer<ObjectMap> {
-    public ObjectMapSerializer(Fury fury) {
-        super(fury, ObjectMap.class);
+    public ObjectMapSerializer(Fory fory) {
+        super(fory, ObjectMap.class);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class ObjectMapSerializer extends Serializer<ObjectMap> {
         final int len = data.size;
         output.writeVarUint32(len);
         for (Object item : data.keys()) {
-            fury.writeRef(output, item);
-            fury.writeRef(output, data.get(item));
+            fory.writeRef(output, item);
+            fory.writeRef(output, data.get(item));
         }
     }
 
@@ -45,7 +45,7 @@ public class ObjectMapSerializer extends Serializer<ObjectMap> {
         final int len = input.readVarUint32();
         ObjectMap data = new ObjectMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(fury.readRef(input), fury.readRef(input));
+            data.put(fory.readRef(input), fory.readRef(input));
         }
         return data;
     }

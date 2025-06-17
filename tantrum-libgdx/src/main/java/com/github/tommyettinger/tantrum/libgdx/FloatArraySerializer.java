@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.FloatArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link FloatArray}s.
+ * Fory {@link Serializer} for jdkgdxds {@link FloatArray}s.
  */
 public class FloatArraySerializer extends Serializer<FloatArray> {
 
-    public FloatArraySerializer(Fury fury) {
-        super(fury, FloatArray.class);
+    public FloatArraySerializer(Fory fory) {
+        super(fory, FloatArray.class);
     }
 
     @Override

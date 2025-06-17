@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Circle;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Circle}s.
+ * Fory {@link Serializer} for libGDX {@link Circle}s.
  */
 public class CircleSerializer extends Serializer<Circle> {
-    public CircleSerializer(Fury fury) {
-        super(fury, Circle.class);
+    public CircleSerializer(Fory fory) {
+        super(fory, Circle.class);
     }
 
     @Override

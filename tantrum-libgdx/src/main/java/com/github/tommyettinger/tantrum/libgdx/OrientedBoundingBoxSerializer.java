@@ -21,16 +21,16 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.OrientedBoundingBox;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link OrientedBoundingBox}s.
+ * Fory {@link Serializer} for libGDX {@link OrientedBoundingBox}s.
  */
 public class OrientedBoundingBoxSerializer extends Serializer<OrientedBoundingBox> {
-    public OrientedBoundingBoxSerializer(Fury fury) {
-        super(fury, OrientedBoundingBox.class);
+    public OrientedBoundingBoxSerializer(Fory fory) {
+        super(fory, OrientedBoundingBox.class);
     }
 
     @Override
@@ -46,7 +46,6 @@ public class OrientedBoundingBoxSerializer extends Serializer<OrientedBoundingBo
         for (int i = 0; i < 16; i++) {
             output.writeFloat32(val[i]);
         }
-
     }
 
     @Override

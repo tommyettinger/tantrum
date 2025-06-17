@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Quaternion;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Quaternion}s.
+ * Fory {@link Serializer} for libGDX {@link Quaternion}s.
  */
 public class QuaternionSerializer extends Serializer<Quaternion> {
-    public QuaternionSerializer(Fury fury) {
-        super(fury, Quaternion.class);
+    public QuaternionSerializer(Fory fory) {
+        super(fory, Quaternion.class);
     }
 
     @Override

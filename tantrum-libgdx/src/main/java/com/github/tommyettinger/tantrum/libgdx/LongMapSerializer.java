@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.LongMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link LongMap}s.
+ * Fory {@link Serializer} for libGDX {@link LongMap}s.
  */
 public class LongMapSerializer extends Serializer<LongMap> {
-    public LongMapSerializer(Fury fury) {
-        super(fury, LongMap.class);
+    public LongMapSerializer(Fory fory) {
+        super(fory, LongMap.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class LongMapSerializer extends Serializer<LongMap> {
         for (long item; keys.hasNext;) {
             item = keys.next();
             output.writeInt64(item);
-            fury.writeRef(output, data.get(item));
+            fory.writeRef(output, data.get(item));
         }
     }
 
@@ -47,7 +47,7 @@ public class LongMapSerializer extends Serializer<LongMap> {
         final int len = input.readVarUint32();
         LongMap data = new LongMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt64(), fury.readRef(input));
+            data.put(input.readInt64(), fory.readRef(input));
         }
         return data;
     }

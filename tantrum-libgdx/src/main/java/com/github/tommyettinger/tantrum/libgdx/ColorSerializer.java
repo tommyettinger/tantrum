@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.graphics.Color;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Color}s.
+ * Fory {@link Serializer} for libGDX {@link Color}s.
  */
 public class ColorSerializer extends Serializer<Color> {
-    public ColorSerializer(Fury fury) {
-        super(fury, Color.class);
+    public ColorSerializer(Fory fory) {
+        super(fory, Color.class);
     }
 
     @Override

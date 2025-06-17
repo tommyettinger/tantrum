@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Ellipse;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Ellipse}s.
+ * Fory {@link Serializer} for libGDX {@link Ellipse}s.
  */
 public class EllipseSerializer extends Serializer<Ellipse> {
-    public EllipseSerializer(Fury fury) {
-        super(fury, Ellipse.class);
+    public EllipseSerializer(Fory fory) {
+        super(fory, Ellipse.class);
     }
 
     @Override

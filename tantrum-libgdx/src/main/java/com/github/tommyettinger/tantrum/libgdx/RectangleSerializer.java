@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Rectangle;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Rectangle}s.
+ * Fory {@link Serializer} for libGDX {@link Rectangle}s.
  */
 public class RectangleSerializer extends Serializer<Rectangle> {
-    public RectangleSerializer(Fury fury) {
-        super(fury, Rectangle.class);
+    public RectangleSerializer(Fory fory) {
+        super(fory, Rectangle.class);
     }
 
     @Override

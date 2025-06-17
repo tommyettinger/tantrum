@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Array;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Array}s.
+ * Fory {@link Serializer} for libGDX {@link Array}s.
  */
 public class ArraySerializer extends Serializer<Array> {
-    public ArraySerializer(Fury fury) {
-        super(fury, Array.class);
+    public ArraySerializer(Fory fory) {
+        super(fory, Array.class);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ArraySerializer extends Serializer<Array> {
         output.writeBoolean(data.ordered);
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -46,7 +46,7 @@ public class ArraySerializer extends Serializer<Array> {
         final int len = input.readVarUint32();
         Array data = new Array(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

@@ -18,21 +18,21 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.RandomXS128;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link RandomXS128}s.
+ * Fory {@link Serializer} for libGDX {@link RandomXS128}s.
  * A serializer must be used if you want to work with RandomXS128 in newer Java versions, because if you use the
- * default serialization created by {@code register()}, then Fury will try to use some internal fields in Random, the
+ * default serialization created by {@code register()}, then Fory will try to use some internal fields in Random, the
  * superclass of RandomXS128, and that won't succeed. It might be possible to use {@code register()} in Java 8 only,
  * but it isn't worth the risk and limitation. Using this serializer is probably faster, too, since it has less that it
  * has to write.
  */
 public class RandomXS128Serializer extends Serializer<RandomXS128> {
-    public RandomXS128Serializer(Fury fury) {
-        super(fury, RandomXS128.class);
+    public RandomXS128Serializer(Fory fory) {
+        super(fory, RandomXS128.class);
     }
 
     @Override

@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Affine2;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Affine2}s.
+ * Fory {@link Serializer} for libGDX {@link Affine2}s.
  */
 public class Affine2Serializer extends Serializer<Affine2> {
-    public Affine2Serializer(Fury fury) {
-        super(fury, Affine2.class);
+    public Affine2Serializer(Fory fory) {
+        super(fory, Affine2.class);
     }
 
     @Override

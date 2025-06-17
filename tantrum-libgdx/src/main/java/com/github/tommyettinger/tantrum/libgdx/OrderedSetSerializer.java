@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.OrderedSet;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link OrderedSet}s.
+ * Fory {@link Serializer} for libGDX {@link OrderedSet}s.
  */
 public class OrderedSetSerializer extends Serializer<OrderedSet> {
-    public OrderedSetSerializer(Fury fury) {
-        super(fury, OrderedSet.class);
+    public OrderedSetSerializer(Fory fory) {
+        super(fory, OrderedSet.class);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class OrderedSetSerializer extends Serializer<OrderedSet> {
         final int len = data.size;
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -44,7 +44,7 @@ public class OrderedSetSerializer extends Serializer<OrderedSet> {
         final int len = input.readVarUint32();
         OrderedSet data = new OrderedSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.SnapshotArray;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link SnapshotArray}s.
+ * Fory {@link Serializer} for libGDX {@link SnapshotArray}s.
  */
 public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
-    public SnapshotArraySerializer(Fury fury) {
-        super(fury, SnapshotArray.class);
+    public SnapshotArraySerializer(Fory fory) {
+        super(fory, SnapshotArray.class);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
         output.writeBoolean(data.ordered);
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -46,7 +46,7 @@ public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
         final int len = input.readVarUint32();
         SnapshotArray data = new SnapshotArray(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.add(fury.readRef(input));
+            data.add(fory.readRef(input));
         }
         return data;
     }

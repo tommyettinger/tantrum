@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.collision.Ray;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Ray}s.
+ * Fory {@link Serializer} for libGDX {@link Ray}s.
  */
 public class RaySerializer extends Serializer<Ray> {
-    public RaySerializer(Fury fury) {
-        super(fury, Ray.class);
+    public RaySerializer(Fory fory) {
+        super(fory, Ray.class);
     }
 
     @Override

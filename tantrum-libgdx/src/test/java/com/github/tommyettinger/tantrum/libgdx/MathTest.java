@@ -24,9 +24,9 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.OrientedBoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.*;
-import org.apache.fury.Fury;
-import org.apache.fury.config.Language;
-import org.apache.fury.logging.LoggerFactory;
+import org.apache.fory.Fory;
+import org.apache.fory.config.Language;
+import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,24 +34,24 @@ public class MathTest {
     @Test
     public void testGridPoint2() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(GridPoint2.class, new GridPoint2Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(GridPoint2.class, new GridPoint2Serializer(fory));
 
         GridPoint2[] testing = {new GridPoint2(0, 0), new GridPoint2(1, 0), new GridPoint2(0, 1),
                 new GridPoint2(-1, -1), new GridPoint2(9999, 9999), new GridPoint2(9999, -9999),
                 new GridPoint2(0x7FFFFFFF, 0x7FFFFFFF), new GridPoint2(0x80000000, 0x80000000)};
 
         for (GridPoint2 data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            GridPoint2 data2 = fury.deserializeJavaObject(bytes, GridPoint2.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            GridPoint2 data2 = fory.deserializeJavaObject(bytes, GridPoint2.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testGridPoint3() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(GridPoint3.class, new GridPoint3Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(GridPoint3.class, new GridPoint3Serializer(fory));
 
         GridPoint3[] testing = {new GridPoint3(0, 0, 0), new GridPoint3(1, 0, 0), new GridPoint3(0, 1, 0),
                 new GridPoint3(0, 0, 1), new GridPoint3(1, 1, 1),
@@ -59,16 +59,16 @@ public class MathTest {
                 new GridPoint3(0x7FFFFFFF, 0x7FFFFFFF, 0x7FFFFFFF), new GridPoint3(0x80000000, 0x80000000, 0x80000000)};
 
         for (GridPoint3 data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            GridPoint3 data2 = fury.deserializeJavaObject(bytes, GridPoint3.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            GridPoint3 data2 = fory.deserializeJavaObject(bytes, GridPoint3.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testVector2() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Vector2.class, new Vector2Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Vector2.class, new Vector2Serializer(fory));
 
         Vector2[] testing = {new Vector2(0, 0), new Vector2(-0f, -0f), new Vector2(1, 0), new Vector2(0, 1),
                 new Vector2(-1, -1), new Vector2(9999.9f, 9999.9f), new Vector2(9999.9f, -9999.9f),
@@ -77,16 +77,16 @@ public class MathTest {
                 new Vector2(0x7FF.FFp-5f, 0x7FF.FFp-5f), new Vector2(-0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector2 data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Vector2 data2 = fury.deserializeJavaObject(bytes, Vector2.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Vector2 data2 = fory.deserializeJavaObject(bytes, Vector2.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testVector3() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Vector3.class, new Vector3Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0, 0, 0),
@@ -105,16 +105,16 @@ public class MathTest {
                 new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector3 data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Vector3 data2 = fury.deserializeJavaObject(bytes, Vector3.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Vector3 data2 = fory.deserializeJavaObject(bytes, Vector3.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testVector4() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Vector4.class, new Vector4Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Vector4.class, new Vector4Serializer(fory));
 
         Vector4[] testing = {
                 new Vector4(0, 0, 0, 0),
@@ -135,16 +135,16 @@ public class MathTest {
                 new Vector4(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector4 data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Vector4 data2 = fury.deserializeJavaObject(bytes, Vector4.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Vector4 data2 = fory.deserializeJavaObject(bytes, Vector4.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testQuaternion() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Quaternion.class, new QuaternionSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Quaternion.class, new QuaternionSerializer(fory));
 
         Quaternion[] testing = {
                 new Quaternion(0, 0, 0, 0),
@@ -165,16 +165,16 @@ public class MathTest {
                 new Quaternion(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Quaternion data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Quaternion data2 = fury.deserializeJavaObject(bytes, Quaternion.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Quaternion data2 = fory.deserializeJavaObject(bytes, Quaternion.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testEllipse() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Ellipse.class, new EllipseSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Ellipse.class, new EllipseSerializer(fory));
 
         Ellipse[] testing = {
                 new Ellipse(0, 0, 0, 0),
@@ -195,8 +195,8 @@ public class MathTest {
                 new Ellipse(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Ellipse data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Ellipse data2 = fury.deserializeJavaObject(bytes, Ellipse.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Ellipse data2 = fory.deserializeJavaObject(bytes, Ellipse.class);
             // Ellipse does not implement equals().
 //            Assert.assertEquals(data, data2);
             Assert.assertEquals(data.x, data2.x, 0.00001f);
@@ -208,8 +208,8 @@ public class MathTest {
     @Test
     public void testRectangle() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Rectangle.class, new RectangleSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Rectangle.class, new RectangleSerializer(fory));
 
         Rectangle[] testing = {
                 new Rectangle(0, 0, 0, 0),
@@ -230,16 +230,16 @@ public class MathTest {
                 new Rectangle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Rectangle data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Rectangle data2 = fury.deserializeJavaObject(bytes, Rectangle.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Rectangle data2 = fory.deserializeJavaObject(bytes, Rectangle.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testCircle() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Circle.class, new CircleSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Circle.class, new CircleSerializer(fory));
 
         Circle[] testing = {
                 new Circle(0, 0, 0),
@@ -257,16 +257,16 @@ public class MathTest {
                 new Circle(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Circle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Circle data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Circle data2 = fury.deserializeJavaObject(bytes, Circle.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Circle data2 = fory.deserializeJavaObject(bytes, Circle.class);
             Assert.assertEquals(data, data2);
         }
     }
     @Test
     public void testPlane() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Plane.class, new PlaneSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Plane.class, new PlaneSerializer(fory));
 
         Plane[] testing = {
                 new Plane(new Vector3(0, 0, 0), 0),
@@ -286,8 +286,8 @@ public class MathTest {
                 new Plane(new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f), -0x7FF.FFp-5f)};
 
         for (Plane data : testing) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Plane data2 = fury.deserializeJavaObject(bytes, Plane.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Plane data2 = fory.deserializeJavaObject(bytes, Plane.class);
             // Plane does not implement equals().
 //            Assert.assertEquals(data, data2);
             Assert.assertEquals(data.normal, data2.normal);
@@ -298,13 +298,13 @@ public class MathTest {
     @Test
     public void testRandomXS128() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fory));
 
         RandomXS128 data = new RandomXS128(-12345L);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        RandomXS128 data2 = fury.deserializeJavaObject(bytes, RandomXS128.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        RandomXS128 data2 = fory.deserializeJavaObject(bytes, RandomXS128.class);
         Assert.assertEquals(data.nextInt(), data2.nextInt());
         Assert.assertEquals(data.nextLong(), data2.nextLong());
         // RandomXS128 does not implement equals().
@@ -317,13 +317,13 @@ public class MathTest {
     @Test
     public void testMatrix3() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Matrix3.class, new Matrix3Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Matrix3.class, new Matrix3Serializer(fory));
 
         Matrix3 data = new Matrix3().scale(2.1f, 3.3f).rotateRad(2f);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Matrix3 data2 = fury.deserializeJavaObject(bytes, Matrix3.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Matrix3 data2 = fory.deserializeJavaObject(bytes, Matrix3.class);
         // Matrix3 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
@@ -332,13 +332,13 @@ public class MathTest {
     @Test
     public void testMatrix4() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Matrix4.class, new Matrix4Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Matrix4.class, new Matrix4Serializer(fory));
 
         Matrix4 data = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Matrix4 data2 = fury.deserializeJavaObject(bytes, Matrix4.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Matrix4 data2 = fory.deserializeJavaObject(bytes, Matrix4.class);
         // Matrix4 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
@@ -347,13 +347,13 @@ public class MathTest {
     @Test
     public void testAffine2() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Affine2.class, new Affine2Serializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Affine2.class, new Affine2Serializer(fory));
 
         Affine2 data = new Affine2().scale(2.1f, 3.3f).rotateRad(2f);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Affine2 data2 = fury.deserializeJavaObject(bytes, Affine2.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Affine2 data2 = fory.deserializeJavaObject(bytes, Affine2.class);
         // Affine2 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertEquals(data.m00, data2.m00, 0.00001f);
@@ -367,12 +367,12 @@ public class MathTest {
     @Test
     public void testPolygon() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Polygon.class, new PolygonSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Polygon.class, new PolygonSerializer(fory));
 
         Polygon data = new Polygon(new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f).val);
-        byte[] bytes = fury.serializeJavaObject(data);
-        Polygon data2 = fury.deserializeJavaObject(bytes, Polygon.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Polygon data2 = fory.deserializeJavaObject(bytes, Polygon.class);
         // Polygon does not implement equals().
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
@@ -382,16 +382,16 @@ public class MathTest {
     @Test
     public void testPolyline() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Polyline.class, new PolylineSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Polyline.class, new PolylineSerializer(fory));
 
         Polyline data = new Polyline(new float[]{0, 1, 2, 3, 2, 1, 0, -1, -2, -3, -1, -4});
         data.setOrigin(-1, -1);
         data.setPosition(10, 10);
         data.setScale(2, 3);
         data.setRotation(123);
-        byte[] bytes = fury.serializeJavaObject(data);
-        Polyline data2 = fury.deserializeJavaObject(bytes, Polyline.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Polyline data2 = fory.deserializeJavaObject(bytes, Polyline.class);
         // Polyline does not implement equals().
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getScaledLength(), data2.getScaledLength(), 0.0001f);
@@ -400,8 +400,8 @@ public class MathTest {
     @Test
     public void testRay() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Ray.class, new RaySerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Ray.class, new RaySerializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0f, 0f, 0f),
@@ -424,8 +424,8 @@ public class MathTest {
         for (Vector3 origin : testing) {
             for (Vector3 direction : testing) {
                 Ray data = new Ray(origin, direction);
-                byte[] bytes = fury.serializeJavaObject(data);
-                Ray data2 = fury.deserializeJavaObject(bytes, Ray.class);
+                byte[] bytes = fory.serializeJavaObject(data);
+                Ray data2 = fory.deserializeJavaObject(bytes, Ray.class);
                 // Using epsilon is needed because the serialized and deserialized values are slightly different.
                 // This is probably because nor() is called on each Vector3 in the constructor or set() method.
                 Assert.assertTrue(data.origin.epsilonEquals(data2.origin, 0.00001f));
@@ -436,8 +436,8 @@ public class MathTest {
     @Test
     public void testBoundingBox() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0, 0, 0),
@@ -458,8 +458,8 @@ public class MathTest {
         for (Vector3 origin : testing) {
             for (Vector3 direction : testing) {
                 BoundingBox data = new BoundingBox(origin, direction);
-                byte[] bytes = fury.serializeJavaObject(data);
-                BoundingBox data2 = fury.deserializeJavaObject(bytes, BoundingBox.class);
+                byte[] bytes = fory.serializeJavaObject(data);
+                BoundingBox data2 = fory.deserializeJavaObject(bytes, BoundingBox.class);
                 // BoundingBox does not implement equals().
 //                Assert.assertEquals(data, data2);
                 Assert.assertEquals(data.min, data2.min);
@@ -471,14 +471,14 @@ public class MathTest {
     @Test
     public void testOrientedBoundingBox() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fory));
 
         BoundingBox bb = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(5, 6, 7));
         Matrix4 m = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
         OrientedBoundingBox data = new OrientedBoundingBox(bb, m);
-        byte[] bytes = fury.serializeJavaObject(data);
-        OrientedBoundingBox data2 = fury.deserializeJavaObject(bytes, OrientedBoundingBox.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        OrientedBoundingBox data2 = fory.deserializeJavaObject(bytes, OrientedBoundingBox.class);
         // OrientedBoundingBox does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertTrue(data.getBounds().min.epsilonEquals(data2.getBounds().min));
@@ -489,12 +489,12 @@ public class MathTest {
     @Test
     public void testColor() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Color.class, new ColorSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Color.class, new ColorSerializer(fory));
 
         for (Color data : Colors.getColors().values()) {
-            byte[] bytes = fury.serializeJavaObject(data);
-            Color data2 = fury.deserializeJavaObject(bytes, Color.class);
+            byte[] bytes = fory.serializeJavaObject(data);
+            Color data2 = fory.deserializeJavaObject(bytes, Color.class);
             Assert.assertEquals(data, data2);
         }
     }

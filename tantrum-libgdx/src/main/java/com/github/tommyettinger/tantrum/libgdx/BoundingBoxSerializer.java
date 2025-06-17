@@ -19,16 +19,16 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link BoundingBox}s.
+ * Fory {@link Serializer} for libGDX {@link BoundingBox}s.
  */
 public class BoundingBoxSerializer extends Serializer<BoundingBox> {
-    public BoundingBoxSerializer(Fury fury) {
-        super(fury, BoundingBox.class);
+    public BoundingBoxSerializer(Fory fory) {
+        super(fory, BoundingBox.class);
     }
 
     @Override

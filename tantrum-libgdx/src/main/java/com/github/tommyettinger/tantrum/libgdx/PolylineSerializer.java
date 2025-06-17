@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Polyline;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.memory.Platform;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.memory.Platform;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link Polyline}s.
+ * Fory {@link Serializer} for jdkgdxds {@link Polyline}s.
  */
 public class PolylineSerializer extends Serializer<Polyline> {
 
-    public PolylineSerializer(Fury fury) {
-        super(fury, Polyline.class);
+    public PolylineSerializer(Fory fory) {
+        super(fory, Polyline.class);
     }
 
     @Override

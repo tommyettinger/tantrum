@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.OrderedMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link OrderedMap}s.
+ * Fory {@link Serializer} for libGDX {@link OrderedMap}s.
  */
 public class OrderedMapSerializer extends Serializer<OrderedMap> {
-    public OrderedMapSerializer(Fury fury) {
-        super(fury, OrderedMap.class);
+    public OrderedMapSerializer(Fory fory) {
+        super(fory, OrderedMap.class);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class OrderedMapSerializer extends Serializer<OrderedMap> {
         final int len = data.size;
         output.writeVarUint32(len);
         for (Object item : data.orderedKeys()) {
-            fury.writeRef(output, item);
-            fury.writeRef(output, data.get(item));
+            fory.writeRef(output, item);
+            fory.writeRef(output, data.get(item));
         }
     }
 
@@ -45,7 +45,7 @@ public class OrderedMapSerializer extends Serializer<OrderedMap> {
         final int len = input.readVarUint32();
         OrderedMap data = new OrderedMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(fury.readRef(input), fury.readRef(input));
+            data.put(fory.readRef(input), fory.readRef(input));
         }
         return data;
     }

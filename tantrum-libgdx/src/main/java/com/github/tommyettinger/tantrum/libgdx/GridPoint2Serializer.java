@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.GridPoint2;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link GridPoint2}s.
+ * Fory {@link Serializer} for libGDX {@link GridPoint2}s.
  */
 public class GridPoint2Serializer extends Serializer<GridPoint2> {
-    public GridPoint2Serializer(Fury fury) {
-        super(fury, GridPoint2.class);
+    public GridPoint2Serializer(Fory fory) {
+        super(fory, GridPoint2.class);
     }
 
     @Override

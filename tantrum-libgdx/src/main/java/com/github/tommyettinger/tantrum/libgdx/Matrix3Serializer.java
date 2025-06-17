@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Matrix3;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Matrix3}s.
+ * Fory {@link Serializer} for libGDX {@link Matrix3}s.
  */
 public class Matrix3Serializer extends Serializer<Matrix3> {
-    public Matrix3Serializer(Fury fury) {
-        super(fury, Matrix3.class);
+    public Matrix3Serializer(Fory fory) {
+        super(fory, Matrix3.class);
     }
 
     @Override

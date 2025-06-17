@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntMap;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link IntMap}s.
+ * Fory {@link Serializer} for libGDX {@link IntMap}s.
  */
 public class IntMapSerializer extends Serializer<IntMap> {
-    public IntMapSerializer(Fury fury) {
-        super(fury, IntMap.class);
+    public IntMapSerializer(Fory fory) {
+        super(fory, IntMap.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class IntMapSerializer extends Serializer<IntMap> {
         for (int item; keys.hasNext;) {
             item = keys.next();
             output.writeInt32(item);
-            fury.writeRef(output, data.get(item));
+            fory.writeRef(output, data.get(item));
         }
     }
 
@@ -47,7 +47,7 @@ public class IntMapSerializer extends Serializer<IntMap> {
         final int len = input.readVarUint32();
         IntMap data = new IntMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt32(), fury.readRef(input));
+            data.put(input.readInt32(), fory.readRef(input));
         }
         return data;
     }

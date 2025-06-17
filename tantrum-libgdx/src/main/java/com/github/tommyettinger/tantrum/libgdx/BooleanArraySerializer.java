@@ -19,18 +19,18 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.BooleanArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
+import org.apache.fory.memory.Platform;
 
 /**
- * Fury {@link Serializer} for jdkgdxds {@link BooleanArray}s.
+ * Fory {@link Serializer} for jdkgdxds {@link BooleanArray}s.
  */
 public class BooleanArraySerializer extends Serializer<BooleanArray> {
 
-    public BooleanArraySerializer(Fury fury) {
-        super(fury, BooleanArray.class);
+    public BooleanArraySerializer(Fory fory) {
+        super(fory, BooleanArray.class);
     }
 
     @Override

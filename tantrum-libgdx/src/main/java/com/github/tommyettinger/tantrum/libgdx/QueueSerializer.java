@@ -18,16 +18,16 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Queue;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for libGDX {@link Queue}s.
+ * Fory {@link Serializer} for libGDX {@link Queue}s.
  */
 public class QueueSerializer extends Serializer<Queue> {
-    public QueueSerializer(Fury fury) {
-        super(fury, Queue.class);
+    public QueueSerializer(Fory fory) {
+        super(fory, Queue.class);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class QueueSerializer extends Serializer<Queue> {
         final int len = data.size;
         output.writeVarUint32(len);
         for (Object item : data) {
-            fury.writeRef(output, item);
+            fory.writeRef(output, item);
         }
     }
 
@@ -44,7 +44,7 @@ public class QueueSerializer extends Serializer<Queue> {
         final int len = input.readVarUint32();
         Queue data = new Queue(len);
         for (int i = 0; i < len; i++) {
-            data.addLast(fury.readRef(input));
+            data.addLast(fory.readRef(input));
         }
         return data;
     }
