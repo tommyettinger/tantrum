@@ -17,9 +17,9 @@
 
 package com.github.tommyettinger.tantrum.regexodus;
 
-import org.apache.fury.Fury;
-import org.apache.fury.config.Language;
-import org.apache.fury.logging.LoggerFactory;
+import org.apache.fory.Fory;
+import org.apache.fory.config.Language;
+import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import regexodus.Pattern;
@@ -29,13 +29,13 @@ public class RegexodusTest {
     @Test
     public void testPattern() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Pattern.class, new PatternSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Pattern.class, new PatternSerializer(fory));
 
         Pattern data = Pattern.compile("[a-z0-9_\\p{Sc}]+", REFlags.IGNORE_CASE | REFlags.UNICODE);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Pattern data2 = fury.deserializeJavaObject(bytes, Pattern.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Pattern data2 = fory.deserializeJavaObject(bytes, Pattern.class);
         Assert.assertEquals(data.matches("Meow€€€"), data2.matches("Meow€€€"));
         Assert.assertEquals(data.matches("Meow, baby, meow."), data2.matches("Meow, baby, meow."));
         Assert.assertEquals(data, data2);

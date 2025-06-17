@@ -10,9 +10,9 @@ import com.esotericsoftware.kryo.io.Output;
 
 Replace:
 
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 Find:
 
@@ -28,7 +28,7 @@ Kryo \{@link Serializer\}
 
 Replace:
 
-Fury {@link Serializer}
+Fory {@link Serializer}
 
 Find:
 
@@ -40,8 +40,8 @@ public (\w+)Serializer\Q() {
 
 Replace:
 
-public $1Serializer(Fury fury) {
-        super(fury, $1.class);
+public $1Serializer(Fory fory) {
+        super(fory, $1.class);
     }
 
 Find:
@@ -89,8 +89,8 @@ public (\w+)Serializer\Q() {
 
 Replace:
 
-public $1Serializer(Fury fury) {
-        super(fury, $1.class);
+public $1Serializer(Fory fory) {
+        super(fory, $1.class);
     }
 
 
@@ -104,7 +104,7 @@ Kryo kryo = new Kryo\(\);
 
 Replace:
 
-Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
+Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 
 Find:
 
@@ -112,7 +112,7 @@ kryo.register\((\w+)\.class, new \1Serializer\(\)\);
 
 Replace:
 
-fury.registerSerializer($1.class, new $1Serializer(fury));
+fory.registerSerializer($1.class, new $1Serializer(fory));
 
 Find:
 
@@ -124,7 +124,7 @@ ByteArrayOutputStream baos \= new ByteArrayOutputStream\(32\)\;
 
 Replace:
 
-byte[] bytes = fury.serializeJavaObject(data);
+byte[] bytes = fory.serializeJavaObject(data);
 
 Find:
 
@@ -132,7 +132,7 @@ Find:
 
 Replace:
 
-$1 data2 = fury.deserializeJavaObject(bytes, $1.class);
+$1 data2 = fory.deserializeJavaObject(bytes, $1.class);
 
 Find:
 
@@ -140,7 +140,7 @@ kryo\.writeClassAndObject\(output\, object\.generator\)\;
 
 Replace:
 
-fury.writeRef(output, object.generator);
+fory.writeRef(output, object.generator);
 
 Find:
 
@@ -148,4 +148,4 @@ kryo\.readClassAndObject\(input\)
 
 Replace:
 
-fury.readRef(input)
+fory.readRef(input)
