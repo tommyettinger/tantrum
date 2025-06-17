@@ -18,17 +18,17 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Hasher;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for digital {@link Hasher}s.
+ * Fory {@link Serializer} for digital {@link Hasher}s.
  */
 public class HasherSerializer extends Serializer<Hasher> {
 
-    public HasherSerializer(Fury fury) {
-        super(fury, Hasher.class);
+    public HasherSerializer(Fory fory) {
+        super(fory, Hasher.class);
     }
 
     @Override

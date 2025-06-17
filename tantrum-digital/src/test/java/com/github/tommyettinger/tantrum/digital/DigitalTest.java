@@ -18,10 +18,10 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.*;
-import org.apache.fury.Fury;
-import org.apache.fury.config.Language;
-import org.apache.fury.logging.LoggerFactory;
-import org.apache.fury.memory.MemoryBuffer;
+import org.apache.fory.Fory;
+import org.apache.fory.config.Language;
+import org.apache.fory.logging.LoggerFactory;
+import org.apache.fory.memory.MemoryBuffer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,13 +29,13 @@ public class DigitalTest {
     @Test
     public void testBase() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Base.class, new BaseSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Base.class, new BaseSerializer(fory));
 
         Base data = Base.scrambledBase(new AlternateRandom(123456789L));
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Base data2 = fury.deserializeJavaObject(bytes, Base.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Base data2 = fory.deserializeJavaObject(bytes, Base.class);
         Assert.assertEquals(data.signed(0xFEDCBA9876543210L), data2.signed(0xFEDCBA9876543210L));
         Assert.assertEquals(data.unsigned(0xFEDCBA9876543210L), data.unsigned(0xFEDCBA9876543210L));
         Assert.assertEquals(data, data2);
@@ -44,13 +44,13 @@ public class DigitalTest {
     @Test
     public void testAlternateRandom() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(AlternateRandom.class, new AlternateRandomSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(AlternateRandom.class, new AlternateRandomSerializer(fory));
 
         AlternateRandom data = new AlternateRandom(-12345L);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        AlternateRandom data2 = fury.deserializeJavaObject(bytes, AlternateRandom.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        AlternateRandom data2 = fory.deserializeJavaObject(bytes, AlternateRandom.class);
         Assert.assertEquals(data.nextInt(), data2.nextInt());
         Assert.assertEquals(data.nextLong(), data2.nextLong());
         Assert.assertEquals(data.serializeToString(), data2.serializeToString());
@@ -60,14 +60,14 @@ public class DigitalTest {
     @Test
     public void testHasher() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Hasher.class, new HasherSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Hasher.class, new HasherSerializer(fory));
 
         long seed = Hasher.randomize3(System.nanoTime());
         Hasher data = new Hasher(seed);
 
-        byte[] bytes = fury.serializeJavaObject(data);
-        Hasher data2 = fury.deserializeJavaObject(bytes, Hasher.class);
+        byte[] bytes = fory.serializeJavaObject(data);
+        Hasher data2 = fory.deserializeJavaObject(bytes, Hasher.class);
         Assert.assertEquals(data.hash("0xFEDCBA9876543210L"), data2.hash("0xFEDCBA9876543210L"));
         Assert.assertEquals(data.hash64("0xFEDCBA9876543210L"), data2.hash64("0xFEDCBA9876543210L"));
     }
@@ -76,14 +76,14 @@ public class DigitalTest {
     @Test
     public void testInterpolator() {
         LoggerFactory.disableLogging();
-        Fury fury = Fury.builder().withLanguage(Language.JAVA).build();
-        fury.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fury));
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fory));
 
         MemoryBuffer buffer = MemoryBuffer.newHeapBuffer(256);
         for (Interpolations.Interpolator data : Interpolations.getInterpolatorArray()) {
 
-            fury.serializeJavaObject(buffer, data);
-            Interpolations.Interpolator data2 = fury.deserializeJavaObject(buffer, Interpolations.Interpolator.class);
+            fory.serializeJavaObject(buffer, data);
+            Interpolations.Interpolator data2 = fory.deserializeJavaObject(buffer, Interpolations.Interpolator.class);
             Assert.assertEquals(data.apply(0.1f), data2.apply(0.1f), MathTools.FLOAT_ROUNDING_ERROR);
             Assert.assertEquals(data.apply(0.2f), data2.apply(0.2f), MathTools.FLOAT_ROUNDING_ERROR);
             Assert.assertEquals(data.apply(0.7f), data2.apply(0.7f), MathTools.FLOAT_ROUNDING_ERROR);

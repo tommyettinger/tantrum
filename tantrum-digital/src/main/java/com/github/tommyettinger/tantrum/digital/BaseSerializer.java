@@ -18,26 +18,26 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Base;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for digital {@link Base}s.
+ * Fory {@link Serializer} for digital {@link Base}s.
  */
 public class BaseSerializer extends Serializer<Base> {
 
-    public BaseSerializer(Fury fury) {
-        super(fury, Base.class);
+    public BaseSerializer(Fory fory) {
+        super(fory, Base.class);
     }
 
     @Override
     public void write(MemoryBuffer buffer, final Base data) {
-        fury.writeString(buffer, data.serializeToString());
+        fory.writeString(buffer, data.serializeToString());
     }
 
     @Override
     public Base read(MemoryBuffer buffer) {
-        return Base.deserializeFromString(fury.readString(buffer));
+        return Base.deserializeFromString(fory.readString(buffer));
     }
 }

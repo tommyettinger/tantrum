@@ -1,8 +1,8 @@
 package com.github.tommyettinger.tantrum.digital.helpers;
 
-import org.apache.fury.memory.BoundsChecking;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.memory.Platform;
+import org.apache.fory.memory.BoundsChecking;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.memory.Platform;
 
 public final class Support {
     private Support() {

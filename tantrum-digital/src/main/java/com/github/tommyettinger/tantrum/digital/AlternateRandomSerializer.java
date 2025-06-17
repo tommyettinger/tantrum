@@ -18,17 +18,17 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.AlternateRandom;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for digital {@link AlternateRandom}s.
+ * Fory {@link Serializer} for digital {@link AlternateRandom}s.
  */
 public class AlternateRandomSerializer extends Serializer<AlternateRandom> {
 
-    public AlternateRandomSerializer(Fury fury) {
-        super(fury, AlternateRandom.class);
+    public AlternateRandomSerializer(Fory fory) {
+        super(fory, AlternateRandom.class);
     }
 
     @Override

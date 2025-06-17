@@ -19,25 +19,25 @@ package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Interpolations;
 import com.github.tommyettinger.digital.Interpolations.Interpolator;
-import org.apache.fury.Fury;
-import org.apache.fury.memory.MemoryBuffer;
-import org.apache.fury.serializer.Serializer;
+import org.apache.fory.Fory;
+import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.serializer.Serializer;
 
 /**
- * Fury {@link Serializer} for digital {@link Interpolator}s.
+ * Fory {@link Serializer} for digital {@link Interpolator}s.
  */
 public class InterpolatorSerializer extends Serializer<Interpolator> {
-    public InterpolatorSerializer(Fury fury) {
-        super(fury, Interpolator.class);
+    public InterpolatorSerializer(Fory fory) {
+        super(fory, Interpolator.class);
     }
 
     @Override
     public void write(MemoryBuffer buffer, final Interpolator data) {
-        fury.writeString(buffer, data.getTag());
+        fory.writeString(buffer, data.getTag());
     }
 
     @Override
     public Interpolator read(MemoryBuffer buffer) {
-        return Interpolations.get(fury.readString(buffer));
+        return Interpolations.get(fory.readString(buffer));
     }
 }
