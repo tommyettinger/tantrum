@@ -269,18 +269,75 @@ public class MapTest {
         }
     }
 
+    public static class Inte {
+        public int n;
+
+        public Inte() {
+            n = 0;
+        }
+
+        public Inte(int n) {
+            this.n = n;
+        }
+
+        public int getN() {
+            return n;
+        }
+
+        public void setN(int n) {
+            this.n = n;
+        }
+
+        @Override
+        public final boolean equals(Object o) {
+            if (!(o instanceof Inte)) return false;
+
+            Inte inte = (Inte) o;
+            return n == inte.n;
+        }
+
+        @Override
+        public int hashCode() {
+            return n;
+        }
+
+        @Override
+        public String toString() {
+            return "Inte{" +
+                    "n=" + n +
+                    '}';
+        }
+    }
+
     @Test
     public void testObjectObjectOrderedMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
         fory.registerSerializer(ObjectObjectOrderedMap.class, new ObjectObjectOrderedMapSerializer(fory));
+        fory.register(Inte.class);
 
-        ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
-                "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
+        {
+            ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
+                    "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
+            byte[] bytes = fory.serializeJavaObject(data);
+            System.out.println("ObjectObjectOrderedMap<String, Integer> length = " + bytes.length);
+            {
+                ObjectObjectOrderedMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+                Assert.assertEquals(data, data2);
+            }
+        }
+        {
+            ObjectObjectOrderedMap<String, Inte> data = ObjectObjectOrderedMap.with("Cthulhu", new Inte(-123456), "lies", new Inte(Integer.MIN_VALUE),
+                    "deep", new Inte(456789012), "in", new Inte(0), "Rl'yeh", new Inte(1111), "dreaming", new Inte(1), "of", new Inte(-1), "waffles", new Inte(0));
+
+            byte[] bytes = fory.serializeJavaObject(data);
+            System.out.println("ObjectObjectOrderedMap<String, Inte> length = " + bytes.length);
+            {
             ObjectObjectOrderedMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
+        }
+
         }
     }
 
