@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntObjectOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
@@ -41,7 +42,7 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
         for(Object v : data.values()){
             fory.writeRef(output, v);
         }
-        output.writeBoolean(data.order() instanceof IntDeque);
+        fory.writeJavaString(output, data.getOrderType().name());
         fory.writeRef(output, data.getDefaultValue());
     }
 
@@ -54,7 +55,7 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
             vs[i] = fory.readRef(input);
         }
 
-        IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, input.readBoolean());
+        IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(fory.readRef(input));
         return data;
 

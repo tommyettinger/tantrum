@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.ds.LongOrderedSet;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -37,11 +38,11 @@ public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
     @Override
     public void write(final MemoryBuffer output, final LongOrderedSet data) {
         output.writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writeBoolean(data.order() instanceof LongDeque);
+        fory.writeJavaString(output, data.getOrderType().name());
     }
 
     @Override
     public LongOrderedSet read(MemoryBuffer input) {
-        return new LongOrderedSet(Support.readLongsAndSize(input), input.readBoolean());
+        return new LongOrderedSet(Support.readLongsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
     }
 }

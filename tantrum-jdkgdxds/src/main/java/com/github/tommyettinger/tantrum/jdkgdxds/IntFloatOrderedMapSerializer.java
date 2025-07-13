@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntFloatOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
@@ -38,13 +39,13 @@ public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap>
     public void write(final MemoryBuffer output, final IntFloatOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        output.writeBoolean(data.order() instanceof IntDeque);
+        fory.writeJavaString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public IntFloatOrderedMap read(MemoryBuffer input) {
-        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input), input.readBoolean());
+        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
 

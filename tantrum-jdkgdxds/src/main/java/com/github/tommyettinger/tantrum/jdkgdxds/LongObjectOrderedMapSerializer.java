@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongDeque;
 import com.github.tommyettinger.ds.LongObjectOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -41,7 +42,7 @@ public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrdered
         for(Object v : data.values()){
             fory.writeRef(output, v);
         }
-        output.writeBoolean(data.order() instanceof LongDeque);
+        fory.writeJavaString(output, data.getOrderType().name());
         fory.writeRef(output, data.getDefaultValue());
     }
 
@@ -54,7 +55,7 @@ public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrdered
             vs[i] = fory.readRef(input);
         }
 
-        LongObjectOrderedMap data = new LongObjectOrderedMap<>(ks, vs, input.readBoolean());
+        LongObjectOrderedMap data = new LongObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(fory.readRef(input));
         return data;
     }
