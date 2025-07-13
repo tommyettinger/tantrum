@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectLongMap;
 import com.github.tommyettinger.ds.ObjectLongOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -41,6 +42,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
         for(Object v : data.keySet()){
             fory.writeRef(output, v);
         }
+        fory.writeJavaString(output, data.getOrderType().name());
         output.writeInt64(data.getDefaultValue());
     }
 
@@ -53,7 +55,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
             ks[i] = fory.readRef(input);
         }
 
-        ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs);
+        ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(input.readInt64());
         return data;
     }

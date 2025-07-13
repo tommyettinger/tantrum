@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharFilter;
 import com.github.tommyettinger.ds.FilteredStringOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -44,6 +45,7 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         for(Object v : data.values()){
             fory.writeRef(output, v);
         }
+        fory.writeJavaString(output, data.getOrderType().name());
         fory.writeRef(output, data.getDefaultValue());
     }
 
@@ -59,7 +61,7 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         for (int i = 0; i < len; i++) {
             vs[i] = fory.readRef(input);
         }
-        FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs);
+        FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(fory.readRef(input));
         return data;
 

@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectOrderedSet;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -37,6 +38,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
     public void write(final MemoryBuffer output, final ObjectOrderedSet data) {
         final int len = data.size();
         output.writeVarUint32(len);
+        fory.writeJavaString(output, data.getOrderType().name());
         for (int i = 0; i < len; i++) {
             fory.writeRef(output, data.getAt(i));
         }
@@ -45,7 +47,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
     @Override
     public ObjectOrderedSet read(MemoryBuffer input) {
         final int len = input.readVarUint32();
-        ObjectOrderedSet data = new ObjectOrderedSet(len);
+        ObjectOrderedSet data = new ObjectOrderedSet(len, OrderType.valueOf(fory.readJavaString(input)));
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef(input));
         }

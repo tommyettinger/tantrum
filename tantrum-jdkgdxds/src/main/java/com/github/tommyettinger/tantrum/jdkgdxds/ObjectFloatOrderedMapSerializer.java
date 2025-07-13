@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectFloatOrderedMap;
 import com.github.tommyettinger.ds.ObjectLongOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
@@ -41,6 +42,7 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
         for(Object v : data.keySet()){
             fory.writeRef(output, v);
         }
+        fory.writeJavaString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
@@ -53,7 +55,7 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
             ks[i] = fory.readRef(input);
         }
 
-        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs);
+        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
     }

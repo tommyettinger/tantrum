@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.ObjectObjectOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -42,6 +43,7 @@ public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObject
         for(Object v : data.values()){
             fory.writeRef(output, v);
         }
+        fory.writeJavaString(output, data.getOrderType().name());
         fory.writeRef(output, data.getDefaultValue());
     }
 
@@ -56,7 +58,7 @@ public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObject
             vs[i] = fory.readRef(input);
         }
 
-        ObjectObjectOrderedMap data = new ObjectObjectOrderedMap<>(ks, vs);
+        ObjectObjectOrderedMap data = new ObjectObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(fory.readRef(input));
         return data;
     }
