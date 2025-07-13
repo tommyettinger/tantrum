@@ -321,7 +321,6 @@ public class MapTest {
                     "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
             byte[] bytes = fory.serializeJavaObject(data);
-            System.out.println("ObjectObjectOrderedMap<String, Integer> length = " + bytes.length);
             {
                 ObjectObjectOrderedMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
                 Assert.assertEquals(data, data2);
@@ -332,11 +331,10 @@ public class MapTest {
                     "deep", new Inte(456789012), "in", new Inte(0), "Rl'yeh", new Inte(1111), "dreaming", new Inte(1), "of", new Inte(-1), "waffles", new Inte(0));
 
             byte[] bytes = fory.serializeJavaObject(data);
-            System.out.println("ObjectObjectOrderedMap<String, Inte> length = " + bytes.length);
             {
-            ObjectObjectOrderedMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
-            Assert.assertEquals(data, data2);
-        }
+                ObjectObjectOrderedMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+                Assert.assertEquals(data, data2);
+            }
 
         }
     }

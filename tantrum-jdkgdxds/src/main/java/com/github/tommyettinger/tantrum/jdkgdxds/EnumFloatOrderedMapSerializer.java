@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumFloatOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
@@ -39,6 +40,7 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
         for(Enum<?> v : data.keySet()){
             fory.writeRef(output, v);
         }
+        fory.writeJavaString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
@@ -51,7 +53,7 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
             ks[i] = (Enum<?>)fory.readRef(input);
         }
 
-        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs);
+        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
     }

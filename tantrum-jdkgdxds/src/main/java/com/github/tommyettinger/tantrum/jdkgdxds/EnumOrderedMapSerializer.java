@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumOrderedMap;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -36,6 +37,7 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
     @Override
     public void write(final MemoryBuffer output, final EnumOrderedMap data) {
         output.writeVarUint32(data.size());
+        fory.writeJavaString(output, data.getOrderType().name());
         for(Enum<?> k : data.keySet()){
             fory.writeRef(output, k);
         }
@@ -48,7 +50,8 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
     @Override
     public EnumOrderedMap<?> read(MemoryBuffer input) {
         final int len = input.readVarUint32();
-        if(len == 0) return new EnumOrderedMap<>();
+        OrderType type = OrderType.valueOf(fory.readJavaString(input));
+        if(len == 0) return new EnumOrderedMap<>(type);
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {
             ks[i] = (Enum<?>) fory.readRef(input);
@@ -58,7 +61,7 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
             vs[i] = fory.readRef(input);
         }
 
-        EnumOrderedMap data = new EnumOrderedMap<>(ks, vs);
+        EnumOrderedMap data = new EnumOrderedMap<>(ks, vs, type);
         data.setDefaultValue(fory.readRef(input));
         return data;
     }

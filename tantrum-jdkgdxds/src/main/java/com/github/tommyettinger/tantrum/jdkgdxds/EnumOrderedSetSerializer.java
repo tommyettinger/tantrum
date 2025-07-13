@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.EnumOrderedSet;
+import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
@@ -36,6 +37,7 @@ public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSe
     public void write(final MemoryBuffer output, final EnumOrderedSet data) {
         final int len = data.size();
         output.writeVarUint32(len);
+        fory.writeJavaString(output, data.getOrderType().name());
         for (Enum<?> item : data) {
             fory.writeRef(output, item);
         }
@@ -44,7 +46,7 @@ public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSe
     @Override
     public EnumOrderedSet read(MemoryBuffer input) {
         final int len = input.readVarUint32();
-        EnumOrderedSet data = new EnumOrderedSet();
+        EnumOrderedSet data = new EnumOrderedSet(OrderType.valueOf(fory.readJavaString(input)));
         for (int i = 0; i < len; i++) {
             data.add((Enum<?>)fory.readRef(input));
         }
