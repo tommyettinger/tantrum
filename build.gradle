@@ -34,7 +34,7 @@ subprojects {
     ext.projectName = 'tantrum'
 
     repositories {
-         mavenLocal()
+        mavenLocal()
         mavenCentral()
         maven { url 'https://s01.oss.sonatype.org' }
         google()
