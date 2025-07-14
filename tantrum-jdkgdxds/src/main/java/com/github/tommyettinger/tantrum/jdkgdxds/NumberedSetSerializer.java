@@ -40,6 +40,7 @@ public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
         for (Object item : data) {
             fory.writeRef(output, item);
         }
+        output.writeInt32(data.getDefaultValue());
     }
 
     @Override
@@ -49,6 +50,7 @@ public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef(input));
         }
+        data.setDefaultValue(input.readInt32());
         return data;
     }
 }
