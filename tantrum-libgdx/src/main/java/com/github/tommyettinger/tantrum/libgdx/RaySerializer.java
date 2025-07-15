@@ -42,9 +42,7 @@ public class RaySerializer extends Serializer<Ray> {
 
     @Override
     public Ray read(MemoryBuffer input) {
-        Ray data = new Ray().set(input.readFloat32(), input.readFloat32(), input.readFloat32(),
+        return new Ray().set(input.readFloat32(), input.readFloat32(), input.readFloat32(),
                 input.readFloat32(), input.readFloat32(), input.readFloat32());
-        System.out.println(data);
-        return data;
     }
 }
