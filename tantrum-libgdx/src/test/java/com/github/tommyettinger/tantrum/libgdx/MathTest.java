@@ -426,8 +426,7 @@ public class MathTest {
                 Ray data = new Ray(origin, direction);
                 byte[] bytes = fory.serializeJavaObject(data);
                 Ray data2 = fory.deserializeJavaObject(bytes, Ray.class);
-                // Using epsilon is needed because the serialized and deserialized values are slightly different.
-                // This is probably because nor() is called on each Vector3 in the constructor or set() method.
+                Assert.assertEquals(data, data2);
                 Assert.assertTrue(data.origin.epsilonEquals(data2.origin, 0.00001f));
                 Assert.assertTrue(data.direction.epsilonEquals(data2.direction, 0.00001f));
             }
