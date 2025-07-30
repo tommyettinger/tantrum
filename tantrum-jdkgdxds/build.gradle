@@ -38,7 +38,7 @@ mavenPublishing {
     configure(new JavaLibrary(new JavadocJar.Javadoc(), true))
 }
 
-mavenPlainJavadocJar.archiveBaseName.set("$POM_NAME")
+plainJavadocJar.archiveBaseName.set("$POM_NAME")
 
 dependencies {
     api "com.github.tommyettinger:tantrum-digital:0.7.0.12"
