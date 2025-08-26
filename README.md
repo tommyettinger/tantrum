@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.11.2) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.12.0) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -26,7 +26,7 @@ or if Fory itself had a (compatible) update available but the linked library did
   - tantrum-libgdx is at version 1.13.1.12, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.1.12, compatible with digital 0.9.1
   - tantrum-jdkgdxds is at version 1.11.0.12, compatible with jdkgdxds 1.11.0
-  - tantrum-regexodus is at version 0.1.19.12, compatible with RegExodus 0.1.19
+  - tantrum-regexodus is at version 0.1.19.13, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.6.2),
@@ -70,7 +70,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.11.0.12"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.12"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.13"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 or newer instead:
@@ -119,7 +119,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.19.12</version>
+  <version>0.1.19.13</version>
 </dependency>
 ```
 
