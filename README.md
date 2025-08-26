@@ -25,11 +25,11 @@ or if Fory itself had a (compatible) update available but the linked library did
 
   - tantrum-libgdx is at version 1.13.1.13, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.2.13, compatible with digital 0.9.2
-  - tantrum-jdkgdxds is at version 1.11.0.12, compatible with jdkgdxds 1.11.0
+  - tantrum-jdkgdxds is at version 1.12.1.13, compatible with jdkgdxds 1.12.1
   - tantrum-regexodus is at version 0.1.19.13, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
-It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.6.2),
+It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.2),
 since juniper uses the no-dependency-needed `Externalizable` interface that Fory can understand.
 
 In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
@@ -64,7 +64,7 @@ implementation "com.github.tommyettinger:tantrum-digital:0.9.2.13"
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.11.0.12"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.12.1.13"
 ```
 
 tantrum-regexodus:
@@ -109,7 +109,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.11.0.12</version>
+  <version>1.12.1.13</version>
 </dependency>
 ```
 

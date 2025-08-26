@@ -8,6 +8,8 @@ import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
+
 public class OtherTest {
 
     @Test
@@ -24,9 +26,13 @@ public class OtherTest {
         fory.register(Junction.Not.class);
         fory.register(Junction.Leaf.class);
 
-        Junction<String> data = Junction.parse("(foo|bar|baz)^QUUX^woop woop");
+        String jstr = "(foo|bar|baz)^QUUX^woop woop";
+        Junction<String> data = Junction.parse(jstr);
 
         byte[] bytes = fory.serializeJavaObject(data); {
+            System.out.println("Fory bytes length     : " + bytes.length);
+            System.out.println("Original UTF8 length  : " + jstr.getBytes(StandardCharsets.UTF_8).length);
+            System.out.println("Original UTF16 length : " + jstr.getBytes(StandardCharsets.UTF_16).length);
             Junction<?> data2 = fory.deserializeJavaObject(bytes, Junction.class);
             Assert.assertEquals(data, data2);
         }
