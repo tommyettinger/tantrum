@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.13.1.12, compatible with libGDX 1.13.1
+  - tantrum-libgdx is at version 1.13.1.13, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.1.12, compatible with digital 0.9.1
   - tantrum-jdkgdxds is at version 1.11.0.12, compatible with jdkgdxds 1.11.0
   - tantrum-regexodus is at version 0.1.19.13, compatible with RegExodus 0.1.19
@@ -52,7 +52,7 @@ Gradle dependency info:
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.12"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.13"
 ```
 
 tantrum-digital:
@@ -89,7 +89,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.1.12</version>
+  <version>1.13.1.13</version>
 </dependency>
 ```
 
