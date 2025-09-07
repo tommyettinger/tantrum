@@ -24,7 +24,7 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.13.1.13, compatible with libGDX 1.13.1
-  - tantrum-digital is at version 0.9.2.13, compatible with digital 0.9.2
+  - tantrum-digital is at version 0.9.2.14, compatible with digital 0.9.2
   - tantrum-jdkgdxds is at version 1.12.1.13, compatible with jdkgdxds 1.12.1
   - tantrum-regexodus is at version 0.1.19.14, compatible with RegExodus 0.1.19
 
@@ -58,7 +58,7 @@ implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.13"
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.9.2.13"
+implementation "com.github.tommyettinger:tantrum-digital:0.9.2.14"
 ```
 
 tantrum-jdkgdxds:
@@ -99,7 +99,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.9.2.13</version>
+  <version>0.9.2.14</version>
 </dependency>
 ```
 
