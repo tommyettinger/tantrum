@@ -156,6 +156,21 @@ public class SetTest {
     }
 
     @Test
+    public void testCharBitSet() {
+        LoggerFactory.disableLogging();
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory));
+
+        CharBitSet data = new CharBitSet(Character::isDigit);
+        data.add('Z');
+
+        byte[] bytes = fory.serializeJavaObject(data); {
+            CharBitSet data2 = fory.deserializeJavaObject(bytes, CharBitSet.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testNumberedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
