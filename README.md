@@ -25,7 +25,7 @@ or if Fory itself had a (compatible) update available but the linked library did
 
   - tantrum-libgdx is at version 1.13.1.13, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.2.14, compatible with digital 0.9.2
-  - tantrum-jdkgdxds is at version 1.12.1.13, compatible with jdkgdxds 1.12.1
+  - tantrum-jdkgdxds is at version 1.12.2.14, compatible with jdkgdxds 1.12.2
   - tantrum-regexodus is at version 0.1.19.14, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
@@ -64,7 +64,7 @@ implementation "com.github.tommyettinger:tantrum-digital:0.9.2.14"
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.12.1.13"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.12.2.14"
 ```
 
 tantrum-regexodus:
@@ -109,7 +109,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.12.1.13</version>
+  <version>1.12.2.14</version>
 </dependency>
 ```
 
