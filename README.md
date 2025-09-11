@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.12.1) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.12.2) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -26,7 +26,7 @@ or if Fory itself had a (compatible) update available but the linked library did
   - tantrum-libgdx is at version 1.13.1.14, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.2.14, compatible with digital 0.9.2
   - tantrum-jdkgdxds is at version 1.12.2.14, compatible with jdkgdxds 1.12.2
-  - tantrum-regexodus is at version 0.1.19.14, compatible with RegExodus 0.1.19
+  - tantrum-regexodus is at version 0.1.19.15, compatible with RegExodus 0.1.19
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.2),
@@ -47,7 +47,7 @@ because that release wasn't really the quality you'd want to ship anything with.
 All of these sub-libraries depend on Java 8, and will work with higher versions as well. Fory is not compatible with
 GWT, so no GWT info is provided here.
 
-Gradle dependency info:
+### Gradle dependency info
 
 tantrum-libgdx:
 
@@ -70,7 +70,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.12.2.14"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.14"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.19.15"
 ```
 
 Most likely, you won't need this, and should use juniper 0.6.1 or newer instead:
@@ -81,7 +81,7 @@ tantrum-juniper:
 implementation "com.github.tommyettinger:tantrum-juniper:0.6.0.0"
 ```
 
-Maven dependency info:
+### Maven dependency info
 
 tantrum-libgdx:
 
@@ -119,7 +119,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.19.14</version>
+  <version>0.1.19.15</version>
 </dependency>
 ```
 
