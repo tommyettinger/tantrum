@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.12.2) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.12.3) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.13.1.15, compatible with libGDX 1.13.1
+  - tantrum-libgdx is at version 1.13.1.16, compatible with libGDX 1.13.1
   - tantrum-digital is at version 0.9.2.15, compatible with digital 0.9.2
   - tantrum-jdkgdxds is at version 1.12.3.15, compatible with jdkgdxds 1.12.3
   - tantrum-regexodus is at version 0.1.19.15, compatible with RegExodus 0.1.19
@@ -52,7 +52,7 @@ GWT, so no GWT info is provided here.
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.15"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.16"
 ```
 
 tantrum-digital:
@@ -89,7 +89,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.1.15</version>
+  <version>1.13.1.16</version>
 </dependency>
 ```
 
