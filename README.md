@@ -23,7 +23,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.13.1.16, compatible with libGDX 1.13.1
+  - tantrum-libgdx is at version 1.14.0.16, compatible with libGDX 1.14.0
   - tantrum-digital is at version 0.9.4.16, compatible with digital 0.9.4
   - tantrum-jdkgdxds is at version 1.13.0.16, compatible with jdkgdxds 1.13.0
   - tantrum-regexodus is at version 0.1.19.16, compatible with RegExodus 0.1.19
@@ -34,13 +34,14 @@ since juniper uses the no-dependency-needed `Externalizable` interface that Fory
 
 In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
 `OrientedBoundingBox`. If a class you need isn't covered, you can first read the sources here to see if writing a
-serializer yourself is feasible, and of not, you can post an issue here requesting any classes that aren't present.
+serializer yourself is feasible, and if not, you can post an issue here requesting any classes that aren't present.
 Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
 modifiers excessively without providing getters.
 
-The current version of libGDX at the time of writing is 1.13.5, and version 1.13.5 works with Fury (not Fory) 0.10.2 via
-tantrum-libgdx 1.13.5.8 . Version 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so the latest version
-of tantrum-libgdx is 1.13.1.10, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't ever need
+The current version of libGDX at the time of writing is 1.14.0, which works with Fory 0.12.3 via tantrum-libgdx
+1.14.0.16 . The older libGDX version 1.13.5 works with Fury (not Fory) 0.10.2 via tantrum-libgdx 1.13.5.8 .
+Version 1.14.0 or 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so if you must use a 1.13.x release,
+use tantrum-libgdx 1.13.1.10, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't ever need
 to consider, you should use tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0
 because that release wasn't really the quality you'd want to ship anything with.
 
@@ -52,7 +53,7 @@ GWT, so no GWT info is provided here.
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.13.1.16"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.14.0.16"
 ```
 
 tantrum-digital:
@@ -89,7 +90,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.13.1.16</version>
+  <version>1.14.0.16</version>
 </dependency>
 ```
 
