@@ -40,7 +40,6 @@ plainJavadocJar.archiveBaseName.set("$POM_NAME")
 
 dependencies {
     api "org.apache.fory:fory-core:$foryVersion"
-    //noinspection GDXOutdatedVersionGradleGroovy
     api "com.badlogicgames.gdx:gdx:$gdxVersion"
     testImplementation "junit:junit:4.13.2"
 }
