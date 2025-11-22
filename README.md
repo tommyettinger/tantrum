@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.13.0) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.13.1) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -17,6 +17,13 @@ Similarly, there is a kryo-more sub-library for [cringe](https://github.com/tomm
 needed here because any types in cringe or juniper can be read and written without
 needing a Serializer.
 
+This uses Fory's pure-Java serialization, which can be deservedly called ***blazingly fast***.  In general, Fory's
+automatic serialization is very high-quality, and it can be worthwhile to try *not* using a custom serializer in some
+cases, because the automatic, generated serializers can actually be faster. Some cases are clearly better for the custom
+serializers, though. For example, ordered maps and sets in jdkgdxds are better with a custom serializer from here,
+because a custom serializer can simply read and write the entries in order to avoid needing to store the separate
+`order()`, which is a list of keys or items that an automatic serializer would otherwise save additionally.
+
 ## How to get
 
 Each sub-library has its own version, linked to the version of the library it de/serializes.
@@ -24,7 +31,7 @@ The last component of the version is usually .0, but can be increased for bug-fi
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
   - tantrum-libgdx is at version 1.14.0.17, compatible with libGDX 1.14.0
-  - tantrum-digital is at version 0.9.5.17, compatible with digital 0.9.5
+  - tantrum-digital is at version 0.9.6.18, compatible with digital 0.9.6
   - tantrum-jdkgdxds is at version 1.13.1.17, compatible with jdkgdxds 1.13.1
   - tantrum-regexodus is at version 0.1.19.17, compatible with RegExodus 0.1.19
 
@@ -59,7 +66,7 @@ implementation "com.github.tommyettinger:tantrum-libgdx:1.14.0.17"
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.9.5.17"
+implementation "com.github.tommyettinger:tantrum-digital:0.9.6.18"
 ```
 
 tantrum-jdkgdxds:
@@ -100,7 +107,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.9.5.17</version>
+  <version>0.9.6.18</version>
 </dependency>
 ```
 
