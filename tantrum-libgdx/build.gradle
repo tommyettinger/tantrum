@@ -7,7 +7,6 @@ eclipse.project.name = project.name
 sourceSets.test.resources.srcDirs = [ file('src/test/resources').path ]
 
 javadoc.destinationDir = file("../docs/$POM_NAME/apidocs")
-javadoc.options.source("8")
 ((StandardJavadocDocletOptions)javadoc.options).linkSource(true)
 ((StandardJavadocDocletOptions)javadoc.options).noTimestamp(true)
 ((StandardJavadocDocletOptions)javadoc.options).use(true)
