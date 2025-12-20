@@ -22,8 +22,10 @@ import org.apache.fory.config.Language;
 import org.apache.fory.logging.LoggerFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import regexodus.Category;
 import regexodus.Pattern;
 import regexodus.REFlags;
+import regexodus.ds.CharBitSet;
 
 public class RegexodusTest {
     @Test
@@ -39,5 +41,21 @@ public class RegexodusTest {
         Assert.assertEquals(data.matches("Meow€€€"), data2.matches("Meow€€€"));
         Assert.assertEquals(data.matches("Meow, baby, meow."), data2.matches("Meow, baby, meow."));
         Assert.assertEquals(data, data2);
+    }
+
+    @Test
+    public void testCharBitSet() {
+        LoggerFactory.disableLogging();
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory));
+
+        CharBitSet data = Category.LowercaseLetter.decompress();
+
+        byte[] bytes = fory.serializeJavaObject(data);
+        CharBitSet data2 = fory.deserializeJavaObject(bytes, CharBitSet.class);
+
+        Assert.assertEquals(data, data2);
+
+
     }
 }
