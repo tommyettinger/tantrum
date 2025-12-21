@@ -171,6 +171,21 @@ public class SetTest {
     }
 
     @Test
+    public void testCharBitSetResizable() {
+        LoggerFactory.disableLogging();
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(CharBitSetResizable.class, new CharBitSetResizableSerializer(fory));
+
+        CharBitSetResizable data = new CharBitSetResizable("abcdefghijklmnopqrstuvwxyz".toCharArray());
+        data.add('Z');
+
+        byte[] bytes = fory.serializeJavaObject(data); {
+            CharBitSetResizable data2 = fory.deserializeJavaObject(bytes, CharBitSetResizable.class);
+            Assert.assertEquals(data, data2);
+        }
+    }
+
+    @Test
     public void testNumberedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
