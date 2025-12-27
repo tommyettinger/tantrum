@@ -32,11 +32,11 @@ or if Fory itself had a (compatible) update available but the linked library did
 
   - tantrum-libgdx is at version 1.14.0.19, compatible with libGDX 1.14.0
   - tantrum-digital is at version 0.9.8.19, compatible with digital 0.9.8
-  - tantrum-jdkgdxds is at version 1.13.2.19, compatible with jdkgdxds 1.13.2
+  - tantrum-jdkgdxds is at version 1.14.0.19, compatible with jdkgdxds 1.14.0
   - tantrum-regexodus is at version 0.1.20.19, compatible with RegExodus 0.1.20
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
-It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.2),
+It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.5),
 since juniper uses the no-dependency-needed `Externalizable` interface that Fory can understand.
 
 In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
@@ -72,7 +72,7 @@ implementation "com.github.tommyettinger:tantrum-digital:0.9.8.19"
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.13.2.19"
+implementation "com.github.tommyettinger:tantrum-jdkgdxds:1.14.0.19"
 ```
 
 tantrum-regexodus:
@@ -81,7 +81,7 @@ tantrum-regexodus:
 implementation "com.github.tommyettinger:tantrum-regexodus:0.1.20.19"
 ```
 
-Most likely, you won't need this, and should use juniper 0.6.1 or newer instead:
+Most likely, you won't need this, and should use the current juniper instead:
 
 tantrum-juniper:
 
@@ -117,7 +117,7 @@ tantrum-jdkgdxds:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.13.2.19</version>
+  <version>1.14.0.19</version>
 </dependency>
 ```
 
@@ -131,7 +131,7 @@ tantrum-regexodus:
 </dependency>
 ```
 
-Most likely, you won't need this, and should use juniper 0.6.2 instead:
+Most likely, you won't need this, and should use the current juniper instead:
 
 tantrum-juniper:
 
