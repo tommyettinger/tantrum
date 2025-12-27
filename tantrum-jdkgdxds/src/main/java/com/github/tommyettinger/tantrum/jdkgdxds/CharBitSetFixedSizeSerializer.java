@@ -17,7 +17,7 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.CharBitSetResizable;
+import com.github.tommyettinger.ds.CharBitSetFixedSize;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
@@ -25,24 +25,21 @@ import org.apache.fory.memory.Platform;
 import org.apache.fory.serializer.Serializer;
 
 /**
- * Fory {@link Serializer} for jdkgdxds {@link CharBitSetResizable}s.
+ * Fory {@link Serializer} for jdkgdxds {@link CharBitSetFixedSize}s.
  */
-public class CharBitSetResizableSerializer extends Serializer<CharBitSetResizable> {
+public class CharBitSetFixedSizeSerializer extends Serializer<CharBitSetFixedSize> {
 
-    public CharBitSetResizableSerializer(Fory fory) {
-        super(fory, CharBitSetResizable.class);
+    public CharBitSetFixedSizeSerializer(Fory fory) {
+        super(fory, CharBitSetFixedSize.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharBitSetResizable data) {
-        final int[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+    public void write(final MemoryBuffer output, final CharBitSetFixedSize data) {
+        output.writePrimitiveArrayWithSize(data.getRawBits(), Platform.INT_ARRAY_OFFSET, 2048 << 2);
     }
 
     @Override
-    public CharBitSetResizable read(MemoryBuffer input) {
-        CharBitSetResizable cbsr = new CharBitSetResizable();
-        cbsr.setRawBits(Support.readIntsAndSize(input));
-        return cbsr;
+    public CharBitSetFixedSize read(MemoryBuffer input) {
+        return new CharBitSetFixedSize(Support.readIntsAndSize(input), true);
     }
 }
