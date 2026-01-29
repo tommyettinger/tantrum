@@ -2,6 +2,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.Junction;
 import com.github.tommyettinger.ds.ObjectList;
+import com.github.tommyettinger.ds.StringJunction;
 import org.apache.fory.Fory;
 import org.apache.fory.config.Language;
 import org.apache.fory.logging.LoggerFactory;
@@ -36,6 +37,23 @@ public class OtherTest {
             Junction<?> data2 = fory.deserializeJavaObject(bytes, Junction.class);
             Assert.assertEquals(data, data2);
         }
+    }
 
+    @Test
+    public void testStringJunction() {
+        LoggerFactory.disableLogging();
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(StringJunction.class, new StringJunctionSerializer(fory));
+
+        String jstr = "(foo|bar|baz)^QUUX^woop woop";
+        StringJunction data = StringJunction.parse(jstr);
+
+        byte[] bytes = fory.serializeJavaObject(data); {
+            System.out.println("Fory bytes length     : " + bytes.length);
+            System.out.println("Original UTF8 length  : " + jstr.getBytes(StandardCharsets.UTF_8).length);
+            System.out.println("Original UTF16 length : " + jstr.getBytes(StandardCharsets.UTF_16).length);
+            StringJunction data2 = fory.deserializeJavaObject(bytes, StringJunction.class);
+            Assert.assertEquals(data, data2);
+        }
     }
 }
