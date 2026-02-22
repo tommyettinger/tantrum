@@ -13,7 +13,7 @@ javadoc.options.source("8")
 ((StandardJavadocDocletOptions)javadoc.options).linkSource(true)
 ((StandardJavadocDocletOptions)javadoc.options).noTimestamp(true)
 ((StandardJavadocDocletOptions)javadoc.options).use(true)
-((StandardJavadocDocletOptions)javadoc.options).bottom("Copyright &#169; Tommy Ettinger 2024-2025.")
+((StandardJavadocDocletOptions)javadoc.options).bottom("Copyright &#169; Tommy Ettinger 2024-2026.")
 
 compileJava {
     sourceCompatibility = 8
@@ -33,9 +33,10 @@ compileTestJava {
 
 import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.SourcesJar
 
 mavenPublishing {
-    configure(new JavaLibrary(new JavadocJar.Javadoc(), true))
+    configure(new JavaLibrary(new JavadocJar.Javadoc(), new SourcesJar.Sources()))
 }
 
 plainJavadocJar.archiveBaseName.set("$POM_NAME")
