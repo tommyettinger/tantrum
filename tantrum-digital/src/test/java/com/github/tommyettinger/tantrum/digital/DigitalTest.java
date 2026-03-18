@@ -34,8 +34,8 @@ public class DigitalTest {
 
         Base data = Base.scrambledBase(new AlternateRandom(123456789L));
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Base data2 = fory.deserializeJavaObject(bytes, Base.class);
+        byte[] bytes = fory.serialize(data);
+        Base data2 = fory.deserialize(bytes, Base.class);
         Assert.assertEquals(data.signed(0xFEDCBA9876543210L), data2.signed(0xFEDCBA9876543210L));
         Assert.assertEquals(data.unsigned(0xFEDCBA9876543210L), data.unsigned(0xFEDCBA9876543210L));
         Assert.assertEquals(data, data2);
@@ -49,8 +49,8 @@ public class DigitalTest {
 
         AlternateRandom data = new AlternateRandom(-12345L);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        AlternateRandom data2 = fory.deserializeJavaObject(bytes, AlternateRandom.class);
+        byte[] bytes = fory.serialize(data);
+        AlternateRandom data2 = fory.deserialize(bytes, AlternateRandom.class);
         Assert.assertEquals(data.nextInt(), data2.nextInt());
         Assert.assertEquals(data.nextLong(), data2.nextLong());
         Assert.assertEquals(data.serializeToString(), data2.serializeToString());
@@ -66,8 +66,8 @@ public class DigitalTest {
         long seed = Hasher.randomize3(System.nanoTime());
         Hasher data = new Hasher(seed);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Hasher data2 = fory.deserializeJavaObject(bytes, Hasher.class);
+        byte[] bytes = fory.serialize(data);
+        Hasher data2 = fory.deserialize(bytes, Hasher.class);
         Assert.assertEquals(data.hash("0xFEDCBA9876543210L"), data2.hash("0xFEDCBA9876543210L"));
         Assert.assertEquals(data.hash64("0xFEDCBA9876543210L"), data2.hash64("0xFEDCBA9876543210L"));
     }
@@ -82,8 +82,8 @@ public class DigitalTest {
         MemoryBuffer buffer = MemoryBuffer.newHeapBuffer(256);
         for (Interpolations.Interpolator data : Interpolations.getInterpolatorArray()) {
 
-            fory.serializeJavaObject(buffer, data);
-            Interpolations.Interpolator data2 = fory.deserializeJavaObject(buffer, Interpolations.Interpolator.class);
+            fory.serialize(buffer, data);
+            Interpolations.Interpolator data2 = fory.deserialize(buffer, Interpolations.Interpolator.class);
             Assert.assertEquals(data.apply(0.1f), data2.apply(0.1f), MathTools.FLOAT_ROUNDING_ERROR);
             Assert.assertEquals(data.apply(0.2f), data2.apply(0.2f), MathTools.FLOAT_ROUNDING_ERROR);
             Assert.assertEquals(data.apply(0.7f), data2.apply(0.7f), MathTools.FLOAT_ROUNDING_ERROR);
