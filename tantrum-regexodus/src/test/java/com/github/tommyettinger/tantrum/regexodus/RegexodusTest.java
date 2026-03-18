@@ -36,8 +36,8 @@ public class RegexodusTest {
 
         Pattern data = Pattern.compile("[a-z0-9_\\p{Sc}]+", REFlags.IGNORE_CASE | REFlags.UNICODE);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Pattern data2 = fory.deserializeJavaObject(bytes, Pattern.class);
+        byte[] bytes = fory.serialize(data);
+        Pattern data2 = fory.deserialize(bytes, Pattern.class);
         Assert.assertEquals(data.matches("Meow€€€"), data2.matches("Meow€€€"));
         Assert.assertEquals(data.matches("Meow, baby, meow."), data2.matches("Meow, baby, meow."));
         Assert.assertEquals(data, data2);
@@ -51,11 +51,9 @@ public class RegexodusTest {
 
         CharBitSet data = Category.LowercaseLetter.decompress();
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        CharBitSet data2 = fory.deserializeJavaObject(bytes, CharBitSet.class);
+        byte[] bytes = fory.serialize(data);
+        CharBitSet data2 = fory.deserialize(bytes, CharBitSet.class);
 
         Assert.assertEquals(data, data2);
-
-
     }
 }

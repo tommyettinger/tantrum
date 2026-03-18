@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.15.0) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.16.0) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -17,11 +17,11 @@ Similarly, there is a kryo-more sub-library for [cringe](https://github.com/tomm
 needed here because any types in cringe or juniper can be read and written without
 needing a Serializer.
 
-This uses Fory's pure-Java serialization, which can be deservedly called ***blazingly fast***.  In general, Fory's
+This uses Fory's pure-Java serialization, which calls itself blazingly fast, and it actually is!  In general, Fory's
 automatic serialization is very high-quality, and it can be worthwhile to try *not* using a custom serializer in some
 cases, because the automatic, generated serializers can actually be faster. Some cases are clearly better for the custom
 serializers, though. For example, ordered maps and sets in jdkgdxds are better with a custom serializer from here,
-because a custom serializer can simply read and write the entries in order to avoid needing to store the separate
+because a custom serializer can simply read and write the entries in order. That avoids needing to store the separate
 `order()`, which is a list of keys or items that an automatic serializer would otherwise save additionally.
 
 ## How to get
@@ -33,7 +33,7 @@ or if Fory itself had a (compatible) update available but the linked library did
   - tantrum-libgdx is at version 1.14.0.21, compatible with libGDX 1.14.0
   - tantrum-digital is at version 0.10.0.21, compatible with digital 0.10.0
   - tantrum-jdkgdxds is at version 2.1.2.21, compatible with jdkgdxds 2.1.2
-  - tantrum-regexodus is at version 0.1.21.21, compatible with RegExodus 0.1.21
+  - tantrum-regexodus is at version 0.1.21.22, compatible with RegExodus 0.1.21
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.5),
@@ -78,7 +78,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:2.1.2.21"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.21.21"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.21.22"
 ```
 
 Most likely, you won't need this, and should use the current juniper instead:
@@ -127,7 +127,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.21.21</version>
+  <version>0.1.21.22</version>
 </dependency>
 ```
 
