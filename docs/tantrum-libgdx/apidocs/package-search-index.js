@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.github.tommyettinger.tantrum.libgdx"},{"l":"com.github.tommyettinger.tantrum.libgdx.helpers"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"com.github.tommyettinger.tantrum.libgdx"},{"l":"com.github.tommyettinger.tantrum.libgdx.helpers"}];updateSearchResults();

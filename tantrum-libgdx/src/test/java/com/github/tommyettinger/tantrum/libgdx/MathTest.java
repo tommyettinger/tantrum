@@ -42,8 +42,8 @@ public class MathTest {
                 new GridPoint2(0x7FFFFFFF, 0x7FFFFFFF), new GridPoint2(0x80000000, 0x80000000)};
 
         for (GridPoint2 data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            GridPoint2 data2 = fory.deserializeJavaObject(bytes, GridPoint2.class);
+            byte[] bytes = fory.serialize(data);
+            GridPoint2 data2 = fory.deserialize(bytes, GridPoint2.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -59,8 +59,8 @@ public class MathTest {
                 new GridPoint3(0x7FFFFFFF, 0x7FFFFFFF, 0x7FFFFFFF), new GridPoint3(0x80000000, 0x80000000, 0x80000000)};
 
         for (GridPoint3 data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            GridPoint3 data2 = fory.deserializeJavaObject(bytes, GridPoint3.class);
+            byte[] bytes = fory.serialize(data);
+            GridPoint3 data2 = fory.deserialize(bytes, GridPoint3.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -77,8 +77,8 @@ public class MathTest {
                 new Vector2(0x7FF.FFp-5f, 0x7FF.FFp-5f), new Vector2(-0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector2 data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Vector2 data2 = fory.deserializeJavaObject(bytes, Vector2.class);
+            byte[] bytes = fory.serialize(data);
+            Vector2 data2 = fory.deserialize(bytes, Vector2.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -105,8 +105,8 @@ public class MathTest {
                 new Vector3(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector3 data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Vector3 data2 = fory.deserializeJavaObject(bytes, Vector3.class);
+            byte[] bytes = fory.serialize(data);
+            Vector3 data2 = fory.deserialize(bytes, Vector3.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -135,8 +135,8 @@ public class MathTest {
                 new Vector4(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Vector4 data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Vector4 data2 = fory.deserializeJavaObject(bytes, Vector4.class);
+            byte[] bytes = fory.serialize(data);
+            Vector4 data2 = fory.deserialize(bytes, Vector4.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -165,8 +165,8 @@ public class MathTest {
                 new Quaternion(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Quaternion data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Quaternion data2 = fory.deserializeJavaObject(bytes, Quaternion.class);
+            byte[] bytes = fory.serialize(data);
+            Quaternion data2 = fory.deserialize(bytes, Quaternion.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -195,8 +195,8 @@ public class MathTest {
                 new Ellipse(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Ellipse data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Ellipse data2 = fory.deserializeJavaObject(bytes, Ellipse.class);
+            byte[] bytes = fory.serialize(data);
+            Ellipse data2 = fory.deserialize(bytes, Ellipse.class);
             // Ellipse does not implement equals().
 //            Assert.assertEquals(data, data2);
             Assert.assertEquals(data.x, data2.x, 0.00001f);
@@ -230,8 +230,8 @@ public class MathTest {
                 new Rectangle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Rectangle data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Rectangle data2 = fory.deserializeJavaObject(bytes, Rectangle.class);
+            byte[] bytes = fory.serialize(data);
+            Rectangle data2 = fory.deserialize(bytes, Rectangle.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -257,8 +257,8 @@ public class MathTest {
                 new Circle(0x7FF.FFp-5f, 0x7FF.FFp-5f, 0x7FF.FFp-5f), new Circle(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f)};
 
         for (Circle data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Circle data2 = fory.deserializeJavaObject(bytes, Circle.class);
+            byte[] bytes = fory.serialize(data);
+            Circle data2 = fory.deserialize(bytes, Circle.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -286,8 +286,8 @@ public class MathTest {
                 new Plane(new Vector3(-0x7FF.FFp-5f, -0x7FF.FFp-5f, -0x7FF.FFp-5f), -0x7FF.FFp-5f)};
 
         for (Plane data : testing) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Plane data2 = fory.deserializeJavaObject(bytes, Plane.class);
+            byte[] bytes = fory.serialize(data);
+            Plane data2 = fory.deserialize(bytes, Plane.class);
             // Plane does not implement equals().
 //            Assert.assertEquals(data, data2);
             Assert.assertEquals(data.normal, data2.normal);
@@ -303,8 +303,8 @@ public class MathTest {
 
         RandomXS128 data = new RandomXS128(-12345L);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        RandomXS128 data2 = fory.deserializeJavaObject(bytes, RandomXS128.class);
+        byte[] bytes = fory.serialize(data);
+        RandomXS128 data2 = fory.deserialize(bytes, RandomXS128.class);
         Assert.assertEquals(data.nextInt(), data2.nextInt());
         Assert.assertEquals(data.nextLong(), data2.nextLong());
         // RandomXS128 does not implement equals().
@@ -322,8 +322,8 @@ public class MathTest {
 
         Matrix3 data = new Matrix3().scale(2.1f, 3.3f).rotateRad(2f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Matrix3 data2 = fory.deserializeJavaObject(bytes, Matrix3.class);
+        byte[] bytes = fory.serialize(data);
+        Matrix3 data2 = fory.deserialize(bytes, Matrix3.class);
         // Matrix3 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
@@ -337,8 +337,8 @@ public class MathTest {
 
         Matrix4 data = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Matrix4 data2 = fory.deserializeJavaObject(bytes, Matrix4.class);
+        byte[] bytes = fory.serialize(data);
+        Matrix4 data2 = fory.deserialize(bytes, Matrix4.class);
         // Matrix4 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertArrayEquals(data.val, data2.val, 0.00001f);
@@ -352,8 +352,8 @@ public class MathTest {
 
         Affine2 data = new Affine2().scale(2.1f, 3.3f).rotateRad(2f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        Affine2 data2 = fory.deserializeJavaObject(bytes, Affine2.class);
+        byte[] bytes = fory.serialize(data);
+        Affine2 data2 = fory.deserialize(bytes, Affine2.class);
         // Affine2 does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertEquals(data.m00, data2.m00, 0.00001f);
@@ -371,8 +371,8 @@ public class MathTest {
         fory.registerSerializer(Polygon.class, new PolygonSerializer(fory));
 
         Polygon data = new Polygon(new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f).val);
-        byte[] bytes = fory.serializeJavaObject(data);
-        Polygon data2 = fory.deserializeJavaObject(bytes, Polygon.class);
+        byte[] bytes = fory.serialize(data);
+        Polygon data2 = fory.deserialize(bytes, Polygon.class);
         // Polygon does not implement equals().
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getCentroid(new Vector2()), data2.getCentroid(new Vector2()));
@@ -390,8 +390,8 @@ public class MathTest {
         data.setPosition(10, 10);
         data.setScale(2, 3);
         data.setRotation(123);
-        byte[] bytes = fory.serializeJavaObject(data);
-        Polyline data2 = fory.deserializeJavaObject(bytes, Polyline.class);
+        byte[] bytes = fory.serialize(data);
+        Polyline data2 = fory.deserialize(bytes, Polyline.class);
         // Polyline does not implement equals().
 //            Assert.assertEquals(data, data2);
         Assert.assertEquals(data.getScaledLength(), data2.getScaledLength(), 0.0001f);
@@ -424,8 +424,8 @@ public class MathTest {
         for (Vector3 origin : testing) {
             for (Vector3 direction : testing) {
                 Ray data = new Ray(origin, direction);
-                byte[] bytes = fory.serializeJavaObject(data);
-                Ray data2 = fory.deserializeJavaObject(bytes, Ray.class);
+                byte[] bytes = fory.serialize(data);
+                Ray data2 = fory.deserialize(bytes, Ray.class);
                 Assert.assertEquals(data, data2);
                 Assert.assertTrue(data.origin.epsilonEquals(data2.origin, 0.00001f));
                 Assert.assertTrue(data.direction.epsilonEquals(data2.direction, 0.00001f));
@@ -457,8 +457,8 @@ public class MathTest {
         for (Vector3 origin : testing) {
             for (Vector3 direction : testing) {
                 BoundingBox data = new BoundingBox(origin, direction);
-                byte[] bytes = fory.serializeJavaObject(data);
-                BoundingBox data2 = fory.deserializeJavaObject(bytes, BoundingBox.class);
+                byte[] bytes = fory.serialize(data);
+                BoundingBox data2 = fory.deserialize(bytes, BoundingBox.class);
                 // BoundingBox does not implement equals().
 //                Assert.assertEquals(data, data2);
                 Assert.assertEquals(data.min, data2.min);
@@ -476,8 +476,8 @@ public class MathTest {
         BoundingBox bb = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(5, 6, 7));
         Matrix4 m = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
         OrientedBoundingBox data = new OrientedBoundingBox(bb, m);
-        byte[] bytes = fory.serializeJavaObject(data);
-        OrientedBoundingBox data2 = fory.deserializeJavaObject(bytes, OrientedBoundingBox.class);
+        byte[] bytes = fory.serialize(data);
+        OrientedBoundingBox data2 = fory.deserialize(bytes, OrientedBoundingBox.class);
         // OrientedBoundingBox does not implement equals().
 //        Assert.assertEquals(data, data2);
         Assert.assertTrue(data.getBounds().min.epsilonEquals(data2.getBounds().min));
@@ -492,8 +492,8 @@ public class MathTest {
         fory.registerSerializer(Color.class, new ColorSerializer(fory));
 
         for (Color data : Colors.getColors().values()) {
-            byte[] bytes = fory.serializeJavaObject(data);
-            Color data2 = fory.deserializeJavaObject(bytes, Color.class);
+            byte[] bytes = fory.serialize(data);
+            Color data2 = fory.deserialize(bytes, Color.class);
             Assert.assertEquals(data, data2);
         }
     }

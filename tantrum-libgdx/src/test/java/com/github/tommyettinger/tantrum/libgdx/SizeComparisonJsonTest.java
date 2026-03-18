@@ -25,9 +25,9 @@ public class SizeComparisonJsonTest {
 
         Array<String> data = Array.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Array<?> data2 = fory.deserializeJavaObject(bytes, Array.class);
+            Array<?> data2 = fory.deserialize(bytes, Array.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -62,9 +62,9 @@ public class SizeComparisonJsonTest {
             data.add(i + " " + i);
         }
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Array<?> data2 = fory.deserializeJavaObject(bytes, Array.class);
+            Array<?> data2 = fory.deserialize(bytes, Array.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -106,9 +106,9 @@ public class SizeComparisonJsonTest {
         }
         data.add(sum);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Array<?> data2 = fory.deserializeJavaObject(bytes, Array.class);
+            Array<?> data2 = fory.deserialize(bytes, Array.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -150,9 +150,9 @@ public class SizeComparisonJsonTest {
         }
         data.add(sum);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Array<?> data2 = fory.deserializeJavaObject(bytes, Array.class);
+            Array<?> data2 = fory.deserialize(bytes, Array.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -184,9 +184,9 @@ public class SizeComparisonJsonTest {
             data.addLast(s);
         }
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Queue<?> data2 = fory.deserializeJavaObject(bytes, Queue.class);
+            Queue<?> data2 = fory.deserialize(bytes, Queue.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -219,9 +219,9 @@ public class SizeComparisonJsonTest {
             data.addLast(i + " " + i);
         }
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Queue<?> data2 = fory.deserializeJavaObject(bytes, Queue.class);
+            Queue<?> data2 = fory.deserialize(bytes, Queue.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -255,9 +255,9 @@ public class SizeComparisonJsonTest {
             data.addLast(new Vector3(MathUtils.random(), MathUtils.random(), MathUtils.random()));
         }
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Queue<?> data2 = fory.deserializeJavaObject(bytes, Queue.class);
+            Queue<?> data2 = fory.deserialize(bytes, Queue.class);
             Assert.assertEquals(data, data2);
         }
 
@@ -296,9 +296,9 @@ public class SizeComparisonJsonTest {
         }
         data.addLast(sum);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            Queue<?> data2 = fory.deserializeJavaObject(bytes, Queue.class);
+            Queue<?> data2 = fory.deserialize(bytes, Queue.class);
             Assert.assertEquals(data, data2);
         }
 

@@ -33,8 +33,8 @@ public class UtilsTest {
 
         Array<String> data = Array.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            Array<?> data2 = fory.deserializeJavaObject(bytes, Array.class);
+        byte[] bytes = fory.serialize(data); {
+            Array<?> data2 = fory.deserialize(bytes, Array.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -47,8 +47,8 @@ public class UtilsTest {
 
         SnapshotArray<String> data = SnapshotArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            SnapshotArray<?> data2 = fory.deserializeJavaObject(bytes, SnapshotArray.class);
+        byte[] bytes = fory.serialize(data); {
+            SnapshotArray<?> data2 = fory.deserialize(bytes, SnapshotArray.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -61,8 +61,8 @@ public class UtilsTest {
 
         DelayedRemovalArray<String> data = DelayedRemovalArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            DelayedRemovalArray<?> data2 = fory.deserializeJavaObject(bytes, DelayedRemovalArray.class);
+        byte[] bytes = fory.serialize(data); {
+            DelayedRemovalArray<?> data2 = fory.deserialize(bytes, DelayedRemovalArray.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -83,9 +83,9 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            ArrayMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ArrayMap.class);
+            ArrayMap<?, ?> data2 = fory.deserialize(bytes, ArrayMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -101,8 +101,8 @@ public class UtilsTest {
             data.addLast(s);
         }
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            Queue<?> data2 = fory.deserializeJavaObject(bytes, Queue.class);
+        byte[] bytes = fory.serialize(data); {
+            Queue<?> data2 = fory.deserialize(bytes, Queue.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -115,8 +115,8 @@ public class UtilsTest {
 
         ObjectSet<String> data = ObjectSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectSet<?> data2 = fory.deserializeJavaObject(bytes, ObjectSet.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectSet<?> data2 = fory.deserialize(bytes, ObjectSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -129,8 +129,8 @@ public class UtilsTest {
 
         OrderedSet<String> data = OrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            OrderedSet<?> data2 = fory.deserializeJavaObject(bytes, OrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            OrderedSet<?> data2 = fory.deserialize(bytes, OrderedSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -151,8 +151,8 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectMap<?,?> data2 = fory.deserialize(bytes, ObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -173,8 +173,8 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            OrderedMap<?,?> data2 = fory.deserializeJavaObject(bytes, OrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            OrderedMap<?,?> data2 = fory.deserialize(bytes, OrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -195,8 +195,8 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectFloatMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectFloatMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectFloatMap<?> data2 = fory.deserialize(bytes, ObjectFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -217,8 +217,8 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectLongMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectLongMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectLongMap<?> data2 = fory.deserialize(bytes, ObjectLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -239,8 +239,8 @@ public class UtilsTest {
         data.put("of", -1);
         data.put("waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectIntMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectIntMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectIntMap<?> data2 = fory.deserialize(bytes, ObjectIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -253,8 +253,8 @@ public class UtilsTest {
 
         BooleanArray data = BooleanArray.with(true, false, false, true, false, true, false);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        BooleanArray data2 = fory.deserializeJavaObject(bytes, BooleanArray.class);
+        byte[] bytes = fory.serialize(data);
+        BooleanArray data2 = fory.deserialize(bytes, BooleanArray.class);
         Assert.assertEquals(data, data2);
     }
     
@@ -266,8 +266,8 @@ public class UtilsTest {
 
         ByteArray data = ByteArray.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        ByteArray data2 = fory.deserializeJavaObject(bytes, ByteArray.class);
+        byte[] bytes = fory.serialize(data);
+        ByteArray data2 = fory.deserialize(bytes, ByteArray.class);
         Assert.assertEquals(data, data2);
     }
     
@@ -279,8 +279,8 @@ public class UtilsTest {
 
         CharArray data = CharArray.with("Hello, World!".toCharArray());
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        CharArray data2 = fory.deserializeJavaObject(bytes, CharArray.class);
+        byte[] bytes = fory.serialize(data);
+        CharArray data2 = fory.deserialize(bytes, CharArray.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -292,8 +292,8 @@ public class UtilsTest {
 
         FloatArray data = FloatArray.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        FloatArray data2 = fory.deserializeJavaObject(bytes, FloatArray.class);
+        byte[] bytes = fory.serialize(data);
+        FloatArray data2 = fory.deserialize(bytes, FloatArray.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -305,8 +305,8 @@ public class UtilsTest {
 
         IntArray data = IntArray.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        IntArray data2 = fory.deserializeJavaObject(bytes, IntArray.class);
+        byte[] bytes = fory.serialize(data);
+        IntArray data2 = fory.deserialize(bytes, IntArray.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -318,8 +318,8 @@ public class UtilsTest {
 
         IntSet data = IntSet.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        IntSet data2 = fory.deserializeJavaObject(bytes, IntSet.class);
+        byte[] bytes = fory.serialize(data);
+        IntSet data2 = fory.deserialize(bytes, IntSet.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -339,9 +339,9 @@ public class UtilsTest {
         data.put(-1, -7.8f);
         data.put(0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            IntMap<?> data2 = fory.deserializeJavaObject(bytes, IntMap.class);
+            IntMap<?> data2 = fory.deserialize(bytes, IntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -362,9 +362,9 @@ public class UtilsTest {
         data.put(-1, Float.NEGATIVE_INFINITY);
         data.put(0, Float.MIN_VALUE);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            IntFloatMap data2 = fory.deserializeJavaObject(bytes, IntFloatMap.class);
+            IntFloatMap data2 = fory.deserialize(bytes, IntFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -385,9 +385,9 @@ public class UtilsTest {
         data.put(-1, -78);
         data.put(0, 89);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            IntIntMap data2 = fory.deserializeJavaObject(bytes, IntIntMap.class);
+            IntIntMap data2 = fory.deserialize(bytes, IntIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -400,8 +400,8 @@ public class UtilsTest {
 
         LongArray data = LongArray.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        LongArray data2 = fory.deserializeJavaObject(bytes, LongArray.class);
+        byte[] bytes = fory.serialize(data);
+        LongArray data2 = fory.deserialize(bytes, LongArray.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -416,8 +416,8 @@ public class UtilsTest {
             data.addLast(item);
         }
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        LongQueue data2 = fory.deserializeJavaObject(bytes, LongQueue.class);
+        byte[] bytes = fory.serialize(data);
+        LongQueue data2 = fory.deserialize(bytes, LongQueue.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -437,9 +437,9 @@ public class UtilsTest {
         data.put(-1, -7.8f);
         data.put(0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
+        byte[] bytes = fory.serialize(data);
         {
-            LongMap<?> data2 = fory.deserializeJavaObject(bytes, LongMap.class);
+            LongMap<?> data2 = fory.deserialize(bytes, LongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -452,8 +452,8 @@ public class UtilsTest {
 
         ShortArray data = ShortArray.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        ShortArray data2 = fory.deserializeJavaObject(bytes, ShortArray.class);
+        byte[] bytes = fory.serialize(data);
+        ShortArray data2 = fory.deserialize(bytes, ShortArray.class);
         Assert.assertEquals(data, data2);
     }
 }
