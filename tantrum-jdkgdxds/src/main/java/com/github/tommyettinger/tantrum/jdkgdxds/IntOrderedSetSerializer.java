@@ -39,11 +39,11 @@ public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
     @Override
     public void write(final MemoryBuffer output, final IntOrderedSet data) {
         output.writePrimitiveArrayWithSize(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
     }
 
     @Override
     public IntOrderedSet read(MemoryBuffer input) {
-        return new IntOrderedSet(Support.readIntsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
+        return new IntOrderedSet(Support.readIntsAndSize(input), OrderType.valueOf(fory.readString(input)));
     }
 }

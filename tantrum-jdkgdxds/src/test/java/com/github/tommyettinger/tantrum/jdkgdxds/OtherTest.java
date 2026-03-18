@@ -30,11 +30,11 @@ public class OtherTest {
         String jstr = "(foo|bar|baz)^QUUX^woop woop";
         Junction<String> data = Junction.parse(jstr);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
+        byte[] bytes = fory.serialize(data); {
             System.out.println("Fory bytes length     : " + bytes.length);
             System.out.println("Original UTF8 length  : " + jstr.getBytes(StandardCharsets.UTF_8).length);
             System.out.println("Original UTF16 length : " + jstr.getBytes(StandardCharsets.UTF_16).length);
-            Junction<?> data2 = fory.deserializeJavaObject(bytes, Junction.class);
+            Junction<?> data2 = fory.deserialize(bytes, Junction.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -48,11 +48,11 @@ public class OtherTest {
         String jstr = "(foo|bar|baz)^QUUX^woop woop";
         StringJunction data = StringJunction.parse(jstr);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
+        byte[] bytes = fory.serialize(data); {
             System.out.println("Fory bytes length     : " + bytes.length);
             System.out.println("Original UTF8 length  : " + jstr.getBytes(StandardCharsets.UTF_8).length);
             System.out.println("Original UTF16 length : " + jstr.getBytes(StandardCharsets.UTF_16).length);
-            StringJunction data2 = fory.deserializeJavaObject(bytes, StringJunction.class);
+            StringJunction data2 = fory.deserialize(bytes, StringJunction.class);
             Assert.assertEquals(data, data2);
         }
     }

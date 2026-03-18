@@ -39,13 +39,13 @@ public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap>
     public void write(final MemoryBuffer output, final IntFloatOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public IntFloatOrderedMap read(MemoryBuffer input) {
-        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
+        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
 

@@ -53,13 +53,13 @@
 <span class="source-line-no">040</span><span id="line-40">    public void write(final MemoryBuffer output, final LongIntOrderedMap data) {</span>
 <span class="source-line-no">041</span><span id="line-41">        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() &lt;&lt; 3);</span>
 <span class="source-line-no">042</span><span id="line-42">        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() &lt;&lt; 2);</span>
-<span class="source-line-no">043</span><span id="line-43">        fory.writeJavaString(output, data.getOrderType().name());</span>
+<span class="source-line-no">043</span><span id="line-43">        fory.writeString(output, data.getOrderType().name());</span>
 <span class="source-line-no">044</span><span id="line-44">        output.writeInt32(data.getDefaultValue());</span>
 <span class="source-line-no">045</span><span id="line-45">    }</span>
 <span class="source-line-no">046</span><span id="line-46"></span>
 <span class="source-line-no">047</span><span id="line-47">    @Override</span>
 <span class="source-line-no">048</span><span id="line-48">    public LongIntOrderedMap read(MemoryBuffer input) {</span>
-<span class="source-line-no">049</span><span id="line-49">        LongIntOrderedMap data = new LongIntOrderedMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));</span>
+<span class="source-line-no">049</span><span id="line-49">        LongIntOrderedMap data = new LongIntOrderedMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input), OrderType.valueOf(fory.readString(input)));</span>
 <span class="source-line-no">050</span><span id="line-50">        data.setDefaultValue(input.readInt32());</span>
 <span class="source-line-no">051</span><span id="line-51">        return data;</span>
 <span class="source-line-no">052</span><span id="line-52">    }</span>

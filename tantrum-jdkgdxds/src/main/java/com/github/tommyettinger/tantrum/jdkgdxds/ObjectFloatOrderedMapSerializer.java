@@ -42,7 +42,7 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
         for(Object v : data.keySet()){
             fory.writeRef(output, v);
         }
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
@@ -55,7 +55,7 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
             ks[i] = fory.readRef(input);
         }
 
-        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
+        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
     }

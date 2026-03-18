@@ -33,8 +33,8 @@ public class BagTest {
 
         ObjectBag<String> data = ObjectBag.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        ObjectBag<?> data2 = fory.deserializeJavaObject(bytes, ObjectBag.class);
+        byte[] bytes = fory.serialize(data);
+        ObjectBag<?> data2 = fory.deserialize(bytes, ObjectBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -46,8 +46,8 @@ public class BagTest {
 
         IntBag data = IntBag.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        IntBag data2 = fory.deserializeJavaObject(bytes, IntBag.class);
+        byte[] bytes = fory.serialize(data);
+        IntBag data2 = fory.deserialize(bytes, IntBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -59,8 +59,8 @@ public class BagTest {
 
         LongBag data = LongBag.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        LongBag data2 = fory.deserializeJavaObject(bytes, LongBag.class);
+        byte[] bytes = fory.serialize(data);
+        LongBag data2 = fory.deserialize(bytes, LongBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -72,8 +72,8 @@ public class BagTest {
 
         ShortBag data = ShortBag.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        ShortBag data2 = fory.deserializeJavaObject(bytes, ShortBag.class);
+        byte[] bytes = fory.serialize(data);
+        ShortBag data2 = fory.deserialize(bytes, ShortBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -85,8 +85,8 @@ public class BagTest {
 
         ByteBag data = ByteBag.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        ByteBag data2 = fory.deserializeJavaObject(bytes, ByteBag.class);
+        byte[] bytes = fory.serialize(data);
+        ByteBag data2 = fory.deserialize(bytes, ByteBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -98,8 +98,8 @@ public class BagTest {
 
         FloatBag data = FloatBag.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        FloatBag data2 = fory.deserializeJavaObject(bytes, FloatBag.class);
+        byte[] bytes = fory.serialize(data);
+        FloatBag data2 = fory.deserialize(bytes, FloatBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -111,8 +111,8 @@ public class BagTest {
 
         DoubleBag data = DoubleBag.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        DoubleBag data2 = fory.deserializeJavaObject(bytes, DoubleBag.class);
+        byte[] bytes = fory.serialize(data);
+        DoubleBag data2 = fory.deserialize(bytes, DoubleBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -124,8 +124,8 @@ public class BagTest {
 
         BooleanBag data = BooleanBag.with(true, false, false, true, false, true, false);
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        BooleanBag data2 = fory.deserializeJavaObject(bytes, BooleanBag.class);
+        byte[] bytes = fory.serialize(data);
+        BooleanBag data2 = fory.deserialize(bytes, BooleanBag.class);
         Assert.assertEquals(data, data2);
     }
 
@@ -138,8 +138,8 @@ public class BagTest {
         CharBag data = CharBag.with("Hello, World!".toCharArray());
 
 
-        byte[] bytes = fory.serializeJavaObject(data);
-        CharBag data2 = fory.deserializeJavaObject(bytes, CharBag.class);
+        byte[] bytes = fory.serialize(data);
+        CharBag data2 = fory.deserialize(bytes, CharBag.class);
         Assert.assertEquals(data, data2);
     }
 }

@@ -37,7 +37,7 @@ public class CaseInsensitiveOrderedSetSerializer extends CollectionSerializer<Ca
     public void write(final MemoryBuffer output, final CaseInsensitiveOrderedSet data) {
         final int len = data.size();
         output.writeVarUint32(len);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         for (Object item : data) {
             fory.writeRef(output, item);
         }
@@ -46,7 +46,7 @@ public class CaseInsensitiveOrderedSetSerializer extends CollectionSerializer<Ca
     @Override
     public CaseInsensitiveOrderedSet read(MemoryBuffer input) {
         final int len = input.readVarUint32();
-        CaseInsensitiveOrderedSet data = new CaseInsensitiveOrderedSet(len, OrderType.valueOf(fory.readJavaString(input)));
+        CaseInsensitiveOrderedSet data = new CaseInsensitiveOrderedSet(len, OrderType.valueOf(fory.readString(input)));
         for (int i = 0; i < len; i++) {
             data.add((CharSequence) fory.readRef(input));
         }

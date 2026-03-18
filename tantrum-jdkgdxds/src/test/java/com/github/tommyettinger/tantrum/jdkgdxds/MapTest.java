@@ -33,8 +33,8 @@ public class MapTest {
 
         LongObjectMap<Float> data = LongObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongObjectMap<?> data2 = fory.deserializeJavaObject(bytes, LongObjectMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongObjectMap<?> data2 = fory.deserialize(bytes, LongObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -47,8 +47,8 @@ public class MapTest {
 
         LongObjectOrderedMap<Float> data = LongObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongObjectOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, LongObjectOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongObjectOrderedMap<?> data2 = fory.deserialize(bytes, LongObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -61,8 +61,8 @@ public class MapTest {
 
         LongFloatMap data = LongFloatMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongFloatMap data2 = fory.deserializeJavaObject(bytes, LongFloatMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongFloatMap data2 = fory.deserialize(bytes, LongFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -75,8 +75,8 @@ public class MapTest {
 
         LongFloatOrderedMap data = LongFloatOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, LongFloatOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongFloatOrderedMap data2 = fory.deserialize(bytes, LongFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -90,8 +90,8 @@ public class MapTest {
 
         LongIntMap data = LongIntMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongIntMap data2 = fory.deserializeJavaObject(bytes, LongIntMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongIntMap data2 = fory.deserialize(bytes, LongIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -104,8 +104,8 @@ public class MapTest {
 
         LongIntOrderedMap data = LongIntOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongIntOrderedMap data2 = fory.deserializeJavaObject(bytes, LongIntOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongIntOrderedMap data2 = fory.deserialize(bytes, LongIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -118,8 +118,8 @@ public class MapTest {
 
         LongLongMap data = LongLongMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongLongMap data2 = fory.deserializeJavaObject(bytes, LongLongMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongLongMap data2 = fory.deserialize(bytes, LongLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -132,8 +132,8 @@ public class MapTest {
 
         LongLongOrderedMap data = LongLongOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongLongOrderedMap data2 = fory.deserializeJavaObject(bytes, LongLongOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            LongLongOrderedMap data2 = fory.deserialize(bytes, LongLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -147,8 +147,8 @@ public class MapTest {
 
         IntObjectMap<Float> data = IntObjectMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntObjectMap<?> data2 = fory.deserializeJavaObject(bytes, IntObjectMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntObjectMap<?> data2 = fory.deserialize(bytes, IntObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -161,8 +161,8 @@ public class MapTest {
 
         IntObjectOrderedMap<Float> data = IntObjectOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntObjectOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, IntObjectOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntObjectOrderedMap<?> data2 = fory.deserialize(bytes, IntObjectOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -175,8 +175,8 @@ public class MapTest {
 
         IntFloatMap data = IntFloatMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntFloatMap data2 = fory.deserializeJavaObject(bytes, IntFloatMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntFloatMap data2 = fory.deserialize(bytes, IntFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -189,8 +189,8 @@ public class MapTest {
 
         IntFloatOrderedMap data = IntFloatOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, IntFloatOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntFloatOrderedMap data2 = fory.deserialize(bytes, IntFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -204,8 +204,8 @@ public class MapTest {
 
         IntIntMap data = IntIntMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntIntMap data2 = fory.deserializeJavaObject(bytes, IntIntMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntIntMap data2 = fory.deserialize(bytes, IntIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -218,8 +218,8 @@ public class MapTest {
 
         IntIntOrderedMap data = IntIntOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntIntOrderedMap data2 = fory.deserializeJavaObject(bytes, IntIntOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntIntOrderedMap data2 = fory.deserialize(bytes, IntIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -233,8 +233,8 @@ public class MapTest {
 
         IntLongMap data = IntLongMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntLongMap data2 = fory.deserializeJavaObject(bytes, IntLongMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntLongMap data2 = fory.deserialize(bytes, IntLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -247,8 +247,8 @@ public class MapTest {
 
         IntLongOrderedMap data = IntLongOrderedMap.with(-1234567890L, 1.2f, 0L, 2.3f, 4567890123456789L, -3.4f, 0, -4.5f, 1L, -5.6f, 1, 6.7f, -1, -7.8f, 0, 8.9f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntLongOrderedMap data2 = fory.deserializeJavaObject(bytes, IntLongOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            IntLongOrderedMap data2 = fory.deserialize(bytes, IntLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -263,8 +263,8 @@ public class MapTest {
         ObjectObjectMap<String, Integer> data = ObjectObjectMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectObjectMap<?,?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectObjectMap<?,?> data2 = fory.deserialize(bytes, ObjectObjectMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -320,9 +320,9 @@ public class MapTest {
             ObjectObjectOrderedMap<String, Integer> data = ObjectObjectOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                     "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-            byte[] bytes = fory.serializeJavaObject(data);
+            byte[] bytes = fory.serialize(data);
             {
-                ObjectObjectOrderedMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+                ObjectObjectOrderedMap<?, ?> data2 = fory.deserialize(bytes, ObjectObjectOrderedMap.class);
                 Assert.assertEquals(data, data2);
             }
         }
@@ -330,9 +330,9 @@ public class MapTest {
             ObjectObjectOrderedMap<String, Inte> data = ObjectObjectOrderedMap.with("Cthulhu", new Inte(-123456), "lies", new Inte(Integer.MIN_VALUE),
                     "deep", new Inte(456789012), "in", new Inte(0), "Rl'yeh", new Inte(1111), "dreaming", new Inte(1), "of", new Inte(-1), "waffles", new Inte(0));
 
-            byte[] bytes = fory.serializeJavaObject(data);
+            byte[] bytes = fory.serialize(data);
             {
-                ObjectObjectOrderedMap<?, ?> data2 = fory.deserializeJavaObject(bytes, ObjectObjectOrderedMap.class);
+                ObjectObjectOrderedMap<?, ?> data2 = fory.deserialize(bytes, ObjectObjectOrderedMap.class);
                 Assert.assertEquals(data, data2);
             }
 
@@ -348,8 +348,8 @@ public class MapTest {
         ObjectIntMap<String> data = ObjectIntMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectIntMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectIntMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectIntMap<?> data2 = fory.deserialize(bytes, ObjectIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -363,8 +363,8 @@ public class MapTest {
         ObjectIntOrderedMap<String> data = ObjectIntOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectIntOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectIntOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectIntOrderedMap<?> data2 = fory.deserialize(bytes, ObjectIntOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -379,8 +379,8 @@ public class MapTest {
         ObjectLongMap<String> data = ObjectLongMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
                 4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectLongMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectLongMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectLongMap<?> data2 = fory.deserialize(bytes, ObjectLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -394,8 +394,8 @@ public class MapTest {
         ObjectLongOrderedMap<String> data = ObjectLongOrderedMap.with("Cthulhu", -1234567890L, "lies", 0L, "deep",
                 4567890123456789L, "in", 0, "Rl'yeh", 1L, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectLongOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectLongOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectLongOrderedMap<?> data2 = fory.deserialize(bytes, ObjectLongOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -410,8 +410,8 @@ public class MapTest {
         ObjectFloatMap<String> data = ObjectFloatMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
                 4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectFloatMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectFloatMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectFloatMap<?> data2 = fory.deserialize(bytes, ObjectFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -425,8 +425,8 @@ public class MapTest {
         ObjectFloatOrderedMap<String> data = ObjectFloatOrderedMap.with("Cthulhu", -123456.789f, "lies", 0f, "deep",
                 4.56789f, "in", 0.0001f, "Rl'yeh", 1f, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectFloatOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, ObjectFloatOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectFloatOrderedMap<?> data2 = fory.deserialize(bytes, ObjectFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -441,8 +441,8 @@ public class MapTest {
         CaseInsensitiveMap<Integer> data = CaseInsensitiveMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CaseInsensitiveMap<?> data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveMap.class);
+        byte[] bytes = fory.serialize(data); {
+            CaseInsensitiveMap<?> data2 = fory.deserialize(bytes, CaseInsensitiveMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -456,8 +456,8 @@ public class MapTest {
         CaseInsensitiveOrderedMap<Integer> data = CaseInsensitiveOrderedMap.with("Cthulhu", -123456, "lies", Integer.MIN_VALUE,
                 "deep", 456789012, "in", 0, "Rl'yeh", 1111, "dreaming", 1, "of", -1, "waffles", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CaseInsensitiveOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            CaseInsensitiveOrderedMap<?> data2 = fory.deserialize(bytes, CaseInsensitiveOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -472,8 +472,8 @@ public class MapTest {
         FilteredStringMap<Integer> data = FilteredStringMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
                 "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            FilteredStringMap<?> data2 = fory.deserializeJavaObject(bytes, FilteredStringMap.class);
+        byte[] bytes = fory.serialize(data); {
+            FilteredStringMap<?> data2 = fory.deserialize(bytes, FilteredStringMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -488,8 +488,8 @@ public class MapTest {
         FilteredStringOrderedMap<Integer> data = FilteredStringOrderedMap.with(filter, "Hello", -123456, "World", Integer.MIN_VALUE,
                 "!", 456789012, "YES", 0, "HELLO", 1111, "WORLD", 1, "!", 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            FilteredStringOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, FilteredStringOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            FilteredStringOrderedMap<?> data2 = fory.deserialize(bytes, FilteredStringOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -504,8 +504,8 @@ public class MapTest {
         EnumMap<Integer> data = EnumMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumMap<?> data2 = fory.deserializeJavaObject(bytes, EnumMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumMap<?> data2 = fory.deserialize(bytes, EnumMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -520,8 +520,8 @@ public class MapTest {
         EnumOrderedMap<Integer> data = EnumOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumOrderedMap<?> data2 = fory.deserializeJavaObject(bytes, EnumOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumOrderedMap<?> data2 = fory.deserialize(bytes, EnumOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -536,8 +536,8 @@ public class MapTest {
         EnumIntMap data = EnumIntMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumIntMap data2 = fory.deserializeJavaObject(bytes, EnumIntMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumIntMap data2 = fory.deserialize(bytes, EnumIntMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -552,8 +552,8 @@ public class MapTest {
         EnumIntOrderedMap data = EnumIntOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumIntOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumIntOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumIntOrderedMap data2 = fory.deserialize(bytes, EnumIntOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -568,8 +568,8 @@ public class MapTest {
         EnumLongMap data = EnumLongMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumLongMap data2 = fory.deserializeJavaObject(bytes, EnumLongMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumLongMap data2 = fory.deserialize(bytes, EnumLongMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -584,8 +584,8 @@ public class MapTest {
         EnumLongOrderedMap data = EnumLongOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumLongOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumLongOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumLongOrderedMap data2 = fory.deserialize(bytes, EnumLongOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -600,8 +600,8 @@ public class MapTest {
         EnumFloatMap data = EnumFloatMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumFloatMap data2 = fory.deserializeJavaObject(bytes, EnumFloatMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumFloatMap data2 = fory.deserialize(bytes, EnumFloatMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -616,8 +616,8 @@ public class MapTest {
         EnumFloatOrderedMap data = EnumFloatOrderedMap.with(Character.UnicodeScript.LATIN, -123456, Character.UnicodeScript.ARABIC, Integer.MIN_VALUE,
                 Character.UnicodeScript.LAO, 456789012, Character.UnicodeScript.ARMENIAN, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumFloatOrderedMap data2 = fory.deserializeJavaObject(bytes, EnumFloatOrderedMap.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumFloatOrderedMap data2 = fory.deserialize(bytes, EnumFloatOrderedMap.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -639,8 +639,8 @@ public class MapTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot"), Integer.MIN_VALUE
 //        );
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            FilteredIterableMap<?,?,?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableMap.class);
+//        byte[] bytes = fory.serialize(data); {
+//            FilteredIterableMap<?,?,?> data2 = fory.deserialize(bytes, FilteredIterableMap.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -662,8 +662,8 @@ public class MapTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot"), Integer.MIN_VALUE
 //        );
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            FilteredIterableOrderedMap<?,?,?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableOrderedMap.class);
+//        byte[] bytes = fory.serialize(data); {
+//            FilteredIterableOrderedMap<?,?,?> data2 = fory.deserialize(bytes, FilteredIterableOrderedMap.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }

@@ -40,7 +40,7 @@ public class EnumIntOrderedMapSerializer extends Serializer<EnumIntOrderedMap> {
         for(Enum<?> v : data.keySet()){
             fory.writeRef(output, v);
         }
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeInt32(data.getDefaultValue());
     }
 
@@ -53,7 +53,7 @@ public class EnumIntOrderedMapSerializer extends Serializer<EnumIntOrderedMap> {
             ks[i] = (Enum<?>)fory.readRef(input);
         }
 
-        EnumIntOrderedMap data = new EnumIntOrderedMap(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
+        EnumIntOrderedMap data = new EnumIntOrderedMap(ks, vs, OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readInt32());
         return data;
 

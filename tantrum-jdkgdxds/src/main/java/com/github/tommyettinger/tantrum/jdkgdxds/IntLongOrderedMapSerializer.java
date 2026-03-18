@@ -40,13 +40,13 @@ public class IntLongOrderedMapSerializer extends Serializer<IntLongOrderedMap> {
     public void write(final MemoryBuffer output, final IntLongOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeInt64(data.getDefaultValue());
     }
 
     @Override
     public IntLongOrderedMap read(MemoryBuffer input) {
-        IntLongOrderedMap data = new IntLongOrderedMap(Support.readIntsAndSize(input), Support.readLongsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
+        IntLongOrderedMap data = new IntLongOrderedMap(Support.readIntsAndSize(input), Support.readLongsAndSize(input), OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readInt64());
         return data;
 

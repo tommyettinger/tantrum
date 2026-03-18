@@ -33,8 +33,8 @@ public class DequeTest {
 
         ObjectDeque<String> data = ObjectDeque.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectDeque<?> data2 = fory.deserializeJavaObject(bytes, ObjectDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectDeque<?> data2 = fory.deserialize(bytes, ObjectDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -47,8 +47,8 @@ public class DequeTest {
 
         IntDeque data = IntDeque.with(-123, 0, 456, 0, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntDeque data2 = fory.deserializeJavaObject(bytes, IntDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            IntDeque data2 = fory.deserialize(bytes, IntDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -61,8 +61,8 @@ public class DequeTest {
 
         LongDeque data = LongDeque.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongDeque data2 = fory.deserializeJavaObject(bytes, LongDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            LongDeque data2 = fory.deserialize(bytes, LongDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -75,8 +75,8 @@ public class DequeTest {
 
         ShortDeque data = ShortDeque.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ShortDeque data2 = fory.deserializeJavaObject(bytes, ShortDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            ShortDeque data2 = fory.deserialize(bytes, ShortDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -89,8 +89,8 @@ public class DequeTest {
 
         ByteDeque data = ByteDeque.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ByteDeque data2 = fory.deserializeJavaObject(bytes, ByteDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            ByteDeque data2 = fory.deserialize(bytes, ByteDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -103,8 +103,8 @@ public class DequeTest {
 
         FloatDeque data = FloatDeque.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            FloatDeque data2 = fory.deserializeJavaObject(bytes, FloatDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            FloatDeque data2 = fory.deserialize(bytes, FloatDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -117,8 +117,8 @@ public class DequeTest {
 
         DoubleDeque data = DoubleDeque.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            DoubleDeque data2 = fory.deserializeJavaObject(bytes, DoubleDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            DoubleDeque data2 = fory.deserialize(bytes, DoubleDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -131,8 +131,8 @@ public class DequeTest {
 
         BooleanDeque data = BooleanDeque.with(true, false, false, true, false, true, false);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            BooleanDeque data2 = fory.deserializeJavaObject(bytes, BooleanDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            BooleanDeque data2 = fory.deserialize(bytes, BooleanDeque.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -145,8 +145,8 @@ public class DequeTest {
 
         CharDeque data = CharDeque.with("Hello, World!".toCharArray());
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CharDeque data2 = fory.deserializeJavaObject(bytes, CharDeque.class);
+        byte[] bytes = fory.serialize(data); {
+            CharDeque data2 = fory.deserialize(bytes, CharDeque.class);
             Assert.assertEquals(data, data2);
         }
     }

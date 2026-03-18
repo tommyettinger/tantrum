@@ -33,8 +33,8 @@ public class SetTest {
 
         IntSet data = IntSet.with(-123, 0, 456, 0, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntSet data2 = fory.deserializeJavaObject(bytes, IntSet.class);
+        byte[] bytes = fory.serialize(data); {
+            IntSet data2 = fory.deserialize(bytes, IntSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -47,8 +47,8 @@ public class SetTest {
 
         IntOrderedSet data = IntOrderedSet.with(-123, 0, 456, 0, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            IntOrderedSet data2 = fory.deserializeJavaObject(bytes, IntOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            IntOrderedSet data2 = fory.deserialize(bytes, IntOrderedSet.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -62,8 +62,8 @@ public class SetTest {
 
         LongSet data = LongSet.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongSet data2 = fory.deserializeJavaObject(bytes, LongSet.class);
+        byte[] bytes = fory.serialize(data); {
+            LongSet data2 = fory.deserialize(bytes, LongSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -76,8 +76,8 @@ public class SetTest {
 
         LongOrderedSet data = LongOrderedSet.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            LongOrderedSet data2 = fory.deserializeJavaObject(bytes, LongOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            LongOrderedSet data2 = fory.deserialize(bytes, LongOrderedSet.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -91,8 +91,8 @@ public class SetTest {
 
         ObjectSet<String> data = ObjectSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectSet<?> data2 = fory.deserializeJavaObject(bytes, ObjectSet.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectSet<?> data2 = fory.deserialize(bytes, ObjectSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -105,8 +105,8 @@ public class SetTest {
 
         ObjectOrderedSet<String> data = ObjectOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            ObjectOrderedSet<?> data2 = fory.deserializeJavaObject(bytes, ObjectOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            ObjectOrderedSet<?> data2 = fory.deserialize(bytes, ObjectOrderedSet.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -120,8 +120,8 @@ public class SetTest {
 
         CaseInsensitiveSet data = CaseInsensitiveSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CaseInsensitiveSet data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveSet.class);
+        byte[] bytes = fory.serialize(data); {
+            CaseInsensitiveSet data2 = fory.deserialize(bytes, CaseInsensitiveSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -134,8 +134,8 @@ public class SetTest {
 
         CaseInsensitiveOrderedSet data = CaseInsensitiveOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CaseInsensitiveOrderedSet data2 = fory.deserializeJavaObject(bytes, CaseInsensitiveOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            CaseInsensitiveOrderedSet data2 = fory.deserialize(bytes, CaseInsensitiveOrderedSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -149,8 +149,8 @@ public class SetTest {
         OffsetBitSet data = new OffsetBitSet(-123, 500);
         data.addAll(new int[]{-123, 0, 456, 0, 1, -1, 0});
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            OffsetBitSet data2 = fory.deserializeJavaObject(bytes, OffsetBitSet.class);
+        byte[] bytes = fory.serialize(data); {
+            OffsetBitSet data2 = fory.deserialize(bytes, OffsetBitSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -164,8 +164,8 @@ public class SetTest {
         CharBitSet data = new CharBitSet(Character::isDigit);
         data.add('Z');
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CharBitSet data2 = fory.deserializeJavaObject(bytes, CharBitSet.class);
+        byte[] bytes = fory.serialize(data); {
+            CharBitSet data2 = fory.deserialize(bytes, CharBitSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -179,8 +179,8 @@ public class SetTest {
         CharBitSetFixedSize data = new CharBitSetFixedSize(Character::isDigit);
         data.add('Z');
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            CharBitSetFixedSize data2 = fory.deserializeJavaObject(bytes, CharBitSetFixedSize.class);
+        byte[] bytes = fory.serialize(data); {
+            CharBitSetFixedSize data2 = fory.deserialize(bytes, CharBitSetFixedSize.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -193,8 +193,8 @@ public class SetTest {
 
         NumberedSet<String> data = NumberedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            NumberedSet<?> data2 = fory.deserializeJavaObject(bytes, NumberedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            NumberedSet<?> data2 = fory.deserialize(bytes, NumberedSet.class);
             Assert.assertEquals(data, data2);
             Assert.assertEquals(data.order(), data2.order());
         }
@@ -211,8 +211,8 @@ public class SetTest {
 //        ObjToObjFunction<String, String> f = s -> s.split("\\s+")[0];
 //        HolderSet<String, String> data = HolderSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            HolderSet<?, ?> data2 = fory.deserializeJavaObject(bytes, HolderSet.class);
+//        byte[] bytes = fory.serialize(data); {
+//            HolderSet<?, ?> data2 = fory.deserialize(bytes, HolderSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -228,8 +228,8 @@ public class SetTest {
 //        ObjToObjFunction<String, String> f = s -> s.split("\\s+")[0];
 //        HolderOrderedSet<String, String> data = HolderOrderedSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            HolderOrderedSet<?, ?> data2 = fory.deserializeJavaObject(bytes, HolderOrderedSet.class);
+//        byte[] bytes = fory.serialize(data); {
+//            HolderOrderedSet<?, ?> data2 = fory.deserialize(bytes, HolderOrderedSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -244,8 +244,8 @@ public class SetTest {
 
         FilteredStringSet data = FilteredStringSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            FilteredStringSet data2 = fory.deserializeJavaObject(bytes, FilteredStringSet.class);
+        byte[] bytes = fory.serialize(data); {
+            FilteredStringSet data2 = fory.deserialize(bytes, FilteredStringSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -259,8 +259,8 @@ public class SetTest {
 
         FilteredStringOrderedSet data = FilteredStringOrderedSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            FilteredStringOrderedSet data2 = fory.deserializeJavaObject(bytes, FilteredStringOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            FilteredStringOrderedSet data2 = fory.deserialize(bytes, FilteredStringOrderedSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -274,8 +274,8 @@ public class SetTest {
 
         EnumSet data = EnumSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumSet data2 = fory.deserializeJavaObject(bytes, EnumSet.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumSet data2 = fory.deserialize(bytes, EnumSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -289,8 +289,8 @@ public class SetTest {
 
         EnumOrderedSet data = EnumOrderedSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
 
-        byte[] bytes = fory.serializeJavaObject(data); {
-            EnumOrderedSet data2 = fory.deserializeJavaObject(bytes, EnumOrderedSet.class);
+        byte[] bytes = fory.serialize(data); {
+            EnumOrderedSet data2 = fory.deserialize(bytes, EnumOrderedSet.class);
             Assert.assertEquals(data, data2);
         }
     }
@@ -311,8 +311,8 @@ public class SetTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot")
 //        );
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            FilteredIterableSet<?, ?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableSet.class);
+//        byte[] bytes = fory.serialize(data); {
+//            FilteredIterableSet<?, ?> data2 = fory.deserialize(bytes, FilteredIterableSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }
@@ -333,8 +333,8 @@ public class SetTest {
 //                ObjectList.with(":D", "bee", "Aardvark", "bandicoot")
 //        );
 //
-//        byte[] bytes = fory.serializeJavaObject(data); {
-//            FilteredIterableOrderedSet<?, ?> data2 = fory.deserializeJavaObject(bytes, FilteredIterableOrderedSet.class);
+//        byte[] bytes = fory.serialize(data); {
+//            FilteredIterableOrderedSet<?, ?> data2 = fory.deserialize(bytes, FilteredIterableOrderedSet.class);
 //            Assert.assertEquals(data, data2);
 //        }
 //    }

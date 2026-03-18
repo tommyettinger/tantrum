@@ -37,7 +37,7 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
     @Override
     public void write(final MemoryBuffer output, final EnumOrderedMap data) {
         output.writeVarUint32(data.size());
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         for(Enum<?> k : data.keySet()){
             fory.writeRef(output, k);
         }
@@ -50,7 +50,7 @@ public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
     @Override
     public EnumOrderedMap<?> read(MemoryBuffer input) {
         final int len = input.readVarUint32();
-        OrderType type = OrderType.valueOf(fory.readJavaString(input));
+        OrderType type = OrderType.valueOf(fory.readString(input));
         if(len == 0) return new EnumOrderedMap<>(type);
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {

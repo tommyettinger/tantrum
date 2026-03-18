@@ -40,7 +40,7 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
         for(Enum<?> v : data.keySet()){
             fory.writeRef(output, v);
         }
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
@@ -53,7 +53,7 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
             ks[i] = (Enum<?>)fory.readRef(input);
         }
 
-        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
+        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs, OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
     }

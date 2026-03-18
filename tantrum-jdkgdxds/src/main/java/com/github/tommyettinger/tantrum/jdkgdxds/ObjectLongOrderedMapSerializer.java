@@ -42,7 +42,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
         for(Object v : data.keySet()){
             fory.writeRef(output, v);
         }
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeInt64(data.getDefaultValue());
     }
 
@@ -55,7 +55,7 @@ public class ObjectLongOrderedMapSerializer extends Serializer<ObjectLongOrdered
             ks[i] = fory.readRef(input);
         }
 
-        ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
+        ObjectLongOrderedMap<?> data = new ObjectLongOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readInt64());
         return data;
     }

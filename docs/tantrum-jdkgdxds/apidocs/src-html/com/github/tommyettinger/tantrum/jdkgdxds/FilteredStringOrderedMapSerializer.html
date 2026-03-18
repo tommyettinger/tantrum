@@ -58,7 +58,7 @@
 <span class="source-line-no">045</span><span id="line-45">        for(Object v : data.values()){</span>
 <span class="source-line-no">046</span><span id="line-46">            fory.writeRef(output, v);</span>
 <span class="source-line-no">047</span><span id="line-47">        }</span>
-<span class="source-line-no">048</span><span id="line-48">        fory.writeJavaString(output, data.getOrderType().name());</span>
+<span class="source-line-no">048</span><span id="line-48">        fory.writeString(output, data.getOrderType().name());</span>
 <span class="source-line-no">049</span><span id="line-49">        fory.writeRef(output, data.getDefaultValue());</span>
 <span class="source-line-no">050</span><span id="line-50">    }</span>
 <span class="source-line-no">051</span><span id="line-51"></span>
@@ -74,7 +74,7 @@
 <span class="source-line-no">061</span><span id="line-61">        for (int i = 0; i &lt; len; i++) {</span>
 <span class="source-line-no">062</span><span id="line-62">            vs[i] = fory.readRef(input);</span>
 <span class="source-line-no">063</span><span id="line-63">        }</span>
-<span class="source-line-no">064</span><span id="line-64">        FilteredStringOrderedMap data = new FilteredStringOrderedMap&lt;&gt;(filter, ks, vs, OrderType.valueOf(fory.readJavaString(input)));</span>
+<span class="source-line-no">064</span><span id="line-64">        FilteredStringOrderedMap data = new FilteredStringOrderedMap&lt;&gt;(filter, ks, vs, OrderType.valueOf(fory.readString(input)));</span>
 <span class="source-line-no">065</span><span id="line-65">        data.setDefaultValue(fory.readRef(input));</span>
 <span class="source-line-no">066</span><span id="line-66">        return data;</span>
 <span class="source-line-no">067</span><span id="line-67"></span>

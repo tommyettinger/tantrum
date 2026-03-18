@@ -55,7 +55,7 @@
 <span class="source-line-no">042</span><span id="line-42">        for(Object v : data.keySet()){</span>
 <span class="source-line-no">043</span><span id="line-43">            fory.writeRef(output, v);</span>
 <span class="source-line-no">044</span><span id="line-44">        }</span>
-<span class="source-line-no">045</span><span id="line-45">        fory.writeJavaString(output, data.getOrderType().name());</span>
+<span class="source-line-no">045</span><span id="line-45">        fory.writeString(output, data.getOrderType().name());</span>
 <span class="source-line-no">046</span><span id="line-46">        output.writeFloat32(data.getDefaultValue());</span>
 <span class="source-line-no">047</span><span id="line-47">    }</span>
 <span class="source-line-no">048</span><span id="line-48"></span>
@@ -68,7 +68,7 @@
 <span class="source-line-no">055</span><span id="line-55">            ks[i] = fory.readRef(input);</span>
 <span class="source-line-no">056</span><span id="line-56">        }</span>
 <span class="source-line-no">057</span><span id="line-57"></span>
-<span class="source-line-no">058</span><span id="line-58">        ObjectFloatOrderedMap&lt;?&gt; data = new ObjectFloatOrderedMap&lt;&gt;(ks, vs, OrderType.valueOf(fory.readJavaString(input)));</span>
+<span class="source-line-no">058</span><span id="line-58">        ObjectFloatOrderedMap&lt;?&gt; data = new ObjectFloatOrderedMap&lt;&gt;(ks, vs, OrderType.valueOf(fory.readString(input)));</span>
 <span class="source-line-no">059</span><span id="line-59">        data.setDefaultValue(input.readFloat32());</span>
 <span class="source-line-no">060</span><span id="line-60">        return data;</span>
 <span class="source-line-no">061</span><span id="line-61">    }</span>

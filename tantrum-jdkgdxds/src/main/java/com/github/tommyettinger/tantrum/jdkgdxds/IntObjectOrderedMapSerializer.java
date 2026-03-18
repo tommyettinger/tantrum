@@ -42,7 +42,7 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
         for(Object v : data.values()){
             fory.writeRef(output, v);
         }
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         fory.writeRef(output, data.getDefaultValue());
     }
 
@@ -55,7 +55,7 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
             vs[i] = fory.readRef(input);
         }
 
-        IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readJavaString(input)));
+        IntObjectOrderedMap data = new IntObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(fory.readRef(input));
         return data;
 

@@ -38,11 +38,11 @@ public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
     @Override
     public void write(final MemoryBuffer output, final LongOrderedSet data) {
         output.writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
     }
 
     @Override
     public LongOrderedSet read(MemoryBuffer input) {
-        return new LongOrderedSet(Support.readLongsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
+        return new LongOrderedSet(Support.readLongsAndSize(input), OrderType.valueOf(fory.readString(input)));
     }
 }

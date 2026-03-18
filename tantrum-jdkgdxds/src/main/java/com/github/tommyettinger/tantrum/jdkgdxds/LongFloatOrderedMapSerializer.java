@@ -39,13 +39,13 @@ public class LongFloatOrderedMapSerializer extends Serializer<LongFloatOrderedMa
     public void write(final MemoryBuffer output, final LongFloatOrderedMap data) {
         output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        fory.writeJavaString(output, data.getOrderType().name());
+        fory.writeString(output, data.getOrderType().name());
         output.writeFloat32(data.getDefaultValue());
     }
 
     @Override
     public LongFloatOrderedMap read(MemoryBuffer input) {
-        LongFloatOrderedMap data = new LongFloatOrderedMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readJavaString(input)));
+        LongFloatOrderedMap data = new LongFloatOrderedMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readString(input)));
         data.setDefaultValue(input.readFloat32());
         return data;
     }
