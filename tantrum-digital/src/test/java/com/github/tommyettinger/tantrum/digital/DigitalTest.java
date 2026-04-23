@@ -30,7 +30,7 @@ public class DigitalTest {
     public void testBase() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Base.class, new BaseSerializer(fory));
+        fory.registerSerializer(Base.class, new BaseSerializer(fory.getConfig()));
 
         Base data = Base.scrambledBase(new AlternateRandom(123456789L));
 
@@ -45,7 +45,7 @@ public class DigitalTest {
     public void testAlternateRandom() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(AlternateRandom.class, new AlternateRandomSerializer(fory));
+        fory.registerSerializer(AlternateRandom.class, new AlternateRandomSerializer(fory.getConfig()));
 
         AlternateRandom data = new AlternateRandom(-12345L);
 
@@ -61,7 +61,7 @@ public class DigitalTest {
     public void testHasher() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Hasher.class, new HasherSerializer(fory));
+        fory.registerSerializer(Hasher.class, new HasherSerializer(fory.getConfig()));
 
         long seed = Hasher.randomize3(System.nanoTime());
         Hasher data = new Hasher(seed);
@@ -77,7 +77,7 @@ public class DigitalTest {
     public void testInterpolator() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fory));
+        fory.registerSerializer(Interpolations.Interpolator.class, new InterpolatorSerializer(fory.getConfig()));
 
         MemoryBuffer buffer = MemoryBuffer.newHeapBuffer(256);
         for (Interpolations.Interpolator data : Interpolations.getInterpolatorArray()) {
