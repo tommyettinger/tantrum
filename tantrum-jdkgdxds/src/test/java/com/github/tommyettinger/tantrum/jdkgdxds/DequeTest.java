@@ -29,7 +29,7 @@ public class DequeTest {
     public void testObjectDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectDeque.class, new ObjectDequeSerializer(fory));
+        fory.registerSerializer(ObjectDeque.class, new ObjectDequeSerializer(fory.getTypeResolver()));
 
         ObjectDeque<String> data = ObjectDeque.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
@@ -43,7 +43,7 @@ public class DequeTest {
     public void testIntDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntDeque.class, new IntDequeSerializer(fory));
+        fory.registerSerializer(IntDeque.class, new IntDequeSerializer(fory.getConfig()));
 
         IntDeque data = IntDeque.with(-123, 0, 456, 0, 1, -1, 0);
 
@@ -57,7 +57,7 @@ public class DequeTest {
     public void testLongDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongDeque.class, new LongDequeSerializer(fory));
+        fory.registerSerializer(LongDeque.class, new LongDequeSerializer(fory.getConfig()));
 
         LongDeque data = LongDeque.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -71,7 +71,7 @@ public class DequeTest {
     public void testShortDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ShortDeque.class, new ShortDequeSerializer(fory));
+        fory.registerSerializer(ShortDeque.class, new ShortDequeSerializer(fory.getConfig()));
 
         ShortDeque data = ShortDeque.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
@@ -85,7 +85,7 @@ public class DequeTest {
     public void testByteDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ByteDeque.class, new ByteDequeSerializer(fory));
+        fory.registerSerializer(ByteDeque.class, new ByteDequeSerializer(fory.getConfig()));
 
         ByteDeque data = ByteDeque.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
@@ -99,7 +99,7 @@ public class DequeTest {
     public void testFloatDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FloatDeque.class, new FloatDequeSerializer(fory));
+        fory.registerSerializer(FloatDeque.class, new FloatDequeSerializer(fory.getConfig()));
 
         FloatDeque data = FloatDeque.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
@@ -113,7 +113,7 @@ public class DequeTest {
     public void testDoubleDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(DoubleDeque.class, new DoubleDequeSerializer(fory));
+        fory.registerSerializer(DoubleDeque.class, new DoubleDequeSerializer(fory.getConfig()));
 
         DoubleDeque data = DoubleDeque.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
 
@@ -127,7 +127,7 @@ public class DequeTest {
     public void testBooleanDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(BooleanDeque.class, new BooleanDequeSerializer(fory));
+        fory.registerSerializer(BooleanDeque.class, new BooleanDequeSerializer(fory.getConfig()));
 
         BooleanDeque data = BooleanDeque.with(true, false, false, true, false, true, false);
 
@@ -141,7 +141,7 @@ public class DequeTest {
     public void testCharDeque() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharDeque.class, new CharDequeSerializer(fory));
+        fory.registerSerializer(CharDeque.class, new CharDequeSerializer(fory.getConfig()));
 
         CharDeque data = CharDeque.with("Hello, World!".toCharArray());
 

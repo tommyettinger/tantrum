@@ -17,7 +17,7 @@ public class OtherTest {
     public void testJunction() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory.getTypeResolver()));
 //        fory.registerSerializer(ObjectList.class, new CollectionSerializer<>(fory, ObjectList.class));
 //        fory.register(ObjectList.class);
         fory.register(Junction.class);
@@ -43,7 +43,7 @@ public class OtherTest {
     public void testStringJunction() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(StringJunction.class, new StringJunctionSerializer(fory));
+        fory.registerSerializer(StringJunction.class, new StringJunctionSerializer(fory.getConfig()));
 
         String jstr = "(foo|bar|baz)^QUUX^woop woop";
         StringJunction data = StringJunction.parse(jstr);
