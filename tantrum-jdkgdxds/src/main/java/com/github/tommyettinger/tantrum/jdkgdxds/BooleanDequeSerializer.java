@@ -29,20 +29,20 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanDequeSerializer extends Serializer<BooleanDeque> {
 
-    public BooleanDequeSerializer(Fory fory) {
+    public BooleanDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BooleanDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.BOOLEAN_ARRAY_OFFSET, data.size());
-        output.writeBoolean(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final BooleanDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        fory.writeBoolean(data.getDefaultValue());
     }
 
     @Override
-    public BooleanDeque read(MemoryBuffer input) {
-        BooleanDeque data = new BooleanDeque(Support.readBooleansAndSize(input));
-        data.setDefaultValue(input.readBoolean());
+    public BooleanDeque read(org.apache.fory.context.ReadContext fory) {
+        BooleanDeque data = new BooleanDeque(Support.readBooleansAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readBoolean());
         return data;
     }
 }

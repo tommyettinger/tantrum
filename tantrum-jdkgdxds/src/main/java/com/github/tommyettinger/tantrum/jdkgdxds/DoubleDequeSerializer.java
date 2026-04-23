@@ -29,20 +29,20 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleDequeSerializer extends Serializer<DoubleDeque> {
 
-    public DoubleDequeSerializer(Fory fory) {
+    public DoubleDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final DoubleDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
-        output.writeFloat64(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final DoubleDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+        fory.writeFloat64(data.getDefaultValue());
     }
 
     @Override
-    public DoubleDeque read(MemoryBuffer input) {
-        DoubleDeque data = new DoubleDeque(Support.readDoublesAndSize(input));
-        data.setDefaultValue(input.readFloat64());
+    public DoubleDeque read(org.apache.fory.context.ReadContext fory) {
+        DoubleDeque data = new DoubleDeque(Support.readDoublesAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readFloat64());
         return data;
     }
 }

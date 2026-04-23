@@ -30,31 +30,31 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMap> {
 
-    public EnumFloatOrderedMapSerializer(Fory fory) {
+    public EnumFloatOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumFloatOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumFloatOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumFloatOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         for(Enum<?> v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        output.writeFloat32(data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public EnumFloatOrderedMap read(MemoryBuffer input) {
-        float[] vs = Support.readFloatsAndSize(input);
+    public EnumFloatOrderedMap read(org.apache.fory.context.ReadContext fory) {
+        float[] vs = Support.readFloatsAndSize(fory.getBuffer());
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fory.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef();
         }
 
-        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readFloat32());
+        EnumFloatOrderedMap data = new EnumFloatOrderedMap(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

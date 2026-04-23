@@ -28,20 +28,20 @@ import org.apache.fory.memory.Platform;
  */
 public class CharDequeSerializer extends Serializer<CharDeque> {
 
-    public CharDequeSerializer(Fory fory) {
+    public CharDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
-        output.writeChar(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final CharDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+        fory.writeChar(data.getDefaultValue());
     }
 
     @Override
-    public CharDeque read(MemoryBuffer input) {
-        CharDeque data = new CharDeque(input.readCharsAndSize());
-        data.setDefaultValue(input.readChar());
+    public CharDeque read(org.apache.fory.context.ReadContext fory) {
+        CharDeque data = new CharDeque(fory.getBuffer().readCharsAndSize());
+        data.setDefaultValue(fory.readChar());
         return data;
     }
 }

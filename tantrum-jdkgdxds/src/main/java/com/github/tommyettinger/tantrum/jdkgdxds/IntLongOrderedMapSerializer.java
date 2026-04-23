@@ -32,22 +32,22 @@ import org.apache.fory.memory.Platform;
  */
 public class IntLongOrderedMapSerializer extends Serializer<IntLongOrderedMap> {
 
-    public IntLongOrderedMapSerializer(Fory fory) {
+    public IntLongOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntLongOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntLongOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.writeString(output, data.getOrderType().name());
-        output.writeInt64(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final IntLongOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeString(data.getOrderType().name());
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public IntLongOrderedMap read(MemoryBuffer input) {
-        IntLongOrderedMap data = new IntLongOrderedMap(Support.readIntsAndSize(input), Support.readLongsAndSize(input), OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readInt64());
+    public IntLongOrderedMap read(org.apache.fory.context.ReadContext fory) {
+        IntLongOrderedMap data = new IntLongOrderedMap(Support.readIntsAndSize(fory.getBuffer()), Support.readLongsAndSize(fory.getBuffer()), OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readInt64());
         return data;
 
     }

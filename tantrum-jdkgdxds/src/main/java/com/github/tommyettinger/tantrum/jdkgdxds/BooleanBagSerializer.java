@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanBagSerializer extends Serializer<BooleanBag> {
 
-    public BooleanBagSerializer(Fory fory) {
+    public BooleanBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BooleanBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final BooleanBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
     }
 
     @Override
-    public BooleanBag read(MemoryBuffer input) {
-        return new BooleanBag(Support.readBooleansAndSize(input));
+    public BooleanBag read(org.apache.fory.context.ReadContext fory) {
+        return new BooleanBag(Support.readBooleansAndSize(fory.getBuffer()));
     }
 }

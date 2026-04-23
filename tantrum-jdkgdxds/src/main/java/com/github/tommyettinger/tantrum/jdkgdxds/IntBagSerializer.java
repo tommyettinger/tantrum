@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class IntBagSerializer extends Serializer<IntBag> {
 
-    public IntBagSerializer(Fory fory) {
+    public IntBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final IntBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public IntBag read(MemoryBuffer input) {
-        return new IntBag(Support.readIntsAndSize(input));
+    public IntBag read(org.apache.fory.context.ReadContext fory) {
+        return new IntBag(Support.readIntsAndSize(fory.getBuffer()));
     }
 }

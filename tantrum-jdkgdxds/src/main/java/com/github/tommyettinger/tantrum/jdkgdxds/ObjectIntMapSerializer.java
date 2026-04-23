@@ -31,30 +31,30 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
 
-    public ObjectIntMapSerializer(Fory fory) {
+    public ObjectIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectIntMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectIntMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectIntMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeInt32(data.getDefaultValue());
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public ObjectIntMap<?> read(MemoryBuffer input) {
-        int[] vs = Support.readIntsAndSize(input);
+    public ObjectIntMap<?> read(org.apache.fory.context.ReadContext fory) {
+        int[] vs = Support.readIntsAndSize(fory.getBuffer());
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
 
         ObjectIntMap<?> data = new ObjectIntMap<>(ks, vs);
-        data.setDefaultValue(input.readInt32());
+        data.setDefaultValue(fory.readInt32());
         return data;
     }
 }

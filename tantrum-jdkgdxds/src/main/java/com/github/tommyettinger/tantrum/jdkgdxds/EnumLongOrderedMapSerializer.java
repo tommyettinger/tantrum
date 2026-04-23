@@ -30,31 +30,31 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumLongOrderedMapSerializer extends Serializer<EnumLongOrderedMap> {
 
-    public EnumLongOrderedMapSerializer(Fory fory) {
+    public EnumLongOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumLongOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumLongOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumLongOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Enum<?> v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        output.writeInt64(data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public EnumLongOrderedMap read(MemoryBuffer input) {
-        long[] vs = Support.readLongsAndSize(input);
+    public EnumLongOrderedMap read(org.apache.fory.context.ReadContext fory) {
+        long[] vs = Support.readLongsAndSize(fory.getBuffer());
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fory.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef();
         }
 
-        EnumLongOrderedMap data = new EnumLongOrderedMap(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readInt64());
+        EnumLongOrderedMap data = new EnumLongOrderedMap(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readInt64());
         return data;
 
     }

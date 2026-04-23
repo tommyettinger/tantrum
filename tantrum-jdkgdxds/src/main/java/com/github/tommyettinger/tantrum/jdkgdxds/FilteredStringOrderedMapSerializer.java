@@ -31,38 +31,38 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredStringOrderedMap> {
 
-    public FilteredStringOrderedMapSerializer(Fory fory) {
-        super(fory, FilteredStringOrderedMap.class);
+    public FilteredStringOrderedMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, FilteredStringOrderedMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FilteredStringOrderedMap data) {
-        fory.writeString(output, data.getFilter().getName());
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringOrderedMap data) {
+        fory.writeString(data.getFilter().getName());
+        fory.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public FilteredStringOrderedMap<?> read(MemoryBuffer input) {
-        CharFilter filter = CharFilter.get(fory.readString(input));
-        final int len = input.readVarUint32();
+    public FilteredStringOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
+        CharFilter filter = CharFilter.get(fory.readString());
+        final int len = fory.readVarUint32();
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (String) fory.readRef(input);
+            ks[i] = (String) fory.readRef();
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
-        FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(fory.readRef(input));
+        FilteredStringOrderedMap data = new FilteredStringOrderedMap<>(filter, ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readRef());
         return data;
 
     }

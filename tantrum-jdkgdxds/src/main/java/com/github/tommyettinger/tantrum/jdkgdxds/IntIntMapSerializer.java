@@ -29,21 +29,21 @@ import org.apache.fory.memory.Platform;
  */
 public class IntIntMapSerializer extends Serializer<IntIntMap> {
 
-    public IntIntMapSerializer(Fory fory) {
+    public IntIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntIntMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntIntMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writeInt32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final IntIntMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public IntIntMap read(MemoryBuffer input) {
-        IntIntMap data = new IntIntMap(Support.readIntsAndSize(input), Support.readIntsAndSize(input));
-        data.setDefaultValue(input.readInt32());
+    public IntIntMap read(org.apache.fory.context.ReadContext fory) {
+        IntIntMap data = new IntIntMap(Support.readIntsAndSize(fory.getBuffer()), Support.readIntsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readInt32());
         return data;
 
     }

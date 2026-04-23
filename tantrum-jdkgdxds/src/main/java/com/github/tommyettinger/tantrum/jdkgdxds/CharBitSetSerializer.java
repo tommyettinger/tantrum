@@ -29,18 +29,18 @@ import org.apache.fory.serializer.Serializer;
  */
 public class CharBitSetSerializer extends Serializer<CharBitSet> {
 
-    public CharBitSetSerializer(Fory fory) {
+    public CharBitSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBitSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharBitSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final CharBitSet data) {
         final int[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
     }
 
     @Override
-    public CharBitSet read(MemoryBuffer input) {
-        return new CharBitSet(Support.readIntsAndSize(input), true);
+    public CharBitSet read(org.apache.fory.context.ReadContext fory) {
+        return new CharBitSet(Support.readIntsAndSize(fory.getBuffer()), true);
     }
 }

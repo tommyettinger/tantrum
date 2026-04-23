@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortBagSerializer extends Serializer<ShortBag> {
 
-    public ShortBagSerializer(Fory fory) {
+    public ShortBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ShortBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+    public void write(final org.apache.fory.context.WriteContext fory, final ShortBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
-    public ShortBag read(MemoryBuffer input) {
-        return new ShortBag(Support.readShortsAndSize(input));
+    public ShortBag read(org.apache.fory.context.ReadContext fory) {
+        return new ShortBag(Support.readShortsAndSize(fory.getBuffer()));
     }
 }

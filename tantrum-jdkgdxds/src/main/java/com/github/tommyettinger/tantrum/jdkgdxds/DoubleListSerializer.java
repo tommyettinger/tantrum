@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleListSerializer extends Serializer<DoubleList> {
 
-    public DoubleListSerializer(Fory fory) {
+    public DoubleListSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final DoubleList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final DoubleList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public DoubleList read(MemoryBuffer input) {
-        return new DoubleList(Support.readDoublesAndSize(input));
+    public DoubleList read(org.apache.fory.context.ReadContext fory) {
+        return new DoubleList(Support.readDoublesAndSize(fory.getBuffer()));
     }
 }

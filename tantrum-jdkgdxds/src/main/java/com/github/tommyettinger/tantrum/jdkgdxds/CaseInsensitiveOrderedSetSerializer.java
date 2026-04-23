@@ -21,6 +21,7 @@ import com.github.tommyettinger.ds.CaseInsensitiveOrderedSet;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,26 +30,26 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class CaseInsensitiveOrderedSetSerializer extends CollectionSerializer<CaseInsensitiveOrderedSet> {
 
-    public CaseInsensitiveOrderedSetSerializer(Fory fory) {
-        super(fory, CaseInsensitiveOrderedSet.class);
+    public CaseInsensitiveOrderedSetSerializer(TypeResolver resolver) {
+        super(resolver, CaseInsensitiveOrderedSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CaseInsensitiveOrderedSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final CaseInsensitiveOrderedSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
-        fory.writeString(output, data.getOrderType().name());
+        fory.writeVarUint32(len);
+        fory.writeString(data.getOrderType().name());
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public CaseInsensitiveOrderedSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
-        CaseInsensitiveOrderedSet data = new CaseInsensitiveOrderedSet(len, OrderType.valueOf(fory.readString(input)));
+    public CaseInsensitiveOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
+        CaseInsensitiveOrderedSet data = new CaseInsensitiveOrderedSet(len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
-            data.add((CharSequence) fory.readRef(input));
+            data.add((CharSequence) fory.readRef());
         }
         return data;
     }

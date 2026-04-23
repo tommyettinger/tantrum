@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class IntListSerializer extends Serializer<IntList> {
 
-    public IntListSerializer(Fory fory) {
+    public IntListSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final IntList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public IntList read(MemoryBuffer input) {
-        return new IntList(Support.readIntsAndSize(input));
+    public IntList read(org.apache.fory.context.ReadContext fory) {
+        return new IntList(Support.readIntsAndSize(fory.getBuffer()));
     }
 }

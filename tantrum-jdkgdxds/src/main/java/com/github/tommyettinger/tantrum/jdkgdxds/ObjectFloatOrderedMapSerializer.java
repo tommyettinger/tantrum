@@ -32,31 +32,31 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrderedMap> {
 
-    public ObjectFloatOrderedMapSerializer(Fory fory) {
+    public ObjectFloatOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectFloatOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectFloatOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectFloatOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        output.writeFloat32(data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public ObjectFloatOrderedMap<?> read(MemoryBuffer input) {
-        float[] vs = Support.readFloatsAndSize(input);
+    public ObjectFloatOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
+        float[] vs = Support.readFloatsAndSize(fory.getBuffer());
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
 
-        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readFloat32());
+        ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

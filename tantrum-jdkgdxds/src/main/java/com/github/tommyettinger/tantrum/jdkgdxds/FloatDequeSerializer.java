@@ -29,20 +29,20 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatDequeSerializer extends Serializer<FloatDeque> {
 
-    public FloatDequeSerializer(Fory fory) {
+    public FloatDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FloatDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        output.writeFloat32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final FloatDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public FloatDeque read(MemoryBuffer input) {
-        FloatDeque data = new FloatDeque(Support.readFloatsAndSize(input));
-        data.setDefaultValue(input.readFloat32());
+    public FloatDeque read(org.apache.fory.context.ReadContext fory) {
+        FloatDeque data = new FloatDeque(Support.readFloatsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

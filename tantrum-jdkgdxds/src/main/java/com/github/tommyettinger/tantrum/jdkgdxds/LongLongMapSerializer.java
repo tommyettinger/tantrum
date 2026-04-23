@@ -29,21 +29,21 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongLongMapSerializer extends Serializer<LongLongMap> {
 
-    public LongLongMapSerializer(Fory fory) {
+    public LongLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongLongMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongLongMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writeInt64(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final LongLongMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public LongLongMap read(MemoryBuffer input) {
-        LongLongMap data = new LongLongMap(Support.readLongsAndSize(input), Support.readLongsAndSize(input));
-        data.setDefaultValue(input.readInt64());
+    public LongLongMap read(org.apache.fory.context.ReadContext fory) {
+        LongLongMap data = new LongLongMap(Support.readLongsAndSize(fory.getBuffer()), Support.readLongsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readInt64());
         return data;
 
     }

@@ -29,22 +29,22 @@ import org.apache.fory.memory.Platform;
  */
 public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
 
-    public OffsetBitSetSerializer(Fory fory) {
+    public OffsetBitSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, OffsetBitSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final OffsetBitSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final OffsetBitSet data) {
         final int[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
-        output.writeInt32(data.getOffset());
+        fory.getBuffer().writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+        fory.writeInt32(data.getOffset());
     }
 
     @Override
-    public OffsetBitSet read(MemoryBuffer input) {
+    public OffsetBitSet read(org.apache.fory.context.ReadContext fory) {
         final OffsetBitSet obs = new OffsetBitSet();
-        obs.setRawBits(Support.readIntsAndSize(input));
-        obs.setOffset(input.readInt32());
+        obs.setRawBits(Support.readIntsAndSize(fory.getBuffer()));
+        obs.setOffset(fory.readInt32());
         return obs;
     }
 }

@@ -20,6 +20,8 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectObjectMap;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.ClassResolver;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.MapSerializer;
 
@@ -29,35 +31,35 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class ObjectObjectMapSerializer extends MapSerializer<ObjectObjectMap> {
 
-    public ObjectObjectMapSerializer(Fory fory) {
-        super(fory, ObjectObjectMap.class);
+    public ObjectObjectMapSerializer(TypeResolver resolver) {
+        super(resolver, ObjectObjectMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectObjectMap data) {
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectObjectMap data) {
+        fory.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public ObjectObjectMap<?, ?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectObjectMap<?, ?> read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         Object[] ks = new Object[len], vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
         ObjectObjectMap data = new ObjectObjectMap<>(ks, vs);
-        data.setDefaultValue(fory.readRef(input));
+        data.setDefaultValue(fory.readRef());
         return data;
     }
 }

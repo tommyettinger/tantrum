@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class IntSetSerializer extends Serializer<IntSet> {
 
-    public IntSetSerializer(Fory fory) {
+    public IntSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntSet data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final IntSet data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public IntSet read(MemoryBuffer input) {
-        return new IntSet(Support.readIntsAndSize(input));
+    public IntSet read(org.apache.fory.context.ReadContext fory) {
+        return new IntSet(Support.readIntsAndSize(fory.getBuffer()));
     }
 }

@@ -29,30 +29,30 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
 
-    public EnumFloatMapSerializer(Fory fory) {
+    public EnumFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumFloatMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumFloatMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         for(Enum<?> v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeFloat32(data.getDefaultValue());
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public EnumFloatMap read(MemoryBuffer input) {
-        float[] vs = Support.readFloatsAndSize(input);
+    public EnumFloatMap read(org.apache.fory.context.ReadContext fory) {
+        float[] vs = Support.readFloatsAndSize(fory.getBuffer());
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fory.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef();
         }
 
         EnumFloatMap data = new EnumFloatMap(ks, vs);
-        data.setDefaultValue(input.readFloat32());
+        data.setDefaultValue(fory.readFloat32());
         return data;
 
     }

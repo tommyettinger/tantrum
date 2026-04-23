@@ -28,17 +28,17 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteListSerializer extends Serializer<ByteList> {
 
-    public ByteListSerializer(Fory fory) {
+    public ByteListSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ByteList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final ByteList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
     }
 
     @Override
-    public ByteList read(MemoryBuffer input) {
-        return new ByteList(input.readBytesAndSize());
+    public ByteList read(org.apache.fory.context.ReadContext fory) {
+        return new ByteList(fory.getBuffer().readBytesAndSize());
     }
 }

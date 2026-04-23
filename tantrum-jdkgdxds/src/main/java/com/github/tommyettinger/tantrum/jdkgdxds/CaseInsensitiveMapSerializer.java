@@ -29,36 +29,36 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class CaseInsensitiveMapSerializer extends MapSerializer<CaseInsensitiveMap> {
 
-    public CaseInsensitiveMapSerializer(Fory fory) {
-        super(fory, CaseInsensitiveMap.class);
+    public CaseInsensitiveMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, CaseInsensitiveMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CaseInsensitiveMap data) {
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final CaseInsensitiveMap data) {
+        fory.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public CaseInsensitiveMap<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public CaseInsensitiveMap<?> read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         CharSequence[] ks = new CharSequence[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (CharSequence) fory.readRef(input);
+            ks[i] = (CharSequence) fory.readRef();
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
         CaseInsensitiveMap data = new CaseInsensitiveMap<>(ks, vs);
-        data.setDefaultValue(fory.readRef(input));
+        data.setDefaultValue(fory.readRef());
         return data;
 
     }

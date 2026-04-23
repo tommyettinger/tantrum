@@ -21,6 +21,7 @@ import com.github.tommyettinger.ds.EnumOrderedSet;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,26 +30,26 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSet> {
 
-    public EnumOrderedSetSerializer(Fory fory) {
-        super(fory, EnumOrderedSet.class);
+    public EnumOrderedSetSerializer(TypeResolver resolver) {
+        super(resolver, EnumOrderedSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumOrderedSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumOrderedSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
-        fory.writeString(output, data.getOrderType().name());
+        fory.writeVarUint32(len);
+        fory.writeString(data.getOrderType().name());
         for (Enum<?> item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public EnumOrderedSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
-        EnumOrderedSet data = new EnumOrderedSet(OrderType.valueOf(fory.readString(input)));
+    public EnumOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
+        EnumOrderedSet data = new EnumOrderedSet(OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
-            data.add((Enum<?>)fory.readRef(input));
+            data.add((Enum<?>)fory.readRef());
         }
         return data;
     }

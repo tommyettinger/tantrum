@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatBagSerializer extends Serializer<FloatBag> {
 
-    public FloatBagSerializer(Fory fory) {
+    public FloatBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FloatBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final FloatBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public FloatBag read(MemoryBuffer input) {
-        return new FloatBag(Support.readFloatsAndSize(input));
+    public FloatBag read(org.apache.fory.context.ReadContext fory) {
+        return new FloatBag(Support.readFloatsAndSize(fory.getBuffer()));
     }
 }

@@ -29,20 +29,20 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortDequeSerializer extends Serializer<ShortDeque> {
 
-    public ShortDequeSerializer(Fory fory) {
+    public ShortDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ShortDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
-        output.writeInt16(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final ShortDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        fory.writeInt16(data.getDefaultValue());
     }
 
     @Override
-    public ShortDeque read(MemoryBuffer input) {
-        ShortDeque data = new ShortDeque(Support.readShortsAndSize(input));
-        data.setDefaultValue(input.readInt16());
+    public ShortDeque read(org.apache.fory.context.ReadContext fory) {
+        ShortDeque data = new ShortDeque(Support.readShortsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readInt16());
         return data;
     }
 }

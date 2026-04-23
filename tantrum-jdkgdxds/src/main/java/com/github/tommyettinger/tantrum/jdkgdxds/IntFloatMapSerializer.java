@@ -29,21 +29,21 @@ import org.apache.fory.memory.Platform;
  */
 public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
 
-    public IntFloatMapSerializer(Fory fory) {
+    public IntFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntFloatMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        output.writeFloat32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final IntFloatMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public IntFloatMap read(MemoryBuffer input) {
-        IntFloatMap data = new IntFloatMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input));
-        data.setDefaultValue(input.readFloat32());
+    public IntFloatMap read(org.apache.fory.context.ReadContext fory) {
+        IntFloatMap data = new IntFloatMap(Support.readIntsAndSize(fory.getBuffer()), Support.readFloatsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

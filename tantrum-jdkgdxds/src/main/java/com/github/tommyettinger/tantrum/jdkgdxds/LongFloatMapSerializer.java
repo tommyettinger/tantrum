@@ -30,21 +30,21 @@ import org.apache.fory.memory.Platform;
  */
 public class LongFloatMapSerializer extends Serializer<LongFloatMap> {
 
-    public LongFloatMapSerializer(Fory fory) {
+    public LongFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongFloatMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        output.writeFloat32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final LongFloatMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public LongFloatMap read(MemoryBuffer input) {
-        LongFloatMap data = new LongFloatMap(Support.readLongsAndSize(input), Support.readFloatsAndSize(input));
-        data.setDefaultValue(input.readFloat32());
+    public LongFloatMap read(org.apache.fory.context.ReadContext fory) {
+        LongFloatMap data = new LongFloatMap(Support.readLongsAndSize(fory.getBuffer()), Support.readFloatsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

@@ -21,6 +21,7 @@ import com.github.tommyettinger.ds.ObjectObjectOrderedMap;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.MapSerializer;
 
@@ -30,36 +31,36 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObjectOrderedMap> {
 
-    public ObjectObjectOrderedMapSerializer(Fory fory) {
-        super(fory, ObjectObjectOrderedMap.class);
+    public ObjectObjectOrderedMapSerializer(TypeResolver resolver) {
+        super(resolver, ObjectObjectOrderedMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectObjectOrderedMap data) {
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectObjectOrderedMap data) {
+        fory.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public ObjectObjectOrderedMap<?, ?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectObjectOrderedMap<?, ?> read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         Object[] ks = new Object[len], vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
-        ObjectObjectOrderedMap data = new ObjectObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(fory.readRef(input));
+        ObjectObjectOrderedMap data = new ObjectObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readRef());
         return data;
     }
 }

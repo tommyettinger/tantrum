@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectList;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,25 +30,25 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
 
-    public ObjectListSerializer(Fory fory) {
-        super(fory, ObjectList.class);
+    public ObjectListSerializer(TypeResolver resolver) {
+        super(resolver, ObjectList.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectList data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectList data) {
         final int len = data.size();
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
-            fory.writeRef(output, data.get(i));
+            fory.writeRef(data.get(i));
         }
     }
 
     @Override
-    public ObjectList read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectList read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         ObjectList data = new ObjectList(len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

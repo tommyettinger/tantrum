@@ -31,30 +31,30 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
 
-    public ObjectFloatMapSerializer(Fory fory) {
+    public ObjectFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectFloatMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectFloatMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeFloat32(data.getDefaultValue());
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public ObjectFloatMap<?> read(MemoryBuffer input) {
-        float[] vs = Support.readFloatsAndSize(input);
+    public ObjectFloatMap<?> read(org.apache.fory.context.ReadContext fory) {
+        float[] vs = Support.readFloatsAndSize(fory.getBuffer());
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
 
         ObjectFloatOrderedMap<?> data = new ObjectFloatOrderedMap<>(ks, vs);
-        data.setDefaultValue(input.readFloat32());
+        data.setDefaultValue(fory.readFloat32());
         return data;
     }
 }

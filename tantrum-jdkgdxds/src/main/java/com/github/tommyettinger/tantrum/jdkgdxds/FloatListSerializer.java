@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatListSerializer extends Serializer<FloatList> {
 
-    public FloatListSerializer(Fory fory) {
+    public FloatListSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FloatList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final FloatList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
     }
 
     @Override
-    public FloatList read(MemoryBuffer input) {
-        return new FloatList(Support.readFloatsAndSize(input));
+    public FloatList read(org.apache.fory.context.ReadContext fory) {
+        return new FloatList(Support.readFloatsAndSize(fory.getBuffer()));
     }
 }

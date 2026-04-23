@@ -28,20 +28,20 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteDequeSerializer extends Serializer<ByteDeque> {
 
-    public ByteDequeSerializer(Fory fory) {
+    public ByteDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ByteDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.BYTE_ARRAY_OFFSET, data.size());
-        output.writeByte(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final ByteDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.BYTE_ARRAY_OFFSET, data.size());
+        fory.writeByte(data.getDefaultValue());
     }
 
     @Override
-    public ByteDeque read(MemoryBuffer input) {
-        ByteDeque data = new ByteDeque(input.readBytesAndSize());
-        data.setDefaultValue(input.readByte());
+    public ByteDeque read(org.apache.fory.context.ReadContext fory) {
+        ByteDeque data = new ByteDeque(fory.getBuffer().readBytesAndSize());
+        data.setDefaultValue(fory.readByte());
         return data;
     }
 }

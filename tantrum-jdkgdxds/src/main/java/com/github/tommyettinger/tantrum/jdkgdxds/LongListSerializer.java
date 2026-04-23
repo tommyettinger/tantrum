@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class LongListSerializer extends Serializer<LongList> {
 
-    public LongListSerializer(Fory fory) {
+    public LongListSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final LongList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public LongList read(MemoryBuffer input) {
-        return new LongList(Support.readLongsAndSize(input));
+    public LongList read(org.apache.fory.context.ReadContext fory) {
+        return new LongList(Support.readLongsAndSize(fory.getBuffer()));
     }
 }

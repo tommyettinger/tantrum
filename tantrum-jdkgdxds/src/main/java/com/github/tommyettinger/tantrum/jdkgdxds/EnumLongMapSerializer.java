@@ -29,30 +29,30 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumLongMapSerializer extends Serializer<EnumLongMap> {
 
-    public EnumLongMapSerializer(Fory fory) {
+    public EnumLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumLongMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumLongMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumLongMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Enum<?> v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeInt64(data.getDefaultValue());
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public EnumLongMap read(MemoryBuffer input) {
-        long[] vs = Support.readLongsAndSize(input);
+    public EnumLongMap read(org.apache.fory.context.ReadContext fory) {
+        long[] vs = Support.readLongsAndSize(fory.getBuffer());
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fory.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef();
         }
 
         EnumLongMap data = new EnumLongMap(ks, vs);
-        data.setDefaultValue(input.readInt64());
+        data.setDefaultValue(fory.readInt64());
         return data;
     }
 }

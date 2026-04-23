@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.CaseInsensitiveSet;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -28,25 +29,25 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class CaseInsensitiveSetSerializer extends CollectionSerializer<CaseInsensitiveSet> {
 
-    public CaseInsensitiveSetSerializer(Fory fory) {
-        super(fory, CaseInsensitiveSet.class);
+    public CaseInsensitiveSetSerializer(TypeResolver resolver) {
+        super(resolver, CaseInsensitiveSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CaseInsensitiveSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final CaseInsensitiveSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public CaseInsensitiveSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public CaseInsensitiveSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         CaseInsensitiveSet data = new CaseInsensitiveSet(len);
         for (int i = 0; i < len; i++) {
-            data.add((CharSequence) fory.readRef(input));
+            data.add((CharSequence) fory.readRef());
         }
         return data;
     }

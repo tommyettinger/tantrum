@@ -29,17 +29,17 @@ import org.apache.fory.serializer.Serializer;
  */
 public class CharBitSetFixedSizeSerializer extends Serializer<CharBitSetFixedSize> {
 
-    public CharBitSetFixedSizeSerializer(Fory fory) {
+    public CharBitSetFixedSizeSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBitSetFixedSize.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharBitSetFixedSize data) {
-        output.writePrimitiveArrayWithSize(data.getRawBits(), Platform.INT_ARRAY_OFFSET, 2048 << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final CharBitSetFixedSize data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.getRawBits(), Platform.INT_ARRAY_OFFSET, 2048 << 2);
     }
 
     @Override
-    public CharBitSetFixedSize read(MemoryBuffer input) {
-        return new CharBitSetFixedSize(Support.readIntsAndSize(input), true);
+    public CharBitSetFixedSize read(org.apache.fory.context.ReadContext fory) {
+        return new CharBitSetFixedSize(Support.readIntsAndSize(fory.getBuffer()), true);
     }
 }

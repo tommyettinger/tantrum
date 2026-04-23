@@ -32,31 +32,31 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMap> {
 
-    public ObjectIntOrderedMapSerializer(Fory fory) {
+    public ObjectIntOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectIntOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectIntOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectIntOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Object v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        output.writeInt32(data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public ObjectIntOrderedMap<?> read(MemoryBuffer input) {
-        int[] vs = Support.readIntsAndSize(input);
+    public ObjectIntOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
+        int[] vs = Support.readIntsAndSize(fory.getBuffer());
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
 
-        ObjectIntOrderedMap<?> data = new ObjectIntOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readInt32());
+        ObjectIntOrderedMap<?> data = new ObjectIntOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readInt32());
         return data;
     }
 }

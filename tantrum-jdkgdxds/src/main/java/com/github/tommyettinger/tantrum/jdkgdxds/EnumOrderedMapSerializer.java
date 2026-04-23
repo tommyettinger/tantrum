@@ -30,39 +30,39 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
 
-    public EnumOrderedMapSerializer(Fory fory) {
-        super(fory, EnumOrderedMap.class);
+    public EnumOrderedMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, EnumOrderedMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumOrderedMap data) {
-        output.writeVarUint32(data.size());
-        fory.writeString(output, data.getOrderType().name());
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumOrderedMap data) {
+        fory.writeVarUint32(data.size());
+        fory.writeString(data.getOrderType().name());
         for(Enum<?> k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public EnumOrderedMap<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
-        OrderType type = OrderType.valueOf(fory.readString(input));
+    public EnumOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
+        OrderType type = OrderType.valueOf(fory.readString());
         if(len == 0) return new EnumOrderedMap<>(type);
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>) fory.readRef(input);
+            ks[i] = (Enum<?>) fory.readRef();
         }
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
         EnumOrderedMap data = new EnumOrderedMap<>(ks, vs, type);
-        data.setDefaultValue(fory.readRef(input));
+        data.setDefaultValue(fory.readRef());
         return data;
     }
 }

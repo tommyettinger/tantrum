@@ -29,21 +29,21 @@ import org.apache.fory.memory.Platform;
  */
 public class LongIntMapSerializer extends Serializer<LongIntMap> {
 
-    public LongIntMapSerializer(Fory fory) {
+    public LongIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongIntMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongIntMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writeInt32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final LongIntMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public LongIntMap read(MemoryBuffer input) {
-        LongIntMap data = new LongIntMap(Support.readLongsAndSize(input), Support.readIntsAndSize(input));
-        data.setDefaultValue(input.readInt32());
+    public LongIntMap read(org.apache.fory.context.ReadContext fory) {
+        LongIntMap data = new LongIntMap(Support.readLongsAndSize(fory.getBuffer()), Support.readIntsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readInt32());
         return data;
 
     }

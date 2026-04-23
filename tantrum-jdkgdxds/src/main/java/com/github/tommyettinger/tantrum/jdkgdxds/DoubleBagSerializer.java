@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleBagSerializer extends Serializer<DoubleBag> {
 
-    public DoubleBagSerializer(Fory fory) {
+    public DoubleBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final DoubleBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final DoubleBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public DoubleBag read(MemoryBuffer input) {
-        return new DoubleBag(Support.readDoublesAndSize(input));
+    public DoubleBag read(org.apache.fory.context.ReadContext fory) {
+        return new DoubleBag(Support.readDoublesAndSize(fory.getBuffer()));
     }
 }

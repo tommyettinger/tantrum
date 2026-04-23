@@ -29,30 +29,30 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumIntMapSerializer extends Serializer<EnumIntMap> {
 
-    public EnumIntMapSerializer(Fory fory) {
+    public EnumIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumIntMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumIntMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumIntMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
         for(Enum<?> v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeInt32(data.getDefaultValue());
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public EnumIntMap read(MemoryBuffer input) {
-        int[] vs = Support.readIntsAndSize(input);
+    public EnumIntMap read(org.apache.fory.context.ReadContext fory) {
+        int[] vs = Support.readIntsAndSize(fory.getBuffer());
         final int len = vs.length;
         Enum<?>[] ks = new Enum<?>[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>)fory.readRef(input);
+            ks[i] = (Enum<?>)fory.readRef();
         }
 
         EnumIntMap data = new EnumIntMap(ks, vs);
-        data.setDefaultValue(input.readInt32());
+        data.setDefaultValue(fory.readInt32());
         return data;
     }
 }

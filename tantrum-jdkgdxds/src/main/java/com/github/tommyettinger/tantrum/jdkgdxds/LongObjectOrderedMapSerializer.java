@@ -32,31 +32,31 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
 @SuppressWarnings("rawtypes")
 public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrderedMap> {
 
-    public LongObjectOrderedMapSerializer(Fory fory) {
+    public LongObjectOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongObjectOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongObjectOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final LongObjectOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeString(output, data.getOrderType().name());
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeString(data.getOrderType().name());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public LongObjectOrderedMap<?> read(MemoryBuffer input) {
-        long[] ks = Support.readLongsAndSize(input);
+    public LongObjectOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
+        long[] ks = Support.readLongsAndSize(fory.getBuffer());
         final int len = ks.length;
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
-        LongObjectOrderedMap data = new LongObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(fory.readRef(input));
+        LongObjectOrderedMap data = new LongObjectOrderedMap<>(ks, vs, OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readRef());
         return data;
     }
 }

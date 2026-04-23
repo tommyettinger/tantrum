@@ -21,6 +21,7 @@ import com.github.tommyettinger.ds.ObjectOrderedSet;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -30,26 +31,26 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrderedSet> {
 
-    public ObjectOrderedSetSerializer(Fory fory) {
-        super(fory, ObjectOrderedSet.class);
+    public ObjectOrderedSetSerializer(TypeResolver resolver) {
+        super(resolver, ObjectOrderedSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectOrderedSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectOrderedSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
-        fory.writeString(output, data.getOrderType().name());
+        fory.writeVarUint32(len);
+        fory.writeString(data.getOrderType().name());
         for (int i = 0; i < len; i++) {
-            fory.writeRef(output, data.getAt(i));
+            fory.writeRef(data.getAt(i));
         }
     }
 
     @Override
-    public ObjectOrderedSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
-        ObjectOrderedSet data = new ObjectOrderedSet(len, OrderType.valueOf(fory.readString(input)));
+    public ObjectOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
+        ObjectOrderedSet data = new ObjectOrderedSet(len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

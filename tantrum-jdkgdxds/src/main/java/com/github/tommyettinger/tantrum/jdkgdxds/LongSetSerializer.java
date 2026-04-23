@@ -29,17 +29,17 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongSetSerializer extends Serializer<LongSet> {
 
-    public LongSetSerializer(Fory fory) {
+    public LongSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongSet data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final LongSet data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public LongSet read(MemoryBuffer input) {
-        return new LongSet(Support.readLongsAndSize(input));
+    public LongSet read(org.apache.fory.context.ReadContext fory) {
+        return new LongSet(Support.readLongsAndSize(fory.getBuffer()));
     }
 }

@@ -32,18 +32,18 @@ import org.apache.fory.memory.Platform;
  */
 public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
 
-    public IntOrderedSetSerializer(Fory fory) {
+    public IntOrderedSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntOrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntOrderedSet data) {
-        output.writePrimitiveArrayWithSize(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        fory.writeString(output, data.getOrderType().name());
+    public void write(final org.apache.fory.context.WriteContext fory, final IntOrderedSet data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.order().items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeString(data.getOrderType().name());
     }
 
     @Override
-    public IntOrderedSet read(MemoryBuffer input) {
-        return new IntOrderedSet(Support.readIntsAndSize(input), OrderType.valueOf(fory.readString(input)));
+    public IntOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        return new IntOrderedSet(Support.readIntsAndSize(fory.getBuffer()), OrderType.valueOf(fory.readString()));
     }
 }

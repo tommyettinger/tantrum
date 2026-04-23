@@ -29,37 +29,37 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class EnumMapSerializer extends MapSerializer<EnumMap> {
 
-    public EnumMapSerializer(Fory fory) {
-        super(fory, EnumMap.class);
+    public EnumMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, EnumMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final EnumMap data) {
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final EnumMap data) {
+        fory.writeVarUint32(data.size());
         for(Enum<?> k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public EnumMap<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public EnumMap<?> read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         if(len == 0) return new EnumMap<>();
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (Enum<?>) fory.readRef(input);
+            ks[i] = (Enum<?>) fory.readRef();
         }
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
 
         EnumMap data = new EnumMap<>(ks, vs);
-        data.setDefaultValue(fory.readRef(input));
+        data.setDefaultValue(fory.readRef());
         return data;
 
     }

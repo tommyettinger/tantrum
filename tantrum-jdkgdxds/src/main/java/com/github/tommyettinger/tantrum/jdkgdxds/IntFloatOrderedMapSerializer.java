@@ -31,22 +31,22 @@ import org.apache.fory.memory.Platform;
  */
 public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap> {
 
-    public IntFloatOrderedMapSerializer(Fory fory) {
+    public IntFloatOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntFloatOrderedMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntFloatOrderedMap data) {
-        output.writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
-        fory.writeString(output, data.getOrderType().name());
-        output.writeFloat32(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final IntFloatOrderedMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeString(data.getOrderType().name());
+        fory.writeFloat32(data.getDefaultValue());
     }
 
     @Override
-    public IntFloatOrderedMap read(MemoryBuffer input) {
-        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(input), Support.readFloatsAndSize(input), OrderType.valueOf(fory.readString(input)));
-        data.setDefaultValue(input.readFloat32());
+    public IntFloatOrderedMap read(org.apache.fory.context.ReadContext fory) {
+        IntFloatOrderedMap data = new IntFloatOrderedMap(Support.readIntsAndSize(fory.getBuffer()), Support.readFloatsAndSize(fory.getBuffer()), OrderType.valueOf(fory.readString()));
+        data.setDefaultValue(fory.readFloat32());
         return data;
 
     }

@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.NumberedSet;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,28 +30,28 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
 
-    public NumberedSetSerializer(Fory fory) {
-        super(fory, NumberedSet.class);
+    public NumberedSetSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, NumberedSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final NumberedSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final NumberedSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
-        output.writeInt32(data.getDefaultValue());
+        fory.writeInt32(data.getDefaultValue());
     }
 
     @Override
-    public NumberedSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public NumberedSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         NumberedSet data = new NumberedSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
-        data.setDefaultValue(input.readInt32());
+        data.setDefaultValue(fory.readInt32());
         return data;
     }
 }

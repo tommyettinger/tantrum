@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortListSerializer extends Serializer<ShortList> {
 
-    public ShortListSerializer(Fory fory) {
+    public ShortListSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ShortList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+    public void write(final org.apache.fory.context.WriteContext fory, final ShortList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
-    public ShortList read(MemoryBuffer input) {
-        return new ShortList(Support.readShortsAndSize(input));
+    public ShortList read(org.apache.fory.context.ReadContext fory) {
+        return new ShortList(Support.readShortsAndSize(fory.getBuffer()));
     }
 }

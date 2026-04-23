@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanListSerializer extends Serializer<BooleanList> {
 
-    public BooleanListSerializer(Fory fory) {
+    public BooleanListSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BooleanList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final BooleanList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
     }
 
     @Override
-    public BooleanList read(MemoryBuffer input) {
-        return new BooleanList(Support.readBooleansAndSize(input));
+    public BooleanList read(org.apache.fory.context.ReadContext fory) {
+        return new BooleanList(Support.readBooleansAndSize(fory.getBuffer()));
     }
 }

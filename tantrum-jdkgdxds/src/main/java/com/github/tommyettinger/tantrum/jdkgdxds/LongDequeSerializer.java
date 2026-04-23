@@ -29,20 +29,20 @@ import org.apache.fory.memory.Platform;
  */
 public class LongDequeSerializer extends Serializer<LongDeque> {
 
-    public LongDequeSerializer(Fory fory) {
+    public LongDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongDeque.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongDeque data) {
-        output.writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        output.writeInt64(data.getDefaultValue());
+    public void write(final org.apache.fory.context.WriteContext fory, final LongDeque data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public LongDeque read(MemoryBuffer input) {
-        LongDeque data = new LongDeque(Support.readLongsAndSize(input));
-        data.setDefaultValue(input.readInt64());
+    public LongDeque read(org.apache.fory.context.ReadContext fory) {
+        LongDeque data = new LongDeque(Support.readLongsAndSize(fory.getBuffer()));
+        data.setDefaultValue(fory.readInt64());
         return data;
     }
 }

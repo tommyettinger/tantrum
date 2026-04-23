@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectSet;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,25 +30,25 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectSetSerializer extends CollectionSerializer<ObjectSet> {
 
-    public ObjectSetSerializer(Fory fory) {
-        super(fory, ObjectSet.class);
+    public ObjectSetSerializer(TypeResolver resolver) {
+        super(resolver, ObjectSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectSet data) {
         final int len = data.size();
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public ObjectSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectSet read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         ObjectSet data = new ObjectSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

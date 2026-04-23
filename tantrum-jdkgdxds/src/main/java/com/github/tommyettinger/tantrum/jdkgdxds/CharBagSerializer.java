@@ -28,17 +28,17 @@ import org.apache.fory.memory.Platform;
  */
 public class CharBagSerializer extends Serializer<CharBag> {
 
-    public CharBagSerializer(Fory fory) {
+    public CharBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+    public void write(final org.apache.fory.context.WriteContext fory, final CharBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
-    public CharBag read(MemoryBuffer input) {
-        return new CharBag(input.readCharsAndSize());
+    public CharBag read(org.apache.fory.context.ReadContext fory) {
+        return new CharBag(fory.getBuffer().readCharsAndSize());
     }
 }

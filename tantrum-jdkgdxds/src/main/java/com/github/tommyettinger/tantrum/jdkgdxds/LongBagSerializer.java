@@ -29,17 +29,17 @@ import org.apache.fory.memory.Platform;
  */
 public class LongBagSerializer extends Serializer<LongBag> {
 
-    public LongBagSerializer(Fory fory) {
+    public LongBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final LongBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
     }
 
     @Override
-    public LongBag read(MemoryBuffer input) {
-        return new LongBag(Support.readLongsAndSize(input));
+    public LongBag read(org.apache.fory.context.ReadContext fory) {
+        return new LongBag(Support.readLongsAndSize(fory.getBuffer()));
     }
 }

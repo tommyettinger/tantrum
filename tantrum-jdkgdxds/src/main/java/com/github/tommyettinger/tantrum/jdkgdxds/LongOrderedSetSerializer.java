@@ -31,18 +31,18 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
 
-    public LongOrderedSetSerializer(Fory fory) {
+    public LongOrderedSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongOrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongOrderedSet data) {
-        output.writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.writeString(output, data.getOrderType().name());
+    public void write(final org.apache.fory.context.WriteContext fory, final LongOrderedSet data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeString(data.getOrderType().name());
     }
 
     @Override
-    public LongOrderedSet read(MemoryBuffer input) {
-        return new LongOrderedSet(Support.readLongsAndSize(input), OrderType.valueOf(fory.readString(input)));
+    public LongOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        return new LongOrderedSet(Support.readLongsAndSize(fory.getBuffer()), OrderType.valueOf(fory.readString()));
     }
 }

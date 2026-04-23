@@ -20,6 +20,7 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.ObjectBag;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -29,25 +30,25 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectBagSerializer extends CollectionSerializer<ObjectBag> {
 
-    public ObjectBagSerializer(Fory fory) {
-        super(fory, ObjectBag.class);
+    public ObjectBagSerializer(TypeResolver resolver) {
+        super(resolver, ObjectBag.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectBag data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectBag data) {
         final int len = data.size();
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
-            fory.writeRef(output, data.get(i));
+            fory.writeRef(data.get(i));
         }
     }
 
     @Override
-    public ObjectBag read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectBag read(org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         ObjectBag data = new ObjectBag(len);
         for (int i = 0; i < len; i++)
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         return data;
     }
 }

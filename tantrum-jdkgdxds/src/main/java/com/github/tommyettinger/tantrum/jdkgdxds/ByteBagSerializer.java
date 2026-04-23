@@ -28,17 +28,17 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteBagSerializer extends Serializer<ByteBag> {
 
-    public ByteBagSerializer(Fory fory) {
+    public ByteBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteBag.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ByteBag data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final ByteBag data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
     }
 
     @Override
-    public ByteBag read(MemoryBuffer input) {
-        return new ByteBag(input.readBytesAndSize());
+    public ByteBag read(org.apache.fory.context.ReadContext fory) {
+        return new ByteBag(fory.getBuffer().readBytesAndSize());
     }
 }

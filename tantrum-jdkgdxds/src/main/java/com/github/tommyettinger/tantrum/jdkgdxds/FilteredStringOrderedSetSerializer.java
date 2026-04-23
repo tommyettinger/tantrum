@@ -22,6 +22,7 @@ import com.github.tommyettinger.ds.FilteredStringOrderedSet;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.Fory;
 import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;
 
@@ -30,29 +31,29 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class FilteredStringOrderedSetSerializer extends CollectionSerializer<FilteredStringOrderedSet> {
 
-    public FilteredStringOrderedSetSerializer(Fory fory) {
-        super(fory, FilteredStringOrderedSet.class);
+    public FilteredStringOrderedSetSerializer(TypeResolver resolver) {
+        super(resolver, FilteredStringOrderedSet.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FilteredStringOrderedSet data) {
-        fory.writeString(output, data.getFilter().getName());
+    public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringOrderedSet data) {
+        fory.writeString(data.getFilter().getName());
         final int len = data.size();
-        output.writeVarUint32(len);
-        fory.writeString(output, data.getOrderType().name());
+        fory.writeVarUint32(len);
+        fory.writeString(data.getOrderType().name());
         for (String item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
 
     }
 
     @Override
-    public FilteredStringOrderedSet read(MemoryBuffer input) {
-        CharFilter filter = CharFilter.get(fory.readString(input));
-        final int len = input.readVarUint32();
-        FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len, OrderType.valueOf(fory.readString(input)));
+    public FilteredStringOrderedSet read(org.apache.fory.context.ReadContext fory) {
+        CharFilter filter = CharFilter.get(fory.readString());
+        final int len = fory.readVarUint32();
+        FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
-            data.add((String) fory.readRef(input));
+            data.add((String) fory.readRef());
         }
         return data;
     }

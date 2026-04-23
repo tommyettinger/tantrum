@@ -18,25 +18,23 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.StringJunction;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for Regexodus {@link StringJunction}s.
  */
 public class StringJunctionSerializer extends Serializer<StringJunction> {
-    public StringJunctionSerializer(Fory fory) {
+    public StringJunctionSerializer(org.apache.fory.config.Config fory) {
         super(fory, StringJunction.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final StringJunction data) {
-        fory.writeString(buffer, data.toString());
+    public void write(org.apache.fory.context.WriteContext fory, final StringJunction data) {
+        fory.writeString(data.toString());
     }
 
     @Override
-    public StringJunction read(MemoryBuffer buffer) {
-        return StringJunction.parse(fory.readString(buffer));
+    public StringJunction read(org.apache.fory.context.ReadContext fory) {
+        return StringJunction.parse(fory.readString());
     }
 }

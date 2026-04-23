@@ -30,30 +30,30 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
 @SuppressWarnings("rawtypes")
 public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
 
-    public ObjectLongMapSerializer(Fory fory) {
+    public ObjectLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectLongMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectLongMap data) {
-        output.writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectLongMap data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
         for(Object v : data.keySet()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        output.writeInt64(data.getDefaultValue());
+        fory.writeInt64(data.getDefaultValue());
     }
 
     @Override
-    public ObjectLongMap<?> read(MemoryBuffer input) {
-        long[] vs = Support.readLongsAndSize(input);
+    public ObjectLongMap<?> read(org.apache.fory.context.ReadContext fory) {
+        long[] vs = Support.readLongsAndSize(fory.getBuffer());
         final int len = vs.length;
         Object[] ks = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = fory.readRef(input);
+            ks[i] = fory.readRef();
         }
 
         ObjectLongMap<?> data = new ObjectLongMap<>(ks, vs);
-        data.setDefaultValue(input.readInt64());
+        data.setDefaultValue(fory.readInt64());
         return data;
     }
 }

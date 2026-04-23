@@ -30,37 +30,37 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap> {
 
-    public FilteredStringMapSerializer(Fory fory) {
-        super(fory, FilteredStringMap.class);
+    public FilteredStringMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
+        super(resolver, FilteredStringMap.class, true);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final FilteredStringMap data) {
-        fory.writeString(output, data.getFilter().getName());
-        output.writeVarUint32(data.size());
+    public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringMap data) {
+        fory.writeString(data.getFilter().getName());
+        fory.writeVarUint32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(output, k);
+            fory.writeRef(k);
         }
         for(Object v : data.values()){
-            fory.writeRef(output, v);
+            fory.writeRef(v);
         }
-        fory.writeRef(output, data.getDefaultValue());
+        fory.writeRef(data.getDefaultValue());
     }
 
     @Override
-    public FilteredStringMap<?> read(MemoryBuffer input) {
-        CharFilter filter = CharFilter.get(fory.readString(input));
-        final int len = input.readVarUint32();
+    public FilteredStringMap<?> read(org.apache.fory.context.ReadContext fory) {
+        CharFilter filter = CharFilter.get(fory.readString());
+        final int len = fory.readVarUint32();
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (String) fory.readRef(input);
+            ks[i] = (String) fory.readRef();
         }
         for (int i = 0; i < len; i++) {
-            vs[i] = fory.readRef(input);
+            vs[i] = fory.readRef();
         }
         FilteredStringMap data = new FilteredStringMap<>(filter, ks, vs);
-        data.setDefaultValue(fory.readRef(input));
+        data.setDefaultValue(fory.readRef());
         return data;
 
     }

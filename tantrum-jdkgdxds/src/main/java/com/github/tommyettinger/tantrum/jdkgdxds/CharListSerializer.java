@@ -28,17 +28,17 @@ import org.apache.fory.memory.Platform;
  */
 public class CharListSerializer extends Serializer<CharList> {
 
-    public CharListSerializer(Fory fory) {
+    public CharListSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharList.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharList data) {
-        output.writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+    public void write(final org.apache.fory.context.WriteContext fory, final CharList data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
     }
 
     @Override
-    public CharList read(MemoryBuffer input) {
-        return new CharList(input.readCharsAndSize());
+    public CharList read(org.apache.fory.context.ReadContext fory) {
+        return new CharList(fory.getBuffer().readCharsAndSize());
     }
 }
