@@ -28,6 +28,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMap> {
 
+    public EnumFloatOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumFloatOrderedMap.class);
+    }
     public EnumFloatOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumFloatOrderedMap.class);
     }

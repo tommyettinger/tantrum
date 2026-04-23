@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
 
+    public ObjectDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), ObjectDeque.class, true);
+    }
     public ObjectDequeSerializer(TypeResolver resolver) {
         super(resolver, ObjectDeque.class, true);
     }

@@ -29,6 +29,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredStringOrderedMap> {
 
+    public FilteredStringOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), FilteredStringOrderedMap.class, true);
+    }
     public FilteredStringOrderedMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, FilteredStringOrderedMap.class, true);
     }

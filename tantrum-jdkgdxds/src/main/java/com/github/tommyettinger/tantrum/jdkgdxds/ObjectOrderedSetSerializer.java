@@ -29,6 +29,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrderedSet> {
 
+    public ObjectOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), ObjectOrderedSet.class, true);
+    }
     public ObjectOrderedSetSerializer(TypeResolver resolver) {
         super(resolver, ObjectOrderedSet.class, true);
     }

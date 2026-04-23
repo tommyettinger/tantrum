@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatBagSerializer extends Serializer<FloatBag> {
 
+    public FloatBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), FloatBag.class);
+    }
     public FloatBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatBag.class);
     }

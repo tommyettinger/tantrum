@@ -28,6 +28,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
 @SuppressWarnings("rawtypes")
 public class ObjectLongMapSerializer extends Serializer<ObjectLongMap> {
 
+    public ObjectLongMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectLongMap.class);
+    }
     public ObjectLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectLongMap.class);
     }

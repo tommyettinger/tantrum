@@ -29,7 +29,7 @@ public class SetTest {
     public void testIntSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntSet.class, new IntSetSerializer(fory.getConfig()));
+        fory.registerSerializer(IntSet.class, new IntSetSerializer(fory));
 
         IntSet data = IntSet.with(-123, 0, 456, 0, 1, -1, 0);
 
@@ -43,7 +43,7 @@ public class SetTest {
     public void testIntOrderedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntOrderedSet.class, new IntOrderedSetSerializer(fory.getConfig()));
+        fory.registerSerializer(IntOrderedSet.class, new IntOrderedSetSerializer(fory));
 
         IntOrderedSet data = IntOrderedSet.with(-123, 0, 456, 0, 1, -1, 0);
 
@@ -58,7 +58,7 @@ public class SetTest {
     public void testLongSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongSet.class, new LongSetSerializer(fory.getConfig()));
+        fory.registerSerializer(LongSet.class, new LongSetSerializer(fory));
 
         LongSet data = LongSet.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -72,7 +72,7 @@ public class SetTest {
     public void testLongOrderedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongOrderedSet.class, new LongOrderedSetSerializer(fory.getConfig()));
+        fory.registerSerializer(LongOrderedSet.class, new LongOrderedSetSerializer(fory));
 
         LongOrderedSet data = LongOrderedSet.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -87,7 +87,7 @@ public class SetTest {
     public void testObjectSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fory));
 
         ObjectSet<String> data = ObjectSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -101,7 +101,7 @@ public class SetTest {
     public void testObjectOrderedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectOrderedSet.class, new ObjectOrderedSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(ObjectOrderedSet.class, new ObjectOrderedSetSerializer(fory));
 
         ObjectOrderedSet<String> data = ObjectOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -116,7 +116,7 @@ public class SetTest {
     public void testCaseInsensitiveSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(CaseInsensitiveSet.class, new CaseInsensitiveSetSerializer(fory));
 
         CaseInsensitiveSet data = CaseInsensitiveSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -130,7 +130,7 @@ public class SetTest {
     public void testCaseInsensitiveOrderedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(CaseInsensitiveOrderedSet.class, new CaseInsensitiveOrderedSetSerializer(fory));
 
         CaseInsensitiveOrderedSet data = CaseInsensitiveOrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -144,7 +144,7 @@ public class SetTest {
     public void testOffsetBitSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(OffsetBitSet.class, new OffsetBitSetSerializer(fory.getConfig()));
+        fory.registerSerializer(OffsetBitSet.class, new OffsetBitSetSerializer(fory));
 
         OffsetBitSet data = new OffsetBitSet(-123, 500);
         data.addAll(new int[]{-123, 0, 456, 0, 1, -1, 0});
@@ -159,7 +159,7 @@ public class SetTest {
     public void testCharBitSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory.getConfig()));
+        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory));
 
         CharBitSet data = new CharBitSet(Character::isDigit);
         data.add('Z');
@@ -174,7 +174,7 @@ public class SetTest {
     public void testCharBitSetFixedSize() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharBitSetFixedSize.class, new CharBitSetFixedSizeSerializer(fory.getConfig()));
+        fory.registerSerializer(CharBitSetFixedSize.class, new CharBitSetFixedSizeSerializer(fory));
 
         CharBitSetFixedSize data = new CharBitSetFixedSize(Character::isDigit);
         data.add('Z');
@@ -189,7 +189,7 @@ public class SetTest {
     public void testNumberedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(NumberedSet.class, new NumberedSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(NumberedSet.class, new NumberedSetSerializer(fory));
 
         NumberedSet<String> data = NumberedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -206,7 +206,7 @@ public class SetTest {
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
-//        fory.registerSerializer(HolderSet.class, new HolderSetSerializer(fory.getConfig()));
+//        fory.registerSerializer(HolderSet.class, new HolderSetSerializer(fory));
 //
 //        ObjToObjFunction<String, String> f = s -> s.split("\\s+")[0];
 //        HolderSet<String, String> data = HolderSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
@@ -223,7 +223,7 @@ public class SetTest {
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        kryo.register(String.class);
 //        kryo.register(ObjToObjFunction.class);
-//        fory.registerSerializer(HolderOrderedSet.class, new HolderOrderedSetSerializer(fory.getConfig()));
+//        fory.registerSerializer(HolderOrderedSet.class, new HolderOrderedSetSerializer(fory));
 //
 //        ObjToObjFunction<String, String> f = s -> s.split("\\s+")[0];
 //        HolderOrderedSet<String, String> data = HolderOrderedSet.with(f, "Hello World!", "I am", "a test!", "Yippee yay wahoo!");
@@ -240,7 +240,7 @@ public class SetTest {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FilteredStringSet.class, new FilteredStringSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(FilteredStringSet.class, new FilteredStringSetSerializer(fory));
 
         FilteredStringSet data = FilteredStringSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
 
@@ -255,7 +255,7 @@ public class SetTest {
         CharFilter filter = CharFilter.getOrCreate("LettersOnlyIgnoreCase", Character::isLetter, Character::toUpperCase);
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FilteredStringOrderedSet.class, new FilteredStringOrderedSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(FilteredStringOrderedSet.class, new FilteredStringOrderedSetSerializer(fory));
 
         FilteredStringOrderedSet data = FilteredStringOrderedSet.with(filter, "Hello", "World", "!", "YES", "HELLO", "WORLD", "!");
 
@@ -270,7 +270,7 @@ public class SetTest {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
         fory.register(Character.UnicodeScript.class);
-        fory.registerSerializer(EnumSet.class, new EnumSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(EnumSet.class, new EnumSetSerializer(fory));
 
         EnumSet data = EnumSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
 
@@ -285,7 +285,7 @@ public class SetTest {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
         fory.register(Character.UnicodeScript.class);
-        fory.registerSerializer(EnumOrderedSet.class, new EnumOrderedSetSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(EnumOrderedSet.class, new EnumOrderedSetSerializer(fory));
 
         EnumOrderedSet data = EnumOrderedSet.with(Character.UnicodeScript.LATIN, Character.UnicodeScript.ARABIC, Character.UnicodeScript.LAO, Character.UnicodeScript.ARMENIAN);
 
@@ -301,8 +301,8 @@ public class SetTest {
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        fory.register(ObjPredicate.class);
 //        fory.register(ObjToSameFunction.class);
-//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory.getConfig()));
-//        fory.registerSerializer(FilteredIterableSet.class, new FilteredIterableSetSerializer(fory.getConfig()));
+//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+//        fory.registerSerializer(FilteredIterableSet.class, new FilteredIterableSetSerializer(fory));
 //
 //        FilteredIterableSet<String, Iterable<String>> data = FilteredIterableSet.with(
 //                (String s) -> s.length() > 3, String::toUpperCase,
@@ -323,8 +323,8 @@ public class SetTest {
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
 //        fory.register(ObjPredicate.class);
 //        fory.register(ObjToSameFunction.class);
-//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory.getConfig()));
-//        fory.registerSerializer(FilteredIterableOrderedSet.class, new FilteredIterableOrderedSetSerializer(fory.getConfig()));
+//        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
+//        fory.registerSerializer(FilteredIterableOrderedSet.class, new FilteredIterableOrderedSetSerializer(fory));
 //
 //        FilteredIterableOrderedSet<String, Iterable<String>> data = FilteredIterableOrderedSet.with(
 //                (String s) -> s.length() > 3, String::toUpperCase,

@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class LongFloatMapSerializer extends Serializer<LongFloatMap> {
 
+    public LongFloatMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongFloatMap.class);
+    }
     public LongFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongFloatMap.class);
     }

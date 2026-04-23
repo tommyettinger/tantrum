@@ -29,6 +29,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class FilteredStringOrderedSetSerializer extends CollectionSerializer<FilteredStringOrderedSet> {
 
+    public FilteredStringOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), FilteredStringOrderedSet.class, true);
+    }
     public FilteredStringOrderedSetSerializer(TypeResolver resolver) {
         super(resolver, FilteredStringOrderedSet.class, true);
     }

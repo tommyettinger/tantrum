@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortDequeSerializer extends Serializer<ShortDeque> {
 
+    public ShortDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ShortDeque.class);
+    }
     public ShortDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortDeque.class);
     }

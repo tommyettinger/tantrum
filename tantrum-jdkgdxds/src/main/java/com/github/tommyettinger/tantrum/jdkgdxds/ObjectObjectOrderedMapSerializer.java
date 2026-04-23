@@ -29,6 +29,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObjectOrderedMap> {
 
+    public ObjectObjectOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), ObjectObjectOrderedMap.class, true);
+    }
     public ObjectObjectOrderedMapSerializer(TypeResolver resolver) {
         super(resolver, ObjectObjectOrderedMap.class, true);
     }

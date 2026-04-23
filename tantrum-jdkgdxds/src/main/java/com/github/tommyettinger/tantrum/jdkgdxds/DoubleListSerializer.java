@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleListSerializer extends Serializer<DoubleList> {
 
+    public DoubleListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), DoubleList.class);
+    }
     public DoubleListSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleList.class);
     }

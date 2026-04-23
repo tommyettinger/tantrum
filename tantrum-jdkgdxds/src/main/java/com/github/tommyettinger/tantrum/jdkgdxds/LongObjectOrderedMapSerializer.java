@@ -29,6 +29,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
 @SuppressWarnings("rawtypes")
 public class LongObjectOrderedMapSerializer extends Serializer<LongObjectOrderedMap> {
 
+    public LongObjectOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongObjectOrderedMap.class);
+    }
     public LongObjectOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongObjectOrderedMap.class);
     }

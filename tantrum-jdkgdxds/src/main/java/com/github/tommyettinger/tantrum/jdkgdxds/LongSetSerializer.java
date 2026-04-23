@@ -27,6 +27,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongSetSerializer extends Serializer<LongSet> {
 
+    public LongSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongSet.class);
+    }
     public LongSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongSet.class);
     }

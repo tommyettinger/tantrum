@@ -27,6 +27,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class NumberedSetSerializer extends CollectionSerializer<NumberedSet> {
 
+    public NumberedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), NumberedSet.class, true);
+    }
     public NumberedSetSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, NumberedSet.class, true);
     }

@@ -28,6 +28,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumLongOrderedMapSerializer extends Serializer<EnumLongOrderedMap> {
 
+    public EnumLongOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumLongOrderedMap.class);
+    }
     public EnumLongOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumLongOrderedMap.class);
     }

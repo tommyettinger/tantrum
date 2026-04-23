@@ -28,6 +28,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap> {
 
+    public IntFloatOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntFloatOrderedMap.class);
+    }
     public IntFloatOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntFloatOrderedMap.class);
     }

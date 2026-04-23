@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteListSerializer extends Serializer<ByteList> {
 
+    public ByteListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ByteList.class);
+    }
     public ByteListSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteList.class);
     }

@@ -27,6 +27,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumLongMapSerializer extends Serializer<EnumLongMap> {
 
+    public EnumLongMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumLongMap.class);
+    }
     public EnumLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumLongMap.class);
     }

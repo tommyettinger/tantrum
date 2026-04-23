@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
 
+    public ObjectListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), ObjectList.class, true);
+    }
     public ObjectListSerializer(TypeResolver resolver) {
         super(resolver, ObjectList.class, true);
     }

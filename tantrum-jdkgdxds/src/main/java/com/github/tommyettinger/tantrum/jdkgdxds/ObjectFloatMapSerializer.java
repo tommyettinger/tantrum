@@ -29,6 +29,9 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
 
+    public ObjectFloatMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectFloatMap.class);
+    }
     public ObjectFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectFloatMap.class);
     }

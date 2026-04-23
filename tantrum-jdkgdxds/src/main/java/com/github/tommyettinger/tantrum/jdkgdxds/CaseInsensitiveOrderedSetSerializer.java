@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class CaseInsensitiveOrderedSetSerializer extends CollectionSerializer<CaseInsensitiveOrderedSet> {
 
+    public CaseInsensitiveOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), CaseInsensitiveOrderedSet.class, true);
+    }
     public CaseInsensitiveOrderedSetSerializer(TypeResolver resolver) {
         super(resolver, CaseInsensitiveOrderedSet.class, true);
     }

@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class CharBagSerializer extends Serializer<CharBag> {
 
+    public CharBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharBag.class);
+    }
     public CharBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBag.class);
     }

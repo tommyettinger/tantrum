@@ -28,6 +28,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
 
+    public IntOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntOrderedSet.class);
+    }
     public IntOrderedSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntOrderedSet.class);
     }

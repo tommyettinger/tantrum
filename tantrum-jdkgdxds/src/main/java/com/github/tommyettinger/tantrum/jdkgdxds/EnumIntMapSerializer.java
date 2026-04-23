@@ -27,6 +27,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumIntMapSerializer extends Serializer<EnumIntMap> {
 
+    public EnumIntMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumIntMap.class);
+    }
     public EnumIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumIntMap.class);
     }

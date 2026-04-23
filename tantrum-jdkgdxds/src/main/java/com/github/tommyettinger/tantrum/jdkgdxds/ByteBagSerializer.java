@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteBagSerializer extends Serializer<ByteBag> {
 
+    public ByteBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ByteBag.class);
+    }
     public ByteBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteBag.class);
     }

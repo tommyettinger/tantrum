@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntLongMapSerializer extends Serializer<IntLongMap> {
 
+    public IntLongMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntLongMap.class);
+    }
     public IntLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntLongMap.class);
     }

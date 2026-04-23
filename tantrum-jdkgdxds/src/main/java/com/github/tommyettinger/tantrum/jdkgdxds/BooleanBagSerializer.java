@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanBagSerializer extends Serializer<BooleanBag> {
 
+    public BooleanBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), BooleanBag.class);
+    }
     public BooleanBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanBag.class);
     }

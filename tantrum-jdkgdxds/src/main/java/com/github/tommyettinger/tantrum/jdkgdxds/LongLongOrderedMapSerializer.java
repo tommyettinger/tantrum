@@ -28,6 +28,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongLongOrderedMapSerializer extends Serializer<LongLongOrderedMap> {
 
+    public LongLongOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongLongOrderedMap.class);
+    }
     public LongLongOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongLongOrderedMap.class);
     }

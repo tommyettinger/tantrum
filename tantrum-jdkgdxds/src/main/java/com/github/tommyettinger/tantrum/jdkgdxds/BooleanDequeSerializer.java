@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanDequeSerializer extends Serializer<BooleanDeque> {
 
+    public BooleanDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), BooleanDeque.class);
+    }
     public BooleanDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanDeque.class);
     }

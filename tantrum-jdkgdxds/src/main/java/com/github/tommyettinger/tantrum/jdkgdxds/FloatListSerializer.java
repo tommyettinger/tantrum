@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatListSerializer extends Serializer<FloatList> {
 
+    public FloatListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), FloatList.class);
+    }
     public FloatListSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatList.class);
     }

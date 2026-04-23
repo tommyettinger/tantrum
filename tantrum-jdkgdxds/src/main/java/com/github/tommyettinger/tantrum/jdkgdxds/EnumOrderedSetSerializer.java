@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSet> {
 
+    public EnumOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), EnumOrderedSet.class, true);
+    }
     public EnumOrderedSetSerializer(TypeResolver resolver) {
         super(resolver, EnumOrderedSet.class, true);
     }

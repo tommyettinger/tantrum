@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortListSerializer extends Serializer<ShortList> {
 
+    public ShortListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ShortList.class);
+    }
     public ShortListSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortList.class);
     }

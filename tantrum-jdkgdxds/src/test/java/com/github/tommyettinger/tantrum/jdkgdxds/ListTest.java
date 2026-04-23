@@ -29,7 +29,7 @@ public class ListTest {
     public void testObjectList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(ObjectList.class, new ObjectListSerializer(fory));
 
         ObjectList<String> data = ObjectList.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
@@ -42,7 +42,7 @@ public class ListTest {
     public void testIntList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntList.class, new IntListSerializer(fory.getConfig()));
+        fory.registerSerializer(IntList.class, new IntListSerializer(fory));
         
         IntList data = IntList.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
@@ -55,7 +55,7 @@ public class ListTest {
     public void testLongList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongList.class, new LongListSerializer(fory.getConfig()));
+        fory.registerSerializer(LongList.class, new LongListSerializer(fory));
 
         LongList data = LongList.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -68,7 +68,7 @@ public class ListTest {
     public void testShortList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ShortList.class, new ShortListSerializer(fory.getConfig()));
+        fory.registerSerializer(ShortList.class, new ShortListSerializer(fory));
 
         ShortList data = ShortList.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
@@ -81,7 +81,7 @@ public class ListTest {
     public void testByteList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ByteList.class, new ByteListSerializer(fory.getConfig()));
+        fory.registerSerializer(ByteList.class, new ByteListSerializer(fory));
 
         ByteList data = ByteList.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
@@ -94,7 +94,7 @@ public class ListTest {
     public void testFloatList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FloatList.class, new FloatListSerializer(fory.getConfig()));
+        fory.registerSerializer(FloatList.class, new FloatListSerializer(fory));
 
         FloatList data = FloatList.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
         
@@ -107,7 +107,7 @@ public class ListTest {
     public void testDoubleList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(DoubleList.class, new DoubleListSerializer(fory.getConfig()));
+        fory.registerSerializer(DoubleList.class, new DoubleListSerializer(fory));
 
         DoubleList data = DoubleList.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
 
@@ -120,7 +120,7 @@ public class ListTest {
     public void testBooleanList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(BooleanList.class, new BooleanListSerializer(fory.getConfig()));
+        fory.registerSerializer(BooleanList.class, new BooleanListSerializer(fory));
 
         BooleanList data = BooleanList.with(true, false, false, true, false, true, false);
 
@@ -133,7 +133,7 @@ public class ListTest {
     public void testCharList() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharList.class, new CharListSerializer(fory.getConfig()));
+        fory.registerSerializer(CharList.class, new CharListSerializer(fory));
 
         CharList data = CharList.with("Hello, World!".toCharArray());
 

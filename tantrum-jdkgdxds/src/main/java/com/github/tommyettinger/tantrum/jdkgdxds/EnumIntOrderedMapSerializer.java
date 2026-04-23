@@ -28,6 +28,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumIntOrderedMapSerializer extends Serializer<EnumIntOrderedMap> {
 
+    public EnumIntOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumIntOrderedMap.class);
+    }
     public EnumIntOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumIntOrderedMap.class);
     }

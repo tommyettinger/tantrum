@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class EnumOrderedMapSerializer extends MapSerializer<EnumOrderedMap> {
 
+    public EnumOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), EnumOrderedMap.class, true);
+    }
     public EnumOrderedMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, EnumOrderedMap.class, true);
     }

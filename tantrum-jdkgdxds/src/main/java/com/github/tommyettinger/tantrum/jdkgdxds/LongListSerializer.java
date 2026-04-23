@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class LongListSerializer extends Serializer<LongList> {
 
+    public LongListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongList.class);
+    }
     public LongListSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongList.class);
     }

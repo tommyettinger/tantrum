@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntIntMapSerializer extends Serializer<IntIntMap> {
 
+    public IntIntMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntIntMap.class);
+    }
     public IntIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntIntMap.class);
     }

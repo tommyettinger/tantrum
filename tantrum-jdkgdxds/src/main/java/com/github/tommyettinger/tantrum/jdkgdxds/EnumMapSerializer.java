@@ -27,6 +27,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class EnumMapSerializer extends MapSerializer<EnumMap> {
 
+    public EnumMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), EnumMap.class, true);
+    }
     public EnumMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, EnumMap.class, true);
     }

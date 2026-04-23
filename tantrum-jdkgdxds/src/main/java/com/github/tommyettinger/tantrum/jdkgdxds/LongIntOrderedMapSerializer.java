@@ -28,6 +28,9 @@ import org.apache.fory.memory.Platform;
  */
 public class LongIntOrderedMapSerializer extends Serializer<LongIntOrderedMap> {
 
+    public LongIntOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongIntOrderedMap.class);
+    }
     public LongIntOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongIntOrderedMap.class);
     }

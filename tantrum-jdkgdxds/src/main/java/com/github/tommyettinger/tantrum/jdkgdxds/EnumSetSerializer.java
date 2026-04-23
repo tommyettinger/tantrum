@@ -27,6 +27,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
  */
 public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
 
+    public EnumSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), EnumSet.class, true);
+    }
     public EnumSetSerializer(TypeResolver resolver) {
         super(resolver, EnumSet.class, true);
     }

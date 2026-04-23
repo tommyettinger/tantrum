@@ -28,6 +28,9 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectIntMapSerializer extends Serializer<ObjectIntMap> {
 
+    public ObjectIntMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectIntMap.class);
+    }
     public ObjectIntMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectIntMap.class);
     }

@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap> {
 
+    public FilteredStringMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), FilteredStringMap.class, true);
+    }
     public FilteredStringMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, FilteredStringMap.class, true);
     }

@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleDequeSerializer extends Serializer<DoubleDeque> {
 
+    public DoubleDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), DoubleDeque.class);
+    }
     public DoubleDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleDeque.class);
     }

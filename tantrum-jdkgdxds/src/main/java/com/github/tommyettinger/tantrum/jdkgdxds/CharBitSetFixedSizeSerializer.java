@@ -27,6 +27,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class CharBitSetFixedSizeSerializer extends Serializer<CharBitSetFixedSize> {
 
+    public CharBitSetFixedSizeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharBitSetFixedSize.class);
+    }
     public CharBitSetFixedSizeSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBitSetFixedSize.class);
     }

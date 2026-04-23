@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class CharDequeSerializer extends Serializer<CharDeque> {
 
+    public CharDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharDeque.class);
+    }
     public CharDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharDeque.class);
     }

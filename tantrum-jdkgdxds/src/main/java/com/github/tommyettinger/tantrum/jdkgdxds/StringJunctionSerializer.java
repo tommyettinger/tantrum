@@ -24,6 +24,9 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for Regexodus {@link StringJunction}s.
  */
 public class StringJunctionSerializer extends Serializer<StringJunction> {
+    public StringJunctionSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), StringJunction.class);
+    }
     public StringJunctionSerializer(org.apache.fory.config.Config fory) {
         super(fory, StringJunction.class);
     }

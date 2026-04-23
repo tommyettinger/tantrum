@@ -27,6 +27,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class EnumFloatMapSerializer extends Serializer<EnumFloatMap> {
 
+    public EnumFloatMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), EnumFloatMap.class);
+    }
     public EnumFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, EnumFloatMap.class);
     }

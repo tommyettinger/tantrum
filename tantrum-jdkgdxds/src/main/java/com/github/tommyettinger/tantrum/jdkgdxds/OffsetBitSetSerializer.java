@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
 
+    public OffsetBitSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), OffsetBitSet.class);
+    }
     public OffsetBitSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, OffsetBitSet.class);
     }

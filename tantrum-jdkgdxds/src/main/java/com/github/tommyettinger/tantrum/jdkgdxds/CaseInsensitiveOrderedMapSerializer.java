@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.MapSerializer;
 @SuppressWarnings("rawtypes")
 public class CaseInsensitiveOrderedMapSerializer extends MapSerializer<CaseInsensitiveOrderedMap> {
 
+    public CaseInsensitiveOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), CaseInsensitiveOrderedMap.class, true);
+    }
     public CaseInsensitiveOrderedMapSerializer(org.apache.fory.resolver.TypeResolver resolver) {
         super(resolver, CaseInsensitiveOrderedMap.class, true);
     }

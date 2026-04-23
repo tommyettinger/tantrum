@@ -29,6 +29,9 @@ import org.apache.fory.memory.Platform;
 @SuppressWarnings("rawtypes")
 public class ObjectIntOrderedMapSerializer extends Serializer<ObjectIntOrderedMap> {
 
+    public ObjectIntOrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectIntOrderedMap.class);
+    }
     public ObjectIntOrderedMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, ObjectIntOrderedMap.class);
     }

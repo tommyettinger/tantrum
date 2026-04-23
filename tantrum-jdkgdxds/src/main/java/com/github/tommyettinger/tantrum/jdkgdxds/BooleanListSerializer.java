@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanListSerializer extends Serializer<BooleanList> {
 
+    public BooleanListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), BooleanList.class);
+    }
     public BooleanListSerializer(org.apache.fory.config.Config fory) {
         super(fory, BooleanList.class);
     }

@@ -27,6 +27,9 @@ import org.apache.fory.serializer.Serializer;
  */
 public class CharBitSetSerializer extends Serializer<CharBitSet> {
 
+    public CharBitSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharBitSet.class);
+    }
     public CharBitSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharBitSet.class);
     }

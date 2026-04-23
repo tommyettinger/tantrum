@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
 
+    public IntFloatMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntFloatMap.class);
+    }
     public IntFloatMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntFloatMap.class);
     }

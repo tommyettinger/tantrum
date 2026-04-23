@@ -28,6 +28,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
 
+    public LongOrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongOrderedSet.class);
+    }
     public LongOrderedSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongOrderedSet.class);
     }

@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class LongDequeSerializer extends Serializer<LongDeque> {
 
+    public LongDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongDeque.class);
+    }
     public LongDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongDeque.class);
     }

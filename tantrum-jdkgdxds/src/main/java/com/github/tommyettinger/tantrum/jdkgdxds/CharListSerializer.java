@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class CharListSerializer extends Serializer<CharList> {
 
+    public CharListSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharList.class);
+    }
     public CharListSerializer(org.apache.fory.config.Config fory) {
         super(fory, CharList.class);
     }

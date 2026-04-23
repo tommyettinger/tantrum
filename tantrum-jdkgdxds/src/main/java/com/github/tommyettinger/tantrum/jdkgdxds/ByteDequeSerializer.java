@@ -26,6 +26,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteDequeSerializer extends Serializer<ByteDeque> {
 
+    public ByteDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ByteDeque.class);
+    }
     public ByteDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, ByteDeque.class);
     }

@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class LongBagSerializer extends Serializer<LongBag> {
 
+    public LongBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongBag.class);
+    }
     public LongBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongBag.class);
     }

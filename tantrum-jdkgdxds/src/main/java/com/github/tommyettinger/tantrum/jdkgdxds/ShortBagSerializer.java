@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortBagSerializer extends Serializer<ShortBag> {
 
+    public ShortBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ShortBag.class);
+    }
     public ShortBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, ShortBag.class);
     }

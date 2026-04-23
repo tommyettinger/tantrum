@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntDequeSerializer extends Serializer<IntDeque> {
 
+    public IntDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntDeque.class);
+    }
     public IntDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntDeque.class);
     }

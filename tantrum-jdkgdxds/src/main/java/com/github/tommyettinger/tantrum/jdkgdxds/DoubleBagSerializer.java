@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class DoubleBagSerializer extends Serializer<DoubleBag> {
 
+    public DoubleBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), DoubleBag.class);
+    }
     public DoubleBagSerializer(org.apache.fory.config.Config fory) {
         super(fory, DoubleBag.class);
     }

@@ -28,6 +28,9 @@ import org.apache.fory.serializer.collection.CollectionSerializer;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ObjectBagSerializer extends CollectionSerializer<ObjectBag> {
 
+    public ObjectBagSerializer(org.apache.fory.Fory fory) {
+        super(fory.getTypeResolver(), ObjectBag.class, true);
+    }
     public ObjectBagSerializer(TypeResolver resolver) {
         super(resolver, ObjectBag.class, true);
     }

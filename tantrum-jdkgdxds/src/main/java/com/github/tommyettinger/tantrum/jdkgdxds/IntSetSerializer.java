@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class IntSetSerializer extends Serializer<IntSet> {
 
+    public IntSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntSet.class);
+    }
     public IntSetSerializer(org.apache.fory.config.Config fory) {
         super(fory, IntSet.class);
     }

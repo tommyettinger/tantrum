@@ -29,7 +29,7 @@ public class BagTest {
     public void testObjectBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectBag.class, new ObjectBagSerializer(fory.getTypeResolver()));
+        fory.registerSerializer(ObjectBag.class, new ObjectBagSerializer(fory));
 
         ObjectBag<String> data = ObjectBag.with("-123.123", "0", "Four-Fifty Six", "0", "1.0", "-1.0", "0.000001");
 
@@ -42,7 +42,7 @@ public class BagTest {
     public void testIntBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntBag.class, new IntBagSerializer(fory.getConfig()));
+        fory.registerSerializer(IntBag.class, new IntBagSerializer(fory));
 
         IntBag data = IntBag.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
@@ -55,7 +55,7 @@ public class BagTest {
     public void testLongBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongBag.class, new LongBagSerializer(fory.getConfig()));
+        fory.registerSerializer(LongBag.class, new LongBagSerializer(fory));
 
         LongBag data = LongBag.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -68,7 +68,7 @@ public class BagTest {
     public void testShortBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ShortBag.class, new ShortBagSerializer(fory.getConfig()));
+        fory.registerSerializer(ShortBag.class, new ShortBagSerializer(fory));
 
         ShortBag data = ShortBag.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 
@@ -81,7 +81,7 @@ public class BagTest {
     public void testByteBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ByteBag.class, new ByteBagSerializer(fory.getConfig()));
+        fory.registerSerializer(ByteBag.class, new ByteBagSerializer(fory));
 
         ByteBag data = ByteBag.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
@@ -94,7 +94,7 @@ public class BagTest {
     public void testFloatBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FloatBag.class, new FloatBagSerializer(fory.getConfig()));
+        fory.registerSerializer(FloatBag.class, new FloatBagSerializer(fory));
 
         FloatBag data = FloatBag.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
@@ -107,7 +107,7 @@ public class BagTest {
     public void testDoubleBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(DoubleBag.class, new DoubleBagSerializer(fory.getConfig()));
+        fory.registerSerializer(DoubleBag.class, new DoubleBagSerializer(fory));
 
         DoubleBag data = DoubleBag.with(-123.123, 0, 456.456, 0, 1.0, -1.0, 0.000001);
 
@@ -120,7 +120,7 @@ public class BagTest {
     public void testBooleanBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(BooleanBag.class, new BooleanBagSerializer(fory.getConfig()));
+        fory.registerSerializer(BooleanBag.class, new BooleanBagSerializer(fory));
 
         BooleanBag data = BooleanBag.with(true, false, false, true, false, true, false);
 
@@ -133,7 +133,7 @@ public class BagTest {
     public void testCharBag() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharBag.class, new CharBagSerializer(fory.getConfig()));
+        fory.registerSerializer(CharBag.class, new CharBagSerializer(fory));
 
         CharBag data = CharBag.with("Hello, World!".toCharArray());
 

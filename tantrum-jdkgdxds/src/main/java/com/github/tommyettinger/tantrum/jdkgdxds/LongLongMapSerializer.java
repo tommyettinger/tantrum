@@ -27,6 +27,9 @@ import com.github.tommyettinger.tantrum.digital.helpers.Support;
  */
 public class LongLongMapSerializer extends Serializer<LongLongMap> {
 
+    public LongLongMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongLongMap.class);
+    }
     public LongLongMapSerializer(org.apache.fory.config.Config fory) {
         super(fory, LongLongMap.class);
     }

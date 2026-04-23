@@ -27,6 +27,9 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatDequeSerializer extends Serializer<FloatDeque> {
 
+    public FloatDequeSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), FloatDeque.class);
+    }
     public FloatDequeSerializer(org.apache.fory.config.Config fory) {
         super(fory, FloatDeque.class);
     }
