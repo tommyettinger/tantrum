@@ -1,5 +1,6 @@
 package com.github.tommyettinger.tantrum.regexodus;
 
+import org.apache.fory.Fory;
 import org.apache.fory.config.Config;
 import org.apache.fory.context.ReadContext;
 import org.apache.fory.context.WriteContext;
@@ -10,6 +11,9 @@ import org.apache.fory.serializer.Serializer;
 import regexodus.ds.CharBitSet;
 
 public class CharBitSetSerializer extends Serializer<CharBitSet> {
+    public CharBitSetSerializer(Fory fory) {
+        super(fory.getConfig(), CharBitSet.class, false);
+    }
     public CharBitSetSerializer(Config fory) {
         super(fory, CharBitSet.class, false);
     }

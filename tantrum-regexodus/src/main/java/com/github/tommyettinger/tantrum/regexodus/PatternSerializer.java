@@ -17,6 +17,7 @@
 
 package com.github.tommyettinger.tantrum.regexodus;
 
+import org.apache.fory.Fory;
 import org.apache.fory.config.Config;
 import org.apache.fory.context.ReadContext;
 import org.apache.fory.context.WriteContext;
@@ -27,6 +28,9 @@ import regexodus.Pattern;
  * Fory {@link Serializer} for Regexodus {@link Pattern}s.
  */
 public class PatternSerializer extends Serializer<Pattern> {
+    public PatternSerializer(Fory fory) {
+        super(fory.getConfig(), Pattern.class);
+    }
     public PatternSerializer(Config fory) {
         super(fory, Pattern.class);
     }
