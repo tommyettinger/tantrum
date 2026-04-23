@@ -18,7 +18,7 @@ public class SizeComparisonJsonTest {
     public void testSmallStringArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-//        fory.registerSerializer(Array.class, new ArraySerializer(fory.getConfig()));
+//        fory.registerSerializer(Array.class, new ArraySerializer(fory));
         fory.register(Array.class);
 
         Json json = new Json();
@@ -51,7 +51,7 @@ public class SizeComparisonJsonTest {
         Fory fory = Fory.builder().withLanguage(Language.JAVA)
                 .requireClassRegistration(true)
                 .build();
-//        fory.registerSerializer(Array.class, new ArraySerializer(fory.getConfig()));
+//        fory.registerSerializer(Array.class, new ArraySerializer(fory));
         fory.register(Array.class);
 
         Json json = new Json();
@@ -88,11 +88,11 @@ public class SizeComparisonJsonTest {
         LoggerFactory.disableLogging();
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).withRefTracking(true).build();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-//        fory.registerSerializer(Array.class, new ArraySerializer(fory.getConfig()));
+//        fory.registerSerializer(Array.class, new ArraySerializer(fory));
         fory.register(Array.class);
 //        fory.register(Array.ArrayIterable.class);
 //        fory.register(Array.ArrayIterator.class);
-        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Json json = new Json();
 
@@ -132,11 +132,11 @@ public class SizeComparisonJsonTest {
         LoggerFactory.disableLogging();
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).withRefTracking(true).build();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-//        fory.registerSerializer(Array.class, new ArraySerializer(fory.getConfig()));
+//        fory.registerSerializer(Array.class, new ArraySerializer(fory));
         fory.register(Array.class);
 //        fory.register(Array.ArrayIterable.class);
 //        fory.register(Array.ArrayIterator.class);
-        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Json json = new Json();
 
@@ -174,7 +174,7 @@ public class SizeComparisonJsonTest {
         LoggerFactory.disableLogging();
 //        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-        fory.registerSerializer(Queue.class, new QueueSerializer(fory.getConfig()));
+        fory.registerSerializer(Queue.class, new QueueSerializer(fory));
 //        fory.register(Queue.class);
 
         Json json = new Json();
@@ -208,7 +208,7 @@ public class SizeComparisonJsonTest {
     public void testLargeStringQueue() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-        fory.registerSerializer(Queue.class, new QueueSerializer(fory.getConfig()));
+        fory.registerSerializer(Queue.class, new QueueSerializer(fory));
 //        fory.register(Queue.class);
 
         Json json = new Json();
@@ -244,9 +244,9 @@ public class SizeComparisonJsonTest {
         MathUtils.random.setSeed(1234567890L);
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-        fory.registerSerializer(Queue.class, new QueueSerializer(fory.getConfig()));
+        fory.registerSerializer(Queue.class, new QueueSerializer(fory));
 //        fory.register(Queue.class);
-        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Json json = new Json();
 
@@ -280,9 +280,9 @@ public class SizeComparisonJsonTest {
         MathUtils.random.setSeed(1234567890L);
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).requireClassRegistration(true).build();
-        fory.registerSerializer(Queue.class, new QueueSerializer(fory.getConfig()));
+        fory.registerSerializer(Queue.class, new QueueSerializer(fory));
 //        fory.register(Queue.class);
-        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Json json = new Json();
 

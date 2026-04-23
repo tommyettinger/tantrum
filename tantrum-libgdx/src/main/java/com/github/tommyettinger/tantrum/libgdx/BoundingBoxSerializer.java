@@ -25,8 +25,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link BoundingBox}s.
  */
 public class BoundingBoxSerializer extends Serializer<BoundingBox> {
+    public BoundingBoxSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), BoundingBox.class);
+    }
     public BoundingBoxSerializer(org.apache.fory.config.Config fory) {
-        super(fory,BoundingBox.class);
+        super(fory, BoundingBox.class);
     }
 
     @Override

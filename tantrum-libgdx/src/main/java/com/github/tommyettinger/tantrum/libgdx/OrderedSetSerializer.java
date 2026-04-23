@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link OrderedSet}s.
  */
 public class OrderedSetSerializer extends Serializer<OrderedSet> {
+    public OrderedSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), OrderedSet.class);
+    }
     public OrderedSetSerializer(org.apache.fory.config.Config fory) {
-        super(fory,OrderedSet.class);
+        super(fory, OrderedSet.class);
     }
 
     @Override

@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link SnapshotArray}s.
  */
 public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
+    public SnapshotArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), SnapshotArray.class);
+    }
     public SnapshotArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,SnapshotArray.class);
+        super(fory, SnapshotArray.class);
     }
 
     @Override

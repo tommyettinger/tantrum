@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Ellipse}s.
  */
 public class EllipseSerializer extends Serializer<Ellipse> {
+    public EllipseSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Ellipse.class);
+    }
     public EllipseSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Ellipse.class);
+        super(fory, Ellipse.class);
     }
 
     @Override

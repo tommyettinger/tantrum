@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Array;
+import org.apache.fory.Fory;
 import org.apache.fory.config.Config;
 import org.apache.fory.context.ReadContext;
 import org.apache.fory.context.WriteContext;
@@ -27,6 +28,9 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Array}s of String.
  */
 public class ArrayOfStringSerializer extends Serializer<Array> {
+    public ArrayOfStringSerializer(Fory fory) {
+        super(fory.getConfig(), Array.class);
+    }
     public ArrayOfStringSerializer(Config fory) {
         super(fory, Array.class);
     }

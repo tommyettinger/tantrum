@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link ObjectSet}s.
  */
 public class ObjectSetSerializer extends Serializer<ObjectSet> {
+    public ObjectSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectSet.class);
+    }
     public ObjectSetSerializer(org.apache.fory.config.Config fory) {
-        super(fory,ObjectSet.class);
+        super(fory, ObjectSet.class);
     }
 
     @Override

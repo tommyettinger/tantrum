@@ -29,8 +29,11 @@ import org.apache.fory.serializer.Serializer;
  * has to write.
  */
 public class RandomXS128Serializer extends Serializer<RandomXS128> {
+    public RandomXS128Serializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), RandomXS128.class);
+    }
     public RandomXS128Serializer(org.apache.fory.config.Config fory) {
-        super(fory,RandomXS128.class);
+        super(fory, RandomXS128.class);
     }
 
     @Override

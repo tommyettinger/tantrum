@@ -27,8 +27,11 @@ import org.apache.fory.serializer.Serializer;
  */
 public class PolygonSerializer extends Serializer<Polygon> {
 
+    public PolygonSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Polygon.class);
+    }
     public PolygonSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Polygon.class);
+        super(fory, Polygon.class);
     }
 
     @Override

@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link GridPoint3}s.
  */
 public class GridPoint3Serializer extends Serializer<GridPoint3> {
+    public GridPoint3Serializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), GridPoint3.class);
+    }
     public GridPoint3Serializer(org.apache.fory.config.Config fory) {
-        super(fory,GridPoint3.class);
+        super(fory, GridPoint3.class);
     }
 
     @Override

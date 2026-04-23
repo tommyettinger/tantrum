@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class IntArraySerializer extends Serializer<IntArray> {
 
+    public IntArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntArray.class);
+    }
     public IntArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,IntArray.class);
+        super(fory, IntArray.class);
     }
 
     @Override

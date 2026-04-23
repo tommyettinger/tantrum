@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Affine2}s.
  */
 public class Affine2Serializer extends Serializer<Affine2> {
+    public Affine2Serializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Affine2.class);
+    }
     public Affine2Serializer(org.apache.fory.config.Config fory) {
-        super(fory,Affine2.class);
+        super(fory, Affine2.class);
     }
 
     @Override

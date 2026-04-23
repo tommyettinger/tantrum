@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link ObjectFloatMap}s.
  */
 public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
+    public ObjectFloatMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectFloatMap.class);
+    }
     public ObjectFloatMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,ObjectFloatMap.class);
+        super(fory, ObjectFloatMap.class);
     }
 
     @Override

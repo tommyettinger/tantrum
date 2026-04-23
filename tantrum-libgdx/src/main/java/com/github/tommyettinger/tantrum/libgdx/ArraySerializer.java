@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Array}s.
  */
 public class ArraySerializer extends Serializer<Array> {
+    public ArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Array.class);
+    }
     public ArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,Array.class);
+        super(fory, Array.class);
     }
 
     @Override

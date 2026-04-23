@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link IntIntMap}s.
  */
 public class IntIntMapSerializer extends Serializer<IntIntMap> {
+    public IntIntMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntIntMap.class);
+    }
     public IntIntMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,IntIntMap.class);
+        super(fory, IntIntMap.class);
     }
 
     @Override

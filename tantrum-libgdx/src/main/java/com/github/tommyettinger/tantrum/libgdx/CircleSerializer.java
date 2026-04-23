@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Circle}s.
  */
 public class CircleSerializer extends Serializer<Circle> {
+    public CircleSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Circle.class);
+    }
     public CircleSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Circle.class);
+        super(fory, Circle.class);
     }
 
     @Override

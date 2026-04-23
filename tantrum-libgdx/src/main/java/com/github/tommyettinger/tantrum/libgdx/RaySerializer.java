@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Ray}s.
  */
 public class RaySerializer extends Serializer<Ray> {
+    public RaySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Ray.class);
+    }
     public RaySerializer(org.apache.fory.config.Config fory) {
-        super(fory,Ray.class);
+        super(fory, Ray.class);
     }
 
     @Override

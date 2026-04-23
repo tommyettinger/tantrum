@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Vector4}s.
  */
 public class Vector4Serializer extends Serializer<Vector4> {
+    public Vector4Serializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Vector4.class);
+    }
     public Vector4Serializer(org.apache.fory.config.Config fory) {
-        super(fory,Vector4.class);
+        super(fory, Vector4.class);
     }
 
     @Override

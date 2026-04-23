@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Matrix4}s.
  */
 public class Matrix4Serializer extends Serializer<Matrix4> {
+    public Matrix4Serializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Matrix4.class);
+    }
     public Matrix4Serializer(org.apache.fory.config.Config fory) {
-        super(fory,Matrix4.class);
+        super(fory, Matrix4.class);
     }
 
     @Override

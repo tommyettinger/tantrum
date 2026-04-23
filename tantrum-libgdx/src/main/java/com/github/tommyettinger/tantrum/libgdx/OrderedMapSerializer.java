@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link OrderedMap}s.
  */
 public class OrderedMapSerializer extends Serializer<OrderedMap> {
+    public OrderedMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), OrderedMap.class);
+    }
     public OrderedMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,OrderedMap.class);
+        super(fory, OrderedMap.class);
     }
 
     @Override

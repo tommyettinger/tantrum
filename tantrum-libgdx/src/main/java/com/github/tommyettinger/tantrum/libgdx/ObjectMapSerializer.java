@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link ObjectMap}s.
  */
 public class ObjectMapSerializer extends Serializer<ObjectMap> {
+    public ObjectMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ObjectMap.class);
+    }
     public ObjectMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,ObjectMap.class);
+        super(fory, ObjectMap.class);
     }
 
     @Override

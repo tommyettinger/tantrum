@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link ArrayMap}s.
  */
 public class ArrayMapSerializer extends Serializer<ArrayMap> {
+    public ArrayMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ArrayMap.class);
+    }
     public ArrayMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,ArrayMap.class);
+        super(fory, ArrayMap.class);
     }
 
     @Override

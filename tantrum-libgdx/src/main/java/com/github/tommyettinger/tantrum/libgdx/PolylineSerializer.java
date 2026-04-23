@@ -27,8 +27,11 @@ import org.apache.fory.serializer.Serializer;
  */
 public class PolylineSerializer extends Serializer<Polyline> {
 
+    public PolylineSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Polyline.class);
+    }
     public PolylineSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Polyline.class);
+        super(fory, Polyline.class);
     }
 
     @Override

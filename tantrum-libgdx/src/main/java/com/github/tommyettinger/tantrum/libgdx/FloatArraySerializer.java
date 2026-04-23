@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class FloatArraySerializer extends Serializer<FloatArray> {
 
+    public FloatArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), FloatArray.class);
+    }
     public FloatArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,FloatArray.class);
+        super(fory, FloatArray.class);
     }
 
     @Override

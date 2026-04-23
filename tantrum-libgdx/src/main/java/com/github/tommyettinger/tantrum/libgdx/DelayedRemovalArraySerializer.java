@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link DelayedRemovalArray}s.
  */
 public class DelayedRemovalArraySerializer extends Serializer<DelayedRemovalArray> {
+    public DelayedRemovalArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), DelayedRemovalArray.class);
+    }
     public DelayedRemovalArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,DelayedRemovalArray.class);
+        super(fory, DelayedRemovalArray.class);
     }
 
     @Override

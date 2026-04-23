@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Rectangle}s.
  */
 public class RectangleSerializer extends Serializer<Rectangle> {
+    public RectangleSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Rectangle.class);
+    }
     public RectangleSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Rectangle.class);
+        super(fory, Rectangle.class);
     }
 
     @Override

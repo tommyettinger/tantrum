@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Queue}s.
  */
 public class QueueSerializer extends Serializer<Queue> {
+    public QueueSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Queue.class);
+    }
     public QueueSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Queue.class);
+        super(fory, Queue.class);
     }
 
     @Override

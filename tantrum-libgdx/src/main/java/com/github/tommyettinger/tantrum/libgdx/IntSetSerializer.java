@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link IntSet}s.
  */
 public class IntSetSerializer extends Serializer<IntSet> {
+    public IntSetSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), IntSet.class);
+    }
     public IntSetSerializer(org.apache.fory.config.Config fory) {
-        super(fory,IntSet.class);
+        super(fory, IntSet.class);
     }
 
     @Override

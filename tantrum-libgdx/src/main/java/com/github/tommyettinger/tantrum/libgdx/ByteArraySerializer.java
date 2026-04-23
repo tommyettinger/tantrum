@@ -26,8 +26,11 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteArraySerializer extends Serializer<ByteArray> {
 
+    public ByteArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ByteArray.class);
+    }
     public ByteArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,ByteArray.class);
+        super(fory, ByteArray.class);
     }
 
     @Override

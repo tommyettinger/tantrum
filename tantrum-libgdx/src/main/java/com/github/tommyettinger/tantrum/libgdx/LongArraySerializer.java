@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class LongArraySerializer extends Serializer<LongArray> {
 
+    public LongArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongArray.class);
+    }
     public LongArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,LongArray.class);
+        super(fory, LongArray.class);
     }
 
     @Override

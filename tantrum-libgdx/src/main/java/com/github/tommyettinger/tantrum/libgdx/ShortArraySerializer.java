@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class ShortArraySerializer extends Serializer<ShortArray> {
 
+    public ShortArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), ShortArray.class);
+    }
     public ShortArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,ShortArray.class);
+        super(fory, ShortArray.class);
     }
 
     @Override

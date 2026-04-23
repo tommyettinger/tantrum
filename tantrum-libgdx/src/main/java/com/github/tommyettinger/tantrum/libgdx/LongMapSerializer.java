@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link LongMap}s.
  */
 public class LongMapSerializer extends Serializer<LongMap> {
+    public LongMapSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongMap.class);
+    }
     public LongMapSerializer(org.apache.fory.config.Config fory) {
-        super(fory,LongMap.class);
+        super(fory, LongMap.class);
     }
 
     @Override

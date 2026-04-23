@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Quaternion}s.
  */
 public class QuaternionSerializer extends Serializer<Quaternion> {
+    public QuaternionSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Quaternion.class);
+    }
     public QuaternionSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Quaternion.class);
+        super(fory, Quaternion.class);
     }
 
     @Override

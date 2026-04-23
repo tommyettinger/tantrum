@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Plane}s.
  */
 public class PlaneSerializer extends Serializer<Plane> {
+    public PlaneSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Plane.class);
+    }
     public PlaneSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Plane.class);
+        super(fory, Plane.class);
     }
 
     @Override

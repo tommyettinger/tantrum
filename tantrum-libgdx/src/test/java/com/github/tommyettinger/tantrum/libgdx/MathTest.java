@@ -34,7 +34,7 @@ public class MathTest {
     public void testGridPoint2() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(GridPoint2.class, new GridPoint2Serializer(fory.getConfig()));
+        fory.registerSerializer(GridPoint2.class, new GridPoint2Serializer(fory));
 
         GridPoint2[] testing = {new GridPoint2(0, 0), new GridPoint2(1, 0), new GridPoint2(0, 1),
                 new GridPoint2(-1, -1), new GridPoint2(9999, 9999), new GridPoint2(9999, -9999),
@@ -50,7 +50,7 @@ public class MathTest {
     public void testGridPoint3() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(GridPoint3.class, new GridPoint3Serializer(fory.getConfig()));
+        fory.registerSerializer(GridPoint3.class, new GridPoint3Serializer(fory));
 
         GridPoint3[] testing = {new GridPoint3(0, 0, 0), new GridPoint3(1, 0, 0), new GridPoint3(0, 1, 0),
                 new GridPoint3(0, 0, 1), new GridPoint3(1, 1, 1),
@@ -67,7 +67,7 @@ public class MathTest {
     public void testVector2() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Vector2.class, new Vector2Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector2.class, new Vector2Serializer(fory));
 
         Vector2[] testing = {new Vector2(0, 0), new Vector2(-0f, -0f), new Vector2(1, 0), new Vector2(0, 1),
                 new Vector2(-1, -1), new Vector2(9999.9f, 9999.9f), new Vector2(9999.9f, -9999.9f),
@@ -85,7 +85,7 @@ public class MathTest {
     public void testVector3() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector3.class, new Vector3Serializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0, 0, 0),
@@ -113,7 +113,7 @@ public class MathTest {
     public void testVector4() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Vector4.class, new Vector4Serializer(fory.getConfig()));
+        fory.registerSerializer(Vector4.class, new Vector4Serializer(fory));
 
         Vector4[] testing = {
                 new Vector4(0, 0, 0, 0),
@@ -143,7 +143,7 @@ public class MathTest {
     public void testQuaternion() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Quaternion.class, new QuaternionSerializer(fory.getConfig()));
+        fory.registerSerializer(Quaternion.class, new QuaternionSerializer(fory));
 
         Quaternion[] testing = {
                 new Quaternion(0, 0, 0, 0),
@@ -173,7 +173,7 @@ public class MathTest {
     public void testEllipse() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Ellipse.class, new EllipseSerializer(fory.getConfig()));
+        fory.registerSerializer(Ellipse.class, new EllipseSerializer(fory));
 
         Ellipse[] testing = {
                 new Ellipse(0, 0, 0, 0),
@@ -208,7 +208,7 @@ public class MathTest {
     public void testRectangle() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Rectangle.class, new RectangleSerializer(fory.getConfig()));
+        fory.registerSerializer(Rectangle.class, new RectangleSerializer(fory));
 
         Rectangle[] testing = {
                 new Rectangle(0, 0, 0, 0),
@@ -238,7 +238,7 @@ public class MathTest {
     public void testCircle() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Circle.class, new CircleSerializer(fory.getConfig()));
+        fory.registerSerializer(Circle.class, new CircleSerializer(fory));
 
         Circle[] testing = {
                 new Circle(0, 0, 0),
@@ -265,7 +265,7 @@ public class MathTest {
     public void testPlane() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Plane.class, new PlaneSerializer(fory.getConfig()));
+        fory.registerSerializer(Plane.class, new PlaneSerializer(fory));
 
         Plane[] testing = {
                 new Plane(new Vector3(0, 0, 0), 0),
@@ -298,7 +298,7 @@ public class MathTest {
     public void testRandomXS128() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fory.getConfig()));
+        fory.registerSerializer(RandomXS128.class, new RandomXS128Serializer(fory));
 
         RandomXS128 data = new RandomXS128(-12345L);
 
@@ -317,7 +317,7 @@ public class MathTest {
     public void testMatrix3() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Matrix3.class, new Matrix3Serializer(fory.getConfig()));
+        fory.registerSerializer(Matrix3.class, new Matrix3Serializer(fory));
 
         Matrix3 data = new Matrix3().scale(2.1f, 3.3f).rotateRad(2f);
 
@@ -332,7 +332,7 @@ public class MathTest {
     public void testMatrix4() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Matrix4.class, new Matrix4Serializer(fory.getConfig()));
+        fory.registerSerializer(Matrix4.class, new Matrix4Serializer(fory));
 
         Matrix4 data = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
 
@@ -347,7 +347,7 @@ public class MathTest {
     public void testAffine2() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Affine2.class, new Affine2Serializer(fory.getConfig()));
+        fory.registerSerializer(Affine2.class, new Affine2Serializer(fory));
 
         Affine2 data = new Affine2().scale(2.1f, 3.3f).rotateRad(2f);
 
@@ -367,7 +367,7 @@ public class MathTest {
     public void testPolygon() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Polygon.class, new PolygonSerializer(fory.getConfig()));
+        fory.registerSerializer(Polygon.class, new PolygonSerializer(fory));
 
         Polygon data = new Polygon(new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f).val);
         byte[] bytes = fory.serialize(data);
@@ -382,7 +382,7 @@ public class MathTest {
     public void testPolyline() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Polyline.class, new PolylineSerializer(fory.getConfig()));
+        fory.registerSerializer(Polyline.class, new PolylineSerializer(fory));
 
         Polyline data = new Polyline(new float[]{0, 1, 2, 3, 2, 1, 0, -1, -2, -3, -1, -4});
         data.setOrigin(-1, -1);
@@ -400,7 +400,7 @@ public class MathTest {
     public void testRay() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Ray.class, new RaySerializer(fory.getConfig()));
+        fory.registerSerializer(Ray.class, new RaySerializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0f, 0f, 0f),
@@ -435,7 +435,7 @@ public class MathTest {
     public void testBoundingBox() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fory.getConfig()));
+        fory.registerSerializer(BoundingBox.class, new BoundingBoxSerializer(fory));
 
         Vector3[] testing = {
                 new Vector3(0, 0, 0),
@@ -470,7 +470,7 @@ public class MathTest {
     public void testOrientedBoundingBox() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fory.getConfig()));
+        fory.registerSerializer(OrientedBoundingBox.class, new OrientedBoundingBoxSerializer(fory));
 
         BoundingBox bb = new BoundingBox(new Vector3(-1, -1, -1), new Vector3(5, 6, 7));
         Matrix4 m = new Matrix4().scale(2.1f, 3.3f, 4.6f).rotateRad(-1.1f, -2.2f, -3.3f, 99.9f);
@@ -488,7 +488,7 @@ public class MathTest {
     public void testColor() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Color.class, new ColorSerializer(fory.getConfig()));
+        fory.registerSerializer(Color.class, new ColorSerializer(fory));
 
         for (Color data : Colors.getColors().values()) {
             byte[] bytes = fory.serialize(data);

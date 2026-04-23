@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class CharArraySerializer extends Serializer<CharArray> {
 
+    public CharArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), CharArray.class);
+    }
     public CharArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,CharArray.class);
+        super(fory, CharArray.class);
     }
 
     @Override

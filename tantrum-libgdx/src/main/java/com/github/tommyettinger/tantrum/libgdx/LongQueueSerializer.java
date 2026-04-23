@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link LongQueue}s.
  */
 public class LongQueueSerializer extends Serializer<LongQueue> {
+    public LongQueueSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), LongQueue.class);
+    }
     public LongQueueSerializer(org.apache.fory.config.Config fory) {
-        super(fory,LongQueue.class);
+        super(fory, LongQueue.class);
     }
 
     @Override

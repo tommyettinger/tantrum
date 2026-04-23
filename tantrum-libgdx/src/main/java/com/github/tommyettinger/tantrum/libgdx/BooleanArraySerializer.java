@@ -27,8 +27,11 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanArraySerializer extends Serializer<BooleanArray> {
 
+    public BooleanArraySerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), BooleanArray.class);
+    }
     public BooleanArraySerializer(org.apache.fory.config.Config fory) {
-        super(fory,BooleanArray.class);
+        super(fory, BooleanArray.class);
     }
 
     @Override

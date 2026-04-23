@@ -24,8 +24,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link Color}s.
  */
 public class ColorSerializer extends Serializer<Color> {
+    public ColorSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), Color.class);
+    }
     public ColorSerializer(org.apache.fory.config.Config fory) {
-        super(fory,Color.class);
+        super(fory, Color.class);
     }
 
     @Override

@@ -27,8 +27,11 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for libGDX {@link OrientedBoundingBox}s.
  */
 public class OrientedBoundingBoxSerializer extends Serializer<OrientedBoundingBox> {
+    public OrientedBoundingBoxSerializer(org.apache.fory.Fory fory) {
+        super(fory.getConfig(), OrientedBoundingBox.class);
+    }
     public OrientedBoundingBoxSerializer(org.apache.fory.config.Config fory) {
-        super(fory,OrientedBoundingBox.class);
+        super(fory, OrientedBoundingBox.class);
     }
 
     @Override
