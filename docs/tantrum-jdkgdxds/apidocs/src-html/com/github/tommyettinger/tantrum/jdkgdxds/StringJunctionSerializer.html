@@ -37,20 +37,23 @@
 <span class="source-line-no">024</span><span id="line-24"> * Fory {@link Serializer} for Regexodus {@link StringJunction}s.</span>
 <span class="source-line-no">025</span><span id="line-25"> */</span>
 <span class="source-line-no">026</span><span id="line-26">public class StringJunctionSerializer extends Serializer&lt;StringJunction&gt; {</span>
-<span class="source-line-no">027</span><span id="line-27">    public StringJunctionSerializer(org.apache.fory.config.Config fory) {</span>
-<span class="source-line-no">028</span><span id="line-28">        super(fory, StringJunction.class);</span>
+<span class="source-line-no">027</span><span id="line-27">    public StringJunctionSerializer(org.apache.fory.Fory fory) {</span>
+<span class="source-line-no">028</span><span id="line-28">        super(fory.getConfig(), StringJunction.class);</span>
 <span class="source-line-no">029</span><span id="line-29">    }</span>
-<span class="source-line-no">030</span><span id="line-30"></span>
-<span class="source-line-no">031</span><span id="line-31">    @Override</span>
-<span class="source-line-no">032</span><span id="line-32">    public void write(org.apache.fory.context.WriteContext fory, final StringJunction data) {</span>
-<span class="source-line-no">033</span><span id="line-33">        fory.writeString(data.toString());</span>
-<span class="source-line-no">034</span><span id="line-34">    }</span>
-<span class="source-line-no">035</span><span id="line-35"></span>
-<span class="source-line-no">036</span><span id="line-36">    @Override</span>
-<span class="source-line-no">037</span><span id="line-37">    public StringJunction read(org.apache.fory.context.ReadContext fory) {</span>
-<span class="source-line-no">038</span><span id="line-38">        return StringJunction.parse(fory.readString());</span>
-<span class="source-line-no">039</span><span id="line-39">    }</span>
-<span class="source-line-no">040</span><span id="line-40">}</span>
+<span class="source-line-no">030</span><span id="line-30">    public StringJunctionSerializer(org.apache.fory.config.Config fory) {</span>
+<span class="source-line-no">031</span><span id="line-31">        super(fory, StringJunction.class);</span>
+<span class="source-line-no">032</span><span id="line-32">    }</span>
+<span class="source-line-no">033</span><span id="line-33"></span>
+<span class="source-line-no">034</span><span id="line-34">    @Override</span>
+<span class="source-line-no">035</span><span id="line-35">    public void write(org.apache.fory.context.WriteContext fory, final StringJunction data) {</span>
+<span class="source-line-no">036</span><span id="line-36">        fory.writeString(data.toString());</span>
+<span class="source-line-no">037</span><span id="line-37">    }</span>
+<span class="source-line-no">038</span><span id="line-38"></span>
+<span class="source-line-no">039</span><span id="line-39">    @Override</span>
+<span class="source-line-no">040</span><span id="line-40">    public StringJunction read(org.apache.fory.context.ReadContext fory) {</span>
+<span class="source-line-no">041</span><span id="line-41">        return StringJunction.parse(fory.readString());</span>
+<span class="source-line-no">042</span><span id="line-42">    }</span>
+<span class="source-line-no">043</span><span id="line-43">}</span>
 
 
 
