@@ -19,6 +19,9 @@ package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Base;
 import org.apache.fory.Fory;
+import org.apache.fory.config.Config;
+import org.apache.fory.context.ReadContext;
+import org.apache.fory.context.WriteContext;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
@@ -27,17 +30,17 @@ import org.apache.fory.serializer.Serializer;
  */
 public class BaseSerializer extends Serializer<Base> {
 
-    public BaseSerializer(Fory fory) {
+    public BaseSerializer(Config fory) {
         super(fory, Base.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final Base data) {
-        fory.writeString(buffer, data.serializeToString());
+    public void write(WriteContext fory, final Base data) {
+        fory.writeString(data.serializeToString());
     }
 
     @Override
-    public Base read(MemoryBuffer buffer) {
-        return Base.deserializeFromString(fory.readString(buffer));
+    public Base read(ReadContext fory) {
+        return Base.deserializeFromString(fory.readString());
     }
 }

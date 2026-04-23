@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 0.16.0) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 0.17.0) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been

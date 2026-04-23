@@ -19,6 +19,9 @@ package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Hasher;
 import org.apache.fory.Fory;
+import org.apache.fory.config.Config;
+import org.apache.fory.context.ReadContext;
+import org.apache.fory.context.WriteContext;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
@@ -27,17 +30,17 @@ import org.apache.fory.serializer.Serializer;
  */
 public class HasherSerializer extends Serializer<Hasher> {
 
-    public HasherSerializer(Fory fory) {
+    public HasherSerializer(Config fory) {
         super(fory, Hasher.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final Hasher data) {
-        buffer.writeInt64(data.seed);
+    public void write(WriteContext fory, final Hasher data) {
+        fory.writeInt64(data.seed);
     }
 
     @Override
-    public Hasher read(MemoryBuffer buffer) {
-        return new Hasher(buffer.readInt64());
+    public Hasher read(ReadContext fory) {
+        return new Hasher(fory.readInt64());
     }
 }

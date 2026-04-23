@@ -19,6 +19,9 @@ package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.AlternateRandom;
 import org.apache.fory.Fory;
+import org.apache.fory.config.Config;
+import org.apache.fory.context.ReadContext;
+import org.apache.fory.context.WriteContext;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
@@ -27,22 +30,22 @@ import org.apache.fory.serializer.Serializer;
  */
 public class AlternateRandomSerializer extends Serializer<AlternateRandom> {
 
-    public AlternateRandomSerializer(Fory fory) {
+    public AlternateRandomSerializer(Config fory) {
         super(fory, AlternateRandom.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final AlternateRandom data) {
-        buffer.writeInt64(data.stateA);
-        buffer.writeInt64(data.stateB);
-        buffer.writeInt64(data.stateC);
-        buffer.writeInt64(data.stateD);
-        buffer.writeInt64(data.stateE);
+    public void write(WriteContext fory, final AlternateRandom data) {
+        fory.writeInt64(data.stateA);
+        fory.writeInt64(data.stateB);
+        fory.writeInt64(data.stateC);
+        fory.writeInt64(data.stateD);
+        fory.writeInt64(data.stateE);
     }
 
     @Override
-    public AlternateRandom read(MemoryBuffer buffer) {
-        return new AlternateRandom(buffer.readInt64(), buffer.readInt64(), buffer.readInt64(),
-                buffer.readInt64(), buffer.readInt64());
+    public AlternateRandom read(ReadContext fory) {
+        return new AlternateRandom(fory.readInt64(), fory.readInt64(), fory.readInt64(),
+                fory.readInt64(), fory.readInt64());
     }
 }
