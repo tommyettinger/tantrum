@@ -18,36 +18,34 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.LongMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link LongMap}s.
  */
 public class LongMapSerializer extends Serializer<LongMap> {
-    public LongMapSerializer(Fory fory) {
-        super(fory, LongMap.class);
+    public LongMapSerializer(org.apache.fory.config.Config fory) {
+        super(fory,LongMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongMap data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final LongMap data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         LongMap.Keys keys = data.keys();
         for (long item; keys.hasNext;) {
             item = keys.next();
-            output.writeInt64(item);
-            fory.writeRef(output, data.get(item));
+            fory.writeInt64(item);
+            fory.writeRef(data.get(item));
         }
     }
 
     @Override
-    public LongMap<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public LongMap<?> read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         LongMap data = new LongMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt64(), fory.readRef(input));
+            data.put(fory.readInt64(), fory.readRef());
         }
         return data;
     }

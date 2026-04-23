@@ -18,28 +18,26 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.graphics.Color;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Color}s.
  */
 public class ColorSerializer extends Serializer<Color> {
-    public ColorSerializer(Fory fory) {
-        super(fory, Color.class);
+    public ColorSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Color.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Color data) {
-        output.writeFloat32(data.r);
-        output.writeFloat32(data.g);
-        output.writeFloat32(data.b);
-        output.writeFloat32(data.a);
+    public void write(final org.apache.fory.context.WriteContext fory, final Color data) {
+        fory.writeFloat32(data.r);
+        fory.writeFloat32(data.g);
+        fory.writeFloat32(data.b);
+        fory.writeFloat32(data.a);
     }
 
     @Override
-    public Color read(MemoryBuffer input) {
-        return new Color(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Color read(final org.apache.fory.context.ReadContext fory) {
+        return new Color(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

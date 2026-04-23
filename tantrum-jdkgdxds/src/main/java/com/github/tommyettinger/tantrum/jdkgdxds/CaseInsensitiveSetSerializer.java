@@ -18,8 +18,6 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CaseInsensitiveSet;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.resolver.TypeResolver;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.serializer.collection.CollectionSerializer;

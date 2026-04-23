@@ -18,35 +18,33 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link DelayedRemovalArray}s.
  */
 public class DelayedRemovalArraySerializer extends Serializer<DelayedRemovalArray> {
-    public DelayedRemovalArraySerializer(Fory fory) {
-        super(fory, DelayedRemovalArray.class);
+    public DelayedRemovalArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,DelayedRemovalArray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final DelayedRemovalArray data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final DelayedRemovalArray data) {
         final int len = data.size;
-        output.writeBoolean(data.ordered);
-        output.writeVarUint32(len);
+        fory.writeBoolean(data.ordered);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public DelayedRemovalArray<?> read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final int len = input.readVarUint32();
+    public DelayedRemovalArray<?> read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final int len = fory.readVarUint32();
         DelayedRemovalArray data = new DelayedRemovalArray(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

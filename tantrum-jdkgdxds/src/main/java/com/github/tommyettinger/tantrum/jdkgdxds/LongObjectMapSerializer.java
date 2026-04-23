@@ -18,9 +18,6 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.LongObjectMap;
-import com.github.tommyettinger.ds.LongObjectOrderedMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;

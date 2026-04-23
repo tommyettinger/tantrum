@@ -18,33 +18,31 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.collision.Ray;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Ray}s.
  */
 public class RaySerializer extends Serializer<Ray> {
-    public RaySerializer(Fory fory) {
-        super(fory, Ray.class);
+    public RaySerializer(org.apache.fory.config.Config fory) {
+        super(fory,Ray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Ray data) {
-        output.writeFloat32(data.origin.x);
-        output.writeFloat32(data.origin.y);
-        output.writeFloat32(data.origin.z);
-        output.writeFloat32(data.direction.x);
-        output.writeFloat32(data.direction.y);
-        output.writeFloat32(data.direction.z);
+    public void write(final org.apache.fory.context.WriteContext fory, final Ray data) {
+        fory.writeFloat32(data.origin.x);
+        fory.writeFloat32(data.origin.y);
+        fory.writeFloat32(data.origin.z);
+        fory.writeFloat32(data.direction.x);
+        fory.writeFloat32(data.direction.y);
+        fory.writeFloat32(data.direction.z);
     }
 
     @Override
-    public Ray read(MemoryBuffer input) {
+    public Ray read(final org.apache.fory.context.ReadContext fory) {
         Ray data = new Ray();
-        data.origin.set(input.readFloat32(), input.readFloat32(), input.readFloat32());
-        data.direction.set(input.readFloat32(), input.readFloat32(), input.readFloat32());
+        data.origin.set(fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
+        data.direction.set(fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
         return data;
     }
 }

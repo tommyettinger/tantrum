@@ -18,35 +18,33 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntSet;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link IntSet}s.
  */
 public class IntSetSerializer extends Serializer<IntSet> {
-    public IntSetSerializer(Fory fory) {
-        super(fory, IntSet.class);
+    public IntSetSerializer(org.apache.fory.config.Config fory) {
+        super(fory,IntSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final IntSet data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         IntSet.IntSetIterator it = data.iterator();
         for (int item; it.hasNext;) {
             item = it.next();
-            output.writeInt32(item);
+            fory.writeInt32(item);
         }
     }
 
     @Override
-    public IntSet read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public IntSet read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         IntSet data = new IntSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(input.readInt32());
+            data.add(fory.readInt32());
         }
         return data;
     }

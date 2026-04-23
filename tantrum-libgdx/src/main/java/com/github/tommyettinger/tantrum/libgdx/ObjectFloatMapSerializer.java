@@ -18,34 +18,32 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ObjectFloatMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link ObjectFloatMap}s.
  */
 public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
-    public ObjectFloatMapSerializer(Fory fory) {
-        super(fory, ObjectFloatMap.class);
+    public ObjectFloatMapSerializer(org.apache.fory.config.Config fory) {
+        super(fory,ObjectFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ObjectFloatMap data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ObjectFloatMap data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data.keys()) {
-            fory.writeRef(output, item);
-            output.writeFloat32(data.get(item, 0));
+            fory.writeRef(item);
+            fory.writeFloat32(data.get(item, 0));
         }
     }
 
     @Override
-    public ObjectFloatMap<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public ObjectFloatMap<?> read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         ObjectFloatMap data = new ObjectFloatMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(fory.readRef(input), input.readFloat32());
+            data.put(fory.readRef(), fory.readFloat32());
         }
         return data;
     }

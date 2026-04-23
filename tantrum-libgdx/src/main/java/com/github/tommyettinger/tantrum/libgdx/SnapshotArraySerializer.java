@@ -18,35 +18,33 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.SnapshotArray;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link SnapshotArray}s.
  */
 public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
-    public SnapshotArraySerializer(Fory fory) {
-        super(fory, SnapshotArray.class);
+    public SnapshotArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,SnapshotArray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final SnapshotArray data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final SnapshotArray data) {
         final int len = data.size;
-        output.writeBoolean(data.ordered);
-        output.writeVarUint32(len);
+        fory.writeBoolean(data.ordered);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public SnapshotArray<?> read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final int len = input.readVarUint32();
+    public SnapshotArray<?> read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final int len = fory.readVarUint32();
         SnapshotArray data = new SnapshotArray(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

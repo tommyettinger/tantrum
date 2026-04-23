@@ -17,12 +17,9 @@
 
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
-import com.github.tommyettinger.ds.IntDeque;
 import com.github.tommyettinger.ds.IntObjectOrderedMap;
 import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 

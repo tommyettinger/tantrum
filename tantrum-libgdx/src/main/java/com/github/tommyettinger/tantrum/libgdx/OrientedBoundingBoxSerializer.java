@@ -21,41 +21,39 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.OrientedBoundingBox;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link OrientedBoundingBox}s.
  */
 public class OrientedBoundingBoxSerializer extends Serializer<OrientedBoundingBox> {
-    public OrientedBoundingBoxSerializer(Fory fory) {
-        super(fory, OrientedBoundingBox.class);
+    public OrientedBoundingBoxSerializer(org.apache.fory.config.Config fory) {
+        super(fory,OrientedBoundingBox.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final OrientedBoundingBox data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final OrientedBoundingBox data) {
         final BoundingBox bb = data.getBounds();
-        output.writeFloat32(bb.min.x);
-        output.writeFloat32(bb.min.y);
-        output.writeFloat32(bb.min.z);
-        output.writeFloat32(bb.max.x);
-        output.writeFloat32(bb.max.y);
-        output.writeFloat32(bb.max.z);
+        fory.writeFloat32(bb.min.x);
+        fory.writeFloat32(bb.min.y);
+        fory.writeFloat32(bb.min.z);
+        fory.writeFloat32(bb.max.x);
+        fory.writeFloat32(bb.max.y);
+        fory.writeFloat32(bb.max.z);
         float[] val = data.transform.val;
         for (int i = 0; i < 16; i++) {
-            output.writeFloat32(val[i]);
+            fory.writeFloat32(val[i]);
         }
     }
 
     @Override
-    public OrientedBoundingBox read(MemoryBuffer input) {
-        final BoundingBox bb = new BoundingBox(new Vector3(input.readFloat32(), input.readFloat32(), input.readFloat32()),
-                new Vector3(input.readFloat32(), input.readFloat32(), input.readFloat32()));
+    public OrientedBoundingBox read(final org.apache.fory.context.ReadContext fory) {
+        final BoundingBox bb = new BoundingBox(new Vector3(fory.readFloat32(), fory.readFloat32(), fory.readFloat32()),
+                new Vector3(fory.readFloat32(), fory.readFloat32(), fory.readFloat32()));
         final Matrix4 tr = new Matrix4();
         final float[] val = tr.val;
         for (int i = 0; i < 16; i++) {
-            val[i] = input.readFloat32();
+            val[i] = fory.readFloat32();
         }
 
         return new OrientedBoundingBox(bb, tr);

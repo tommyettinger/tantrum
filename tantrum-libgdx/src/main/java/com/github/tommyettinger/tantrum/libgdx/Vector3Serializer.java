@@ -18,27 +18,25 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Vector3;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Vector3}s.
  */
 public class Vector3Serializer extends Serializer<Vector3> {
-    public Vector3Serializer(Fory fory) {
-        super(fory, Vector3.class);
+    public Vector3Serializer(org.apache.fory.config.Config fory) {
+        super(fory,Vector3.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Vector3 data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.z);
+    public void write(final org.apache.fory.context.WriteContext fory, final Vector3 data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.z);
     }
 
     @Override
-    public Vector3 read(MemoryBuffer input) {
-        return new Vector3(input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Vector3 read(final org.apache.fory.context.ReadContext fory) {
+        return new Vector3(fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

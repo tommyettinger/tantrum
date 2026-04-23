@@ -18,28 +18,26 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Ellipse;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Ellipse}s.
  */
 public class EllipseSerializer extends Serializer<Ellipse> {
-    public EllipseSerializer(Fory fory) {
-        super(fory, Ellipse.class);
+    public EllipseSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Ellipse.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Ellipse data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.width);
-        output.writeFloat32(data.height);
+    public void write(final org.apache.fory.context.WriteContext fory, final Ellipse data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.width);
+        fory.writeFloat32(data.height);
     }
 
     @Override
-    public Ellipse read(MemoryBuffer input) {
-        return new Ellipse(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Ellipse read(final org.apache.fory.context.ReadContext fory) {
+        return new Ellipse(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

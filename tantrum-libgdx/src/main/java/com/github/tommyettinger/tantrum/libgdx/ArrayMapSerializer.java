@@ -18,36 +18,34 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ArrayMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link ArrayMap}s.
  */
 public class ArrayMapSerializer extends Serializer<ArrayMap> {
-    public ArrayMapSerializer(Fory fory) {
-        super(fory, ArrayMap.class);
+    public ArrayMapSerializer(org.apache.fory.config.Config fory) {
+        super(fory,ArrayMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ArrayMap data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final ArrayMap data) {
         final int len = data.size;
-        output.writeBoolean(data.ordered);
-        output.writeVarUint32(len);
+        fory.writeBoolean(data.ordered);
+        fory.writeVarUint32(len);
         for (Object item : data.keys()) {
-            fory.writeRef(output, item);
-            fory.writeRef(output, data.get(item));
+            fory.writeRef(item);
+            fory.writeRef(data.get(item));
         }
     }
 
     @Override
-    public ArrayMap<?, ?> read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final int len = input.readVarUint32();
+    public ArrayMap<?, ?> read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final int len = fory.readVarUint32();
         ArrayMap data = new ArrayMap(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.put(fory.readRef(input), fory.readRef(input));
+            data.put(fory.readRef(), fory.readRef());
         }
         return data;
     }

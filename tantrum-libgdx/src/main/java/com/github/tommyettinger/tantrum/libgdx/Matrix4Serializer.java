@@ -18,30 +18,28 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Matrix4;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Matrix4}s.
  */
 public class Matrix4Serializer extends Serializer<Matrix4> {
-    public Matrix4Serializer(Fory fory) {
-        super(fory, Matrix4.class);
+    public Matrix4Serializer(org.apache.fory.config.Config fory) {
+        super(fory,Matrix4.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Matrix4 data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final Matrix4 data) {
         for (int i = 0; i < 16; i++) {
-            output.writeFloat32(data.val[i]);
+            fory.writeFloat32(data.val[i]);
         }
     }
 
     @Override
-    public Matrix4 read(MemoryBuffer input) {
+    public Matrix4 read(final org.apache.fory.context.ReadContext fory) {
         Matrix4 data = new Matrix4();
         for (int i = 0; i < 16; i++) {
-            data.val[i] = input.readFloat32();
+            data.val[i] = fory.readFloat32();
         }
         return data;
     }

@@ -19,8 +19,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.BooleanArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 
@@ -29,20 +27,20 @@ import org.apache.fory.memory.Platform;
  */
 public class BooleanArraySerializer extends Serializer<BooleanArray> {
 
-    public BooleanArraySerializer(Fory fory) {
-        super(fory, BooleanArray.class);
+    public BooleanArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,BooleanArray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BooleanArray data) {
-        output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size);
+    public void write(final org.apache.fory.context.WriteContext fory, final BooleanArray data) {
+        fory.writeBoolean(data.ordered);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size);
     }
 
     @Override
-    public BooleanArray read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final boolean[] items = Support.readBooleansAndSize(input);
+    public BooleanArray read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final boolean[] items = Support.readBooleansAndSize(fory.getBuffer());
         return new BooleanArray(ordered, items, 0, items.length);
     }
 }

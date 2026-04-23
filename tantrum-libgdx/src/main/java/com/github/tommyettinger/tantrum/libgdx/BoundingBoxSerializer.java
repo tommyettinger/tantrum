@@ -19,31 +19,29 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link BoundingBox}s.
  */
 public class BoundingBoxSerializer extends Serializer<BoundingBox> {
-    public BoundingBoxSerializer(Fory fory) {
-        super(fory, BoundingBox.class);
+    public BoundingBoxSerializer(org.apache.fory.config.Config fory) {
+        super(fory,BoundingBox.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final BoundingBox data) {
-        output.writeFloat32(data.min.x);
-        output.writeFloat32(data.min.y);
-        output.writeFloat32(data.min.z);
-        output.writeFloat32(data.max.x);
-        output.writeFloat32(data.max.y);
-        output.writeFloat32(data.max.z);
+    public void write(final org.apache.fory.context.WriteContext fory, final BoundingBox data) {
+        fory.writeFloat32(data.min.x);
+        fory.writeFloat32(data.min.y);
+        fory.writeFloat32(data.min.z);
+        fory.writeFloat32(data.max.x);
+        fory.writeFloat32(data.max.y);
+        fory.writeFloat32(data.max.z);
     }
 
     @Override
-    public BoundingBox read(MemoryBuffer input) {
-        return new BoundingBox(new Vector3(input.readFloat32(), input.readFloat32(), input.readFloat32()),
-                new Vector3(input.readFloat32(), input.readFloat32(), input.readFloat32()));
+    public BoundingBox read(final org.apache.fory.context.ReadContext fory) {
+        return new BoundingBox(new Vector3(fory.readFloat32(), fory.readFloat32(), fory.readFloat32()),
+                new Vector3(fory.readFloat32(), fory.readFloat32(), fory.readFloat32()));
     }
 }

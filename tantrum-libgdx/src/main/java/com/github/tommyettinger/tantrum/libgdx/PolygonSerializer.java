@@ -19,8 +19,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Polygon;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.memory.Platform;
 import org.apache.fory.serializer.Serializer;
 
@@ -29,29 +27,29 @@ import org.apache.fory.serializer.Serializer;
  */
 public class PolygonSerializer extends Serializer<Polygon> {
 
-    public PolygonSerializer(Fory fory) {
-        super(fory, Polygon.class);
+    public PolygonSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Polygon.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Polygon data) {
-        output.writePrimitiveArrayWithSize(data.getVertices(), Platform.FLOAT_ARRAY_OFFSET, data.getVertexCount() << 3);
-        output.writeFloat32(data.getOriginX());
-        output.writeFloat32(data.getOriginY());
-        output.writeFloat32(data.getX());
-        output.writeFloat32(data.getY());
-        output.writeFloat32(data.getRotation());
-        output.writeFloat32(data.getScaleX());
-        output.writeFloat32(data.getScaleY());
+    public void write(final org.apache.fory.context.WriteContext fory, final Polygon data) {
+        fory.getBuffer().writePrimitiveArrayWithSize(data.getVertices(), Platform.FLOAT_ARRAY_OFFSET, data.getVertexCount() << 3);
+        fory.writeFloat32(data.getOriginX());
+        fory.writeFloat32(data.getOriginY());
+        fory.writeFloat32(data.getX());
+        fory.writeFloat32(data.getY());
+        fory.writeFloat32(data.getRotation());
+        fory.writeFloat32(data.getScaleX());
+        fory.writeFloat32(data.getScaleY());
     }
 
     @Override
-    public Polygon read(MemoryBuffer input) {
-        Polygon data = new Polygon(Support.readFloatsAndSize(input));
-        data.setOrigin(input.readFloat32(), input.readFloat32());
-        data.setPosition(input.readFloat32(), input.readFloat32());
-        data.setRotation(input.readFloat32());
-        data.setScale(input.readFloat32(), input.readFloat32());
+    public Polygon read(final org.apache.fory.context.ReadContext fory) {
+        Polygon data = new Polygon(Support.readFloatsAndSize(fory.getBuffer()));
+        data.setOrigin(fory.readFloat32(), fory.readFloat32());
+        data.setPosition(fory.readFloat32(), fory.readFloat32());
+        data.setRotation(fory.readFloat32());
+        data.setScale(fory.readFloat32(), fory.readFloat32());
         return data;
     }
 }

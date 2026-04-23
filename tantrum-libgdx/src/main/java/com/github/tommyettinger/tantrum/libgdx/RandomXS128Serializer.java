@@ -18,8 +18,6 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.RandomXS128;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
@@ -31,18 +29,18 @@ import org.apache.fory.serializer.Serializer;
  * has to write.
  */
 public class RandomXS128Serializer extends Serializer<RandomXS128> {
-    public RandomXS128Serializer(Fory fory) {
-        super(fory, RandomXS128.class);
+    public RandomXS128Serializer(org.apache.fory.config.Config fory) {
+        super(fory,RandomXS128.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final RandomXS128 data) {
-        output.writeInt64(data.getState(0));
-        output.writeInt64(data.getState(1));
+    public void write(final org.apache.fory.context.WriteContext fory, final RandomXS128 data) {
+        fory.writeInt64(data.getState(0));
+        fory.writeInt64(data.getState(1));
     }
 
     @Override
-    public RandomXS128 read(MemoryBuffer input) {
-        return new RandomXS128(input.readInt64(), input.readInt64());
+    public RandomXS128 read(final org.apache.fory.context.ReadContext fory) {
+        return new RandomXS128(fory.readInt64(), fory.readInt64());
     }
 }

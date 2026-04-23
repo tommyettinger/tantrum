@@ -18,33 +18,31 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.OrderedSet;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link OrderedSet}s.
  */
 public class OrderedSetSerializer extends Serializer<OrderedSet> {
-    public OrderedSetSerializer(Fory fory) {
-        super(fory, OrderedSet.class);
+    public OrderedSetSerializer(org.apache.fory.config.Config fory) {
+        super(fory,OrderedSet.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final OrderedSet data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final OrderedSet data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public OrderedSet<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public OrderedSet<?> read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         OrderedSet data = new OrderedSet(len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

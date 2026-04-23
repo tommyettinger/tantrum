@@ -18,9 +18,6 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ByteArray;
-import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 
@@ -29,20 +26,20 @@ import org.apache.fory.memory.Platform;
  */
 public class ByteArraySerializer extends Serializer<ByteArray> {
 
-    public ByteArraySerializer(Fory fory) {
-        super(fory, ByteArray.class);
+    public ByteArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,ByteArray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final ByteArray data) {
-        output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size);
+    public void write(final org.apache.fory.context.WriteContext fory, final ByteArray data) {
+        fory.writeBoolean(data.ordered);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size);
     }
 
     @Override
-    public ByteArray read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final byte[] items = input.readBytesAndSize();
+    public ByteArray read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final byte[] items = fory.getBuffer().readBytesAndSize();
         return new ByteArray(ordered, items, 0, items.length);
     }
 }

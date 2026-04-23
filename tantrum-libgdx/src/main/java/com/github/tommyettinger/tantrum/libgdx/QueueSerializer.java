@@ -18,33 +18,31 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Queue;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Queue}s.
  */
 public class QueueSerializer extends Serializer<Queue> {
-    public QueueSerializer(Fory fory) {
-        super(fory, Queue.class);
+    public QueueSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Queue.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Queue data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final Queue data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public Queue<?> read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public Queue<?> read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         Queue data = new Queue(len);
         for (int i = 0; i < len; i++) {
-            data.addLast(fory.readRef(input));
+            data.addLast(fory.readRef());
         }
         return data;
     }

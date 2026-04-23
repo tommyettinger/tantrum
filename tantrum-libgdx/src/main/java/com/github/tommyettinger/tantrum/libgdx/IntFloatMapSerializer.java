@@ -18,36 +18,34 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntFloatMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link IntFloatMap}s.
  */
 public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
-    public IntFloatMapSerializer(Fory fory) {
-        super(fory, IntFloatMap.class);
+    public IntFloatMapSerializer(org.apache.fory.config.Config fory) {
+        super(fory,IntFloatMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntFloatMap data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final IntFloatMap data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         IntFloatMap.Keys keys = data.keys();
         for (int item; keys.hasNext;) {
             item = keys.next();
-            output.writeInt32(item);
-            output.writeFloat32(data.get(item, 0));
+            fory.writeInt32(item);
+            fory.writeFloat32(data.get(item, 0));
         }
     }
 
     @Override
-    public IntFloatMap read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public IntFloatMap read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         IntFloatMap data = new IntFloatMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt32(), input.readFloat32());
+            data.put(fory.readInt32(), fory.readFloat32());
         }
         return data;
     }

@@ -19,8 +19,6 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.FloatDeque;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 

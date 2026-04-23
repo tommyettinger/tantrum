@@ -18,33 +18,31 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.LongQueue;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link LongQueue}s.
  */
 public class LongQueueSerializer extends Serializer<LongQueue> {
-    public LongQueueSerializer(Fory fory) {
-        super(fory, LongQueue.class);
+    public LongQueueSerializer(org.apache.fory.config.Config fory) {
+        super(fory,LongQueue.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final LongQueue data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final LongQueue data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         for (int i = 0; i < len; i++) {
-            output.writeInt64(data.get(i));
+            fory.writeInt64(data.get(i));
         }
     }
 
     @Override
-    public LongQueue read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public LongQueue read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         LongQueue data = new LongQueue(len);
         for (int i = 0; i < len; i++) {
-            data.addLast(input.readInt64());
+            data.addLast(fory.readInt64());
         }
         return data;
     }

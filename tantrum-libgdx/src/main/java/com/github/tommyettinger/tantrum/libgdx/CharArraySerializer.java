@@ -19,8 +19,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.CharArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 import org.apache.fory.memory.Platform;
 
@@ -29,20 +27,20 @@ import org.apache.fory.memory.Platform;
  */
 public class CharArraySerializer extends Serializer<CharArray> {
 
-    public CharArraySerializer(Fory fory) {
-        super(fory, CharArray.class);
+    public CharArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,CharArray.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharArray data) {
-        output.writeBoolean(data.ordered);
-        output.writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size << 1);
+    public void write(final org.apache.fory.context.WriteContext fory, final CharArray data) {
+        fory.writeBoolean(data.ordered);
+        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size << 1);
     }
 
     @Override
-    public CharArray read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final char[] items = Support.readCharsAndSize(input);
+    public CharArray read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final char[] items = Support.readCharsAndSize(fory.getBuffer());
         return new CharArray(ordered, items, 0, items.length);
     }
 }

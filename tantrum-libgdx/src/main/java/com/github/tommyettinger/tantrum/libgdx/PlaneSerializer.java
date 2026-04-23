@@ -18,30 +18,28 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Plane;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Plane}s.
  */
 public class PlaneSerializer extends Serializer<Plane> {
-    public PlaneSerializer(Fory fory) {
-        super(fory, Plane.class);
+    public PlaneSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Plane.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Plane data) {
-        output.writeFloat32(data.normal.x);
-        output.writeFloat32(data.normal.y);
-        output.writeFloat32(data.normal.z);
-        output.writeFloat32(data.d);
+    public void write(final org.apache.fory.context.WriteContext fory, final Plane data) {
+        fory.writeFloat32(data.normal.x);
+        fory.writeFloat32(data.normal.y);
+        fory.writeFloat32(data.normal.z);
+        fory.writeFloat32(data.d);
     }
 
     @Override
-    public Plane read(MemoryBuffer input) {
+    public Plane read(final org.apache.fory.context.ReadContext fory) {
         Plane data = new Plane();
-        data.set(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+        data.set(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
         return data;
     }
 }

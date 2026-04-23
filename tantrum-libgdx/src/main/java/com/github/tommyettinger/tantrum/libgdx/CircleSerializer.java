@@ -18,27 +18,25 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Circle;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Circle}s.
  */
 public class CircleSerializer extends Serializer<Circle> {
-    public CircleSerializer(Fory fory) {
-        super(fory, Circle.class);
+    public CircleSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Circle.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Circle data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.radius);
+    public void write(final org.apache.fory.context.WriteContext fory, final Circle data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.radius);
     }
 
     @Override
-    public Circle read(MemoryBuffer input) {
-        return new Circle(input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Circle read(final org.apache.fory.context.ReadContext fory) {
+        return new Circle(fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

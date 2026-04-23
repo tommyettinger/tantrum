@@ -18,36 +18,34 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.IntIntMap;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link IntIntMap}s.
  */
 public class IntIntMapSerializer extends Serializer<IntIntMap> {
-    public IntIntMapSerializer(Fory fory) {
-        super(fory, IntIntMap.class);
+    public IntIntMapSerializer(org.apache.fory.config.Config fory) {
+        super(fory,IntIntMap.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final IntIntMap data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final IntIntMap data) {
         final int len = data.size;
-        output.writeVarUint32(len);
+        fory.writeVarUint32(len);
         IntIntMap.Keys keys = data.keys();
         for (int item; keys.hasNext;) {
             item = keys.next();
-            output.writeInt32(item);
-            output.writeInt32(data.get(item, 0));
+            fory.writeInt32(item);
+            fory.writeInt32(data.get(item, 0));
         }
     }
 
     @Override
-    public IntIntMap read(MemoryBuffer input) {
-        final int len = input.readVarUint32();
+    public IntIntMap read(final org.apache.fory.context.ReadContext fory) {
+        final int len = fory.readVarUint32();
         IntIntMap data = new IntIntMap(len);
         for (int i = 0; i < len; i++) {
-            data.put(input.readInt32(), input.readInt32());
+            data.put(fory.readInt32(), fory.readInt32());
         }
         return data;
     }

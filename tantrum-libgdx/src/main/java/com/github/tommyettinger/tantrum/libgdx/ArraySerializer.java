@@ -18,35 +18,33 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.Array;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Array}s.
  */
 public class ArraySerializer extends Serializer<Array> {
-    public ArraySerializer(Fory fory) {
-        super(fory, Array.class);
+    public ArraySerializer(org.apache.fory.config.Config fory) {
+        super(fory,Array.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Array data) {
+    public void write(final org.apache.fory.context.WriteContext fory, final Array data) {
         final int len = data.size;
-        output.writeBoolean(data.ordered);
-        output.writeVarUint32(len);
+        fory.writeBoolean(data.ordered);
+        fory.writeVarUint32(len);
         for (Object item : data) {
-            fory.writeRef(output, item);
+            fory.writeRef(item);
         }
     }
 
     @Override
-    public Array<?> read(MemoryBuffer input) {
-        final boolean ordered = input.readBoolean();
-        final int len = input.readVarUint32();
+    public Array<?> read(final org.apache.fory.context.ReadContext fory) {
+        final boolean ordered = fory.readBoolean();
+        final int len = fory.readVarUint32();
         Array data = new Array(ordered, len);
         for (int i = 0; i < len; i++) {
-            data.add(fory.readRef(input));
+            data.add(fory.readRef());
         }
         return data;
     }

@@ -18,28 +18,26 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Vector4;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Vector4}s.
  */
 public class Vector4Serializer extends Serializer<Vector4> {
-    public Vector4Serializer(Fory fory) {
-        super(fory, Vector4.class);
+    public Vector4Serializer(org.apache.fory.config.Config fory) {
+        super(fory,Vector4.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Vector4 data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.z);
-        output.writeFloat32(data.w);
+    public void write(final org.apache.fory.context.WriteContext fory, final Vector4 data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.z);
+        fory.writeFloat32(data.w);
     }
 
     @Override
-    public Vector4 read(MemoryBuffer input) {
-        return new Vector4(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Vector4 read(final org.apache.fory.context.ReadContext fory) {
+        return new Vector4(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

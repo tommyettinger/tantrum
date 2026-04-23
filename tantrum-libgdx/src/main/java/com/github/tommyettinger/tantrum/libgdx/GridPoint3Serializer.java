@@ -18,27 +18,25 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.GridPoint3;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link GridPoint3}s.
  */
 public class GridPoint3Serializer extends Serializer<GridPoint3> {
-    public GridPoint3Serializer(Fory fory) {
-        super(fory, GridPoint3.class);
+    public GridPoint3Serializer(org.apache.fory.config.Config fory) {
+        super(fory,GridPoint3.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final GridPoint3 data) {
-        output.writeInt32(data.x);
-        output.writeInt32(data.y);
-        output.writeInt32(data.z);
+    public void write(final org.apache.fory.context.WriteContext fory, final GridPoint3 data) {
+        fory.writeInt32(data.x);
+        fory.writeInt32(data.y);
+        fory.writeInt32(data.z);
     }
 
     @Override
-    public GridPoint3 read(MemoryBuffer input) {
-        return new GridPoint3(input.readInt32(), input.readInt32(), input.readInt32());
+    public GridPoint3 read(final org.apache.fory.context.ReadContext fory) {
+        return new GridPoint3(fory.readInt32(), fory.readInt32(), fory.readInt32());
     }
 }

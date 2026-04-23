@@ -18,28 +18,26 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Quaternion;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Quaternion}s.
  */
 public class QuaternionSerializer extends Serializer<Quaternion> {
-    public QuaternionSerializer(Fory fory) {
-        super(fory, Quaternion.class);
+    public QuaternionSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Quaternion.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Quaternion data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.z);
-        output.writeFloat32(data.w);
+    public void write(final org.apache.fory.context.WriteContext fory, final Quaternion data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.z);
+        fory.writeFloat32(data.w);
     }
 
     @Override
-    public Quaternion read(MemoryBuffer input) {
-        return new Quaternion(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Quaternion read(final org.apache.fory.context.ReadContext fory) {
+        return new Quaternion(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }

@@ -18,28 +18,26 @@
 package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Rectangle;
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.serializer.Serializer;
 
 /**
  * Fory {@link Serializer} for libGDX {@link Rectangle}s.
  */
 public class RectangleSerializer extends Serializer<Rectangle> {
-    public RectangleSerializer(Fory fory) {
-        super(fory, Rectangle.class);
+    public RectangleSerializer(org.apache.fory.config.Config fory) {
+        super(fory,Rectangle.class);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final Rectangle data) {
-        output.writeFloat32(data.x);
-        output.writeFloat32(data.y);
-        output.writeFloat32(data.width);
-        output.writeFloat32(data.height);
+    public void write(final org.apache.fory.context.WriteContext fory, final Rectangle data) {
+        fory.writeFloat32(data.x);
+        fory.writeFloat32(data.y);
+        fory.writeFloat32(data.width);
+        fory.writeFloat32(data.height);
     }
 
     @Override
-    public Rectangle read(MemoryBuffer input) {
-        return new Rectangle(input.readFloat32(), input.readFloat32(), input.readFloat32(), input.readFloat32());
+    public Rectangle read(final org.apache.fory.context.ReadContext fory) {
+        return new Rectangle(fory.readFloat32(), fory.readFloat32(), fory.readFloat32(), fory.readFloat32());
     }
 }
