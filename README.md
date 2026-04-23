@@ -30,7 +30,7 @@ Each sub-library has its own version, linked to the version of the library it de
 The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
 or if Fory itself had a (compatible) update available but the linked library did not have an update.
 
-  - tantrum-libgdx is at version 1.14.0.23, compatible with libGDX 1.14.0
+  - tantrum-libgdx is at version 1.14.0.24, compatible with libGDX 1.14.0
   - tantrum-digital is at version 0.10.0.24, compatible with digital 0.10.0
   - tantrum-jdkgdxds is at version 2.1.2.23, compatible with jdkgdxds 2.1.2
   - tantrum-regexodus is at version 0.1.21.24, compatible with RegExodus 0.1.21
@@ -46,7 +46,7 @@ Some classes may not be possible to serialize reasonably, such as ones that use 
 modifiers excessively without providing getters.
 
 The current version of libGDX at the time of writing is 1.14.0, which works with Fory 0.17.0 via tantrum-libgdx
-1.14.0.23 . The older libGDX version 1.13.5 works with Fury (not Fory) 0.10.2 via tantrum-libgdx 1.13.5.8 .
+1.14.0.24 . The older libGDX version 1.13.5 works with Fury (not Fory) 0.10.2 via tantrum-libgdx 1.13.5.8 .
 Version 1.14.0 or 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so if you must use a 1.13.x release,
 use tantrum-libgdx 1.13.1.10, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't ever need
 to consider, you should use tantrum-libgdx 1.12.1.6 instead. There are no tantrum-libgdx releases tied to libGDX 1.13.0
@@ -60,7 +60,7 @@ GWT, so no GWT info is provided here.
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.14.0.23"
+implementation "com.github.tommyettinger:tantrum-libgdx:1.14.0.24"
 ```
 
 tantrum-digital:
@@ -97,7 +97,7 @@ tantrum-libgdx:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.14.0.23</version>
+  <version>1.14.0.24</version>
 </dependency>
 ```
 
