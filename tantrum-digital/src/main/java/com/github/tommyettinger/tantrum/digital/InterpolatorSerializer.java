@@ -19,6 +19,7 @@ package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.Interpolations;
 import com.github.tommyettinger.digital.Interpolations.Interpolator;
+import org.apache.fory.Fory;
 import org.apache.fory.config.Config;
 import org.apache.fory.context.ReadContext;
 import org.apache.fory.context.WriteContext;
@@ -28,6 +29,9 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for digital {@link Interpolator}s.
  */
 public class InterpolatorSerializer extends Serializer<Interpolator> {
+    public InterpolatorSerializer(Fory fory) {
+        super(fory.getConfig(), Interpolator.class);
+    }
     public InterpolatorSerializer(Config fory) {
         super(fory, Interpolator.class);
     }

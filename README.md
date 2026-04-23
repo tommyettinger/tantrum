@@ -152,14 +152,6 @@ Like how they support Fory without needing externally-defined Serializers, you c
 and gand with libGDX Json natively, since they have classes that implement `Json.Serializable`.
 You do need jdkgdxds-interop to serialize juniper classes to JSON, though.
 
-## Breaking Changes
-
-Fory 0.17.0 changed how this library is used. You still create a Fory object `fory` as you did before,
-but when you construct any Serializer type from any Tantrum library, you use `fory.getConfig()`
-or `fory.getTypeResolver()`, depending on which constructor is available. Data structures that are
-compatible with JDK interfaces, such as `ObjectList` or `ObjectObjectMap`, typically use
-`getTypeResolver()`; everything else uses `getConfig()`, including data structures of primitive types.
-
 ## License
 
 Apache 2.0, [see the LICENSE file](LICENSE).

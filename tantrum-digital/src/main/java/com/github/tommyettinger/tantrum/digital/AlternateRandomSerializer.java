@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.digital;
 
 import com.github.tommyettinger.digital.AlternateRandom;
+import org.apache.fory.Fory;
 import org.apache.fory.config.Config;
 import org.apache.fory.context.ReadContext;
 import org.apache.fory.context.WriteContext;
@@ -27,6 +28,10 @@ import org.apache.fory.serializer.Serializer;
  * Fory {@link Serializer} for digital {@link AlternateRandom}s.
  */
 public class AlternateRandomSerializer extends Serializer<AlternateRandom> {
+
+    public AlternateRandomSerializer(Fory fory) {
+        super(fory.getConfig(), AlternateRandom.class);
+    }
 
     public AlternateRandomSerializer(Config fory) {
         super(fory, AlternateRandom.class);
