@@ -31,39 +31,37 @@
 <span class="source-line-no">018</span><span id="line-18">package com.github.tommyettinger.tantrum.libgdx;</span>
 <span class="source-line-no">019</span><span id="line-19"></span>
 <span class="source-line-no">020</span><span id="line-20">import com.badlogic.gdx.utils.SnapshotArray;</span>
-<span class="source-line-no">021</span><span id="line-21">import org.apache.fory.Fory;</span>
-<span class="source-line-no">022</span><span id="line-22">import org.apache.fory.memory.MemoryBuffer;</span>
-<span class="source-line-no">023</span><span id="line-23">import org.apache.fory.serializer.Serializer;</span>
-<span class="source-line-no">024</span><span id="line-24"></span>
-<span class="source-line-no">025</span><span id="line-25">/**</span>
-<span class="source-line-no">026</span><span id="line-26"> * Fory {@link Serializer} for libGDX {@link SnapshotArray}s.</span>
-<span class="source-line-no">027</span><span id="line-27"> */</span>
-<span class="source-line-no">028</span><span id="line-28">public class SnapshotArraySerializer extends Serializer&lt;SnapshotArray&gt; {</span>
-<span class="source-line-no">029</span><span id="line-29">    public SnapshotArraySerializer(Fory fory) {</span>
-<span class="source-line-no">030</span><span id="line-30">        super(fory, SnapshotArray.class);</span>
-<span class="source-line-no">031</span><span id="line-31">    }</span>
-<span class="source-line-no">032</span><span id="line-32"></span>
-<span class="source-line-no">033</span><span id="line-33">    @Override</span>
-<span class="source-line-no">034</span><span id="line-34">    public void write(final MemoryBuffer output, final SnapshotArray data) {</span>
-<span class="source-line-no">035</span><span id="line-35">        final int len = data.size;</span>
-<span class="source-line-no">036</span><span id="line-36">        output.writeBoolean(data.ordered);</span>
-<span class="source-line-no">037</span><span id="line-37">        output.writeVarUint32(len);</span>
-<span class="source-line-no">038</span><span id="line-38">        for (Object item : data) {</span>
-<span class="source-line-no">039</span><span id="line-39">            fory.writeRef(output, item);</span>
-<span class="source-line-no">040</span><span id="line-40">        }</span>
-<span class="source-line-no">041</span><span id="line-41">    }</span>
-<span class="source-line-no">042</span><span id="line-42"></span>
-<span class="source-line-no">043</span><span id="line-43">    @Override</span>
-<span class="source-line-no">044</span><span id="line-44">    public SnapshotArray&lt;?&gt; read(MemoryBuffer input) {</span>
-<span class="source-line-no">045</span><span id="line-45">        final boolean ordered = input.readBoolean();</span>
-<span class="source-line-no">046</span><span id="line-46">        final int len = input.readVarUint32();</span>
-<span class="source-line-no">047</span><span id="line-47">        SnapshotArray data = new SnapshotArray(ordered, len);</span>
-<span class="source-line-no">048</span><span id="line-48">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">049</span><span id="line-49">            data.add(fory.readRef(input));</span>
-<span class="source-line-no">050</span><span id="line-50">        }</span>
-<span class="source-line-no">051</span><span id="line-51">        return data;</span>
-<span class="source-line-no">052</span><span id="line-52">    }</span>
-<span class="source-line-no">053</span><span id="line-53">}</span>
+<span class="source-line-no">021</span><span id="line-21">import org.apache.fory.serializer.Serializer;</span>
+<span class="source-line-no">022</span><span id="line-22"></span>
+<span class="source-line-no">023</span><span id="line-23">/**</span>
+<span class="source-line-no">024</span><span id="line-24"> * Fory {@link Serializer} for libGDX {@link SnapshotArray}s.</span>
+<span class="source-line-no">025</span><span id="line-25"> */</span>
+<span class="source-line-no">026</span><span id="line-26">public class SnapshotArraySerializer extends Serializer&lt;SnapshotArray&gt; {</span>
+<span class="source-line-no">027</span><span id="line-27">    public SnapshotArraySerializer(org.apache.fory.config.Config fory) {</span>
+<span class="source-line-no">028</span><span id="line-28">        super(fory,SnapshotArray.class);</span>
+<span class="source-line-no">029</span><span id="line-29">    }</span>
+<span class="source-line-no">030</span><span id="line-30"></span>
+<span class="source-line-no">031</span><span id="line-31">    @Override</span>
+<span class="source-line-no">032</span><span id="line-32">    public void write(final org.apache.fory.context.WriteContext fory, final SnapshotArray data) {</span>
+<span class="source-line-no">033</span><span id="line-33">        final int len = data.size;</span>
+<span class="source-line-no">034</span><span id="line-34">        fory.writeBoolean(data.ordered);</span>
+<span class="source-line-no">035</span><span id="line-35">        fory.writeVarUint32(len);</span>
+<span class="source-line-no">036</span><span id="line-36">        for (Object item : data) {</span>
+<span class="source-line-no">037</span><span id="line-37">            fory.writeRef(item);</span>
+<span class="source-line-no">038</span><span id="line-38">        }</span>
+<span class="source-line-no">039</span><span id="line-39">    }</span>
+<span class="source-line-no">040</span><span id="line-40"></span>
+<span class="source-line-no">041</span><span id="line-41">    @Override</span>
+<span class="source-line-no">042</span><span id="line-42">    public SnapshotArray&lt;?&gt; read(final org.apache.fory.context.ReadContext fory) {</span>
+<span class="source-line-no">043</span><span id="line-43">        final boolean ordered = fory.readBoolean();</span>
+<span class="source-line-no">044</span><span id="line-44">        final int len = fory.readVarUint32();</span>
+<span class="source-line-no">045</span><span id="line-45">        SnapshotArray data = new SnapshotArray(ordered, len);</span>
+<span class="source-line-no">046</span><span id="line-46">        for (int i = 0; i &lt; len; i++) {</span>
+<span class="source-line-no">047</span><span id="line-47">            data.add(fory.readRef());</span>
+<span class="source-line-no">048</span><span id="line-48">        }</span>
+<span class="source-line-no">049</span><span id="line-49">        return data;</span>
+<span class="source-line-no">050</span><span id="line-50">    }</span>
+<span class="source-line-no">051</span><span id="line-51">}</span>
 
 
 
