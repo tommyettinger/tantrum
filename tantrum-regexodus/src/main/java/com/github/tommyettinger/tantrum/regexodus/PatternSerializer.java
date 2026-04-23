@@ -17,8 +17,9 @@
 
 package com.github.tommyettinger.tantrum.regexodus;
 
-import org.apache.fory.Fory;
-import org.apache.fory.memory.MemoryBuffer;
+import org.apache.fory.config.Config;
+import org.apache.fory.context.ReadContext;
+import org.apache.fory.context.WriteContext;
 import org.apache.fory.serializer.Serializer;
 import regexodus.Pattern;
 
@@ -26,17 +27,17 @@ import regexodus.Pattern;
  * Fory {@link Serializer} for Regexodus {@link Pattern}s.
  */
 public class PatternSerializer extends Serializer<Pattern> {
-    public PatternSerializer(Fory fory) {
+    public PatternSerializer(Config fory) {
         super(fory, Pattern.class);
     }
 
     @Override
-    public void write(MemoryBuffer buffer, final Pattern data) {
-        fory.writeString(buffer, data.serializeToString());
+    public void write(WriteContext fory, final Pattern data) {
+        fory.writeString( data.serializeToString());
     }
 
     @Override
-    public Pattern read(MemoryBuffer buffer) {
-        return Pattern.deserializeFromString(fory.readString(buffer));
+    public Pattern read(ReadContext fory) {
+        return Pattern.deserializeFromString(fory.readString());
     }
 }

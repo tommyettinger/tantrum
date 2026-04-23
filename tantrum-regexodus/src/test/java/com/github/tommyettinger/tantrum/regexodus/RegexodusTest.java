@@ -32,7 +32,7 @@ public class RegexodusTest {
     public void testPattern() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Pattern.class, new PatternSerializer(fory));
+        fory.registerSerializer(Pattern.class, new PatternSerializer(fory.getConfig()));
 
         Pattern data = Pattern.compile("[a-z0-9_\\p{Sc}]+", REFlags.IGNORE_CASE | REFlags.UNICODE);
 
@@ -47,7 +47,7 @@ public class RegexodusTest {
     public void testCharBitSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory));
+        fory.registerSerializer(CharBitSet.class, new CharBitSetSerializer(fory.getConfig()));
 
         CharBitSet data = Category.LowercaseLetter.decompress();
 

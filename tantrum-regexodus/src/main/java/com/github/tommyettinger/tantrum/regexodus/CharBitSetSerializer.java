@@ -1,6 +1,8 @@
 package com.github.tommyettinger.tantrum.regexodus;
 
-import org.apache.fory.Fory;
+import org.apache.fory.config.Config;
+import org.apache.fory.context.ReadContext;
+import org.apache.fory.context.WriteContext;
 import org.apache.fory.memory.BoundsChecking;
 import org.apache.fory.memory.MemoryBuffer;
 import org.apache.fory.memory.Platform;
@@ -8,20 +10,20 @@ import org.apache.fory.serializer.Serializer;
 import regexodus.ds.CharBitSet;
 
 public class CharBitSetSerializer extends Serializer<CharBitSet> {
-    public CharBitSetSerializer(Fory fory) {
+    public CharBitSetSerializer(Config fory) {
         super(fory, CharBitSet.class, false);
     }
 
     @Override
-    public void write(final MemoryBuffer output, final CharBitSet data) {
+    public void write(final WriteContext fory, final CharBitSet data) {
         final int[] bits = data.getRawBits();
-        output.writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+        fory.getBuffer().writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
     }
 
     @Override
-    public CharBitSet read(MemoryBuffer input) {
+    public CharBitSet read(ReadContext fory) {
         final CharBitSet obs = new CharBitSet();
-        obs.setRawBits(readIntsAndSize(input));
+        obs.setRawBits(readIntsAndSize(fory.getBuffer()));
         return obs;
     }
 
