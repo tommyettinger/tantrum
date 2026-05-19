@@ -422,6 +422,19 @@ public class UtilsTest {
     }
 
     @Test
+    public void testLongSet() {
+        LoggerFactory.disableLogging();
+        Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
+        fory.registerSerializer(LongSet.class, new LongSetSerializer(fory));
+
+        LongSet data = LongSet.with(-123L, 0L, 456L, 0L, 1L, -1L, 0x80000000L, 0x8000000000000000L);
+
+        byte[] bytes = fory.serialize(data);
+        LongSet data2 = fory.deserialize(bytes, LongSet.class);
+        Assert.assertEquals(data, data2);
+    }
+
+    @Test
     public void testLongMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
