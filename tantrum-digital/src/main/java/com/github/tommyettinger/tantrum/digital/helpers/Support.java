@@ -1,8 +1,6 @@
 package com.github.tommyettinger.tantrum.digital.helpers;
 
-import org.apache.fory.memory.BoundsChecking;
 import org.apache.fory.memory.MemoryBuffer;
-import org.apache.fory.memory.Platform;
 
 public final class Support {
     private Support() {
@@ -10,28 +8,18 @@ public final class Support {
 
     /**
      * This method should be used to read data written by
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeBooleansWithSize(boolean[])}
      */
     public static boolean[] readBooleansAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final boolean[] booleans = new boolean[numBytes];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, booleans, Platform.BOOLEAN_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return booleans;
+        final int numElements = buffer.readBinarySize();
+        boolean[] values = new boolean[numElements];
+        buffer.readBooleans(values, 0, numElements);
+        return values;
     }
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeBytesWithSize(byte[])}.
      * It delegates to {@link MemoryBuffer#readBytesAndSize()}.
      */
     public static byte[] readBytesAndSize(MemoryBuffer buffer) {
@@ -40,28 +28,19 @@ public final class Support {
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeShortsWithSize(short[])}.
      */
     public static short[] readShortsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final short[] shorts = new short[numBytes >>> 1];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, shorts, Platform.SHORT_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return shorts;
+        final int numBytes = buffer.readBinarySize();
+        int numElements = numBytes >>> 1;
+        short[] values = new short[numElements];
+        buffer.readShorts(values, 0, numElements);
+        return values;
     }
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeCharsWithSize(char[])}.
      * It delegates to {@link MemoryBuffer#readCharsAndSize()}.
      */
     public static char[] readCharsAndSize(MemoryBuffer buffer) {
@@ -70,85 +49,49 @@ public final class Support {
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeIntsWithSize(int[])}.
      */
     public static int[] readIntsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final int[] ints = new int[numBytes >>> 2];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, ints, Platform.INT_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return ints;
+        final int numBytes = buffer.readBinarySize();
+        int numElements = numBytes >>> 2;
+        int[] values = new int[numElements];
+        buffer.readInts(values, 0, numElements);
+        return values;
     }
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeFloatsWithSize(float[])}.
      */
     public static float[] readFloatsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final float[] floats = new float[numBytes >>> 2];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, floats, Platform.FLOAT_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return floats;
+        final int numBytes = buffer.readBinarySize();
+        int numElements = numBytes >>> 2;
+        float[] values = new float[numElements];
+        buffer.readFloats(values, 0, numElements);
+        return values;
     }
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeLongsWithSize(long[])}.
      */
     public static long[] readLongsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final long[] longs = new long[numBytes >>> 3];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, longs, Platform.LONG_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return longs;
+        final int numBytes = buffer.readBinarySize();
+        int numElements = numBytes >>> 3;
+        long[] values = new long[numElements];
+        buffer.readLongs(values, 0, numElements);
+        return values;
     }
 
     /**
      * This method should be used to read data written by 
-     * {@link MemoryBuffer#writePrimitiveArrayWithSize(Object, int, int)}.
+     * {@link MemoryBuffer#writeDoublesWithSize(double[])}.
      */
     public static double[] readDoublesAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readVarUint32();
-        int readerIdx = buffer.readerIndex();
-        final int size = buffer.size();
-        // use subtract to avoid overflow
-        if (BoundsChecking.BOUNDS_CHECKING_ENABLED && readerIdx > size - numBytes) {
-            throw new IndexOutOfBoundsException(
-                    String.format(
-                            "readerIdx(%d) + length(%d) exceeds size(%d): %s", readerIdx, numBytes, size, buffer));
-        }
-        final double[] doubles = new double[numBytes >>> 3];
-        Platform.copyMemory(
-                buffer.getHeapMemory(), buffer.getUnsafeAddress() + readerIdx, doubles, Platform.DOUBLE_ARRAY_OFFSET, numBytes);
-        buffer._increaseReaderIndexUnsafe(numBytes);
-        return doubles;
+        final int numBytes = buffer.readBinarySize();
+        int numElements = numBytes >>> 3;
+        double[] values = new double[numElements];
+        buffer.readDoubles(values, 0, numElements);
+        return values;
     }
 }
