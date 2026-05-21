@@ -51,9 +51,9 @@
 <span class="source-line-no">038</span><span id="line-38">    @Override</span>
 <span class="source-line-no">039</span><span id="line-39">    public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringMap data) {</span>
 <span class="source-line-no">040</span><span id="line-40">        fory.writeString(data.getFilter().getName());</span>
-<span class="source-line-no">041</span><span id="line-41">        fory.writeVarUint32(data.size());</span>
+<span class="source-line-no">041</span><span id="line-41">        fory.writeVarUInt32(data.size());</span>
 <span class="source-line-no">042</span><span id="line-42">        for(Object k : data.keySet()){</span>
-<span class="source-line-no">043</span><span id="line-43">            fory.writeRef(k);</span>
+<span class="source-line-no">043</span><span id="line-43">            fory.writeString((String) k);</span>
 <span class="source-line-no">044</span><span id="line-44">        }</span>
 <span class="source-line-no">045</span><span id="line-45">        for(Object v : data.values()){</span>
 <span class="source-line-no">046</span><span id="line-46">            fory.writeRef(v);</span>
@@ -64,11 +64,11 @@
 <span class="source-line-no">051</span><span id="line-51">    @Override</span>
 <span class="source-line-no">052</span><span id="line-52">    public FilteredStringMap&lt;?&gt; read(org.apache.fory.context.ReadContext fory) {</span>
 <span class="source-line-no">053</span><span id="line-53">        CharFilter filter = CharFilter.get(fory.readString());</span>
-<span class="source-line-no">054</span><span id="line-54">        final int len = fory.readVarUint32();</span>
+<span class="source-line-no">054</span><span id="line-54">        final int len = fory.readVarUInt32();</span>
 <span class="source-line-no">055</span><span id="line-55">        String[] ks = new String[len];</span>
 <span class="source-line-no">056</span><span id="line-56">        Object[] vs = new Object[len];</span>
 <span class="source-line-no">057</span><span id="line-57">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">058</span><span id="line-58">            ks[i] = (String) fory.readRef();</span>
+<span class="source-line-no">058</span><span id="line-58">            ks[i] = fory.readString();</span>
 <span class="source-line-no">059</span><span id="line-59">        }</span>
 <span class="source-line-no">060</span><span id="line-60">        for (int i = 0; i &lt; len; i++) {</span>
 <span class="source-line-no">061</span><span id="line-61">            vs[i] = fory.readRef();</span>

@@ -53,10 +53,10 @@
 <span class="source-line-no">040</span><span id="line-40">    public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringOrderedSet data) {</span>
 <span class="source-line-no">041</span><span id="line-41">        fory.writeString(data.getFilter().getName());</span>
 <span class="source-line-no">042</span><span id="line-42">        final int len = data.size();</span>
-<span class="source-line-no">043</span><span id="line-43">        fory.writeVarUint32(len);</span>
+<span class="source-line-no">043</span><span id="line-43">        fory.writeVarUInt32(len);</span>
 <span class="source-line-no">044</span><span id="line-44">        fory.writeString(data.getOrderType().name());</span>
 <span class="source-line-no">045</span><span id="line-45">        for (String item : data) {</span>
-<span class="source-line-no">046</span><span id="line-46">            fory.writeRef(item);</span>
+<span class="source-line-no">046</span><span id="line-46">            fory.writeString(item);</span>
 <span class="source-line-no">047</span><span id="line-47">        }</span>
 <span class="source-line-no">048</span><span id="line-48"></span>
 <span class="source-line-no">049</span><span id="line-49">    }</span>
@@ -64,10 +64,10 @@
 <span class="source-line-no">051</span><span id="line-51">    @Override</span>
 <span class="source-line-no">052</span><span id="line-52">    public FilteredStringOrderedSet read(org.apache.fory.context.ReadContext fory) {</span>
 <span class="source-line-no">053</span><span id="line-53">        CharFilter filter = CharFilter.get(fory.readString());</span>
-<span class="source-line-no">054</span><span id="line-54">        final int len = fory.readVarUint32();</span>
+<span class="source-line-no">054</span><span id="line-54">        final int len = fory.readVarUInt32();</span>
 <span class="source-line-no">055</span><span id="line-55">        FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len, OrderType.valueOf(fory.readString()));</span>
 <span class="source-line-no">056</span><span id="line-56">        for (int i = 0; i &lt; len; i++) {</span>
-<span class="source-line-no">057</span><span id="line-57">            data.add((String) fory.readRef());</span>
+<span class="source-line-no">057</span><span id="line-57">            data.add(fory.readString());</span>
 <span class="source-line-no">058</span><span id="line-58">        }</span>
 <span class="source-line-no">059</span><span id="line-59">        return data;</span>
 <span class="source-line-no">060</span><span id="line-60">    }</span>
