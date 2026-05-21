@@ -35,7 +35,8 @@ public class IntSetSerializer extends Serializer<IntSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntSet data) {
-        fory.getBuffer().writeIntsWithSize(data.toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.toArray());
     }
 
     @Override

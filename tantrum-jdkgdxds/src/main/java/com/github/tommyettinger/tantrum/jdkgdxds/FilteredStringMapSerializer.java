@@ -40,7 +40,7 @@ public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap
         fory.writeString(data.getFilter().getName());
         fory.writeVarUInt32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(k);
+            fory.writeString((String) k);
         }
         for(Object v : data.values()){
             fory.writeRef(v);
@@ -55,7 +55,7 @@ public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (String) fory.readRef();
+            ks[i] = fory.readString();
         }
         for (int i = 0; i < len; i++) {
             vs[i] = fory.readRef();

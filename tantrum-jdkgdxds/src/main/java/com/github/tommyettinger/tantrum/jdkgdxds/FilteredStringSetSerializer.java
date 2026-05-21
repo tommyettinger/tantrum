@@ -41,7 +41,7 @@ public class FilteredStringSetSerializer extends CollectionSerializer<FilteredSt
         final int len = data.size();
         fory.writeVarUInt32(len);
         for (String item : data) {
-            fory.writeRef(item);
+            fory.writeString(item);
         }
     }
 
@@ -51,7 +51,7 @@ public class FilteredStringSetSerializer extends CollectionSerializer<FilteredSt
         final int len = fory.readVarUInt32();
         FilteredStringSet data = new FilteredStringSet(filter, len);
         for (int i = 0; i < len; i++) {
-            data.add((String) fory.readRef());
+            data.add(fory.readString());
         }
         return data;
     }

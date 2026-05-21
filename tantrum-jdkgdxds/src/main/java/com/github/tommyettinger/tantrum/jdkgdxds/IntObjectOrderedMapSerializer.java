@@ -37,7 +37,8 @@ public class IntObjectOrderedMapSerializer extends Serializer<IntObjectOrderedMa
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntObjectOrderedMap data) {
-        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.keySet().toArray());
         for(Object v : data.values()){
             fory.writeRef(v);
         }

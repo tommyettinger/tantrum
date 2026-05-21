@@ -35,8 +35,10 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntFloatMap data) {
-        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
-        fory.getBuffer().writeFloatsWithSize(data.values().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.values().toArray());
         fory.writeFloat32(data.getDefaultValue());
     }
 

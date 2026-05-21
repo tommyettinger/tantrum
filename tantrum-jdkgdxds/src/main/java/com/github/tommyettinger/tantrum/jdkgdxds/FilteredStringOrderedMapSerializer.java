@@ -41,7 +41,7 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         fory.writeString(data.getFilter().getName());
         fory.writeVarUInt32(data.size());
         for(Object k : data.keySet()){
-            fory.writeRef(k);
+            fory.writeString((String) k);
         }
         for(Object v : data.values()){
             fory.writeRef(v);
@@ -57,7 +57,7 @@ public class FilteredStringOrderedMapSerializer extends MapSerializer<FilteredSt
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {
-            ks[i] = (String) fory.readRef();
+            ks[i] = fory.readString();
         }
         for (int i = 0; i < len; i++) {
             vs[i] = fory.readRef();

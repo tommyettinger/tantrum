@@ -35,11 +35,13 @@ public class CharBitSetFixedSizeSerializer extends Serializer<CharBitSetFixedSiz
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharBitSetFixedSize data) {
-        fory.getBuffer().writeIntsWithSize(data.getRawBits());
+        fory.getBuffer().writeInts(data.getRawBits());
     }
 
     @Override
     public CharBitSetFixedSize read(org.apache.fory.context.ReadContext fory) {
-        return new CharBitSetFixedSize(Support.readIntsAndSize(fory.getBuffer()), true);
+        int[] values = new int[2048];
+        fory.getBuffer().readInts(values, 0, 2048);
+        return new CharBitSetFixedSize(values, true);
     }
 }

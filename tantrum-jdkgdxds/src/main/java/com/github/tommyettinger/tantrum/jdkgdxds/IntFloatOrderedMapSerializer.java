@@ -36,8 +36,10 @@ public class IntFloatOrderedMapSerializer extends Serializer<IntFloatOrderedMap>
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntFloatOrderedMap data) {
-        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
-        fory.getBuffer().writeFloatsWithSize(data.values().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.values().toArray());
         fory.writeString(data.getOrderType().name());
         fory.writeFloat32(data.getDefaultValue());
     }

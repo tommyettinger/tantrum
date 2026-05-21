@@ -35,7 +35,8 @@ public class CharBitSetSerializer extends Serializer<CharBitSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharBitSet data) {
-        fory.getBuffer().writeIntsWithSize(data.getRawBits());
+        fory.writeVarUInt32(data.getRawBits().length);
+        fory.getBuffer().writeInts(data.getRawBits());
     }
 
     @Override

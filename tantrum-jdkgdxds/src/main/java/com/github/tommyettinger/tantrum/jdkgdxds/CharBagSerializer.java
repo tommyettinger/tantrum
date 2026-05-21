@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharBag;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.serializer.Serializer;
 
 /**
@@ -40,6 +41,6 @@ public class CharBagSerializer extends Serializer<CharBag> {
 
     @Override
     public CharBag read(org.apache.fory.context.ReadContext fory) {
-        return new CharBag(fory.getBuffer().readCharsAndSize());
+        return new CharBag(Support.readCharsAndSize(fory.getBuffer()));
     }
 }

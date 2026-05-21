@@ -35,7 +35,8 @@ public class IntDequeSerializer extends Serializer<IntDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntDeque data) {
-        fory.getBuffer().writeIntsWithSize(data.toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.toArray());
         fory.writeInt32(data.getDefaultValue());
     }
 

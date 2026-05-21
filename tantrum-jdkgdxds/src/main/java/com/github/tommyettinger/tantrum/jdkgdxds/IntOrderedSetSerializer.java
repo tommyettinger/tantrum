@@ -36,7 +36,8 @@ public class IntOrderedSetSerializer extends Serializer<IntOrderedSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntOrderedSet data) {
-        fory.getBuffer().writeIntsWithSize(data.toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.toArray());
         fory.writeString(data.getOrderType().name());
     }
 

@@ -35,8 +35,10 @@ public class IntIntMapSerializer extends Serializer<IntIntMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntIntMap data) {
-        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
-        fory.getBuffer().writeIntsWithSize(data.values().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.values().toArray());
         fory.writeInt32(data.getDefaultValue());
     }
 

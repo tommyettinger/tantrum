@@ -43,7 +43,7 @@ public class FilteredStringOrderedSetSerializer extends CollectionSerializer<Fil
         fory.writeVarUInt32(len);
         fory.writeString(data.getOrderType().name());
         for (String item : data) {
-            fory.writeRef(item);
+            fory.writeString(item);
         }
 
     }
@@ -54,7 +54,7 @@ public class FilteredStringOrderedSetSerializer extends CollectionSerializer<Fil
         final int len = fory.readVarUInt32();
         FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
-            data.add((String) fory.readRef());
+            data.add(fory.readString());
         }
         return data;
     }

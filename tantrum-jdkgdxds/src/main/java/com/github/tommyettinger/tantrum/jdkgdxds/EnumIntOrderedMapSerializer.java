@@ -36,7 +36,8 @@ public class EnumIntOrderedMapSerializer extends Serializer<EnumIntOrderedMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final EnumIntOrderedMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.values().toArray());
         for(Enum<?> v : data.keySet()){
             fory.writeRef(v);
         }

@@ -36,7 +36,8 @@ public class EnumFloatOrderedMapSerializer extends Serializer<EnumFloatOrderedMa
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final EnumFloatOrderedMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.values().toArray());
         for(Enum<?> v : data.keySet()){
             fory.writeRef(v);
         }

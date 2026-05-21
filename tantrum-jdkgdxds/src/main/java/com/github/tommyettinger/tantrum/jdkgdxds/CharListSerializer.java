@@ -18,6 +18,7 @@
 package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharList;
+import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.serializer.Serializer;
 
 /**
@@ -40,6 +41,6 @@ public class CharListSerializer extends Serializer<CharList> {
 
     @Override
     public CharList read(org.apache.fory.context.ReadContext fory) {
-        return new CharList(fory.getBuffer().readCharsAndSize());
+        return new CharList(Support.readCharsAndSize(fory.getBuffer()));
     }
 }
