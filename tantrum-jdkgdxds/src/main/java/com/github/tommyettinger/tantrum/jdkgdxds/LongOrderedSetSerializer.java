@@ -36,7 +36,8 @@ public class LongOrderedSetSerializer extends Serializer<LongOrderedSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongOrderedSet data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.order().items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.toArray());
         fory.writeString(data.getOrderType().name());
     }
 

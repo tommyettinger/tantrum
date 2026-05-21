@@ -35,7 +35,8 @@ public class LongSetSerializer extends Serializer<LongSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongSet data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.toArray());
     }
 
     @Override

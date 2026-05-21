@@ -35,8 +35,10 @@ public class LongFloatMapSerializer extends Serializer<LongFloatMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongFloatMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.values().toArray());
         fory.writeFloat32(data.getDefaultValue());
     }
 

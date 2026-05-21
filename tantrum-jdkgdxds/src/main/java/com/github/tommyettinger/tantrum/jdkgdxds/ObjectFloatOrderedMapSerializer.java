@@ -37,7 +37,8 @@ public class ObjectFloatOrderedMapSerializer extends Serializer<ObjectFloatOrder
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectFloatOrderedMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.values().toArray());
         for(Object v : data.keySet()){
             fory.writeRef(v);
         }

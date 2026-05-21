@@ -35,8 +35,10 @@ public class LongIntMapSerializer extends Serializer<LongIntMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongIntMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.values().toArray());
         fory.writeInt32(data.getDefaultValue());
     }
 

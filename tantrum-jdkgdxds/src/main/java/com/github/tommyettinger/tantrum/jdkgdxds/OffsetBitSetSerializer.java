@@ -35,8 +35,8 @@ public class OffsetBitSetSerializer extends Serializer<OffsetBitSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final OffsetBitSet data) {
-        final int[] bits = data.getRawBits();
-        fory.getBuffer().writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+        fory.writeVarUInt32(data.getRawBits().length);
+        fory.getBuffer().writeInts(data.getRawBits());
         fory.writeInt32(data.getOffset());
     }
 

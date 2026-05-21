@@ -36,8 +36,10 @@ public class LongLongOrderedMapSerializer extends Serializer<LongLongOrderedMap>
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongLongOrderedMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.keySet().toArray());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.values().toArray());
         fory.writeString(data.getOrderType().name());
         fory.writeInt64(data.getDefaultValue());
     }

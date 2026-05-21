@@ -35,7 +35,8 @@ public class ShortListSerializer extends Serializer<ShortList> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ShortList data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeShorts(data.items, 0, data.size());
     }
 
     @Override

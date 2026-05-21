@@ -35,7 +35,8 @@ public class ShortDequeSerializer extends Serializer<ShortDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ShortDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeShorts(data.toArray());
         fory.writeInt16(data.getDefaultValue());
     }
 

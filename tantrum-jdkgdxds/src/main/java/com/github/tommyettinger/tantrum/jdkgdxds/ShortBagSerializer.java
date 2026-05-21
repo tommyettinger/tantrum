@@ -35,7 +35,8 @@ public class ShortBagSerializer extends Serializer<ShortBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ShortBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size() << 1);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeShorts(data.items, 0, data.size());
     }
 
     @Override

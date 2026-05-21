@@ -35,7 +35,8 @@ public class LongBagSerializer extends Serializer<LongBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size() << 3);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeLongs(data.items, 0, data.size());
     }
 
     @Override
