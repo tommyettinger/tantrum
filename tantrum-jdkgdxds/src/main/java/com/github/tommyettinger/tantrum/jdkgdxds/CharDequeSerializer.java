@@ -34,7 +34,7 @@ public class CharDequeSerializer extends Serializer<CharDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+        fory.getBuffer().writeCharsWithSize(data.toArray());
         fory.writeChar(data.getDefaultValue());
     }
 

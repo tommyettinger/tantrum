@@ -36,7 +36,7 @@ public class IntObjectMapSerializer extends Serializer<IntObjectMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntObjectMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
         for(Object v : data.values()){
             fory.writeRef(v);
         }

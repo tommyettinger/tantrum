@@ -35,7 +35,7 @@ public class BooleanDequeSerializer extends Serializer<BooleanDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final BooleanDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        fory.getBuffer().writeBooleansWithSize(data.toArray());
         fory.writeBoolean(data.getDefaultValue());
     }
 

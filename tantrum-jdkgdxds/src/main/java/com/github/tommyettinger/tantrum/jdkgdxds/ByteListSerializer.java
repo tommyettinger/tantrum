@@ -34,7 +34,8 @@ public class ByteListSerializer extends Serializer<ByteList> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ByteList data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeBytes(data.items, 0, data.size());
     }
 
     @Override

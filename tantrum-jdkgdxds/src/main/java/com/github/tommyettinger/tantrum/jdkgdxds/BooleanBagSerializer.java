@@ -35,7 +35,8 @@ public class BooleanBagSerializer extends Serializer<BooleanBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final BooleanBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeBooleans(data.items, 0, data.size());
     }
 
     @Override

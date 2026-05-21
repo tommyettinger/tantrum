@@ -36,8 +36,8 @@ public class IntIntOrderedMapSerializer extends Serializer<IntIntOrderedMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntIntOrderedMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
+        fory.getBuffer().writeIntsWithSize(data.values().toArray());
         fory.writeString(data.getOrderType().name());
         fory.writeInt32(data.getDefaultValue());
     }

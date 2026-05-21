@@ -34,7 +34,7 @@ public class ByteDequeSerializer extends Serializer<ByteDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ByteDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.BYTE_ARRAY_OFFSET, data.size());
+        fory.getBuffer().writeBytesWithSize(data.toArray());
         fory.writeByte(data.getDefaultValue());
     }
 

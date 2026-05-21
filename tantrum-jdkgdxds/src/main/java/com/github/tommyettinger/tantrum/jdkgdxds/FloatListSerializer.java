@@ -35,7 +35,8 @@ public class FloatListSerializer extends Serializer<FloatList> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final FloatList data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeFloats(data.items, 0, data.size());
     }
 
     @Override

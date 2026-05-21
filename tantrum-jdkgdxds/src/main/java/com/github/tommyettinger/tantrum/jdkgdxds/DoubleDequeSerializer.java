@@ -35,7 +35,7 @@ public class DoubleDequeSerializer extends Serializer<DoubleDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final DoubleDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+        fory.getBuffer().writeDoublesWithSize(data.toArray());
         fory.writeFloat64(data.getDefaultValue());
     }
 

@@ -34,7 +34,8 @@ public class ByteBagSerializer extends Serializer<ByteBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ByteBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size());
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeBytes(data.items, 0, data.size());
     }
 
     @Override

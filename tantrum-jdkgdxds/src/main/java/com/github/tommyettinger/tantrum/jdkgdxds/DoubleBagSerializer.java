@@ -35,7 +35,8 @@ public class DoubleBagSerializer extends Serializer<DoubleBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final DoubleBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.DOUBLE_ARRAY_OFFSET, data.size() << 3);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeDoubles(data.items, 0, data.size());
     }
 
     @Override

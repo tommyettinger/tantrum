@@ -34,7 +34,8 @@ public class CharBagSerializer extends Serializer<CharBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size() << 1);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeChars(data.items, 0, data.size());
     }
 
     @Override

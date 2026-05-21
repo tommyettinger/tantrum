@@ -35,8 +35,8 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntFloatMap data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.keySet().toArray(), Platform.INT_ARRAY_OFFSET, data.size() << 2);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.values().toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writeIntsWithSize(data.keySet().toArray());
+        fory.getBuffer().writeFloatsWithSize(data.values().toArray());
         fory.writeFloat32(data.getDefaultValue());
     }
 

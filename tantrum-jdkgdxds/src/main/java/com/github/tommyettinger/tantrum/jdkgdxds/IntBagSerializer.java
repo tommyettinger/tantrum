@@ -35,7 +35,8 @@ public class IntBagSerializer extends Serializer<IntBag> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntBag data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.INT_ARRAY_OFFSET, data.size() << 2);
+        fory.writeVarUInt32(data.size());
+        fory.getBuffer().writeInts(data.items, 0, data.size());
     }
 
     @Override

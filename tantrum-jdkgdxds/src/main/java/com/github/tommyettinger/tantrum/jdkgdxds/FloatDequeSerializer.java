@@ -35,7 +35,7 @@ public class FloatDequeSerializer extends Serializer<FloatDeque> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final FloatDeque data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.toArray(), Platform.FLOAT_ARRAY_OFFSET, data.size() << 2);
+        fory.getBuffer().writeFloatsWithSize(data.toArray());
         fory.writeFloat32(data.getDefaultValue());
     }
 

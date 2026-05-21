@@ -35,8 +35,7 @@ public class CharBitSetSerializer extends Serializer<CharBitSet> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharBitSet data) {
-        final int[] bits = data.getRawBits();
-        fory.getBuffer().writePrimitiveArrayWithSize(bits, Platform.INT_ARRAY_OFFSET, bits.length << 2);
+        fory.getBuffer().writeIntsWithSize(data.getRawBits());
     }
 
     @Override
