@@ -34,7 +34,7 @@ public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectFloatMap data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data.keys()) {
             fory.writeRef(item);
             fory.writeFloat32(data.get(item, 0));
@@ -43,7 +43,7 @@ public class ObjectFloatMapSerializer extends Serializer<ObjectFloatMap> {
 
     @Override
     public ObjectFloatMap<?> read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectFloatMap data = new ObjectFloatMap(len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readRef(), fory.readFloat32());

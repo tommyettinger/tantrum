@@ -19,7 +19,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.math.Polygon;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
-import org.apache.fory.memory.Platform;
 import org.apache.fory.serializer.Serializer;
 
 /**
@@ -36,7 +35,8 @@ public class PolygonSerializer extends Serializer<Polygon> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final Polygon data) {
-        fory.getBuffer().writePrimitiveArrayWithSize(data.getVertices(), Platform.FLOAT_ARRAY_OFFSET, data.getVertexCount() << 3);
+        fory.writeVarUInt32(data.getVertices().length);
+        fory.getBuffer().writeFloats(data.getVertices(), 0, data.getVertices().length);
         fory.writeFloat32(data.getOriginX());
         fory.writeFloat32(data.getOriginY());
         fory.writeFloat32(data.getX());

@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.utils.FloatArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link FloatArray}s.
@@ -37,7 +36,9 @@ public class FloatArraySerializer extends Serializer<FloatArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final FloatArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.FLOAT_ARRAY_OFFSET, data.size << 2);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeFloats(data.items, 0, data.size);
+
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ArrayOfStringSerializer extends Serializer<Array> {
     public void write(final WriteContext fory, final Array data) {
         final int len = data.size;
         fory.writeBoolean(data.ordered);
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data) {
             fory.writeString(item.toString());
         }
@@ -48,7 +48,7 @@ public class ArrayOfStringSerializer extends Serializer<Array> {
     @Override
     public Array<?> read(ReadContext fory) {
         final boolean ordered = fory.readBoolean();
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         Array<String> data = new Array<>(ordered, len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readString());

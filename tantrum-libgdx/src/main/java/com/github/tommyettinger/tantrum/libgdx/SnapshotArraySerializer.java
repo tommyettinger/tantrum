@@ -35,7 +35,7 @@ public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
     public void write(final org.apache.fory.context.WriteContext fory, final SnapshotArray data) {
         final int len = data.size;
         fory.writeBoolean(data.ordered);
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data) {
             fory.writeRef(item);
         }
@@ -44,7 +44,7 @@ public class SnapshotArraySerializer extends Serializer<SnapshotArray> {
     @Override
     public SnapshotArray<?> read(final org.apache.fory.context.ReadContext fory) {
         final boolean ordered = fory.readBoolean();
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         SnapshotArray data = new SnapshotArray(ordered, len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

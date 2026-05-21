@@ -38,7 +38,7 @@ public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringMap data) {
         fory.writeString(data.getFilter().getName());
-        fory.writeVarUint32(data.size());
+        fory.writeVarUInt32(data.size());
         for(Object k : data.keySet()){
             fory.writeRef(k);
         }
@@ -51,7 +51,7 @@ public class FilteredStringMapSerializer extends MapSerializer<FilteredStringMap
     @Override
     public FilteredStringMap<?> read(org.apache.fory.context.ReadContext fory) {
         CharFilter filter = CharFilter.get(fory.readString());
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         String[] ks = new String[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {

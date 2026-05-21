@@ -31,8 +31,7 @@ public final class Support {
      * {@link MemoryBuffer#writeShortsWithSize(short[])}.
      */
     public static short[] readShortsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readBinarySize();
-        int numElements = numBytes >>> 1;
+        final int numElements = buffer.readVarUInt32();
         short[] values = new short[numElements];
         buffer.readShorts(values, 0, numElements);
         return values;
@@ -44,7 +43,10 @@ public final class Support {
      * It delegates to {@link MemoryBuffer#readCharsAndSize()}.
      */
     public static char[] readCharsAndSize(MemoryBuffer buffer) {
-        return buffer.readCharsAndSize();
+        final int numElements = buffer.readVarUInt32();
+        char[] values = new char[numElements];
+        buffer.readCharArrayPayload(values, numElements << 1);
+        return values;
     }
 
     /**
@@ -52,8 +54,7 @@ public final class Support {
      * {@link MemoryBuffer#writeIntsWithSize(int[])}.
      */
     public static int[] readIntsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readBinarySize();
-        int numElements = numBytes >>> 2;
+        final int numElements = buffer.readVarUInt32();
         int[] values = new int[numElements];
         buffer.readInts(values, 0, numElements);
         return values;
@@ -64,8 +65,7 @@ public final class Support {
      * {@link MemoryBuffer#writeFloatsWithSize(float[])}.
      */
     public static float[] readFloatsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readBinarySize();
-        int numElements = numBytes >>> 2;
+        final int numElements = buffer.readVarUInt32();
         float[] values = new float[numElements];
         buffer.readFloats(values, 0, numElements);
         return values;
@@ -76,8 +76,7 @@ public final class Support {
      * {@link MemoryBuffer#writeLongsWithSize(long[])}.
      */
     public static long[] readLongsAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readBinarySize();
-        int numElements = numBytes >>> 3;
+        final int numElements = buffer.readVarUInt32();
         long[] values = new long[numElements];
         buffer.readLongs(values, 0, numElements);
         return values;
@@ -88,8 +87,7 @@ public final class Support {
      * {@link MemoryBuffer#writeDoublesWithSize(double[])}.
      */
     public static double[] readDoublesAndSize(MemoryBuffer buffer) {
-        final int numBytes = buffer.readBinarySize();
-        int numElements = numBytes >>> 3;
+        final int numElements = buffer.readVarUInt32();
         double[] values = new double[numElements];
         buffer.readDoubles(values, 0, numElements);
         return values;

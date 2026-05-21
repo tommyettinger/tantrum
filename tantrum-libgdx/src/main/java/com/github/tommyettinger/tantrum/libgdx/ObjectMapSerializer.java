@@ -34,7 +34,7 @@ public class ObjectMapSerializer extends Serializer<ObjectMap> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectMap data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data.keys()) {
             fory.writeRef(item);
             fory.writeRef(data.get(item));
@@ -43,7 +43,7 @@ public class ObjectMapSerializer extends Serializer<ObjectMap> {
 
     @Override
     public ObjectMap<?, ?> read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectMap data = new ObjectMap(len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readRef(), fory.readRef());

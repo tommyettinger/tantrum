@@ -34,7 +34,7 @@ public class IntMapSerializer extends Serializer<IntMap> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntMap data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         IntMap.Keys keys = data.keys();
         for (int item; keys.hasNext;) {
             item = keys.next();
@@ -45,7 +45,7 @@ public class IntMapSerializer extends Serializer<IntMap> {
 
     @Override
     public IntMap<?> read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         IntMap data = new IntMap(len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readInt32(), fory.readRef());

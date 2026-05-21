@@ -39,7 +39,7 @@ public class FilteredStringSetSerializer extends CollectionSerializer<FilteredSt
     public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringSet data) {
         fory.writeString(data.getFilter().getName());
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (String item : data) {
             fory.writeRef(item);
         }
@@ -48,7 +48,7 @@ public class FilteredStringSetSerializer extends CollectionSerializer<FilteredSt
     @Override
     public FilteredStringSet read(org.apache.fory.context.ReadContext fory) {
         CharFilter filter = CharFilter.get(fory.readString());
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         FilteredStringSet data = new FilteredStringSet(filter, len);
         for (int i = 0; i < len; i++) {
             data.add((String) fory.readRef());

@@ -37,7 +37,7 @@ public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final EnumSet data) {
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Enum<?> item : data) {
             fory.writeRef(item);
         }
@@ -45,7 +45,7 @@ public class EnumSetSerializer extends CollectionSerializer<EnumSet> {
 
     @Override
     public EnumSet read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         EnumSet data = new EnumSet();
         for (int i = 0; i < len; i++) {
             data.add((Enum<?>)fory.readRef());

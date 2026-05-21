@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.utils.ShortArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link ShortArray}s.
@@ -37,7 +36,8 @@ public class ShortArraySerializer extends Serializer<ShortArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ShortArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.SHORT_ARRAY_OFFSET, data.size << 1);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeShorts(data.items, 0, data.size);
     }
 
     @Override

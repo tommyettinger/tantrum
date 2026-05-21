@@ -40,7 +40,7 @@ public class FilteredStringOrderedSetSerializer extends CollectionSerializer<Fil
     public void write(final org.apache.fory.context.WriteContext fory, final FilteredStringOrderedSet data) {
         fory.writeString(data.getFilter().getName());
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         fory.writeString(data.getOrderType().name());
         for (String item : data) {
             fory.writeRef(item);
@@ -51,7 +51,7 @@ public class FilteredStringOrderedSetSerializer extends CollectionSerializer<Fil
     @Override
     public FilteredStringOrderedSet read(org.apache.fory.context.ReadContext fory) {
         CharFilter filter = CharFilter.get(fory.readString());
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         FilteredStringOrderedSet data = new FilteredStringOrderedSet(filter, len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
             data.add((String) fory.readRef());

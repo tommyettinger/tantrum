@@ -19,7 +19,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 
 import com.badlogic.gdx.utils.ByteArray;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link ByteArray}s.
@@ -36,7 +35,8 @@ public class ByteArraySerializer extends Serializer<ByteArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ByteArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BYTE_ARRAY_OFFSET, data.size);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeBytes(data.items, 0, data.size);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObject
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectObjectOrderedMap data) {
-        fory.writeVarUint32(data.size());
+        fory.writeVarUInt32(data.size());
         for(Object k : data.keySet()){
             fory.writeRef(k);
         }
@@ -51,7 +51,7 @@ public class ObjectObjectOrderedMapSerializer extends MapSerializer<ObjectObject
 
     @Override
     public ObjectObjectOrderedMap<?, ?> read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         Object[] ks = new Object[len], vs = new Object[len];
         for (int i = 0; i < len; i++) {
             ks[i] = fory.readRef();

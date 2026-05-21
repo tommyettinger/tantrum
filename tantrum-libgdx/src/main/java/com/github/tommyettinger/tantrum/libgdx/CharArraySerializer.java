@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.utils.CharArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link CharArray}s.
@@ -37,7 +36,8 @@ public class CharArraySerializer extends Serializer<CharArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CharArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.CHAR_ARRAY_OFFSET, data.size << 1);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeChars(data.items, 0, data.size);
     }
 
     @Override

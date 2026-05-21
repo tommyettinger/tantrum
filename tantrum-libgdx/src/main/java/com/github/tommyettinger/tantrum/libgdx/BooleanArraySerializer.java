@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.utils.BooleanArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link BooleanArray}s.
@@ -37,7 +36,8 @@ public class BooleanArraySerializer extends Serializer<BooleanArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final BooleanArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.BOOLEAN_ARRAY_OFFSET, data.size);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeBooleans(data.items, 0, data.size);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntFloatMap data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         IntFloatMap.Keys keys = data.keys();
         for (int item; keys.hasNext;) {
             item = keys.next();
@@ -45,7 +45,7 @@ public class IntFloatMapSerializer extends Serializer<IntFloatMap> {
 
     @Override
     public IntFloatMap read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         IntFloatMap data = new IntFloatMap(len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readInt32(), fory.readFloat32());

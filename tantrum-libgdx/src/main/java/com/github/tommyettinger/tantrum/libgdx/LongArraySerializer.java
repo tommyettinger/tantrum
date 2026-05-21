@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.libgdx;
 import com.badlogic.gdx.utils.LongArray;
 import com.github.tommyettinger.tantrum.libgdx.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link LongArray}s.
@@ -37,7 +36,8 @@ public class LongArraySerializer extends Serializer<LongArray> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongArray data) {
         fory.writeBoolean(data.ordered);
-        fory.getBuffer().writePrimitiveArrayWithSize(data.items, Platform.LONG_ARRAY_OFFSET, data.size << 3);
+        fory.writeVarUInt32(data.size);
+        fory.getBuffer().writeLongs(data.items, 0, data.size);
     }
 
     @Override

@@ -21,7 +21,6 @@ import com.github.tommyettinger.ds.LongFloatOrderedMap;
 import com.github.tommyettinger.ds.OrderType;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link LongFloatOrderedMap}s.

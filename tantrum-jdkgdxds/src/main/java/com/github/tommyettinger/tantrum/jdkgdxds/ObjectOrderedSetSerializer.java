@@ -39,7 +39,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectOrderedSet data) {
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         fory.writeString(data.getOrderType().name());
         for (int i = 0; i < len; i++) {
             fory.writeRef(data.getAt(i));
@@ -48,7 +48,7 @@ public class ObjectOrderedSetSerializer extends CollectionSerializer<ObjectOrder
 
     @Override
     public ObjectOrderedSet read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectOrderedSet data = new ObjectOrderedSet(len, OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

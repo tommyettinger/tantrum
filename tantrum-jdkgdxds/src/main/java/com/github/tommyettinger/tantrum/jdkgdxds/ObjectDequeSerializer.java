@@ -38,7 +38,7 @@ public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectDeque data) {
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         fory.writeRef(data.getDefaultValue());
         for (int i = 0; i < len; i++) {
             fory.writeRef(data.get(i));
@@ -47,7 +47,7 @@ public class ObjectDequeSerializer extends CollectionSerializer<ObjectDeque> {
 
     @Override
     public ObjectDeque read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectDeque data = new ObjectDeque(len);
         data.setDefaultValue(fory.readRef());
         for (int i = 0; i < len; i++)

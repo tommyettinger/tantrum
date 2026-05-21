@@ -35,7 +35,7 @@ public class ArraySerializer extends Serializer<Array> {
     public void write(final org.apache.fory.context.WriteContext fory, final Array data) {
         final int len = data.size;
         fory.writeBoolean(data.ordered);
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data) {
             fory.writeRef(item);
         }
@@ -44,7 +44,7 @@ public class ArraySerializer extends Serializer<Array> {
     @Override
     public Array<?> read(final org.apache.fory.context.ReadContext fory) {
         final boolean ordered = fory.readBoolean();
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         Array data = new Array(ordered, len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

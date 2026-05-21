@@ -34,7 +34,7 @@ public class ObjectSetSerializer extends Serializer<ObjectSet> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectSet data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data) {
             fory.writeRef(item);
         }
@@ -42,7 +42,7 @@ public class ObjectSetSerializer extends Serializer<ObjectSet> {
 
     @Override
     public ObjectSet<?> read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectSet data = new ObjectSet(len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

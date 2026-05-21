@@ -20,7 +20,6 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 import com.github.tommyettinger.ds.LongOrderedSet;
 import com.github.tommyettinger.ds.OrderType;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 import com.github.tommyettinger.tantrum.digital.helpers.Support;
 
 /**

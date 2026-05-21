@@ -35,7 +35,7 @@ public class DelayedRemovalArraySerializer extends Serializer<DelayedRemovalArra
     public void write(final org.apache.fory.context.WriteContext fory, final DelayedRemovalArray data) {
         final int len = data.size;
         fory.writeBoolean(data.ordered);
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data) {
             fory.writeRef(item);
         }
@@ -44,7 +44,7 @@ public class DelayedRemovalArraySerializer extends Serializer<DelayedRemovalArra
     @Override
     public DelayedRemovalArray<?> read(final org.apache.fory.context.ReadContext fory) {
         final boolean ordered = fory.readBoolean();
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         DelayedRemovalArray data = new DelayedRemovalArray(ordered, len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

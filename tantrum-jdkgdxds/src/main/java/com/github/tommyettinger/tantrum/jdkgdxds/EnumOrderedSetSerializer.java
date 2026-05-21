@@ -38,7 +38,7 @@ public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSe
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final EnumOrderedSet data) {
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         fory.writeString(data.getOrderType().name());
         for (Enum<?> item : data) {
             fory.writeRef(item);
@@ -47,7 +47,7 @@ public class EnumOrderedSetSerializer extends CollectionSerializer<EnumOrderedSe
 
     @Override
     public EnumOrderedSet read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         EnumOrderedSet data = new EnumOrderedSet(OrderType.valueOf(fory.readString()));
         for (int i = 0; i < len; i++) {
             data.add((Enum<?>)fory.readRef());

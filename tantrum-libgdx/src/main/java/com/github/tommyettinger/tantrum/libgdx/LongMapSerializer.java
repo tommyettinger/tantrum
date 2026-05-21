@@ -34,7 +34,7 @@ public class LongMapSerializer extends Serializer<LongMap> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final LongMap data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         LongMap.Keys keys = data.keys();
         for (long item; keys.hasNext;) {
             item = keys.next();
@@ -45,7 +45,7 @@ public class LongMapSerializer extends Serializer<LongMap> {
 
     @Override
     public LongMap<?> read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         LongMap data = new LongMap(len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readInt64(), fory.readRef());

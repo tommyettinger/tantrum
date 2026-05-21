@@ -35,7 +35,7 @@ public class ArrayMapSerializer extends Serializer<ArrayMap> {
     public void write(final org.apache.fory.context.WriteContext fory, final ArrayMap data) {
         final int len = data.size;
         fory.writeBoolean(data.ordered);
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (Object item : data.keys()) {
             fory.writeRef(item);
             fory.writeRef(data.get(item));
@@ -45,7 +45,7 @@ public class ArrayMapSerializer extends Serializer<ArrayMap> {
     @Override
     public ArrayMap<?, ?> read(final org.apache.fory.context.ReadContext fory) {
         final boolean ordered = fory.readBoolean();
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ArrayMap data = new ArrayMap(ordered, len);
         for (int i = 0; i < len; i++) {
             data.put(fory.readRef(), fory.readRef());

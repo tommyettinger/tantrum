@@ -37,7 +37,7 @@ public class CaseInsensitiveOrderedMapSerializer extends MapSerializer<CaseInsen
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final CaseInsensitiveOrderedMap data) {
-        fory.writeVarUint32(data.size());
+        fory.writeVarUInt32(data.size());
         for(Object k : data.keySet()){
             fory.writeRef(k);
         }
@@ -50,7 +50,7 @@ public class CaseInsensitiveOrderedMapSerializer extends MapSerializer<CaseInsen
 
     @Override
     public CaseInsensitiveOrderedMap<?> read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         CharSequence[] ks = new CharSequence[len];
         Object[] vs = new Object[len];
         for (int i = 0; i < len; i++) {

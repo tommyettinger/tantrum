@@ -19,7 +19,6 @@ package com.github.tommyettinger.tantrum.jdkgdxds;
 
 import com.github.tommyettinger.ds.CharDeque;
 import org.apache.fory.serializer.Serializer;
-import org.apache.fory.memory.Platform;
 
 /**
  * Fory {@link Serializer} for jdkgdxds {@link CharDeque}s.

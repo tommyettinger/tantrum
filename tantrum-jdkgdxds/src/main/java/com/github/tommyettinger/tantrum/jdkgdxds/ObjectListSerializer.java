@@ -38,7 +38,7 @@ public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final ObjectList data) {
         final int len = data.size();
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         for (int i = 0; i < len; i++) {
             fory.writeRef(data.get(i));
         }
@@ -46,7 +46,7 @@ public class ObjectListSerializer extends CollectionSerializer<ObjectList> {
 
     @Override
     public ObjectList read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         ObjectList data = new ObjectList(len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readRef());

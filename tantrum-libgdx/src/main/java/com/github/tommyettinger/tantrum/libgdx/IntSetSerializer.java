@@ -34,7 +34,7 @@ public class IntSetSerializer extends Serializer<IntSet> {
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final IntSet data) {
         final int len = data.size;
-        fory.writeVarUint32(len);
+        fory.writeVarUInt32(len);
         IntSet.IntSetIterator it = data.iterator();
         for (int item; it.hasNext;) {
             item = it.next();
@@ -44,7 +44,7 @@ public class IntSetSerializer extends Serializer<IntSet> {
 
     @Override
     public IntSet read(final org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         IntSet data = new IntSet(len);
         for (int i = 0; i < len; i++) {
             data.add(fory.readInt32());

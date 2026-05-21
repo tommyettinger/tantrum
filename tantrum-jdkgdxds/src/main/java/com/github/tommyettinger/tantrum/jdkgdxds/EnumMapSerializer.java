@@ -36,7 +36,7 @@ public class EnumMapSerializer extends MapSerializer<EnumMap> {
 
     @Override
     public void write(final org.apache.fory.context.WriteContext fory, final EnumMap data) {
-        fory.writeVarUint32(data.size());
+        fory.writeVarUInt32(data.size());
         for(Enum<?> k : data.keySet()){
             fory.writeRef(k);
         }
@@ -48,7 +48,7 @@ public class EnumMapSerializer extends MapSerializer<EnumMap> {
 
     @Override
     public EnumMap<?> read(org.apache.fory.context.ReadContext fory) {
-        final int len = fory.readVarUint32();
+        final int len = fory.readVarUInt32();
         if(len == 0) return new EnumMap<>();
         Enum<?>[] ks = new Enum[len];
         for (int i = 0; i < len; i++) {
