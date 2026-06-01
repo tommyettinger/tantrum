@@ -33,7 +33,7 @@ or if Fory itself had a (compatible) update available but the linked library did
   - tantrum-libgdx is at version 1.14.1.25, compatible with libGDX 1.14.1
   - tantrum-digital is at version 0.10.0.26, compatible with digital 0.10.0
   - tantrum-jdkgdxds is at version 2.1.3.25, compatible with jdkgdxds 2.1.3
-  - tantrum-regexodus is at version 0.1.21.25, compatible with RegExodus 0.1.21
+  - tantrum-regexodus is at version 0.1.21.26, compatible with RegExodus 0.1.21
 
 There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
 It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.5),
@@ -79,7 +79,7 @@ implementation "com.github.tommyettinger:tantrum-jdkgdxds:2.1.3.25"
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.21.25"
+implementation "com.github.tommyettinger:tantrum-regexodus:0.1.21.26"
 ```
 
 Most likely, you won't need this, and should use the current juniper instead:
@@ -128,7 +128,7 @@ tantrum-regexodus:
 <dependency>
   <groupId>com.github.tommyettinger</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.21.25</version>
+  <version>0.1.21.26</version>
 </dependency>
 ```
 
