@@ -49,6 +49,6 @@ dependencies {
 jar {
     archiveBaseName.set(project.name)
     manifest {
-        attributes 'Implementation-Title': projectName, 'Implementation-Version': archiveVersion
+        attributes 'Implementation-Title': projectName, 'Implementation-Version': archiveVersion, 'Multi-Release': 'true'
     }
 }
