@@ -29,7 +29,7 @@ public class UtilsTest {
     public void testArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Array.class, new ArraySerializer(fory));
+        fory.registerSerializerAndType(Array.class, new ArraySerializer(fory));
 
         Array<String> data = Array.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -43,7 +43,7 @@ public class UtilsTest {
     public void testSnapshotArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(SnapshotArray.class, new SnapshotArraySerializer(fory));
+        fory.registerSerializerAndType(SnapshotArray.class, new SnapshotArraySerializer(fory));
 
         SnapshotArray<String> data = SnapshotArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -57,7 +57,7 @@ public class UtilsTest {
     public void testDelayedRemovalArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(DelayedRemovalArray.class, new DelayedRemovalArraySerializer(fory));
+        fory.registerSerializerAndType(DelayedRemovalArray.class, new DelayedRemovalArraySerializer(fory));
 
         DelayedRemovalArray<String> data = DelayedRemovalArray.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -71,7 +71,7 @@ public class UtilsTest {
     public void testArrayMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ArrayMap.class, new ArrayMapSerializer(fory));
+        fory.registerSerializerAndType(ArrayMap.class, new ArrayMapSerializer(fory));
 
         ArrayMap<String, Integer> data = new ArrayMap<>();
         data.put("Cthulhu", -123456);
@@ -94,7 +94,7 @@ public class UtilsTest {
     public void testQueue() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(Queue.class, new QueueSerializer(fory));
+        fory.registerSerializerAndType(Queue.class, new QueueSerializer(fory));
 
         Queue<String> data = new Queue<>(9);
         for (String s : new String[]{"Hello", "World", "!", "I", "am", "a", "test", "!", "yay"}) {
@@ -111,7 +111,7 @@ public class UtilsTest {
     public void testObjectSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectSet.class, new ObjectSetSerializer(fory));
+        fory.registerSerializerAndType(ObjectSet.class, new ObjectSetSerializer(fory));
 
         ObjectSet<String> data = ObjectSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -125,7 +125,7 @@ public class UtilsTest {
     public void testOrderedSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(OrderedSet.class, new OrderedSetSerializer(fory));
+        fory.registerSerializerAndType(OrderedSet.class, new OrderedSetSerializer(fory));
 
         OrderedSet<String> data = OrderedSet.with("Hello", "World", "!", "I", "am", "a", "test", "!", "yay");
 
@@ -139,7 +139,7 @@ public class UtilsTest {
     public void testObjectMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectMap.class, new ObjectMapSerializer(fory));
+        fory.registerSerializerAndType(ObjectMap.class, new ObjectMapSerializer(fory));
 
         ObjectMap<String, Integer> data = new ObjectMap<>();
         data.put("Cthulhu", -123456);
@@ -161,7 +161,7 @@ public class UtilsTest {
     public void testOrderedMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(OrderedMap.class, new OrderedMapSerializer(fory));
+        fory.registerSerializerAndType(OrderedMap.class, new OrderedMapSerializer(fory));
 
         OrderedMap<String, Integer> data = new OrderedMap<>();
         data.put("Cthulhu", -123456);
@@ -183,7 +183,7 @@ public class UtilsTest {
     public void testObjectFloatMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectFloatMap.class, new ObjectFloatMapSerializer(fory));
+        fory.registerSerializerAndType(ObjectFloatMap.class, new ObjectFloatMapSerializer(fory));
 
         ObjectFloatMap<String> data = new ObjectFloatMap<>();
         data.put("Cthulhu", -123456.1f);
@@ -205,7 +205,7 @@ public class UtilsTest {
     public void testObjectLongMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectLongMap.class, new ObjectLongMapSerializer(fory));
+        fory.registerSerializerAndType(ObjectLongMap.class, new ObjectLongMapSerializer(fory));
 
         ObjectLongMap<String> data = new ObjectLongMap<>();
         data.put("Cthulhu", -123456);
@@ -227,7 +227,7 @@ public class UtilsTest {
     public void testObjectIntMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ObjectIntMap.class, new ObjectIntMapSerializer(fory));
+        fory.registerSerializerAndType(ObjectIntMap.class, new ObjectIntMapSerializer(fory));
 
         ObjectIntMap<String> data = new ObjectIntMap<>();
         data.put("Cthulhu", -123456);
@@ -249,7 +249,7 @@ public class UtilsTest {
     public void testBooleanArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(BooleanArray.class, new BooleanArraySerializer(fory));
+        fory.registerSerializerAndType(BooleanArray.class, new BooleanArraySerializer(fory));
 
         BooleanArray data = BooleanArray.with(true, false, false, true, false, true, false);
 
@@ -262,7 +262,7 @@ public class UtilsTest {
     public void testByteArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ByteArray.class, new ByteArraySerializer(fory));
+        fory.registerSerializerAndType(ByteArray.class, new ByteArraySerializer(fory));
 
         ByteArray data = ByteArray.with(new byte[]{-123, 0, 45, 0, 1, -1, 0});
 
@@ -275,7 +275,7 @@ public class UtilsTest {
     public void testCharArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(CharArray.class, new CharArraySerializer(fory));
+        fory.registerSerializerAndType(CharArray.class, new CharArraySerializer(fory));
 
         CharArray data = CharArray.with("Hello, World!".toCharArray());
 
@@ -288,7 +288,7 @@ public class UtilsTest {
     public void testFloatArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(FloatArray.class, new FloatArraySerializer(fory));
+        fory.registerSerializerAndType(FloatArray.class, new FloatArraySerializer(fory));
 
         FloatArray data = FloatArray.with(-123.123f, 0f, 456.456f, 0, 1f, -1f, 0.000001f);
 
@@ -301,7 +301,7 @@ public class UtilsTest {
     public void testIntArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntArray.class, new IntArraySerializer(fory));
+        fory.registerSerializerAndType(IntArray.class, new IntArraySerializer(fory));
 
         IntArray data = IntArray.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
@@ -314,7 +314,7 @@ public class UtilsTest {
     public void testIntSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntSet.class, new IntSetSerializer(fory));
+        fory.registerSerializerAndType(IntSet.class, new IntSetSerializer(fory));
 
         IntSet data = IntSet.with(-123, 0, 456, 0, 1, -1, 0x80000000);
 
@@ -327,7 +327,7 @@ public class UtilsTest {
     public void testIntMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntMap.class, new IntMapSerializer(fory));
+        fory.registerSerializerAndType(IntMap.class, new IntMapSerializer(fory));
 
         IntMap<Float> data = new IntMap<>();
         data.put(-1234567890, 1.2f);
@@ -350,7 +350,7 @@ public class UtilsTest {
     public void testIntFloatMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntFloatMap.class, new IntFloatMapSerializer(fory));
+        fory.registerSerializerAndType(IntFloatMap.class, new IntFloatMapSerializer(fory));
 
         IntFloatMap data = new IntFloatMap();
         data.put(-1234567890, 1.2f);
@@ -373,7 +373,7 @@ public class UtilsTest {
     public void testIntIntMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(IntIntMap.class, new IntIntMapSerializer(fory));
+        fory.registerSerializerAndType(IntIntMap.class, new IntIntMapSerializer(fory));
 
         IntIntMap data = new IntIntMap();
         data.put(-1234567890, 12);
@@ -396,7 +396,7 @@ public class UtilsTest {
     public void testLongArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongArray.class, new LongArraySerializer(fory));
+        fory.registerSerializerAndType(LongArray.class, new LongArraySerializer(fory));
 
         LongArray data = LongArray.with(-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0);
 
@@ -409,7 +409,7 @@ public class UtilsTest {
     public void testLongQueue() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongQueue.class, new LongQueueSerializer(fory));
+        fory.registerSerializerAndType(LongQueue.class, new LongQueueSerializer(fory));
 
         LongQueue data = new LongQueue();
         for(long item : new long[]{-1234567890L, 0L, 4567890123456789L, 0, 1L, 1, -1, 0}) {
@@ -425,7 +425,7 @@ public class UtilsTest {
     public void testLongSet() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongSet.class, new LongSetSerializer(fory));
+        fory.registerSerializerAndType(LongSet.class, new LongSetSerializer(fory));
 
         LongSet data = LongSet.with(-123L, 0L, 456L, 0L, 1L, -1L, 0x80000000L, 0x8000000000000000L);
 
@@ -438,7 +438,7 @@ public class UtilsTest {
     public void testLongMap() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(LongMap.class, new LongMapSerializer(fory));
+        fory.registerSerializerAndType(LongMap.class, new LongMapSerializer(fory));
 
         LongMap<Float> data = new LongMap<>();
         data.put(-1234567890L, 1.2f);
@@ -461,7 +461,7 @@ public class UtilsTest {
     public void testShortArray() {
         LoggerFactory.disableLogging();
         Fory fory = Fory.builder().withLanguage(Language.JAVA).build();
-        fory.registerSerializer(ShortArray.class, new ShortArraySerializer(fory));
+        fory.registerSerializerAndType(ShortArray.class, new ShortArraySerializer(fory));
 
         ShortArray data = ShortArray.with(new short[]{-123, 0, 456, 0, 1, -1, 0});
 

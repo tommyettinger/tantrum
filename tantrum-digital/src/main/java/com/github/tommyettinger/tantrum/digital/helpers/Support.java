@@ -45,7 +45,7 @@ public final class Support {
     public static char[] readCharsAndSize(MemoryBuffer buffer) {
         final int numElements = buffer.readVarUInt32();
         char[] values = new char[numElements];
-        buffer.readCharArrayPayload(values, numElements << 1);
+        buffer.readCharArrayBytes(values, numElements << 1);
         return values;
     }
 

@@ -112,7 +112,7 @@ kryo.register\((\w+)\.class, new \1Serializer\(\)\);
 
 Replace:
 
-fory.registerSerializer($1.class, new $1Serializer(fory));
+fory.registerSerializerAndType($1.class, new $1Serializer(fory));
 
 Find:
 
