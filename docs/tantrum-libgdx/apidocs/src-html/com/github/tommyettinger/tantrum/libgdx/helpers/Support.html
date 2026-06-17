@@ -58,7 +58,7 @@
 <span class="source-line-no">045</span><span id="line-45">    public static char[] readCharsAndSize(MemoryBuffer buffer) {</span>
 <span class="source-line-no">046</span><span id="line-46">        final int numElements = buffer.readVarUInt32();</span>
 <span class="source-line-no">047</span><span id="line-47">        char[] values = new char[numElements];</span>
-<span class="source-line-no">048</span><span id="line-48">        buffer.readCharArrayPayload(values, numElements &lt;&lt; 1);</span>
+<span class="source-line-no">048</span><span id="line-48">        buffer.readCharArrayBytes(values, numElements &lt;&lt; 1);</span>
 <span class="source-line-no">049</span><span id="line-49">        return values;</span>
 <span class="source-line-no">050</span><span id="line-50">    }</span>
 <span class="source-line-no">051</span><span id="line-51"></span>
