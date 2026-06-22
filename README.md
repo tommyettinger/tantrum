@@ -17,7 +17,7 @@ Similarly, there is a kryo-more sub-library for [cringe](https://github.com/tomm
 needed here because any types in cringe or juniper can be read and written without
 needing a Serializer.
 
-This uses Fory's pure-Java serialization, which calls itself blazingly fast, and it actually is!  In general, Fory's
+This uses Fory's pure-Java serialization, which calls itself blazingly fast, and it actually is! In general, Fory's
 automatic serialization is very high-quality, and it can be worthwhile to try *not* using a custom serializer in some
 cases, because the automatic, generated serializers can actually be faster. Some cases are clearly better for the custom
 serializers, though. For example, ordered maps and sets in jdkgdxds are better with a custom serializer from here,
@@ -26,27 +26,42 @@ because a custom serializer can simply read and write the entries in order. That
 
 ## How to get
 
-Each sub-library has its own version, linked to the version of the library it de/serializes.
-The last component of the version is usually .0, but can be increased for bug-fixes to the same linked library version,
-or if Fory itself had a (compatible) update available but the linked library did not have an update.
+Releases are delivered through JitPack.
+Maven Central is no longer a feasible way to publish this library, so we use JitPack to publish stable releases
+as well as commits.
+See [my rant in the digital project](https://github.com/tommyettinger/digital#rant) for why.
+See [JitPack's information on using it as a repo](https://jitpack.io/#tommyettinger/tantrum) if you don't use
+gdx-liftoff to create projects, or you are otherwise making a project yourself and don't already use JitPack.
 
-  - tantrum-libgdx is at version 1.14.2.27, compatible with libGDX 1.14.2
-  - tantrum-digital is at version 0.10.1.27, compatible with digital 0.10.1
-  - tantrum-jdkgdxds is at version 2.1.4.27, compatible with jdkgdxds 2.1.4
-  - tantrum-regexodus is at version 0.1.21.27, compatible with RegExodus 0.1.21
+The new versioning scheme shares one version for all four subprojects, which is the Fory version with an extra component
+for updates to any of the four subprojects. The last component resets to .0 when any Fory update is published.
 
-There's also the older tantrum-juniper, which is at version 0.6.0.0, and is compatible with juniper 0.6.0.
-It isn't needed if you use any more-recent versions of juniper, such as 0.6.1 or higher (current is at least 0.8.5),
-since juniper uses the no-dependency-needed `Externalizable` interface that Fory can understand.
+- tantrum-libgdx is at version 1.2.0.0, compatible with libGDX 1.14.2
+- tantrum-digital is at version 1.2.0.0, compatible with digital 0.10.2
+- tantrum-jdkgdxds is at version 1.2.0.0, compatible with jdkgdxds 2.1.5
+- tantrum-regexodus is at version 1.2.0.0, compatible with RegExodus 0.1.21
 
-In version 1.12.1.1, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
+In earlier releases, this published through Maven Central, and each sub-library had its own version, linked to the
+version of the library it de/serializes. These are the last versions published to Maven Central; all future versions
+use a different versioning scheme and publish to JitPack.io .
+
+In the old scheme, the last component of the version was usually .0, but was increased for bug-fixes to the same
+linked library version, or if Fory itself had an update available but the linked library did not have an update.
+The Fory version was updated quite a lot, and this component reached .27 .
+
+- tantrum-libgdx was at version 1.14.2.27, compatible with libGDX 1.14.2
+- tantrum-digital was at version 0.10.1.27, compatible with digital 0.10.1
+- tantrum-jdkgdxds was at version 2.1.4.27, compatible with jdkgdxds 2.1.4
+- tantrum-regexodus was at version 0.1.21.27, compatible with RegExodus 0.1.21
+
+A while ago, tantrum-libgdx expanded to cover substantially more libGDX classes, from `Color` to
 `OrientedBoundingBox`. If a class you need isn't covered, you can first read the sources here to see if writing a
 serializer yourself is feasible, and if not, you can post an issue here requesting any classes that aren't present.
 Some classes may not be possible to serialize reasonably, such as ones that use `private` or package-private
 modifiers excessively without providing getters.
 
 The current version of libGDX at the time of writing is 1.14.2, which works with Fory 1.2.0 via tantrum-libgdx
-1.14.2.27 . The earlier 1.14.0 release works with tantrum-libgdx 1.14.0.24 and Fory 0.17.0.
+1.2.0.0 . The earlier 1.14.0 release works with tantrum-libgdx 1.14.0.24 and Fory 0.17.0.
 The older libGDX version 1.13.5 works with Fury (not Fory) 0.10.2 via tantrum-libgdx 1.13.5.8 .
 Version 1.14.2, 1.14.0, or 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so if you must use a 1.13.x
 release, use tantrum-libgdx 1.13.1.10, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't
@@ -61,33 +76,25 @@ GWT, so no GWT info is provided here.
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-libgdx:1.14.2.27"
+implementation "com.github.tommyettinger.tantrum:tantrum-libgdx:1.2.0.0"
 ```
 
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-digital:0.10.1.27"
+implementation "com.github.tommyettinger.tantrum:tantrum-digital:1.2.0.0"
 ```
 
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-jdkgdxds:2.1.4.27"
+implementation "com.github.tommyettinger.tantrum:tantrum-jdkgdxds:1.2.0.0"
 ```
 
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger:tantrum-regexodus:0.1.21.27"
-```
-
-Most likely, you won't need this, and should use the current juniper instead:
-
-tantrum-juniper:
-
-```gradle
-implementation "com.github.tommyettinger:tantrum-juniper:0.6.0.0"
+implementation "com.github.tommyettinger.tantrum:tantrum-regexodus:1.2.0.0"
 ```
 
 ### Maven dependency info
@@ -96,9 +103,9 @@ tantrum-libgdx:
 
 ```xml
 <dependency>
-  <groupId>com.github.tommyettinger</groupId>
+    <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.14.2.27</version>
+  <version>1.2.0.0</version>
 </dependency>
 ```
 
@@ -106,9 +113,9 @@ tantrum-digital:
 
 ```xml
 <dependency>
-  <groupId>com.github.tommyettinger</groupId>
+  <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>0.10.1.27</version>
+  <version>1.2.0.0</version>
 </dependency>
 ```
 
@@ -116,9 +123,9 @@ tantrum-jdkgdxds:
 
 ```xml
 <dependency>
-  <groupId>com.github.tommyettinger</groupId>
+    <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>2.1.4.27</version>
+  <version>1.2.0.0</version>
 </dependency>
 ```
 
@@ -126,21 +133,9 @@ tantrum-regexodus:
 
 ```xml
 <dependency>
-  <groupId>com.github.tommyettinger</groupId>
+    <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>0.1.21.27</version>
-</dependency>
-```
-
-Most likely, you won't need this, and should use the current juniper instead:
-
-tantrum-juniper:
-
-```xml
-<dependency>
-  <groupId>com.github.tommyettinger</groupId>
-  <artifactId>tantrum-juniper</artifactId>
-  <version>0.6.0.0</version>
+  <version>1.2.0.0</version>
 </dependency>
 ```
 
