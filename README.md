@@ -2,7 +2,7 @@
 
 A little bit of Fory (formerly Fury) for various libGDX-related libraries.
 
-This lets [Fory](https://fory.apache.org) (currently 1.5.0) de/serialize objects from [libGDX](https://libgdx.com)
+This lets [Fory](https://fory.apache.org) (currently 1.6.0) de/serialize objects from [libGDX](https://libgdx.com)
 and several other libraries in its "tangential ecosystem." These other libraries are
 [RegExodus](https://github.com/tommyettinger/RegExodus), [digital](https://github.com/tommyettinger/digital),
 and [jdkgdxds](https://github.com/tommyettinger/jdkgdxds); none of these three directly depend on libGDX, but all have been
@@ -39,10 +39,10 @@ You can look at the [build.gradle](build.gradle) here to see how this project ad
 The new versioning scheme shares one version for all four subprojects, which is the Fory version with an extra component
 for updates to any of the four subprojects. The last component resets to .0 when any Fory update is published.
 
-- tantrum-libgdx is at version 1.5.0.1, compatible with libGDX 1.14.2
-- tantrum-digital is at version 1.5.0.1, compatible with digital 0.10.2
-- tantrum-jdkgdxds is at version 1.5.0.1, compatible with jdkgdxds 2.1.8
-- tantrum-regexodus is at version 1.5.0.1, compatible with RegExodus 0.1.21
+- tantrum-libgdx is at version 1.6.0.0, compatible with libGDX 1.14.2
+- tantrum-digital is at version 1.6.0.0, compatible with digital 0.10.2
+- tantrum-jdkgdxds is at version 1.6.0.0, compatible with jdkgdxds 2.1.8
+- tantrum-regexodus is at version 1.6.0.0, compatible with RegExodus 0.1.21
 
 In earlier releases, this published through Maven Central, and each sub-library had its own version, linked to the
 version of the library it de/serializes. These are the last versions published to Maven Central; all future versions
@@ -64,7 +64,7 @@ Some classes may not be possible to serialize reasonably, such as ones that use 
 modifiers excessively without providing getters.
 
 The current version of libGDX at the time of writing is 1.14.2, which works with Fory 1.5.0 via tantrum-libgdx
-1.5.0.1 . The earlier 1.14.0 release works with tantrum-libgdx 1.14.0.24 and Fory 0.17.0.
+1.6.0.0 . The earlier 1.14.0 release works with tantrum-libgdx 1.14.0.24 and Fory 0.17.0.
 The older libGDX version 1.13.5 works with Fury (not Fory) 0.10.2 via tantrum-libgdx 1.13.5.8 .
 Version 1.14.2, 1.14.0, or 1.13.1 of libGDX is currently preferred due to bugs in 1.13.5, so if you must use a 1.13.x
 release, use tantrum-libgdx 1.13.1.10, which uses libGDX 1.13.1. If you need to use 1.13.0, which you probably won't
@@ -79,25 +79,25 @@ GWT, so no GWT info is provided here.
 tantrum-libgdx:
 
 ```gradle
-implementation "com.github.tommyettinger.tantrum:tantrum-libgdx:1.5.0.1"
+implementation "com.github.tommyettinger.tantrum:tantrum-libgdx:1.6.0.0"
 ```
 
 tantrum-digital:
 
 ```gradle
-implementation "com.github.tommyettinger.tantrum:tantrum-digital:1.5.0.1"
+implementation "com.github.tommyettinger.tantrum:tantrum-digital:1.6.0.0"
 ```
 
 tantrum-jdkgdxds:
 
 ```gradle
-implementation "com.github.tommyettinger.tantrum:tantrum-jdkgdxds:1.5.0.1"
+implementation "com.github.tommyettinger.tantrum:tantrum-jdkgdxds:1.6.0.0"
 ```
 
 tantrum-regexodus:
 
 ```gradle
-implementation "com.github.tommyettinger.tantrum:tantrum-regexodus:1.5.0.1"
+implementation "com.github.tommyettinger.tantrum:tantrum-regexodus:1.6.0.0"
 ```
 
 ### Maven dependency info
@@ -108,7 +108,7 @@ tantrum-libgdx:
 <dependency>
     <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-libgdx</artifactId>
-  <version>1.5.0.1</version>
+  <version>1.6.0.0</version>
 </dependency>
 ```
 
@@ -118,7 +118,7 @@ tantrum-digital:
 <dependency>
   <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-digital</artifactId>
-  <version>1.5.0.1</version>
+  <version>1.6.0.0</version>
 </dependency>
 ```
 
@@ -128,7 +128,7 @@ tantrum-jdkgdxds:
 <dependency>
     <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-jdkgdxds</artifactId>
-  <version>1.5.0.1</version>
+  <version>1.6.0.0</version>
 </dependency>
 ```
 
@@ -138,7 +138,7 @@ tantrum-regexodus:
 <dependency>
     <groupId>com.github.tommyettinger.tantrum</groupId>
   <artifactId>tantrum-regexodus</artifactId>
-  <version>1.5.0.1</version>
+  <version>1.6.0.0</version>
 </dependency>
 ```
 
